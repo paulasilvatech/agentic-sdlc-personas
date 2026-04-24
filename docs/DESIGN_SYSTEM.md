@@ -84,15 +84,21 @@ All tokens are defined in [`site/public/tokens.css`](../site/public/tokens.css) 
 
 ## 3. Cluster color mapping
 
-Every persona belongs to exactly one cluster. The cluster determines icon accent, card tint and navigation grouping. This mapping is duplicated in [`site/src/lib/personas.ts`](../site/src/lib/personas.ts) and must stay in sync with this table.
+Every persona belongs to exactly one cluster. The cluster determines icon accent, card tint and navigation grouping. This mapping is the source of truth in [`site/src/lib/personas.ts`](../site/src/lib/personas.ts) (`clusters` record) and must stay in sync with this table.
 
-| Cluster | Accent token | Bg token | Personas |
-|---------|--------------|----------|----------|
-| **Product & business** | `--c-red-500` | `--c-red-50` | 01 Product Owner · 02 Business Manager · 03 Requirements Engineer · 08 UX Designer · 18 InfoSec · 19 Compliance Auditor |
-| **Architecture & data** | `--c-yellow-500` | `--c-yellow-50` | 04 Enterprise Architect · 05 Software Architect · 06 Technical Lead · 15 Data Engineer · 16 ML/AI Engineer · 21 DBA |
-| **Build & quality** | `--c-green-500` | `--c-green-50` | 13 Platform Engineer · 14 QA Engineer · 17 UAT Analyst · 22 Developer |
-| **Operations** | `--c-blue-500` | `--c-blue-50` | 11 DevOps · 12 Release Manager · 20 SRE |
-| **Enablement** | `--ink-2` | `--bg-alt` | 07 Engineering Manager · 09 Scrum Master · 10 Project Manager · 23 Technical Writer · 24 DevRel |
+| Cluster | Accent | Token | Personas |
+|---------|--------|-------|----------|
+| **product**    | red    | `--c-red-500`    | 01 Product Owner · 02 Business Manager · 03 Requirements Engineer · 08 UX Designer |
+| **architect**  | yellow | `--c-yellow-500` | 04 Enterprise Architect · 05 Software Architect · 06 Technical Lead |
+| **enablement** | ink    | `--ink-2`        | 07 Engineering Manager · 09 Scrum Master · 10 Project Manager · 23 Tech Writer · 24 DevRel |
+| **ops**        | blue   | `--c-blue-500`   | 11 DevOps Engineer · 17 Release Manager · 20 SRE |
+| **platform**   | green  | `--c-green-500`  | 12 Platform Architect |
+| **quality**    | green  | `--c-green-500`  | 13 QA Engineer · 14 UAT Analyst |
+| **data**       | yellow | `--c-yellow-500` | 15 Data Engineer · 16 ML/AI Engineer · 21 DBA |
+| **security**   | red    | `--c-red-500`    | 18 InfoSec Officer · 19 Compliance Auditor |
+| **build**      | green  | `--c-green-500`  | 22 Developer |
+
+Four accent colors, nine clusters — clusters collapse into the four-square brand mark (red / yellow / green / blue), with `ink` reserved for enablement.
 
 ---
 
@@ -156,7 +162,7 @@ Min target size: 44×44 px. Gap between icon and label: 10 px.
 - Surface: `--paper` on `--bg`
 - Border: 1px `--rule`
 - Radius: 16 px
-- Header strip: 6px height in cluster accent
+- Header strip: 4px (`.card__accent`) driven by `--card-accent`
 - Icon tile: 64×64 px, radius 10 px, background `--c-{cluster}-50`, SVG icon inside
 - Title: H3, `--ink`
 - Tagline: body, `--ink-2`, max 2 lines
