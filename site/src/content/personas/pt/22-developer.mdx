@@ -3,10 +3,244 @@ id: "22-developer"
 number: 22
 cluster: "build"
 accent: "green"
-phase: "Implementation"
-title: "Desenvolvedor"
-oneLiner: 'Implementação, TDD, correção.'
+phase: "Implementação"
+title: "Developer"
+oneLiner: "Implementação, TDD, correção de bugs."
 order: 22
+updated: "2026-04-23"
 ---
 
-A persona **Desenvolvedor** faz parte do cluster `build` no Agentic SDLC. Esta página é um resumo; o documento completo está em [`docs/pt/personas/22-developer.md`](https://github.com/paulasilvatech/agentic-sdlc-personas/blob/main/docs/pt/personas/22-developer.md) e o kit executável em [`persona-kits/22-developer/`](https://github.com/paulasilvatech/agentic-sdlc-personas/tree/main/persona-kits/22-developer).
+> O Developer é a persona que escreve, corrige e evolui código. Em um SDLC AI-nativo, o Developer opera uma pilha de primitivas validadas, não um editor de código.
+
+## Resumo executivo
+
+O Developer transforma uma especificação aprovada em código funcional, testado e revisado que vai para produção. Em um SDLC AI-nativo, o Developer opera dentro da fase de Implementação com um conjunto fixo de primitivas: um agente de implementação, quatro slash prompts, instruções com escopo, hooks validados por schema e uma lista curada de MCPs validados. As saídas primárias são mudanças de código, suítes de teste passando, pull requests com contexto rastreável e documentação atualizada.
+
+## Papel e responsabilidades
+
+Pense no Developer como um engenheiro estrutural em um canteiro de obras. O arquiteto entrega as plantas que satisfazem as restrições de zoneamento. O engenheiro não reescreve as plantas, mas também não as executa mecanicamente: ele escolhe a mistura de concreto, o arranjo das armaduras e a sequência das concretagens que fazem a estrutura ficar em pé. Em um SDLC AI-nativo, a especificação, as decisões de arquitetura e os critérios de aceitação são artefatos upstream, e o Developer é responsável por traduzi-los em código que sobrevive em produção sem retrabalho.
+
+Responsabilidades primárias:
+
+- Implementar features descritas no `SPECIFICATION.md` usando requisitos EARS e critérios de aceitação Given-When-Then
+- Praticar Test-Driven Development ponta a ponta, começando pelo teste em falha sugerido pela spec
+- Corrigir bugs com o loop entender-reproduzir-corrigir-verificar, nunca pulando para a correção
+- Revisar código de pares e agentes de IA com igual rigor
+- Atualizar o `CODEMAP.md` e docs de desenvolvedor sempre que uma API pública mudar
+- Manter higiene de dependências, resolver vulnerabilidades dentro do SLA
+- Operar o agente Implementer e os prompts `/implement`, `/fix-bug`, `/tdd`, `/refactor`
+
+## Jobs to be done
+
+1. Como Developer, quero converter uma spec aprovada em pull request merged em um dia útil, para que o time mantenha a cadência diária de entrega.
+2. Como Developer, quero que o agente de IA escreva primeiro o teste em falha, para que toda feature tenha um critério de aceitação verificável por máquina.
+3. Como Developer, quero reproduzir um bug de produção em um teste local, para que a correção esteja protegida contra regressão.
+4. Como Developer, quero refatorar sem mudar comportamento, para que a base de código permaneça coerente à medida que cresce.
+5. Como Developer, quero que a descrição do PR seja auto-gerada a partir das minhas mudanças, para que os revisores tenham contexto completo sem me perguntar.
+6. Como Developer, quero saber qual atualização de dependência vai quebrar qual teste, para que patches de segurança entrem sem triagem manual.
+
+## Dores antes do AI-nativo
+
+1. **Deriva de spec**. A feature no ticket não é a feature que subiu. Sem uma spec legível por máquina ligada a testes, cada sprint redefine silenciosamente o escopo.
+2. **Debugging por copy-paste**. Bugs são corrigidos por pattern matching na stack trace, não pela reprodução da causa raiz. A mesma classe de bug volta a cada trimestre.
+3. **Fadiga de revisão**. Revisores não conseguem manter todo o sistema na cabeça, então ou aprovam sem ler ou implicam em detalhes, nunca os dois ao mesmo tempo.
+4. **Gaps de teste invisíveis até produção**. Relatórios de cobertura mentem porque contam linhas, não branches ou comportamentos. O risco mora nos 15 por cento não testados.
+5. **Atraso de documentação**. O `README.md` e os docs de API descrevem a arquitetura do trimestre passado. Novos membros do time levam semanas para pegar ritmo.
+
+## Fluxo diário AI-nativo
+
+O Developer opera um loop fixo todo dia. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code e Claude Code no terminal, além de um pequeno catálogo de MCPs validados para contexto externo.
+
+### Setup matinal
+
+1. Puxe a última `main` e rebase a branch da feature.
+2. Abra o repo no Visual Studio Code. GitHub Copilot Chat carrega o `AGENTS.md` e as `.github/instructions/*.instructions.md` com escopo.
+3. Rode `/audit-context` do kit do Technical Lead (instalado como dependência) para confirmar que o orçamento de contexto está abaixo do limiar.
+4. Leia o ticket ativo, abra o `SPECIFICATION.md` linkado, confirme os requisitos EARS e critérios de aceitação.
+
+### Ciclo de trabalho principal
+
+Cada ciclo de trabalho é uma unidade de mudança, tipicamente de 1 a 4 horas de trabalho focado.
+
+1. **Spec para teste em falha**. Invoque `/tdd` com os critérios de aceitação. O agente Implementer escreve um teste em falha que codifica o Given-When-Then e se recusa a prosseguir até o teste ser commitado.
+2. **Implementar**. Invoque `/implement`. O agente escreve o mínimo de código para passar o teste em falha. Completions inline do Copilot cuidam do boilerplate; o developer é dono das decisões.
+3. **Auto-revisão**. Rode a suíte de testes, lint, type-check. Se algum hook disparar, corrija antes de seguir. Hooks são governança de zero tokens.
+4. **Refatorar**. Invoque `/refactor` para melhorar a estrutura sem mudar comportamento. O agente roda a suíte antes e depois para provar equivalência comportamental.
+5. **Pull request**. A descrição do PR é composta a partir das mensagens de commit e da spec linkada. Copilot Code Review e o agente Quality Reviewer escaneiam o diff.
+
+### Ciclo de bug
+
+Quando um bug é reportado, o Developer invoca `/fix-bug`, que roda o loop entender-reproduzir-corrigir-verificar:
+
+1. **Entender**. Leia o erro, a stack trace e o código relacionado. O agente resume a hipótese.
+2. **Reproduzir**. Escreva um teste em falha que reproduz o bug. Nenhuma correção é permitida antes deste passo.
+3. **Corrigir**. Mudança mínima para fazer o teste em falha passar.
+4. **Verificar**. Rode a suíte completa, não só o teste novo. Confirme que não há regressão.
+
+### Fim do dia
+
+1. Dê push na branch. GitHub Actions roda o pipeline de CI.
+2. Atualize o ticket com o link para o PR e os testes que codificam os critérios de aceitação.
+3. Se a feature tocou uma API pública, verifique que o `CODEMAP.md` e os docs gerados estão atualizados.
+
+## Primitivas recomendadas
+
+### Agentes
+
+| Agente | Arquivo | Propósito |
+|--------|---------|-----------|
+| `implementer` | `.github/agents/implementer.agent.md` | Implementação, TDD, correção de bugs com entender-reproduzir-corrigir-verificar |
+
+O agente Implementer usa `claude-sonnet-4-6` por padrão. Detém as ferramentas `read`, `edit`, `search`, `grep`, `glob`, `bash`. Extended thinking está desabilitado porque tarefas iterativas de implementação perdem qualidade com loops de deep think.
+
+### Prompts
+
+| Comando | Arquivo | Propósito |
+|---------|---------|-----------|
+| `/implement` | `.github/prompts/implement.prompt.md` | Implementar uma feature contra uma spec, mínimo código para passar o teste |
+| `/fix-bug` | `.github/prompts/fix-bug.prompt.md` | Loop de 4 passos para correção de bug, nunca pula a reprodução |
+| `/tdd` | `.github/prompts/tdd.prompt.md` | Escrever primeiro o teste em falha, obrigatório |
+| `/refactor` | `.github/prompts/refactor.prompt.md` | Melhoria estrutural preservando comportamento |
+
+### Instruções
+
+`applyTo` com escopo reduz o custo em tokens em aproximadamente 68 por cento comparado a instruções globais.
+
+| Escopo (`applyTo`) | Arquivo | Propósito |
+|--------------------|---------|-----------|
+| `src/**/*.ts,src/**/*.tsx` | `.github/instructions/typescript.instructions.md` | Convenções TypeScript, strict mode, sem `any` |
+| `tests/**/*` | `.github/instructions/tests.instructions.md` | Padrão AAA, nomes significativos, sem snapshots frágeis |
+| `**/*.sql` | `.github/instructions/sql.instructions.md` | Migrações up-and-down, sem schema drift |
+
+### Skills
+
+Skills são carregadas sob demanda, então o developer pode instalar muitas e pagar tokens só pelas que disparam.
+
+- `tdd-enforcer`: se recusa a escrever código de implementação se o teste em falha estiver ausente
+- `dep-risk-scan`: chama o Snyk MCP em toda atualização de dependência
+
+### Hooks
+
+Hooks custam zero tokens de LLM. São a camada de governança mais forte.
+
+- `pre-commit`: lint, type-check, scan de segredos
+- `post-commit`: regenera o `CODEMAP.md` se a superfície de API pública mudou
+- `pre-push`: roda a fast test lane
+
+## MCPs validados
+
+Todo MCP abaixo está registrado no catálogo de MCPs. Não referencie nenhum MCP que não esteja no catálogo.
+
+| MCP | Status | Uso nesta persona |
+|-----|--------|-------------------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Ler o repo, gerenciar PRs e issues, ler runs do Actions |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Puxar documentação atualizada da Microsoft ao implementar em stacks Azure |
+| [Sentry MCP Server](https://github.com/getsentry/sentry-mcp) | Oficial | Puxar o contexto do erro para o loop de fix-bug |
+| [Snyk MCP Server](https://docs.snyk.io/scan-with-snyk/snyk-mcp) | Oficial | Verificar vulnerabilidades em upgrade de dependência e durante refactor |
+| [Linear MCP Server](https://linear.app/docs/mcp) | Oficial | Ler o ticket ativo, atualizar a issue após merge do PR |
+| [Figma Dev Mode MCP](https://developers.figma.com/docs/figma-mcp-server/) | Oficial | Puxar design tokens e specs de componentes ao implementar UI |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Oficial (Microsoft) | Dirigir testes end-to-end contra a feature rodando |
+
+## Exemplos reais
+
+### Cenário A: implementar um novo endpoint
+
+**Entrada**: `SPECIFICATION.md` contém o requisito EARS `WHEN um usuário submete um sinistro de aluguel com um ID de contrato válido, THE system SHALL retornar o status do sinistro em até 300 ms.`
+
+**Invocação**: `/tdd` seguido de `/implement`.
+
+**Saída esperada**:
+
+1. Um teste de integração em falha `tests/claims/returns-status-under-300ms.spec.ts` que assegura tempo de resposta e shape do payload.
+2. Um novo route handler `src/claims/status.controller.ts` com código mínimo para passar o teste.
+3. Um PR intitulado `feat(claims): return claim status within 300 ms` linkado à seção da spec e ao teste novo.
+
+### Cenário B: corrigir um bug de produção
+
+**Entrada**: Um alerta do Sentry reporta null pointer em `ContractService.findById` disparado por requisições concorrentes.
+
+**Invocação**: `/fix-bug`.
+
+**Saída esperada**:
+
+1. Um teste unitário em falha `tests/contracts/find-by-id-concurrency.spec.ts` que reproduz a race condition.
+2. Uma correção em `ContractService` que introduz optimistic locking, sem nenhuma outra mudança comportamental.
+3. Um PR intitulado `fix(contracts): eliminate race in ContractService.findById` linkado à issue do Sentry e ao teste novo.
+4. Uma resolução pós-merge da issue do Sentry com a URL do PR registrada.
+
+### Cenário C: refactor preservando comportamento
+
+**Entrada**: Um `orders.service.ts` monolítico de 1.200 linhas precisa ser dividido em módulos coesos.
+
+**Invocação**: `/refactor`.
+
+**Saída esperada**:
+
+1. A suíte de testes completa roda verde antes do refactor.
+2. `orders.service.ts` é dividido em `orders/pricing.ts`, `orders/validation.ts`, `orders/persistence.ts` com superfície pública idêntica.
+3. A suíte de testes completa roda verde depois do refactor.
+4. Um PR intitulado `refactor(orders): split service into pricing, validation, persistence` com resumo do diff e relatório de paridade de testes.
+
+## Anti-padrões
+
+1. **Pular o teste em falha**. Escrever a implementação primeiro e adicionar um teste que por acaso passa derrota o TDD. Mitigação: o skill `tdd-enforcer` se recusa a gerar código de implementação quando não existe teste em falha.
+2. **Confiar em percentual de cobertura como sinal de qualidade**. Cobertura de linha é métrica de vaidade. Mitigação: trackeie mutation score ou branch coverage, e inclua asserções de caminho negativo em todo arquivo de teste.
+3. **Deixar o Copilot escolher nomes sem contexto**. Nomes alucinados a partir de padrões de fora do repo produzem código inconsistente. Mitigação: dê escopo nas instruções com `applyTo` e ensine o vocabulário de domínio ao Copilot.
+4. **Refactors grandes one-shot**. Refactors que tocam dezenas de arquivos de uma vez não podem ser revisados com segurança. Mitigação: divida em uma sequência de commits pequenos, preservando comportamento, cada um verde na suíte.
+5. **Ignorar hooks**. Um pre-commit hook falhando é um presente, não um bloqueador. Mitigação: trate a saída do hook como a primeira revisão; corrija antes de commitar.
+
+## KPIs e métricas de impacto
+
+A persona Developer é avaliada com uma mistura de DORA, SPACE e métricas Agentic DevOps.
+
+| Métrica | Baseline (manual) | Alvo (agêntico) | Medição |
+|---------|-------------------|-----------------|---------|
+| Lead time de PR | 3 dias | < 1 dia | GitHub API |
+| Frequência de deploy | Semanal | Várias por dia | GitHub Deployments |
+| Taxa de falha de mudança | 20 por cento | < 5 por cento | Sentry ou incidentes pós-deploy |
+| Tempo médio de restauração | 4 horas | < 1 hora | Rastreador de incidentes |
+| Confiabilidade da suíte | 85 por cento | > 99 por cento | Flake rate |
+| Mutation score | Desconhecido | > 70 por cento | Stryker, Pitest ou equivalente |
+| Taxa de retrabalho | 30 por cento | < 10 por cento | Percentual de código merged reescrito em 30 dias |
+| Eficiência de tokens | N/A | < 1M tokens por PR merged | Relatório de uso do Copilot |
+
+## Maturidade em quatro níveis
+
+| Nível | Nome | Marcadores |
+|-------|------|-----------|
+| L1 | Manual | Copy-paste de Stack Overflow, sem prompt padrão, sem instruções com escopo, sem MCPs |
+| L2 | Assistido | Apenas autocomplete do GitHub Copilot, sem agente, `AGENTS.md` ausente ou genérico |
+| L3 | Aumentado | Um agente Implementer, quatro slash prompts, instruções com escopo, um ou dois MCPs, fluxo TDD |
+| L4 | Agêntico | Kit completo de primitivas, hooks enforçados, MCPs validados somente do catálogo, narrativa de PR auto-gerada, scorecard de maturidade acima de 80 por cento |
+
+## Integração com outras personas
+
+Entregas:
+
+- **Do Technical Lead**: tabela de roteamento, instruções com escopo, `AGENTS.md`, baseline do projeto
+- **Do Software Architect**: `CODEMAP.md`, `IMPLEMENTATION_PLAN.md` com marcadores paralelos, contratos de API
+- **Para QA Engineer**: PR merged com testes passando, matriz de testes atualizada
+- **Para Tech Writer**: `CODEMAP.md` atualizado, novas superfícies de API pública, entrada no changelog
+- **Para SRE**: artefato pronto para deploy, configuração de feature flag, atualizações de runbook
+
+## Glossário
+
+- **Agente**: um papel de LLM configurado com ferramentas, instruções e um shape de saída definido. Vive em `.github/agents/<nome>.agent.md`.
+- **Prompt**: um slash command reutilizável que invoca um agente com uma tarefa específica. Vive em `.github/prompts/<nome>.prompt.md`.
+- **Instruções**: orientação com escopo aplicada por pattern match em paths de arquivo via `applyTo`. Vive em `.github/instructions/<nome>.instructions.md`.
+- **Skill**: capacidade carregada sob demanda que ativa por match de palavra-chave. Custa tokens apenas quando dispara.
+- **Hook**: regra de zero tokens enforçada em um evento específico de ciclo de vida (pre-commit, post-commit, pre-push, pre-merge).
+- **MCP**: servidor Model Context Protocol que expõe sistemas externos (GitHub, Sentry, Linear, etc.) ao agente.
+- **EARS**: Easy Approach to Requirements Syntax. Formato usado no `SPECIFICATION.md`.
+- **TDD**: Test-Driven Development. Escreva primeiro o teste em falha, depois o mínimo de código para passá-lo.
+- **CODEMAP**: Documento gerado que descreve o esqueleto do programa para o LLM e para humanos.
+
+## Referências
+
+- [Documentação do GitHub Copilot](https://docs.github.com/en/copilot) — fonte autoritativa para features do Copilot, modo agent e instruções
+- [Visão geral do Claude Code](https://docs.claude.com/en/docs/claude-code) — CLI agêntico da Anthropic usado para tarefas longas
+- [Spec-Kit referência open source](https://github.com/github/spec-kit) — scaffolding de desenvolvimento spec-driven
+- [Especificação do Model Context Protocol](https://modelcontextprotocol.io/) — o protocolo que liga agentes a sistemas externos
+- [Effective context engineering for AI agents, Anthropic](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) — guia canônico para design de agentes eficiente em tokens
+- [Pesquisa DORA](https://dora.dev/research/) — fundação empírica por trás das quatro métricas-chave de entrega de software
+- [Framework SPACE, Microsoft Research](https://dl.acm.org/doi/10.1145/3454122.3464933) — dimensões de produtividade de desenvolvedor além de velocidade
