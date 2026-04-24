@@ -39,7 +39,7 @@ const ACCENT: Record<string, string> = {
 const accent = ACCENT[fm.accent];
 const num = String(fm.number).padStart(2, '0');
 const base = import.meta.env.BASE_URL;
-const iconPath = `${base}/icons/${fm.id}.svg`.replace(/\/+/g, '/');
+const iconPath = `${base}/icons/personas/${fm.id}.svg`.replace(/\/+/g, '/');
 ---
 
 <BaseLayout title={fm.title} description={fm.oneLiner} locale={locale}>
