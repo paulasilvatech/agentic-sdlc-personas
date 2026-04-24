@@ -13,7 +13,9 @@ tags: ["design-system", "tokens", "typography", "iconography", "accessibility"]
 
 > Single source of truth for the visual language used across the Agentic SDLC Personas site, persona kits, diagrams and any derivative material. Any UI that deviates is either corrected or rejected in review.
 
-[Back to docs index](./en/index.md) · [Style Guide](./STYLE_GUIDE.md) · [Contributing](../CONTRIBUTING.md)
+[Back to docs index](./en/index.md) · [Style Guide](./STYLE_GUIDE.md) · [Contributing](../CONTRIBUTING.md) · [Canonical reference](./paulasilvatech-design-system.md)
+
+> **Note:** This document summarizes the design system applied to this project. The full 525-line specification — including every `--ps-*` token, component anatomy, accessibility targets and motion tokens — lives in [`paulasilvatech-design-system.md`](./paulasilvatech-design-system.md). When the two disagree, the canonical reference wins.
 
 ## Change log
 

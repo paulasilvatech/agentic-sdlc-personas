@@ -1,0 +1,325 @@
+---
+interface Props {
+  title?: string;
+  locale?: string;
+}
+const { title = 'Intent debt simulator', locale = 'en' } = Astro.props;
+
+// Localized strings
+const STR: Record<string, any> = {
+  en: {
+    hiLabel: 'High-risk decisions / week',
+    hiSub: 'high drift, high stake',
+    medLabel: 'Medium-risk decisions / week',
+    medSub: 'medium drift, medium stake',
+    loLabel: 'Low-risk decisions / week',
+    loSub: 'low drift, low stake',
+    result: 'Weekly agent ID',
+    gauge: 'Live gauge',
+    hint: 'Move the sliders to see how decision composition affects the debt.',
+    zones: { ok: 'OK zone · no action needed', monitor: 'monitor zone · preventive action', action: 'action zone · urgent intervention' }
+  },
+  pt: {
+    hiLabel: 'Decisões de alto risco / semana',
+    hiSub: 'drift alto, stake alto',
+    medLabel: 'Decisões de médio risco / semana',
+    medSub: 'drift médio, stake médio',
+    loLabel: 'Decisões de baixo risco / semana',
+    loSub: 'drift baixo, stake baixo',
+    result: 'ID semanal do agente',
+    gauge: 'Gauge em tempo real',
+    hint: 'Mova os sliders para ver como a composição de decisões afeta a dívida.',
+    zones: { ok: 'zona OK · sem ação necessária', monitor: 'zona monitor · ação preventiva', action: 'zona ação · intervenção urgente' }
+  },
+  es: {
+    hiLabel: 'Decisiones de alto riesgo / semana',
+    hiSub: 'drift alto, stake alto',
+    medLabel: 'Decisiones de medio riesgo / semana',
+    medSub: 'drift medio, stake medio',
+    loLabel: 'Decisiones de bajo riesgo / semana',
+    loSub: 'drift bajo, stake bajo',
+    result: 'ID semanal del agente',
+    gauge: 'Gauge en tiempo real',
+    hint: 'Mueve los sliders para ver cómo la composición de decisiones afecta la deuda.',
+    zones: { ok: 'zona OK · sin acción', monitor: 'zona monitor · acción preventiva', action: 'zona acción · intervención urgente' }
+  }
+};
+const t = STR[locale] ?? STR.en;
+const dataZones = JSON.stringify(t.zones);
+---
+
+<figure class="id-sim">
+  <div class="id-sim__header">
+    <span class="id-sim__eyebrow">Interactive</span>
+    <h3 class="id-sim__title">{title}</h3>
+  </div>
+  <div class="id-sim__grid">
+    <div class="id-sim__panel">
+      <div class="id-sim__row" style="--accent: var(--ps-color-ms-red-500)">
+        <div>
+          <div class="id-sim__label">{t.hiLabel}</div>
+          <div class="id-sim__sub">{t.hiSub}</div>
+          <input type="range" class="id-sim__slider" id="id-sim-hi" min="0" max="15" value="3" step="1"/>
+        </div>
+        <div class="id-sim__value" id="id-sim-hi-val">3</div>
+      </div>
+      <div class="id-sim__row" style="--accent: var(--ps-color-ms-yellow-500)">
+        <div>
+          <div class="id-sim__label">{t.medLabel}</div>
+          <div class="id-sim__sub">{t.medSub}</div>
+          <input type="range" class="id-sim__slider" id="id-sim-med" min="0" max="60" value="12" step="1"/>
+        </div>
+        <div class="id-sim__value" id="id-sim-med-val" style="color: var(--ps-color-ms-yellow-700)">12</div>
+      </div>
+      <div class="id-sim__row" style="--accent: var(--ps-color-ms-green-500)">
+        <div>
+          <div class="id-sim__label">{t.loLabel}</div>
+          <div class="id-sim__sub">{t.loSub}</div>
+          <input type="range" class="id-sim__slider" id="id-sim-lo" min="0" max="400" value="80" step="10"/>
+        </div>
+        <div class="id-sim__value" id="id-sim-lo-val" style="color: var(--ps-color-ms-green-700)">80</div>
+      </div>
+      <div class="id-sim__result" id="id-sim-result">
+        <div>
+          <div class="id-sim__result-label">{t.result}</div>
+          <div class="id-sim__formula" id="id-sim-formula">3×1 + 12×0.1 + 80×0.01 = 5.0</div>
+        </div>
+        <div class="id-sim__score" id="id-sim-score">5.0</div>
+      </div>
+    </div>
+    <div class="id-sim__gauge-panel">
+      <div class="id-sim__label">{t.gauge}</div>
+      <svg viewBox="0 0 360 220" class="id-sim__gauge" role="img" aria-label="Intent debt gauge">
+        <path d="M 40 170 A 140 140 0 0 1 320 170" fill="none" stroke="var(--ps-color-bg-alt)" stroke-width="28" stroke-linecap="round"/>
+        <path d="M 40 170 A 140 140 0 0 1 132 51" fill="none" stroke="var(--ps-color-ms-green-500)" stroke-width="28" stroke-linecap="round"/>
+        <path d="M 132 51 A 140 140 0 0 1 228 51" fill="none" stroke="var(--ps-color-ms-yellow-500)" stroke-width="28" stroke-linecap="round"/>
+        <path d="M 228 51 A 140 140 0 0 1 320 170" fill="none" stroke="var(--ps-color-ms-red-500)" stroke-width="28" stroke-linecap="round"/>
+        <line id="id-sim-needle" x1="180" y1="170" x2="180" y2="60" stroke="var(--ps-color-ink)" stroke-width="3" stroke-linecap="round" style="transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1); transform-origin: 180px 170px;"/>
+        <circle cx="180" cy="170" r="8" fill="var(--ps-color-ink)"/>
+        <text x="40" y="195" style="font-family:var(--ps-font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;fill:var(--ps-color-ms-green-700);font-weight:500">OK</text>
+        <text x="180" y="30" text-anchor="middle" style="font-family:var(--ps-font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;fill:var(--ps-color-ms-yellow-700);font-weight:500">Monitor</text>
+        <text x="320" y="195" text-anchor="end" style="font-family:var(--ps-font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;fill:var(--ps-color-ms-red-700);font-weight:500">Action</text>
+      </svg>
+      <div class="id-sim__zone" id="id-sim-zone" data-zones={dataZones}>{t.zones.monitor}</div>
+      <p class="id-sim__hint">{t.hint}</p>
+    </div>
+  </div>
+</figure>
+
+<style>
+  .id-sim {
+    margin: 40px 0;
+    padding: 28px 32px;
+    background: var(--ps-color-paper);
+    border: 1px solid var(--ps-color-rule);
+    border-radius: 12px;
+  }
+  .id-sim__header {
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--ps-color-rule);
+  }
+  .id-sim__eyebrow {
+    display: inline-block;
+    padding: 2px 10px;
+    font-family: var(--ps-font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--ps-color-ms-green-50);
+    color: var(--ps-color-ms-green-700);
+    border: 1px solid var(--ps-color-ms-green-500);
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .id-sim__title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: -0.015em;
+  }
+  .id-sim__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  @media (max-width: 720px) {
+    .id-sim__grid { grid-template-columns: 1fr; }
+  }
+  .id-sim__label {
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+    margin-bottom: 10px;
+  }
+  .id-sim__row {
+    display: grid;
+    grid-template-columns: 1fr 60px;
+    gap: 16px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--ps-color-rule);
+  }
+  .id-sim__row:last-of-type { border-bottom: none; }
+  .id-sim__label-sm {
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .id-sim__sub {
+    font-family: var(--ps-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+    margin-bottom: 10px;
+  }
+  .id-sim__value {
+    font-family: var(--ps-font-mono);
+    font-size: 22px;
+    font-weight: 500;
+    text-align: right;
+    color: var(--ps-color-ms-red-700);
+  }
+  input[type="range"].id-sim__slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--ps-color-bg-alt);
+    border-radius: 2px;
+    outline: none;
+  }
+  input[type="range"].id-sim__slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--ps-color-paper);
+    box-shadow: 0 0 0 1px var(--ps-color-rule-2);
+    cursor: pointer;
+  }
+  input[type="range"].id-sim__slider::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--ps-color-paper);
+    cursor: pointer;
+  }
+  .id-sim__result {
+    margin-top: 18px;
+    padding: 18px 22px;
+    background: var(--ps-color-bg-alt);
+    border-radius: 8px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .id-sim__result-label {
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+  }
+  .id-sim__formula {
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    color: var(--ps-color-ink-3);
+    letter-spacing: 0.02em;
+    margin-top: 4px;
+  }
+  .id-sim__score {
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ps-color-ms-yellow-700);
+    font-variant-numeric: tabular-nums;
+  }
+  .id-sim__gauge-panel {
+    display: flex;
+    flex-direction: column;
+  }
+  .id-sim__gauge {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  .id-sim__zone {
+    text-align: center;
+    margin-top: 8px;
+    font-family: var(--ps-font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ms-yellow-700);
+  }
+  .id-sim__hint {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--ps-color-rule);
+    font-size: 13px;
+    color: var(--ps-color-ink-2);
+    line-height: 1.55;
+  }
+
+  .id-sim__label + .id-sim__row .id-sim__label,
+  .id-sim__row .id-sim__label {
+    display: none;
+  }
+</style>
+
+<script>
+  (() => {
+    const hi = document.getElementById('id-sim-hi') as HTMLInputElement | null;
+    const med = document.getElementById('id-sim-med') as HTMLInputElement | null;
+    const lo = document.getElementById('id-sim-lo') as HTMLInputElement | null;
+    if (!hi || !med || !lo) return;
+
+    const hiV = document.getElementById('id-sim-hi-val')!;
+    const medV = document.getElementById('id-sim-med-val')!;
+    const loV = document.getElementById('id-sim-lo-val')!;
+    const score = document.getElementById('id-sim-score')!;
+    const formula = document.getElementById('id-sim-formula')!;
+    const needle = document.getElementById('id-sim-needle')!;
+    const zoneEl = document.getElementById('id-sim-zone')!;
+    const result = document.getElementById('id-sim-result') as HTMLElement;
+
+    let zones: any = { ok: 'OK', monitor: 'monitor', action: 'action' };
+    try { zones = JSON.parse(zoneEl.dataset.zones || '{}'); } catch {}
+
+    function update() {
+      const h = +hi.value, m = +med.value, l = +lo.value;
+      const id = Math.min(10, h + m * 0.1 + l * 0.01);
+      hiV.textContent = String(h);
+      medV.textContent = String(m);
+      loV.textContent = String(l);
+      score.textContent = id.toFixed(1);
+      formula.textContent = `${h}×1 + ${m}×0.1 + ${l}×0.01 = ${id.toFixed(1)}`;
+
+      const angleDeg = 180 - (id / 10) * 180;
+      const rotate = angleDeg - 90;
+      (needle as any).style.transform = `rotate(${-rotate}deg)`;
+
+      let color = 'var(--ps-color-ms-yellow-700)';
+      let zoneText = zones.monitor;
+      if (id < 3.78) { color = 'var(--ps-color-ms-green-700)'; zoneText = zones.ok; }
+      else if (id >= 6.22) { color = 'var(--ps-color-ms-red-700)'; zoneText = zones.action; }
+      score.style.color = color;
+      zoneEl.textContent = zoneText;
+      zoneEl.style.color = color;
+      if (result) result.style.borderLeft = `3px solid ${color}`;
+    }
+
+    [hi, med, lo].forEach(el => el.addEventListener('input', update));
+    update();
+  })();
+</script>

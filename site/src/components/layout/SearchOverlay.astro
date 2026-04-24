@@ -1,0 +1,149 @@
+---
+import type { Locale } from '../../lib/i18n';
+import { getStrings } from '../../lib/i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = getStrings(locale);
+const base = import.meta.env.BASE_URL;
+const pagefindSrc = `${base.replace(/\/$/, '')}/pagefind/pagefind-ui.js`;
+const pagefindBundle = `${base.replace(/\/$/, '')}/pagefind`;
+---
+
+<div class="search-overlay" id="search-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label={t.nav.search}>
+  <div class="search-overlay__backdrop" data-search-close></div>
+  <div class="search-overlay__panel">
+    <div class="search-overlay__header">
+      <span class="search-overlay__label">{t.nav.search}</span>
+      <button type="button" class="search-overlay__close" data-search-close aria-label="Close">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 3l10 10M13 3L3 13"/>
+        </svg>
+      </button>
+    </div>
+    <div id="pagefind-search" class="search-overlay__body" data-bundle={pagefindBundle}></div>
+  </div>
+</div>
+
+<style>
+  .search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 80px 20px 20px;
+  }
+  .search-overlay[data-open="true"] { display: flex; }
+  .search-overlay__backdrop {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--ps-color-ink) 50%, transparent);
+    backdrop-filter: blur(4px);
+  }
+  .search-overlay__panel {
+    position: relative;
+    width: 100%;
+    max-width: 720px;
+    background: var(--ps-color-paper);
+    border: 1px solid var(--ps-color-rule);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  }
+  .search-overlay__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--ps-color-rule);
+  }
+  .search-overlay__label {
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+  }
+  .search-overlay__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    background: transparent;
+    border: 1px solid var(--ps-color-rule);
+    border-radius: 4px;
+    color: var(--ps-color-ink-2);
+    cursor: pointer;
+  }
+  .search-overlay__close:hover {
+    color: var(--ps-color-ink);
+    background: var(--ps-color-bg-alt);
+  }
+  .search-overlay__body {
+    padding: 16px 20px 24px;
+    max-height: calc(100vh - 200px);
+    overflow-y: auto;
+  }
+</style>
+
+<script define:vars={{ pagefindSrc }}>
+  (() => {
+    const overlay = document.getElementById('search-overlay');
+    const trigger = document.getElementById('search-trigger');
+    const host = document.getElementById('pagefind-search');
+    if (!overlay || !trigger || !host) return;
+
+    let loaded = false;
+
+    async function ensureLoaded() {
+      if (loaded) return;
+      try {
+        const mod = await import(/* @vite-ignore */ pagefindSrc);
+        new mod.PagefindUI({
+          element: '#pagefind-search',
+          bundlePath: host.dataset.bundle,
+          showSubResults: true,
+          showImages: false,
+        });
+        loaded = true;
+      } catch (err) {
+        host.innerHTML = '<p style="padding:16px;color:var(--ps-color-ink-3);font-size:14px">Search index not built yet. Run <code>npm run build</code> to generate it.</p>';
+        loaded = true;
+      }
+    }
+
+    function open() {
+      overlay.setAttribute('data-open', 'true');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      ensureLoaded().then(() => {
+        const input = host.querySelector('input');
+        if (input) (input as HTMLInputElement).focus();
+      });
+    }
+    function close() {
+      overlay.setAttribute('data-open', 'false');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    trigger.addEventListener('click', open);
+    overlay.addEventListener('click', (e) => {
+      const el = e.target as HTMLElement;
+      if (el.closest('[data-search-close]')) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && !(e.target as HTMLElement).matches?.('input, textarea')) {
+        e.preventDefault();
+        open();
+      }
+      if (e.key === 'Escape' && overlay.getAttribute('data-open') === 'true') {
+        close();
+      }
+    });
+  })();
+</script>

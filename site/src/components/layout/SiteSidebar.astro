@@ -1,0 +1,137 @@
+---
+import { PERSONA_META, personaUrl, getStrings } from '../../lib/i18n';
+import type { Locale } from '../../lib/i18n';
+import { getCollection } from 'astro:content';
+
+interface Props {
+  locale: Locale;
+  currentSlug?: string;
+}
+
+const { locale, currentSlug } = Astro.props;
+const t = getStrings(locale);
+
+const allPersonas = await getCollection('personas', ({ id }) => id.startsWith(`${locale}/`));
+const titleMap = new Map<string, string>();
+for (const p of allPersonas) {
+  const fname = p.id.split('/').pop() || '';
+  const slug = fname.replace(/^\d+-/, '');
+  titleMap.set(slug, p.data.title);
+}
+
+const ACCENT: Record<string, string> = {
+  blue:   'var(--ps-color-ms-blue-500)',
+  green:  'var(--ps-color-ms-green-500)',
+  yellow: 'var(--ps-color-ms-yellow-500)',
+  red:    'var(--ps-color-ms-red-500)',
+  ink:    'var(--ps-color-ink)',
+};
+
+const CLUSTER_ORDER = ['product', 'architect', 'enablement', 'ops', 'platform', 'quality', 'data', 'security', 'build'] as const;
+const CLUSTER_LABELS: Record<string, string> = {
+  product: 'Product', architect: 'Architect', enablement: 'Enablement',
+  ops: 'Ops', platform: 'Platform', quality: 'Quality',
+  data: 'Data', security: 'Security', build: 'Build',
+};
+
+const groups = CLUSTER_ORDER.map(cl => ({
+  id: cl,
+  label: CLUSTER_LABELS[cl],
+  items: PERSONA_META.filter(p => p.cluster === cl),
+}));
+---
+
+<aside class="sidebar" id="site-sidebar" aria-label="Persona navigation">
+  <nav class="sidebar__nav">
+    {groups.map(group => (
+      <div class="sidebar__group">
+        <div class="sidebar__group-label">{group.label}</div>
+        <ul class="sidebar__list">
+          {group.items.map(item => {
+            const title = titleMap.get(item.slug) ?? item.slug;
+            const isActive = item.slug === currentSlug;
+            const href = personaUrl(locale, item.slug);
+            const accentColor = ACCENT[item.accent];
+            const num = String(item.number).padStart(2, '0');
+            return (
+              <li>
+                <a
+                  href={href}
+                  class:list={['sidebar__link', { 'is-active': isActive }]}
+                  aria-current={isActive ? 'page' : undefined}
+                >
+                  <span class="sidebar__num" data-accent={item.accent} style={`--chip-bg:${accentColor}`}>
+                    {num}
+                  </span>
+                  <span class="sidebar__label">{title}</span>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    ))}
+  </nav>
+</aside>
+
+<style>
+  .sidebar {
+    position: sticky;
+    top: 64px;
+    align-self: flex-start;
+    width: 260px;
+    max-height: calc(100vh - 64px);
+    overflow-y: auto;
+    padding: 28px 0 40px 28px;
+    flex-shrink: 0;
+  }
+  .sidebar__nav { display: flex; flex-direction: column; gap: 20px; }
+  .sidebar__group-label {
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+    margin-bottom: 8px;
+    padding: 0 12px;
+  }
+  .sidebar__list { list-style: none; margin: 0; padding: 0; }
+  .sidebar__link {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    align-items: center;
+    padding: 7px 12px;
+    border-radius: 6px;
+    color: var(--ps-color-ink);
+    text-decoration: none;
+    font-size: 13.5px;
+    line-height: 1.3;
+    transition: background 0.12s ease;
+  }
+  .sidebar__link:hover { background: var(--ps-color-bg-alt); }
+  .sidebar__link.is-active { background: var(--ps-color-bg-alt); font-weight: 500; }
+  .sidebar__link.is-active .sidebar__num {
+    box-shadow: 0 0 0 2px var(--ps-color-paper), 0 0 0 3px var(--chip-bg);
+  }
+  .sidebar__num {
+    width: 28px; height: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--ps-font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border-radius: 5px;
+    background: var(--chip-bg);
+    color: var(--ps-color-paper);
+  }
+  .sidebar__label { font-size: 13.5px; text-wrap: balance; }
+  @media (max-width: 1100px) { .sidebar { width: 240px; padding-left: 20px; } }
+  @media (max-width: 860px) {
+    .sidebar {
+      position: static; width: 100%; max-height: none;
+      border-bottom: 1px solid var(--ps-color-rule); padding: 20px;
+    }
+  }
+</style>

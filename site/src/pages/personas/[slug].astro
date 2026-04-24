@@ -1,54 +1,25 @@
 ---
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { personas, clusters } from '@lib/personas';
+import { getCollection } from 'astro:content';
+import PersonaLayout from '../../layouts/PersonaLayout.astro';
 
-export function getStaticPaths() {
-  return personas.map(p => ({ params: { slug: p.slug }, props: { persona: p } }));
+export async function getStaticPaths() {
+  const personas = await getCollection('personas', ({ id }) => id.startsWith('en/'));
+  return personas.map(persona => {
+    const fname = persona.id.split('/').pop() || '';
+    const slug = fname.replace(/^\d+-/, '').replace(/\.mdx$/, '');
+    return {
+      params: { slug },
+      props: { persona },
+    };
+  });
 }
 
 const { persona } = Astro.props;
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const idx = personas.findIndex(p => p.slug === persona.slug);
-const prev = idx > 0 ? personas[idx - 1] : null;
-const next = idx < personas.length - 1 ? personas[idx + 1] : null;
-const accentToCss = (a: string) => ({
-  'red':'var(--c-red-500)','green':'var(--c-green-500)','blue':'var(--c-blue-500)','yellow':'var(--c-yellow-500)','ink':'var(--ink)'
-}[a] || 'var(--ink-3)');
-const docsHref = `https://github.com/paulasilvatech/agentic-sdlc-personas/blob/main/docs/en/personas/${persona.id}.md`;
-const kitHref = `https://github.com/paulasilvatech/agentic-sdlc-personas/tree/main/persona-kits/${persona.id}`;
+const fname = persona.id.split('/').pop() || '';
+const slug = fname.replace(/^\d+-/, '').replace(/\.mdx$/, '');
+const { Content, headings } = await persona.render();
 ---
-<BaseLayout
-  locale="en"
-  title={`${persona.title.en} · Agentic SDLC Personas`}
-  description={persona.one_liner.en}
->
-  <section class="section" style={`--card-accent:${accentToCss(persona.accent)};`}>
-    <div class="container">
-      <div style="display:flex;align-items:center;gap:18px;margin-bottom:16px;">
-        <img src={`${base}/icons/personas/${persona.id}.svg`} width="56" height="56" alt="" onerror="this.style.opacity='0.3';" />
-        <div>
-          <div class="section__label" style={`color:${accentToCss(persona.accent)};`}>{String(persona.number).padStart(2,'0')} · {clusters[persona.cluster].label.en} · {persona.phase}</div>
-          <h1 class="section__title" style="margin:6px 0 0;">{persona.title.en}</h1>
-        </div>
-      </div>
-      <p class="section__lead">{persona.one_liner.en}</p>
 
-      <div style="display:flex;gap:12px;margin:24px 0 40px;flex-wrap:wrap;">
-        <a class="btn btn--primary" href={docsHref}>Read full document <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
-        <a class="btn btn--ghost" href={kitHref}>View kit on GitHub</a>
-      </div>
-
-      <div style="background:var(--paper);border:1px solid var(--rule);border-radius:10px;padding:28px;">
-        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;color:var(--ink-3);text-transform:uppercase;margin-bottom:10px;">Full document</div>
-        <p style="margin:0 0 8px;">The complete persona document (responsibilities, jobs to be done, workflow, primitives, validated MCPs, examples, KPIs, references) lives in the repository and on the website under EN, PT-BR, and ES.</p>
-        <p style="margin:0;"><a style="color:var(--ink);text-decoration:underline;" href={docsHref}>Open the full persona document</a></p>
-      </div>
-
-      <nav style="display:flex;justify-content:space-between;gap:16px;margin-top:36px;padding-top:24px;border-top:1px solid var(--rule);font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;color:var(--ink-3);">
-        <span>{prev ? (<a href={`${base}/personas/${prev.slug}`}>← {prev.title.en}</a>) : <span></span>}</span>
-        <span><a href={`${base}/personas`}>↑ All personas</a></span>
-        <span>{next ? (<a href={`${base}/personas/${next.slug}`}>{next.title.en} →</a>) : <span></span>}</span>
-      </nav>
-    </div>
-  </section>
-</BaseLayout>
+<PersonaLayout frontmatter={persona.data} slug={slug} locale="en" headings={headings}>
+  <Content />
+</PersonaLayout>

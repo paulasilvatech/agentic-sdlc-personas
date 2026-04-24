@@ -1,20 +1,195 @@
+/**
+ * paulasilvatech Design System, CSS variables
+ * ============================================
+ * Gerado a partir de core/tokens.json v1.0.0
+ * Autora: Paula Silva, AI-Native Software Engineer
+ * Data: 2026-04-21
+ *
+ * Uso:
+ *   @import 'paulasilvatech-design-system/dist/tokens.css';
+ *   // ou
+ *   <link rel="stylesheet" href="path/to/tokens.css">
+ *
+ * Consumir:
+ *   color: var(--ps-color-ms-red-500);
+ *   padding: var(--ps-spacing-md);
+ *   font-family: var(--ps-font-sans);
+ */
+
 :root {
-  --c-red-50:  #FFF0EB;  --c-red-500:  #F25022;  --c-red-700:  #B33816;
-  --c-green-50:#F1F8E3;  --c-green-500:#7FBA00;  --c-green-700:#5A8500;
-  --c-blue-50: #E5F6FD;  --c-blue-500: #00A4EF;  --c-blue-700: #0076AC;
-  --c-yellow-50:#FFF7E0; --c-yellow-500:#FFB900; --c-yellow-700:#B88500;
+  /* ======================================================
+   * COLOR, Four-color core palette
+   * ====================================================== */
 
-  --ink: #1A1A1A;   --ink-2: #3A3A3A;   --ink-3: #737373;
-  --paper: #FFFFFF; --bg: #F7F7F5;      --bg-alt: #ECECE8;
-  --rule: #E5E5E0;  --rule-2: #CECEC7;
+  /* Red, legado, atenção, gaps, palavra-chave de destaque */
+  --ps-color-ms-red-50:  #FFF0EB;
+  --ps-color-ms-red-100: #FFD6C7;
+  --ps-color-ms-red-500: #F25022;
+  --ps-color-ms-red-700: #B33816;
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
-  --measure: 680px;
+  /* Green, moderno, sucesso, entrega, gate passou */
+  --ps-color-ms-green-50:  #F1F8E3;
+  --ps-color-ms-green-100: #D8EDA5;
+  --ps-color-ms-green-500: #7FBA00;
+  --ps-color-ms-green-700: #5A8500;
+
+  /* Blue, tooling, Copilot, infra, sujeito principal */
+  --ps-color-ms-blue-50:  #E5F6FD;
+  --ps-color-ms-blue-100: #B8E5FA;
+  --ps-color-ms-blue-500: #00A4EF;
+  --ps-color-ms-blue-700: #0076AC;
+
+  /* Yellow, agentes, IA, atenção positiva */
+  --ps-color-ms-yellow-50:  #FFF7E0;
+  --ps-color-ms-yellow-100: #FFE79C;
+  --ps-color-ms-yellow-500: #FFB900;
+  --ps-color-ms-yellow-700: #B88500;
+
+  /* core neutral gray, uso restrito a contextos da marca */
+  --ps-color-ms-gray: #737373;
+
+  /* ======================================================
+   * COLOR, Neutrals (light mode)
+   * ====================================================== */
+  --ps-color-ink:    #1A1A1A;
+  --ps-color-ink-2:  #3A3A3A;
+  --ps-color-ink-3:  #737373;
+  --ps-color-paper:  #FFFFFF;
+  --ps-color-bg:     #F7F7F5;
+  --ps-color-bg-alt: #ECECE8;
+  --ps-color-rule:   #E5E5E0;
+  --ps-color-rule-2: #CECEC7;
+
+  /* ======================================================
+   * COLOR, Dark variant (slides divisores, covers)
+   * ====================================================== */
+  --ps-color-dark-bg:      #141414;
+  --ps-color-dark-surface: #1C1C1A;
+  --ps-color-dark-ink:     #F0F0F0;
+  --ps-color-dark-ink-2:   #C7C7C2;
+  --ps-color-dark-ink-3:   #999995;
+  --ps-color-dark-rule:    #2E2E2A;
+
+  /* ======================================================
+   * COLOR, Semantic accents
+   * ------------------------------------------------------
+   * Estes são aliases. Projetos redefinem no seu próprio
+   * CSS para mapear para a semântica local (legacy, modern,
+   * tooling, agent, etc.).
+   * ====================================================== */
+  --ps-color-accent-1:     var(--ps-color-ms-red-500);
+  --ps-color-accent-1-ink: var(--ps-color-ms-red-700);
+  --ps-color-accent-2:     var(--ps-color-ms-green-500);
+  --ps-color-accent-2-ink: var(--ps-color-ms-green-700);
+  --ps-color-accent-3:     var(--ps-color-ms-blue-500);
+  --ps-color-accent-3-ink: var(--ps-color-ms-blue-700);
+  --ps-color-accent-4:     var(--ps-color-ms-yellow-500);
+  --ps-color-accent-4-ink: var(--ps-color-ms-yellow-700);
+
+  /* ======================================================
+   * TYPOGRAPHY, Families
+   * ====================================================== */
+  --ps-font-sans:  'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
+  --ps-font-mono:  'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+  --ps-font-serif: 'Fraunces', Georgia, serif;
+
+  /* ======================================================
+   * TYPOGRAPHY, Weights
+   * ====================================================== */
+  --ps-weight-light:    300;
+  --ps-weight-regular:  400;
+  --ps-weight-medium:   500;
+  --ps-weight-semibold: 600;
+  --ps-weight-bold:     700;
+
+  /* ======================================================
+   * TYPOGRAPHY, Sizes
+   * ====================================================== */
+  --ps-text-hero:     96px;
+  --ps-text-title:    72px;
+  --ps-text-subtitle: 44px;
+  --ps-text-body-slide: 30px;
+  --ps-text-body:     18px;
+  --ps-text-small:    14px;
+  --ps-text-eyebrow:  14px;
+  --ps-text-eyebrow-slide: 24px;
+  --ps-text-bignum:   240px;
+  --ps-text-section:  160px;
+  --ps-text-meta-label: 11px;
+  --ps-text-meta-value: 15px;
+
+  /* ======================================================
+   * SPACING, 8px baseline
+   * ====================================================== */
+  --ps-spacing-xs:  8px;
+  --ps-spacing-sm:  16px;
+  --ps-spacing-md:  28px;
+  --ps-spacing-lg:  48px;
+  --ps-spacing-xl:  80px;
+  --ps-spacing-2xl: 120px;
+  --ps-spacing-3xl: 160px;
+
+  /* ======================================================
+   * RADIUS
+   * ====================================================== */
+  --ps-radius-none: 0;
+  --ps-radius-sm:   4px;
+  --ps-radius-md:   8px;
+  --ps-radius-lg:   16px;
+  --ps-radius-full: 9999px;
+
+  /* ======================================================
+   * BORDER
+   * ====================================================== */
+  --ps-border-thin:   1px;
+  --ps-border-medium: 2px;
+  --ps-border-thick:  6px;
+
+  /* ======================================================
+   * SHADOW, design flat por padrão
+   * ====================================================== */
+  --ps-shadow-none: none;
+  --ps-shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.04);
+  --ps-shadow-md:   0 4px 12px rgba(0, 0, 0, 0.06);
+
+  /* ======================================================
+   * LAYOUT
+   * ====================================================== */
+  --ps-container-max: 1280px;
+  --ps-slide-width:   1920px;
+  --ps-slide-height:  1080px;
 }
 
+/* ============================================================
+ * DARK VARIANT, ativada via data-theme="dark" no elemento raiz
+ * ------------------------------------------------------------
+ * Swap dos neutrais, mantendo paleta MS e acentos intactos
+ * ============================================================ */
 [data-theme="dark"] {
-  --ink: #F0F0F0;   --ink-2: #C7C7C2;  --ink-3: #A8A8A4;
-  --paper: #1C1C1A; --bg: #141414;     --bg-alt: #242420;
-  --rule: #2E2E2A;  --rule-2: #3A3A36;
+  --ps-color-ink:    var(--ps-color-dark-ink);
+  --ps-color-ink-2:  var(--ps-color-dark-ink-2);
+  --ps-color-ink-3:  var(--ps-color-dark-ink-3);
+  --ps-color-paper:  var(--ps-color-dark-surface);
+  --ps-color-bg:     var(--ps-color-dark-bg);
+  --ps-color-bg-alt: var(--ps-color-dark-surface);
+  --ps-color-rule:   var(--ps-color-dark-rule);
+  --ps-color-rule-2: var(--ps-color-dark-rule);
+}
+
+/* ============================================================
+ * RESET leve, aplica só o necessário para o DS funcionar
+ * ============================================================ */
+.ps-reset,
+.ps-reset * {
+  box-sizing: border-box;
+}
+
+.ps-reset {
+  font-family: var(--ps-font-sans);
+  font-size:   var(--ps-text-body);
+  line-height: 1.6;
+  color:       var(--ps-color-ink);
+  background:  var(--ps-color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

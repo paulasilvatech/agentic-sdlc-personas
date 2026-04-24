@@ -1,0 +1,332 @@
+---
+interface Props {
+  title?: string;
+  locale?: string;
+}
+const { title = 'Maturity self-assessment', locale = 'en' } = Astro.props;
+
+const STR: Record<string, any> = {
+  en: {
+    inst: 'Pick a stage for each layer. Radar updates live.',
+    layers: { l1: { name: 'Layer 01 · Infra', hint: 'Cloud, K8s, observability' }, l2: { name: 'Layer 02 · Platform', hint: 'IDP, guardrails, RBAC' }, l3: { name: 'Layer 03 · Context', hint: 'ACE, 3-tier memory, skills' }, l4: { name: 'Layer 04 · Intent', hint: 'CONSTITUTION.md, SDD' } },
+    stages: ['Ad-hoc', 'Tool-led', 'Layered', 'Contracted', 'Self-tuning'],
+    overall: 'Overall maturity',
+    waiting: '…',
+    weakestPrefix: 'Your weakest layer is',
+    invest: 'Invest there first. Overall maturity is the minimum, not the average.',
+    incomplete: 'Complete all four layers to see your overall stage.',
+    radarTitle: 'Your shape'
+  },
+  pt: {
+    inst: 'Escolha um estágio para cada camada. Radar atualiza ao vivo.',
+    layers: { l1: { name: 'Camada 01 · Infra', hint: 'Cloud, K8s, observabilidade' }, l2: { name: 'Camada 02 · Platform', hint: 'IDP, guardrails, RBAC' }, l3: { name: 'Camada 03 · Context', hint: 'ACE, memória 3-tier, skills' }, l4: { name: 'Camada 04 · Intent', hint: 'CONSTITUTION.md, SDD' } },
+    stages: ['Ad-hoc', 'Tool-led', 'Layered', 'Contracted', 'Self-tuning'],
+    overall: 'Maturidade geral',
+    waiting: '…',
+    weakestPrefix: 'Sua camada mais fraca é',
+    invest: 'Invista nela primeiro. A maturidade global é o mínimo, não a média.',
+    incomplete: 'Complete as quatro camadas para ver seu estágio global.',
+    radarTitle: 'Sua forma'
+  },
+  es: {
+    inst: 'Elige una etapa para cada capa. Radar se actualiza en vivo.',
+    layers: { l1: { name: 'Capa 01 · Infra', hint: 'Cloud, K8s, observabilidad' }, l2: { name: 'Capa 02 · Platform', hint: 'IDP, guardrails, RBAC' }, l3: { name: 'Capa 03 · Context', hint: 'ACE, memoria 3-tier, skills' }, l4: { name: 'Capa 04 · Intent', hint: 'CONSTITUTION.md, SDD' } },
+    stages: ['Ad-hoc', 'Tool-led', 'Layered', 'Contracted', 'Self-tuning'],
+    overall: 'Madurez general',
+    waiting: '…',
+    weakestPrefix: 'Tu capa más débil es',
+    invest: 'Invierte ahí primero. La madurez general es el mínimo, no el promedio.',
+    incomplete: 'Completa las cuatro capas para ver tu etapa general.',
+    radarTitle: 'Tu forma'
+  }
+};
+const t = STR[locale] ?? STR.en;
+const strJson = JSON.stringify(t);
+
+const rows: Array<{ key: 'L1'|'L2'|'L3'|'L4'; accent: string; dataKey: string }> = [
+  { key: 'L1', accent: 'var(--ps-color-ms-blue-500)',   dataKey: 'l1' },
+  { key: 'L2', accent: 'var(--ps-color-ms-green-500)',  dataKey: 'l2' },
+  { key: 'L3', accent: 'var(--ps-color-ms-yellow-500)', dataKey: 'l3' },
+  { key: 'L4', accent: 'var(--ps-color-ms-red-500)',    dataKey: 'l4' },
+];
+---
+
+<figure class="mat-sim">
+  <div class="mat-sim__header">
+    <span class="mat-sim__eyebrow">Interactive</span>
+    <h3 class="mat-sim__title">{title}</h3>
+    <p class="mat-sim__inst">{t.inst}</p>
+  </div>
+  <div class="mat-sim__grid">
+    <div class="mat-sim__questions">
+      {rows.map(row => (
+        <div class="mat-sim__row" style={`--row-accent: ${row.accent}`}>
+          <div>
+            <div class="mat-sim__row-label">{t.layers[row.dataKey].name}</div>
+            <div class="mat-sim__row-hint">{t.layers[row.dataKey].hint}</div>
+          </div>
+          <div class="mat-sim__pills" role="radiogroup" aria-label={t.layers[row.dataKey].name}>
+            {[1, 2, 3, 4, 5].map(n => (
+              <label class="mat-sim__pill">
+                <input type="radio" name={`mat-${row.key}`} value={n} />
+                <span>
+                  <span class="mat-sim__pill-num">{String(n).padStart(2, '0')}</span>
+                  <span class="mat-sim__pill-name">{t.stages[n-1]}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mat-sim__radar-panel">
+      <div class="mat-sim__radar-title">{t.radarTitle}</div>
+      <svg viewBox="0 0 360 360" class="mat-sim__radar" role="img" aria-label="Maturity radar">
+        {[1, 2, 3, 4, 5].map(n => {
+          const r = n * 40;
+          return <polygon points={`180,${180-r} ${180+r},180 180,${180+r} ${180-r},180`} fill="none" stroke="var(--ps-color-rule)" stroke-width="0.5"/>;
+        })}
+        <line x1="180" y1="180" x2="180" y2="20" stroke="var(--ps-color-rule-2)" stroke-width="0.5" stroke-dasharray="2 3"/>
+        <line x1="180" y1="180" x2="340" y2="180" stroke="var(--ps-color-rule-2)" stroke-width="0.5" stroke-dasharray="2 3"/>
+        <line x1="180" y1="180" x2="180" y2="340" stroke="var(--ps-color-rule-2)" stroke-width="0.5" stroke-dasharray="2 3"/>
+        <line x1="180" y1="180" x2="20"  y2="180" stroke="var(--ps-color-rule-2)" stroke-width="0.5" stroke-dasharray="2 3"/>
+        <text x="180" y="14"  text-anchor="middle" style="font-family:var(--ps-font-mono);font-size:10px;font-weight:500;letter-spacing:0.14em;fill:var(--ps-color-ms-red-700)">INTENT</text>
+        <text x="352" y="184" text-anchor="start"  style="font-family:var(--ps-font-mono);font-size:10px;font-weight:500;letter-spacing:0.14em;fill:var(--ps-color-ms-yellow-700)">CONTEXT</text>
+        <text x="180" y="354" text-anchor="middle" style="font-family:var(--ps-font-mono);font-size:10px;font-weight:500;letter-spacing:0.14em;fill:var(--ps-color-ms-green-700)">PLATFORM</text>
+        <text x="8"   y="184" text-anchor="end"    style="font-family:var(--ps-font-mono);font-size:10px;font-weight:500;letter-spacing:0.14em;fill:var(--ps-color-ms-blue-700)">INFRA</text>
+        <polygon id="mat-polygon" points="180,180 180,180 180,180 180,180" fill="rgba(255,185,0,0.18)" stroke="var(--ps-color-ms-yellow-500)" stroke-width="2" style="transition: all 0.3s cubic-bezier(0.2, 0, 0, 1)"/>
+        <circle id="mat-dot-l4" cx="180" cy="180" r="0" fill="var(--ps-color-ms-red-500)"    style="transition: all 0.3s"/>
+        <circle id="mat-dot-l3" cx="180" cy="180" r="0" fill="var(--ps-color-ms-yellow-500)" style="transition: all 0.3s"/>
+        <circle id="mat-dot-l2" cx="180" cy="180" r="0" fill="var(--ps-color-ms-green-500)"  style="transition: all 0.3s"/>
+        <circle id="mat-dot-l1" cx="180" cy="180" r="0" fill="var(--ps-color-ms-blue-500)"   style="transition: all 0.3s"/>
+      </svg>
+      <div class="mat-sim__result" data-strings={strJson}>
+        <div class="mat-sim__result-top">
+          <span class="mat-sim__result-label">{t.overall}</span>
+          <span class="mat-sim__result-value" id="mat-overall">{t.waiting}</span>
+        </div>
+        <div class="mat-sim__result-detail" id="mat-weakest">{t.incomplete}</div>
+      </div>
+    </div>
+  </div>
+</figure>
+
+<style>
+  .mat-sim {
+    margin: 40px 0;
+    padding: 28px 32px;
+    background: var(--ps-color-paper);
+    border: 1px solid var(--ps-color-rule);
+    border-radius: 12px;
+  }
+  .mat-sim__header {
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--ps-color-rule);
+  }
+  .mat-sim__eyebrow {
+    display: inline-block;
+    padding: 2px 10px;
+    font-family: var(--ps-font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    background: var(--ps-color-ms-green-50);
+    color: var(--ps-color-ms-green-700);
+    border: 1px solid var(--ps-color-ms-green-500);
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .mat-sim__title {
+    font-size: 22px;
+    font-weight: 500;
+    margin: 0 0 6px;
+    letter-spacing: -0.015em;
+  }
+  .mat-sim__inst {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ps-color-ink-2);
+  }
+  .mat-sim__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 860px) {
+    .mat-sim__grid { grid-template-columns: 1fr; }
+  }
+  .mat-sim__row {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 18px;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--ps-color-rule);
+  }
+  .mat-sim__row:last-child { border-bottom: none; }
+  .mat-sim__row-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--row-accent);
+  }
+  .mat-sim__row-hint {
+    font-family: var(--ps-font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+    margin-top: 2px;
+  }
+  .mat-sim__pills {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+  }
+  .mat-sim__pill {
+    display: block;
+    text-align: center;
+    padding: 8px 4px;
+    background: var(--ps-color-paper);
+    border: 1px solid var(--ps-color-rule);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: border-color 0.12s, background 0.12s;
+  }
+  .mat-sim__pill input { position: absolute; opacity: 0; pointer-events: none; }
+  .mat-sim__pill:hover { border-color: var(--row-accent); }
+  .mat-sim__pill:has(input:checked) {
+    background: var(--row-accent);
+    border-color: var(--row-accent);
+  }
+  .mat-sim__pill:has(input:checked) .mat-sim__pill-num,
+  .mat-sim__pill:has(input:checked) .mat-sim__pill-name {
+    color: white;
+  }
+  .mat-sim__pill-num {
+    display: block;
+    font-family: var(--ps-font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: var(--ps-color-ink-3);
+  }
+  .mat-sim__pill-name {
+    display: block;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ps-color-ink);
+    margin-top: 2px;
+  }
+  .mat-sim__radar-panel {
+    display: flex;
+    flex-direction: column;
+  }
+  .mat-sim__radar-title {
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+    margin-bottom: 10px;
+  }
+  .mat-sim__radar {
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 14px;
+    display: block;
+  }
+  .mat-sim__result {
+    padding: 16px 20px;
+    background: var(--ps-color-bg-alt);
+    border-radius: 8px;
+  }
+  .mat-sim__result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .mat-sim__result-label {
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+  }
+  .mat-sim__result-value {
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    color: var(--ps-color-ink-3);
+  }
+  .mat-sim__result-detail {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--ps-color-rule);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ps-color-ink-2);
+  }
+</style>
+
+<script>
+  (() => {
+    const polygon = document.getElementById('mat-polygon');
+    if (!polygon) return;
+    const dotL1 = document.getElementById('mat-dot-l1')!;
+    const dotL2 = document.getElementById('mat-dot-l2')!;
+    const dotL3 = document.getElementById('mat-dot-l3')!;
+    const dotL4 = document.getElementById('mat-dot-l4')!;
+    const overall = document.getElementById('mat-overall')!;
+    const weakest = document.getElementById('mat-weakest')!;
+    const resultEl = document.querySelector<HTMLElement>('.mat-sim__result')!;
+    let strs: any = {};
+    try { strs = JSON.parse(resultEl.dataset.strings || '{}'); } catch {}
+
+    const cx = 180, cy = 180, R = 40;
+
+    function pick(name: string): number {
+      const el = document.querySelector<HTMLInputElement>(`input[name="${name}"]:checked`);
+      return el ? +el.value : 0;
+    }
+
+    function update() {
+      const s = { l1: pick('mat-L1'), l2: pick('mat-L2'), l3: pick('mat-L3'), l4: pick('mat-L4') };
+      const top = cy - s.l4 * R, right = cx + s.l3 * R, bot = cy + s.l2 * R, left = cx - s.l1 * R;
+      polygon.setAttribute('points', `${cx},${top} ${right},${cy} ${cx},${bot} ${left},${cy}`);
+      dotL4.setAttribute('cx', String(cx)); dotL4.setAttribute('cy', String(top));  dotL4.setAttribute('r', s.l4 > 0 ? '5' : '0');
+      dotL3.setAttribute('cx', String(right)); dotL3.setAttribute('cy', String(cy)); dotL3.setAttribute('r', s.l3 > 0 ? '5' : '0');
+      dotL2.setAttribute('cx', String(cx)); dotL2.setAttribute('cy', String(bot));  dotL2.setAttribute('r', s.l2 > 0 ? '5' : '0');
+      dotL1.setAttribute('cx', String(left)); dotL1.setAttribute('cy', String(cy)); dotL1.setAttribute('r', s.l1 > 0 ? '5' : '0');
+
+      const values = [s.l1, s.l2, s.l3, s.l4];
+      const filled = values.filter(v => v > 0).length;
+      if (filled === 0) {
+        overall.textContent = strs.waiting || '…';
+        overall.style.color = 'var(--ps-color-ink-3)';
+        weakest.textContent = strs.inst || '';
+      } else if (filled < 4) {
+        overall.textContent = strs.waiting || '…';
+        overall.style.color = 'var(--ps-color-ink-3)';
+        weakest.textContent = strs.incomplete || '';
+      } else {
+        const min = Math.min(...values);
+        const idx = values.indexOf(min);
+        const layerNames = ['Infra', 'Platform', 'Context', 'Intent'];
+        const stages = strs.stages || ['Ad-hoc','Tool-led','Layered','Contracted','Self-tuning'];
+        const colors = ['var(--ps-color-ms-red-700)','var(--ps-color-ms-red-700)','var(--ps-color-ms-yellow-700)','var(--ps-color-ms-green-700)','var(--ps-color-ms-green-700)'];
+        overall.textContent = `${String(min).padStart(2,'0')} · ${stages[min-1]}`;
+        overall.style.color = colors[min-1];
+        weakest.innerHTML = `<strong>${strs.weakestPrefix} ${layerNames[idx]}</strong>. ${strs.invest}`;
+      }
+    }
+
+    document.querySelectorAll('input[name^="mat-"]').forEach(el => el.addEventListener('change', update));
+    update();
+  })();
+</script>

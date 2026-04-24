@@ -1,7 +1,7 @@
 {
   "name": "agentic-sdlc-personas-site",
   "version": "1.0.0",
-  "description": "Trilingual Astro site for Agentic SDLC Personas by Paula Silva",
+  "description": "Trilingual Astro site for Agentic SDLC Personas by Paula Silva. Built on the paulasilvatech Design System.",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
@@ -20,5 +20,8 @@
   },
   "devDependencies": {
     "@types/node": "^22.8.6"
-  }
+  },
+  "keywords": ["astro", "design-system", "paulasilvatech", "agentic-sdlc", "personas"],
+  "author": "Paula Silva, AI-Native Software Engineer",
+  "license": "MIT"
 }

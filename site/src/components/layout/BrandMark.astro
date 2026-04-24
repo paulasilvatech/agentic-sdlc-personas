@@ -1,0 +1,66 @@
+---
+/**
+ * BrandMark, logo da paulasilvatech
+ * Quatro quadrados coloridos (vermelho, verde, azul, amarelo) + texto.
+ * Marca visual paulasilvatech, quatro quadrados coloridos da paleta core.
+ */
+interface Props {
+  size?: 'sm' | 'md' | 'lg';
+  showText?: boolean;
+  href?: string;
+}
+
+const { size = 'md', showText = true, href = '/' } = Astro.props;
+
+const squareSizes = { sm: 8, md: 10, lg: 12 };
+const gapSizes = { sm: 2, md: 2, lg: 3 };
+const sq = squareSizes[size];
+const gap = gapSizes[size];
+const totalSize = sq * 2 + gap;
+---
+
+<a href={href} class="brand-mark" aria-label="Home">
+  <svg
+    class="brand-mark__logo"
+    width={totalSize}
+    height={totalSize}
+    viewBox={`0 0 ${totalSize} ${totalSize}`}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <rect x="0"         y="0"         width={sq} height={sq} fill="var(--ps-color-ms-red-500)" />
+    <rect x={sq + gap}  y="0"         width={sq} height={sq} fill="var(--ps-color-ms-green-500)" />
+    <rect x="0"         y={sq + gap}  width={sq} height={sq} fill="var(--ps-color-ms-blue-500)" />
+    <rect x={sq + gap}  y={sq + gap}  width={sq} height={sq} fill="var(--ps-color-ms-yellow-500)" />
+  </svg>
+  {showText && (
+    <span class="brand-mark__text">
+      <slot>paulasilvatech</slot>
+    </span>
+  )}
+</a>
+
+<style>
+  .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+  .brand-mark__logo {
+    flex-shrink: 0;
+  }
+  .brand-mark__text {
+    font-family: var(--ps-font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink);
+    line-height: 1;
+  }
+  .brand-mark:hover .brand-mark__text {
+    color: var(--ps-color-ms-blue-700);
+  }
+</style>

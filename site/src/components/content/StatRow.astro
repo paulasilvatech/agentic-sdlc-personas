@@ -1,0 +1,83 @@
+---
+interface Stat {
+  value: string;
+  unit?: string;
+  label: string;
+  accent?: 'red' | 'green' | 'blue' | 'yellow';
+  source?: string;
+}
+interface Props {
+  stats: Stat[];
+}
+
+const { stats } = Astro.props;
+const ACCENT: Record<string, string> = {
+  red: 'var(--ps-color-ms-red-500)',
+  green: 'var(--ps-color-ms-green-500)',
+  blue: 'var(--ps-color-ms-blue-500)',
+  yellow: 'var(--ps-color-ms-yellow-500)',
+};
+---
+
+<div class={`stat-row stat-row--${stats.length}`}>
+  {stats.map(s => (
+    <div class="stat-row__item">
+      <div
+        class="stat-row__value"
+        style={s.accent ? `color:${ACCENT[s.accent]}` : undefined}
+      >
+        {s.value}{s.unit && <span class="stat-row__unit">{s.unit}</span>}
+      </div>
+      <div class="stat-row__label">{s.label}</div>
+      {s.source && <div class="stat-row__source">{s.source}</div>}
+    </div>
+  ))}
+</div>
+
+<style>
+  .stat-row {
+    display: grid;
+    gap: 32px;
+    margin: 32px 0;
+    padding: 28px 0;
+    border-top: 1px solid var(--ps-color-rule);
+    border-bottom: 1px solid var(--ps-color-rule);
+  }
+  .stat-row--2 { grid-template-columns: 1fr 1fr; }
+  .stat-row--3 { grid-template-columns: repeat(3, 1fr); }
+  .stat-row--4 { grid-template-columns: repeat(4, 1fr); }
+  @media (max-width: 700px) {
+    .stat-row--3, .stat-row--4 { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 480px) {
+    .stat-row--2, .stat-row--3, .stat-row--4 { grid-template-columns: 1fr; }
+  }
+  .stat-row__item { display: flex; flex-direction: column; gap: 6px; }
+  .stat-row__value {
+    font-size: clamp(44px, 5vw, 64px);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    color: var(--ps-color-ms-blue-500);
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-row__unit {
+    font-size: 0.5em;
+    font-weight: 400;
+    margin-left: 4px;
+    color: var(--ps-color-ink-2);
+  }
+  .stat-row__label {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ps-color-ink-2);
+    max-width: 26ch;
+  }
+  .stat-row__source {
+    font-family: var(--ps-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+  }
+</style>

@@ -1,0 +1,211 @@
+---
+/**
+ * VSCodeSim, janela simulada do VSCode com tree, editor tabs e conteúdo.
+ */
+interface File {
+  name: string;
+  active?: boolean;
+  icon?: string;
+}
+interface TreeItem {
+  name: string;
+  kind: 'folder' | 'file';
+  children?: TreeItem[];
+  active?: boolean;
+}
+interface Props {
+  title?: string;
+  tree: TreeItem[];
+  tabs: File[];
+  lang?: string;
+  code: string;
+  statusbar?: string;
+}
+const { title = 'cps-agent-platform', tree, tabs, lang = 'markdown', code, statusbar = 'main · ✓ 0 errors · UTF-8 · LF · Markdown' } = Astro.props;
+
+function renderTree(items: TreeItem[], depth: number = 0): string {
+  return items.map(it => {
+    const pad = depth * 14;
+    const icon = it.kind === 'folder' ? '▸' : '·';
+    const cls = it.active ? 'vscode__tree-item is-active' : 'vscode__tree-item';
+    const iconClass = it.kind === 'folder' ? 'vscode__tree-folder' : 'vscode__tree-file';
+    let html = `<div class="${cls}" style="padding-left:${pad + 14}px"><span class="${iconClass}">${icon}</span> ${it.name}</div>`;
+    if (it.children) {
+      html += renderTree(it.children, depth + 1);
+    }
+    return html;
+  }).join('');
+}
+const treeHtml = renderTree(tree);
+---
+
+<figure class="vscode">
+  <div class="vscode__titlebar">
+    <div class="vscode__traffic">
+      <span style="background:#FF5F57"></span>
+      <span style="background:#FEBC2E"></span>
+      <span style="background:#28C840"></span>
+    </div>
+    <div class="vscode__title">{title} · Visual Studio Code</div>
+  </div>
+
+  <div class="vscode__body">
+    <aside class="vscode__sidebar">
+      <div class="vscode__sidebar-header">EXPLORER</div>
+      <div class="vscode__tree" set:html={treeHtml} />
+    </aside>
+
+    <main class="vscode__editor">
+      <div class="vscode__tabs">
+        {tabs.map(tab => (
+          <div class={`vscode__tab ${tab.active ? 'is-active' : ''}`}>
+            <span class="vscode__tab-icon">●</span>
+            <span>{tab.name}</span>
+            <span class="vscode__tab-close" aria-hidden="true">×</span>
+          </div>
+        ))}
+      </div>
+      <pre class="vscode__code"><code data-lang={lang}>{code}</code></pre>
+    </main>
+  </div>
+
+  <div class="vscode__statusbar">
+    <span>{statusbar}</span>
+  </div>
+</figure>
+
+<style>
+  .vscode {
+    margin: 32px 0;
+    background: #1e1e1e;
+    border: 1px solid #3e3e42;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    font-family: var(--ps-font-sans);
+  }
+  .vscode__titlebar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 14px;
+    background: #3c3c3c;
+  }
+  .vscode__traffic {
+    display: flex;
+    gap: 6px;
+  }
+  .vscode__traffic span {
+    width: 11px; height: 11px;
+    border-radius: 50%;
+  }
+  .vscode__title {
+    flex: 1;
+    text-align: center;
+    font-size: 11px;
+    color: #cccccc;
+    letter-spacing: 0.02em;
+  }
+  .vscode__body {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    min-height: 320px;
+    max-height: 560px;
+  }
+  .vscode__sidebar {
+    background: #252526;
+    border-right: 1px solid #3e3e42;
+    overflow-y: auto;
+  }
+  .vscode__sidebar-header {
+    padding: 10px 12px 8px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #858585;
+  }
+  .vscode__tree {
+    padding: 4px 0 8px;
+    font-family: var(--ps-font-mono);
+    font-size: 12px;
+  }
+  :global(.vscode__tree-item) {
+    padding: 3px 10px 3px 14px;
+    color: #cccccc;
+    cursor: default;
+  }
+  :global(.vscode__tree-item.is-active) {
+    background: #37373d;
+    color: white;
+  }
+  :global(.vscode__tree-folder) {
+    color: #858585;
+    margin-right: 4px;
+  }
+  :global(.vscode__tree-file) {
+    color: #569cd6;
+    margin-right: 4px;
+  }
+  .vscode__editor {
+    background: #1e1e1e;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .vscode__tabs {
+    display: flex;
+    background: #2d2d30;
+    border-bottom: 1px solid #3e3e42;
+    overflow-x: auto;
+    flex-shrink: 0;
+  }
+  .vscode__tab {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px 8px 16px;
+    font-family: var(--ps-font-sans);
+    font-size: 12px;
+    color: #858585;
+    background: #2d2d30;
+    border-right: 1px solid #252526;
+    white-space: nowrap;
+    cursor: default;
+  }
+  .vscode__tab.is-active {
+    background: #1e1e1e;
+    color: white;
+    border-top: 1px solid #ffb900;
+    padding-top: 7px;
+  }
+  .vscode__tab-icon { font-size: 8px; color: #ffb900; }
+  .vscode__tab-close {
+    opacity: 0.5;
+    font-size: 14px;
+  }
+  .vscode__code {
+    margin: 0;
+    padding: 20px 24px;
+    font-family: var(--ps-font-mono);
+    font-size: 13px;
+    line-height: 1.6;
+    color: #d4d4d4;
+    overflow: auto;
+    flex: 1;
+    white-space: pre;
+  }
+  .vscode__statusbar {
+    padding: 4px 14px;
+    background: #007acc;
+    color: white;
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 720px) {
+    .vscode__body { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+    .vscode__sidebar { border-right: none; border-bottom: 1px solid #3e3e42; max-height: 180px; }
+  }
+</style>

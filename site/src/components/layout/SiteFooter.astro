@@ -1,0 +1,69 @@
+---
+import BrandMark from './BrandMark.astro';
+import type { Locale } from '../../lib/i18n';
+import { getStrings, localePath } from '../../lib/i18n';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = getStrings(locale);
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__brand">
+      <BrandMark size="sm" href={localePath(locale, '/')}>
+        <span>paulasilvatech</span>
+      </BrandMark>
+      <p class="site-footer__author">{t.site.authorLine}</p>
+      <p class="site-footer__slogan">{t.site.slogan}.</p>
+    </div>
+    <div class="site-footer__meta">
+      <p>{t.footer.madeBy}</p>
+      <p>{t.footer.license}</p>
+      <p>{t.footer.designSystem}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 100px;
+    padding: 48px 28px;
+    border-top: 1px solid var(--ps-color-rule);
+    background: var(--ps-color-bg-alt);
+  }
+  .site-footer__inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 48px;
+  }
+  .site-footer__brand { display: flex; flex-direction: column; gap: 10px; }
+  .site-footer__author {
+    font-family: var(--ps-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--ps-color-ink-2);
+    margin: 0;
+  }
+  .site-footer__slogan {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--ps-color-ink-3);
+    margin: 0;
+    max-width: 420px;
+  }
+  .site-footer__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--ps-color-ink-3);
+    line-height: 1.55;
+  }
+  .site-footer__meta p { margin: 0; }
+  @media (max-width: 720px) {
+    .site-footer__inner { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>
