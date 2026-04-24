@@ -15,7 +15,7 @@ reading_time: 22
 tags: ["persona", "developer", "copilot", "claude-code", "sdd", "tdd"]
 ---
 
-# <img src="../../../assets/icons/personas/22-developer.svg" alt="" width="28" height="28" style="vertical-align:-6px;" /> Developer
+# <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28" style="vertical-align:-6px;"><rect x="1.5" y="1.5" width="61" height="61" rx="10" ry="10" fill="#F1F8E3" stroke="#7FBA00" stroke-width="1.2"/><path d="M22 18 L12 32 L22 46" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M42 18 L52 32 L42 46" fill="none" stroke="#1A1A1A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><line x1="37" y1="16" x2="27" y2="48" stroke="#7FBA00" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="32" r="3.2" fill="#FFB900" stroke="#1A1A1A" stroke-width="1"/></svg> Developer
 
 > The Developer is the persona that writes, fixes, and evolves code. In an AI-native SDLC, the Developer operates a stack of validated primitives, not a code editor.
 

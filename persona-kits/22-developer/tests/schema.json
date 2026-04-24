@@ -1,0 +1,91 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Developer Persona Kit Schema",
+  "description": "Validates the structure and completeness of the Developer persona kit",
+  "type": "object",
+  "required": ["kit"],
+  "properties": {
+    "kit": {
+      "type": "object",
+      "required": [
+        "persona_id",
+        "version",
+        "files"
+      ],
+      "properties": {
+        "persona_id": {
+          "type": "string",
+          "const": "22-developer"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$"
+        },
+        "files": {
+          "type": "object",
+          "required": [
+            "readme",
+            "persona",
+            "changelog",
+            "install",
+            "mcp_json",
+            "hooks_json",
+            "agent",
+            "prompts",
+            "instructions"
+          ],
+          "properties": {
+            "readme": { "type": "string" },
+            "persona": { "type": "string" },
+            "changelog": { "type": "string" },
+            "install": { "type": "string" },
+            "mcp_json": { "type": "string" },
+            "hooks_json": { "type": "string" },
+            "agent": {
+              "type": "object",
+              "required": ["implementer"],
+              "properties": {
+                "implementer": { "type": "string" }
+              }
+            },
+            "prompts": {
+              "type": "object",
+              "required": ["implement", "tdd", "fix-bug", "refactor"],
+              "properties": {
+                "implement": { "type": "string" },
+                "tdd": { "type": "string" },
+                "fix-bug": { "type": "string" },
+                "refactor": { "type": "string" }
+              }
+            },
+            "instructions": {
+              "type": "object",
+              "required": ["typescript", "tests", "sql"],
+              "properties": {
+                "typescript": { "type": "string" },
+                "tests": { "type": "string" },
+                "sql": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "mcp_servers": {
+      "type": "object",
+      "minProperties": 5,
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description", "status"],
+        "properties": {
+          "description": { "type": "string" },
+          "catalog_ref": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["validated", "experimental"]
+          }
+        }
+      }
+    }
+  }
+}
