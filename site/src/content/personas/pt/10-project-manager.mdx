@@ -7,6 +7,196 @@ phase: "Delivery"
 title: "Gerente de Projeto"
 oneLiner: 'Risco, status, stakeholders.'
 order: 10
+updated: "2026-04-24"
 ---
 
-A persona **Gerente de Projeto** faz parte do cluster `enablement` no Agentic SDLC. Esta página é um resumo; o documento completo está em [`docs/pt/personas/10-project-manager.md`](https://github.com/paulasilvatech/agentic-sdlc-personas/blob/main/docs/pt/personas/10-project-manager.md) e o kit executável em [`persona-kits/10-project-manager/`](https://github.com/paulasilvatech/agentic-sdlc-personas/tree/main/persona-kits/10-project-manager).
+> The Project Manager is the persona accountable for predictable delivery across teams and for honest stakeholder communication. Em um SDLC AI-native, o Project Manager operates a risk and status loop, not a status-meeting calendar.
+
+## Resumo executivo
+
+The Project Manager converts a portfolio of commitments into a single, honest picture of progress, risk, and stakeholder expectations. Em um SDLC AI-native, o Project Manager works inside the Delivery phase com um conjunto fixo de primitivas: um agente risk-scout, quatro slash prompts, instruções escopadas, hooks validados por schema, and uma lista curada de MCPs validados. The primary outputs are status reports, a live risk register in Azure DevOps, stakeholder maps, and RAID logs that drive decisions instead of decorating meetings.
+
+## Papel e responsabilidades
+
+Pense no Project Manager like the air-traffic controller at a busy airport. Planes take off and land under their own power, but every takeoff and landing is sequenced, spaced, and reported to the tower. The Project Manager is that tower. Em um SDLC AI-native, o code and architecture are owned by other personas; the Project Manager owns the sequencing, the slot, and the radio discipline.
+
+Responsabilidades principais:
+
+- Maintain the risk register in Azure DevOps with every risk scored, owned, and dated
+- Produce weekly status reports that reconcile GitHub Projects, Azure Boards, and incident data
+- Run the stakeholder communication cadence through Microsoft Teams and the M365 Agents SDK
+- Keep the RAID log current (Risks, Assumptions, Issues, Dependencies) and link every item to a work item
+- Facilitate cross-team dependency management with explicit hand-off criteria
+- Escalate material risk to the Engineering Manager and Program leadership with proposed mitigations, never with surprises
+- Operate the Risk Scout agent and the `/status`, `/risk-log`, `/raid`, `/stakeholder-map` prompts
+
+## Jobs to be done
+
+1. Como Project Manager, eu quero a weekly status report auto-synthesized from GitHub Projects and Azure Boards, para que I spend time on mitigation, not formatting.
+2. Como Project Manager, eu quero every risk in the register with a probability, impact, owner, and review date, para que risk conversations are concrete.
+3. Como Project Manager, eu quero stakeholders to know what changed and what it means for them, para que trust compounds across quarters.
+4. Como Project Manager, eu quero dependencies tracked across teams with explicit acceptance criteria, para que hand-offs do not slip silently.
+5. Como Project Manager, eu quero the RAID log to be the single source of truth, para que nobody re-litigates decisions in hallway conversations.
+6. Como Project Manager, eu quero an audit trail of every stakeholder commitment, para que scope changes are negotiated with facts.
+
+## Dores antes da era AI-native
+
+1. **Status theatre**. Leadership asks for a one-page update; the Project Manager spends half a day reformatting the same data from three tools.
+2. **Risk registers that are inventories, not instruments**. Every risk is logged; none have owners, review dates, or mitigations. The register is audited, not used.
+3. **Stakeholder silence**. Bad news is delayed because there is no safe cadence for delivering it. When it finally lands, it lands with surprise and blame.
+4. **Dependency slippage discovered too late**. A downstream team learns on Friday that the upstream team slipped two weeks ago.
+5. **RAID logs scattered across documents**. Risks in one place, assumptions in another, dependencies in a third spreadsheet. The same item gets three different IDs.
+
+## Fluxo diário AI-native
+
+The Project Manager operates a daily and weekly loop. O loop usa primitivas do GitHub Copilot inside Visual Studio Code, Claude Code at the terminal for long-form synthesis, and Microsoft Teams via the M365 Agents SDK for stakeholder cadence.
+
+### Setup da manhã
+
+1. Open Visual Studio Code on the `program-ops` repository. GitHub Copilot Chat carrega the scoped `.github/instructions/pm.instructions.md`.
+2. Invoke `/risk-log`. The Risk Scout agent reviews the register, flags risks overdue for review, and drafts updates where new evidence is available.
+3. Scan the Teams overnight digest from the M365 Agents SDK for any stakeholder message that requires a same-day reply.
+
+### Execução no meio do dia
+
+1. Run `/status` for the active project. The agent pulls GitHub Projects status, Azure Boards iteration burn-up, Application Insights incident count via the Azure MCP, and composes a draft status report.
+2. Reconcile cross-team dependencies by running `/raid`. The agent updates the RAID log with new items detected from PR labels and work-item state transitions.
+3. Hold dependency sync meetings where needed. Each agreement is written back to the RAID log immediately, with an owner and a target date.
+
+### Revisão no fim da tarde
+
+1. Publish the status report. The M365 Agents SDK posts it into the appropriate Teams channels, with links back to the repository.
+2. Invoke `/stakeholder-map` weekly. The agent refreshes the stakeholder inventory, flags stakeholders who have not received an update in over two weeks, and proposes outreach drafts.
+3. Close the day by committing the RAID log and the risk register updates to the `program-ops` repository. GitHub Actions publishes them to the Azure Static Web App that hosts the program dashboard.
+
+## Primitivas recomendadas
+
+### Agente
+
+| Agente | Arquivo | Propósito |
+|-------|------|---------|
+| `risk-scout` | `.github/agents/risk-scout.agent.md` | Maintain the risk register, draft status reports, update the RAID log, refresh the stakeholder map |
+
+The Risk Scout agent uses `claude-sonnet-4-6` by default, with tools `read`, `search`, `grep`, `bash`. It pulls context from GitHub, Azure DevOps, Azure, and Microsoft 365 Agents SDK MCPs. Extended thinking is enabled for dependency analyses that cross multiple teams.
+
+### Slash prompts
+
+| Comando | Arquivo | Propósito |
+|---------|------|---------|
+| `/status` | `.github/prompts/status.prompt.md` | Compose the weekly status report from reconciled sources |
+| `/risk-log` | `.github/prompts/risk-log.prompt.md` | Review and refresh the risk register, flag aging risks |
+| `/raid` | `.github/prompts/raid.prompt.md` | Update the RAID log from recent work-item and PR activity |
+| `/stakeholder-map` | `.github/prompts/stakeholder-map.prompt.md` | Refresh the stakeholder inventory and propose outreach |
+
+### Instruções escopadas
+
+Scoped `applyTo` keeps program artifacts distinct from team-level content.
+
+| Escopo (`applyTo`) | Arquivo | Propósito |
+|-------------------|------|---------|
+| `program-ops/status/**` | `.github/instructions/status.instructions.md` | Status report tone, one-page ceiling, citation discipline |
+| `program-ops/risks/**` | `.github/instructions/risks.instructions.md` | Risk scoring rubric, owner discipline, mitigation phrasing |
+| `program-ops/stakeholders/**` | `.github/instructions/stakeholders.instructions.md` | Stakeholder map format, outreach cadence, escalation rules |
+
+### Hooks
+
+Hooks are zero-token governance for program artifacts.
+
+- `pre-commit`: reject a risk without a scored probability, impact, owner, and review date
+- `post-commit`: regenerate the program dashboard JSON on any RAID change
+- `pre-push`: validate that every status report cites specific work items and Application Insights incidents
+
+## MCPs validados
+
+Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+
+| MCP | Status | Use in this persona |
+|-----|--------|---------------------|
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | Read and update Azure Boards work items, risk register entries, and iteration data |
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | Read GitHub Projects state, PR status, and Actions runs for status composition |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | Query Azure Monitor and Application Insights for incident evidence behind risks |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Ground program guidance in Microsoft Learn and GitHub Docs |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Post status reports and stakeholder outreach drafts into Microsoft Teams |
+
+## Exemplos reais
+
+### Example 1: weekly status report for a regulated program
+
+**Entrada**: A payments program with three squads, one active production incident, and an auditor review next month.
+
+**Invocação**: `/status`.
+
+**Saída esperada**:
+
+1. A one-page status report in `program-ops/status/2026-W17.md` with sections: commitments, progress, risks in motion, decisions needed, upcoming milestones.
+2. Every claim cites a work item ID from Azure Boards or a PR from GitHub Projects.
+3. The active incident is linked to its Application Insights timeline.
+4. A Teams post via the M365 Agents SDK to the executive sponsor channel with the one-page summary.
+
+### Example 2: cross-team dependency at risk
+
+**Entrada**: The checkout squad depends on the identity squad delivering a new token endpoint by week 18. Evidence shows the identity squad is behind.
+
+**Invocação**: `/raid`.
+
+**Saída esperada**:
+
+1. A new RAID entry `program-ops/raid/identity-token-endpoint.md` with type Dependency, owner set to the identity squad lead, impact described in checkout-squad terms, mitigation proposals (temporary stub, feature flag).
+2. An Azure Boards dependency work item created and linked to both squad boards.
+3. A Teams message to both squad leads with the facts, not a meeting invite.
+4. A follow-up on the stakeholder map: the checkout squad product owner is flagged for a targeted update.
+
+## Anti-padrões
+
+1. **Status reports that rephrase the plan**. Paraphrasing the plan is not progress. Mitigação: the `status.instructions.md` requires evidence citations for every claim.
+2. **Risks without owners**. A risk without an owner is a wish. Mitigação: the pre-commit hook rejects unowned risks.
+3. **Stakeholder maps that only list names**. A map without cadence and interests is a phonebook. Mitigação: `/stakeholder-map` requires cadence, interests, and preferred channel for each stakeholder.
+4. **RAID logs duplicated across tools**. Multiple sources of truth create disputes. Mitigação: the RAID log lives in the `program-ops` repository; everything else is a view.
+5. **Escalation by surprise**. Bad news that lands without proposed mitigations loses trust. Mitigação: the Risk Scout agent always accompanies an escalation with at least two mitigation options.
+
+## KPIs e métricas de impacto
+
+| Metric | Baseline (manual) | Target (agentic) | Medição |
+|--------|-------------------|------------------|-------------|
+| Status report preparation time | 8 hours per week | Under 90 minutes | Time-to-publish log |
+| Risk median review age | 21 days | Under 7 days | Risk register audit |
+| Dependency slippage lead time | 3 days warning | Over 10 days warning | RAID detection history |
+| Stakeholder satisfaction (NPS) | Plus 10 | Plus 40 | Quarterly program survey |
+| Escalation-with-mitigation rate | 35 percent | Over 90 percent | Escalation audit |
+| Token efficiency | N/A | Under 200k tokens per week | Copilot usage report |
+
+## Maturidade em quatro níveis
+
+| Nível | Nome | Marcadores |
+|-------|------|---------|
+| L1 | Manual | Status reports assembled by hand, risks in a spreadsheet, RAID scattered |
+| L2 | Assistido | GitHub Copilot Chat for drafting, no agent, some Azure DevOps dashboards |
+| L3 | Aumentado | Risk Scout agent, quatro slash prompts, instruções escopadas, RAID log in `program-ops` |
+| L4 | Agentic | Full primitives kit, hooks enforced, stakeholder cadence automated in Teams via M365 Agents SDK, risks always scored, maturity scorecard above 80 percent |
+
+## Integração com outras personas
+
+- **With Engineering Manager**: shared delivery-health view, risk-to-capacity translation
+- **With Scrum Master**: sprint flow informs program pacing
+- **With Product Owner**: scope negotiation backed by RAID evidence
+- **With Technical Lead**: architectural risks land in the program register with owners
+- **With Release Manager**: release-window coordination across squads
+- **With InfoSec Officer and Compliance Auditor**: program-level controls, audit evidence, regulated-industry cadence
+- **With SRE**: incident-derived risks recorded and tracked
+
+## Glossário
+
+- **RAID log**: the consolidated register of Risks, Assumptions, Issues, Dependencies used as the program's single source of truth.
+- **Risk register**: the risk subset of the RAID log, kept in Azure DevOps with probability, impact, owner, and review date.
+- **Stakeholder map**: a living inventory of stakeholders, their interests, their cadence, and their preferred channel.
+- **Status report**: a weekly, one-page artifact that reconciles commitments, progress, risks in motion, decisions needed, and upcoming milestones.
+- **Escalation with mitigation**: the discipline of never delivering bad news without at least two proposed options.
+- **Dependency hand-off**: the documented hand-off between two teams, with explicit acceptance criteria.
+
+## Referências
+
+- [Azure Boards documentation](https://learn.microsoft.com/azure/devops/boards/) — authoritative guidance for risk registers and work-item tracking
+- [GitHub Projects documentation](https://docs.github.com/issues/planning-and-tracking-with-projects) — program-level views across multiple repositories
+- [Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — post status reports and stakeholder outreach into Teams
+- [Azure Monitor documentation](https://learn.microsoft.com/azure/azure-monitor/) — incident evidence for risk scoring
+- [GitHub Actions documentation](https://docs.github.com/actions) — schedule program dashboards and reconciliation jobs
