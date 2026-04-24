@@ -20,7 +20,7 @@ date: "2026-04-23"
 | Primary model | Claude Sonnet 4.6 |
 | Extended thinking | Disabled (iterative feedback loop) |
 | Agent file | `.github/agents/implementer.agent.md` |
-| Key MCPs | GitHub, Sentry, Snyk, Linear, Playwright |
+| Key MCPs | GitHub, Azure, Azure DevOps, Microsoft Learn Docs, Playwright |
 
 ## Core loop
 

@@ -149,7 +149,7 @@ Scoped `applyTo` reduces token cost by approximately 68 percent compared to glob
 Skills are lazy-loaded, so the developer can install many and pay tokens only for the ones that trigger.
 
 - `tdd-enforcer`: refuses to write implementation code if the failing test is missing
-- `dep-risk-scan`: calls Snyk MCP on every dependency upgrade
+- `dep-risk-scan`: calls the GitHub MCP to read Dependabot alerts and CodeQL results on every dependency upgrade
 
 ### 6.5 Hooks
 
@@ -167,10 +167,9 @@ Every MCP below appears in [`docs/registry/mcp-catalog.md`](../../registry/mcp-c
 |-----|--------|---------------------|---------------|
 | GitHub MCP Server | Official | Read the repo, manage PRs and issues, read Actions runs | [github/github-mcp-server](https://github.com/github/github-mcp-server) |
 | Microsoft Learn Docs MCP | Official | Fetch current Microsoft documentation when implementing on Azure stacks | [microsoftdocs/mcp](https://github.com/microsoftdocs/mcp) |
-| Sentry MCP Server | Official | Pull the error context into the fix-bug loop | [getsentry/sentry-mcp](https://github.com/getsentry/sentry-mcp) |
-| Snyk MCP Server | Official | Check vulnerabilities on dependency upgrade and during refactor | [docs.snyk.io · Snyk MCP](https://docs.snyk.io/scan-with-snyk/snyk-mcp) |
-| Linear MCP Server | Official | Read the active ticket, update the issue after PR merge | [linear.app/docs/mcp](https://linear.app/docs/mcp) |
-| Figma Dev Mode MCP | Official | Pull design tokens and component specs when implementing UI features | [developers.figma.com/docs/figma-mcp-server](https://developers.figma.com/docs/figma-mcp-server/) |
+| Azure MCP Server | Official (Microsoft) | Pull Application Insights and Azure Monitor errors into the fix-bug loop; query Azure resources during implementation | [Azure/azure-mcp](https://github.com/Azure/azure-mcp) |
+| Azure DevOps MCP Server | Official (Microsoft) | Read the active work item from Azure Boards and update it after PR merge (when the team uses Azure DevOps instead of GitHub Issues) | [microsoft/azure-devops-mcp](https://github.com/microsoft/azure-devops-mcp) |
+| Microsoft 365 Agents SDK MCP | Official (Microsoft) | Integrate the feature with Teams, Copilot, and Microsoft 365 surfaces when the product requires it | [learn.microsoft.com · Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) |
 | Playwright MCP | Official (Microsoft) | Drive end-to-end tests against the running feature | [microsoft/playwright-mcp](https://github.com/microsoft/playwright-mcp) |
 
 ## 8. Real examples
@@ -189,7 +188,7 @@ Every MCP below appears in [`docs/registry/mcp-catalog.md`](../../registry/mcp-c
 
 ### 8.2 Scenario B: fix a production bug
 
-**Input**: A Sentry alert reports a null pointer in `ContractService.findById` triggered by concurrent requests.
+**Input**: An Application Insights alert (via Azure Monitor) reports a null pointer in `ContractService.findById` triggered by concurrent requests.
 
 **Invocation**: `/fix-bug`.
 
@@ -197,8 +196,8 @@ Every MCP below appears in [`docs/registry/mcp-catalog.md`](../../registry/mcp-c
 
 1. A failing unit test `tests/contracts/find-by-id-concurrency.spec.ts` that reproduces the race condition.
 2. A fix in `ContractService` that introduces optimistic locking, with no other behavioral change.
-3. A PR titled `fix(contracts): eliminate race in ContractService.findById` linked to the Sentry issue and the new test.
-4. A post-merge Sentry issue resolution with the PR URL recorded.
+3. A PR titled `fix(contracts): eliminate race in ContractService.findById` linked to the Application Insights incident and the new test.
+4. A post-merge resolution of the Application Insights alert with the PR URL recorded in the incident timeline.
 
 ### 8.3 Scenario C: behavior-preserving refactor
 
@@ -229,7 +228,7 @@ The Developer persona is evaluated with a mix of DORA, SPACE, and Agentic DevOps
 |--------|-------------------|------------------|-------------|
 | PR lead time | 3 days | < 1 day | GitHub API |
 | Deployment frequency | Weekly | Multiple per day | GitHub Deployments |
-| Change failure rate | 20 percent | < 5 percent | Sentry or incidents post deploy |
+| Change failure rate | 20 percent | < 5 percent | Application Insights or incidents post deploy |
 | Mean time to restore | 4 hours | < 1 hour | Incident tracker |
 | Test suite reliability | 85 percent | > 99 percent | Flake rate |
 | Mutation score | Unknown | > 70 percent | Stryker, Pitest, or equivalent |
@@ -280,7 +279,7 @@ Handoffs:
 - **Instructions**: scoped guidance applied by pattern match on file paths via `applyTo`. Lives in `.github/instructions/<name>.instructions.md`.
 - **Skill**: a lazy-loaded capability that activates on keyword match. Costs tokens only when triggered.
 - **Hook**: a zero-token rule enforced at a specific lifecycle event (pre-commit, post-commit, pre-push, pre-merge).
-- **MCP**: Model Context Protocol server that exposes external systems (GitHub, Sentry, Linear, etc.) to the agent.
+- **MCP**: Model Context Protocol server that exposes external systems (GitHub, Azure, Azure DevOps, etc.) to the agent.
 - **EARS**: Easy Approach to Requirements Syntax. Format used in `SPECIFICATION.md`.
 - **TDD**: Test-Driven Development. Write the failing test first, then the minimum code to pass it.
 - **CODEMAP**: A generated document that describes the program skeleton for the LLM and for humans.
