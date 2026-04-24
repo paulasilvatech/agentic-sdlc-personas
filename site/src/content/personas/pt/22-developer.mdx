@@ -117,7 +117,7 @@ O agente Implementer usa `claude-sonnet-4-6` por padrão. Detém as ferramentas 
 Skills são carregadas sob demanda, então o developer pode instalar muitas e pagar tokens só pelas que disparam.
 
 - `tdd-enforcer`: se recusa a escrever código de implementação se o teste em falha estiver ausente
-- `dep-risk-scan`: chama o Snyk MCP em toda atualização de dependência
+- `dep-risk-scan`: chama o GitHub MCP para ler alertas do Dependabot e resultados do CodeQL em toda atualização de dependência
 
 ### Hooks
 
@@ -135,10 +135,9 @@ Todo MCP abaixo está registrado no catálogo de MCPs. Não referencie nenhum MC
 |-----|--------|-------------------|
 | [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Ler o repo, gerenciar PRs e issues, ler runs do Actions |
 | [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Puxar documentação atualizada da Microsoft ao implementar em stacks Azure |
-| [Sentry MCP Server](https://github.com/getsentry/sentry-mcp) | Oficial | Puxar o contexto do erro para o loop de fix-bug |
-| [Snyk MCP Server](https://docs.snyk.io/scan-with-snyk/snyk-mcp) | Oficial | Verificar vulnerabilidades em upgrade de dependência e durante refactor |
-| [Linear MCP Server](https://linear.app/docs/mcp) | Oficial | Ler o ticket ativo, atualizar a issue após merge do PR |
-| [Figma Dev Mode MCP](https://developers.figma.com/docs/figma-mcp-server/) | Oficial | Puxar design tokens e specs de componentes ao implementar UI |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Oficial (Microsoft) | Trazer erros do Application Insights e Azure Monitor para o loop de fix-bug; consultar recursos Azure durante a implementação |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Oficial (Microsoft) | Ler o work item ativo no Azure Boards e atualizá-lo após o merge do PR (quando o time usa Azure DevOps em vez de GitHub Issues) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Oficial (Microsoft) | Integrar a feature com Teams, Copilot e outras superfícies do Microsoft 365 quando o produto exigir |
 | [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Oficial (Microsoft) | Dirigir testes end-to-end contra a feature rodando |
 
 ## Exemplos reais
@@ -157,7 +156,7 @@ Todo MCP abaixo está registrado no catálogo de MCPs. Não referencie nenhum MC
 
 ### Cenário B: corrigir um bug de produção
 
-**Entrada**: Um alerta do Sentry reporta null pointer em `ContractService.findById` disparado por requisições concorrentes.
+**Entrada**: Um alerta do Application Insights (via Azure Monitor) reporta null pointer em `ContractService.findById` disparado por requisições concorrentes.
 
 **Invocação**: `/fix-bug`.
 
@@ -165,8 +164,8 @@ Todo MCP abaixo está registrado no catálogo de MCPs. Não referencie nenhum MC
 
 1. Um teste unitário em falha `tests/contracts/find-by-id-concurrency.spec.ts` que reproduz a race condition.
 2. Uma correção em `ContractService` que introduz optimistic locking, sem nenhuma outra mudança comportamental.
-3. Um PR intitulado `fix(contracts): eliminate race in ContractService.findById` linkado à issue do Sentry e ao teste novo.
-4. Uma resolução pós-merge da issue do Sentry com a URL do PR registrada.
+3. Um PR intitulado `fix(contracts): eliminate race in ContractService.findById` linkado ao incidente do Application Insights e ao teste novo.
+4. Uma resolução pós-merge do alerta do Application Insights com a URL do PR registrada na linha do tempo do incidente.
 
 ### Cenário C: refactor preservando comportamento
 
@@ -197,7 +196,7 @@ A persona Developer é avaliada com uma mistura de DORA, SPACE e métricas Agent
 |---------|-------------------|-----------------|---------|
 | Lead time de PR | 3 dias | < 1 dia | GitHub API |
 | Frequência de deploy | Semanal | Várias por dia | GitHub Deployments |
-| Taxa de falha de mudança | 20 por cento | < 5 por cento | Sentry ou incidentes pós-deploy |
+| Taxa de falha de mudança | 20 por cento | < 5 por cento | Application Insights ou incidentes pós-deploy |
 | Tempo médio de restauração | 4 horas | < 1 hora | Rastreador de incidentes |
 | Confiabilidade da suíte | 85 por cento | > 99 por cento | Flake rate |
 | Mutation score | Desconhecido | > 70 por cento | Stryker, Pitest ou equivalente |
@@ -230,7 +229,7 @@ Entregas:
 - **Instruções**: orientação com escopo aplicada por pattern match em paths de arquivo via `applyTo`. Vive em `.github/instructions/<nome>.instructions.md`.
 - **Skill**: capacidade carregada sob demanda que ativa por match de palavra-chave. Custa tokens apenas quando dispara.
 - **Hook**: regra de zero tokens enforçada em um evento específico de ciclo de vida (pre-commit, post-commit, pre-push, pre-merge).
-- **MCP**: servidor Model Context Protocol que expõe sistemas externos (GitHub, Sentry, Linear, etc.) ao agente.
+- **MCP**: servidor Model Context Protocol que expõe sistemas externos (GitHub, Azure, Azure DevOps, etc.) ao agente.
 - **EARS**: Easy Approach to Requirements Syntax. Formato usado no `SPECIFICATION.md`.
 - **TDD**: Test-Driven Development. Escreva primeiro o teste em falha, depois o mínimo de código para passá-lo.
 - **CODEMAP**: Documento gerado que descreve o esqueleto do programa para o LLM e para humanos.
