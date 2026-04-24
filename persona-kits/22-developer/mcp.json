@@ -1,10 +1,39 @@
 {
   "mcpServers": {
-    "github-copilot": {
-      "description": "Code completions"
+    "github-mcp-server": {
+      "description": "Repository operations, PR workflow, issue tracking, code search",
+      "catalog_ref": "docs/registry/mcp-catalog.md#github-mcp-server",
+      "status": "validated"
     },
-    "azure-app-insights": {
-      "description": "Production debugging"
+    "microsoft-learn-docs-mcp": {
+      "description": "Official Microsoft and Azure documentation lookup for implementation reference",
+      "catalog_ref": "docs/registry/mcp-catalog.md#microsoft-learn-docs-mcp",
+      "status": "validated"
+    },
+    "sentry-mcp": {
+      "description": "Error monitoring, stack trace analysis, production debugging",
+      "catalog_ref": "docs/registry/mcp-catalog.md#sentry-mcp",
+      "status": "validated"
+    },
+    "snyk-mcp": {
+      "description": "Dependency vulnerability scanning, license compliance, security posture",
+      "catalog_ref": "docs/registry/mcp-catalog.md#snyk-mcp",
+      "status": "validated"
+    },
+    "linear-mcp": {
+      "description": "Sprint task management, issue state transitions, cycle tracking",
+      "catalog_ref": "docs/registry/mcp-catalog.md#linear-mcp",
+      "status": "validated"
+    },
+    "figma-dev-mode-mcp": {
+      "description": "Design token extraction, component spec lookup, spacing and color values",
+      "catalog_ref": "docs/registry/mcp-catalog.md#figma-dev-mode-mcp",
+      "status": "validated"
+    },
+    "playwright-mcp": {
+      "description": "Browser automation, E2E test execution, visual regression checks",
+      "catalog_ref": "docs/registry/mcp-catalog.md#playwright-mcp",
+      "status": "validated"
     }
   }
 }

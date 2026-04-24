@@ -1,0 +1,30 @@
+{
+  "hooks": [
+    {
+      "event": "preCommit",
+      "description": "Run linting and type-check on staged files before commit",
+      "steps": [
+        "npx lint-staged",
+        "npm run type-check"
+      ],
+      "failAction": "block"
+    },
+    {
+      "event": "postCommit",
+      "description": "Run unit tests after commit to verify no regressions",
+      "steps": [
+        "npm test -- --bail"
+      ],
+      "failAction": "warn"
+    },
+    {
+      "event": "prePush",
+      "description": "Run full test suite with coverage gate before push",
+      "steps": [
+        "npm test -- --coverage",
+        "node -e \"const c=require('./coverage/coverage-summary.json');if(c.total.lines.pct<80){console.error('Coverage below 80%');process.exit(1)}\""
+      ],
+      "failAction": "block"
+    }
+  ]
+}

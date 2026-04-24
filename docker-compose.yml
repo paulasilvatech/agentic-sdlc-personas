@@ -1,0 +1,76 @@
+name: agentic-sdlc-personas
+
+services:
+  # ----------------------------------------------------------------------
+  # dev: Astro dev server with hot reload. Edit files and see changes live.
+  # Open: http://localhost:4321
+  # Run:  docker compose up dev
+  # ----------------------------------------------------------------------
+  dev:
+    build:
+      context: ./site
+      dockerfile: Dockerfile
+      target: dev
+    image: agentic-sdlc-personas-dev:latest
+    container_name: aspd-dev
+    working_dir: /app
+    ports:
+      - "4321:4321"
+    volumes:
+      - ./site:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+    restart: unless-stopped
+    profiles: ["dev"]
+
+  # ----------------------------------------------------------------------
+  # preview: Built Astro app served in production mode via Node preview.
+  # Open: http://localhost:4322
+  # Run:  docker compose up preview
+  # ----------------------------------------------------------------------
+  preview:
+    build:
+      context: ./site
+      dockerfile: Dockerfile
+      target: preview
+    image: agentic-sdlc-personas-preview:latest
+    container_name: aspd-preview
+    ports:
+      - "4322:4321"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    profiles: ["preview"]
+
+  # ----------------------------------------------------------------------
+  # production: Static dist served by nginx on port 8080.
+  # Open: http://localhost:8080/agentic-sdlc-personas/
+  # Run:  docker compose up production
+  # ----------------------------------------------------------------------
+  production:
+    build:
+      context: ./site
+      dockerfile: Dockerfile
+      target: production
+    image: agentic-sdlc-personas:latest
+    container_name: aspd-prod
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    profiles: ["prod"]
+
+  # ----------------------------------------------------------------------
+  # build-only: just build the static dist into ./site/dist (no server).
+  # Run:  docker compose run --rm build
+  # ----------------------------------------------------------------------
+  build:
+    build:
+      context: ./site
+      dockerfile: Dockerfile
+      target: build
+    image: agentic-sdlc-personas-build:latest
+    container_name: aspd-build
+    command: ["sh", "-c", "echo 'Build complete. dist/ written inside container. Use preview or production services to serve.'"]
+    profiles: ["build"]

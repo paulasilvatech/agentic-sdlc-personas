@@ -1,0 +1,67 @@
+{
+  "site": {
+    "title": "Agentic SDLC Personas",
+    "titleShort": "ASP",
+    "tagline": "24 personas for the agent-augmented software lifecycle",
+    "authorLine": "Paula Silva · AI-Native Software Engineer",
+    "slogan": "Pioneering software development with Agentic DevOps",
+    "version": "v1.0.0"
+  },
+  "nav": {
+    "introduction": "Overview",
+    "personas": "Personas",
+    "clusters": "Clusters",
+    "reference": "Reference",
+    "references": "References",
+    "glossary": "Glossary",
+    "about": "About",
+    "search": "Search personas...",
+    "searchShortcut": "/",
+    "darkMode": "Toggle dark mode",
+    "language": "Language",
+    "previousChapter": "Previous",
+    "nextChapter": "Next",
+    "onThisPage": "On this page",
+    "backToTop": "Back to top",
+    "skipToContent": "Skip to content"
+  },
+  "home": {
+    "heroEyebrow": "Agentic SDLC · v1.0",
+    "heroTitle": "24 personas for the",
+    "heroTitleAccent": "agent-augmented",
+    "heroTitleRest": "software lifecycle.",
+    "heroSubtitle": "A field-tested role catalog for teams delivering with AI assistants, Copilot and autonomous agents. Each persona comes with a playbook, an MCP manifest, and a ready-to-run kit.",
+    "heroCtaStart": "Explore personas",
+    "heroCtaDeck": "Read the framework",
+    "whyTitle": "Why roles need to evolve",
+    "whyBody": "Agents change who does what. A developer is no longer just writing code, a QA is no longer just writing tests, a product owner is no longer just writing stories. These 24 personas capture the new distribution of responsibility when AI is in the loop.",
+    "chaptersTitle": "The nine clusters",
+    "chaptersSubtitle": "Each cluster groups personas that share an accent color, a phase of the SDLC, and a failure mode.",
+    "integrationTitle": "Persona kits",
+    "integrationBody": "Every persona ships with a kit: an MCP manifest, Copilot instructions, prompt library, and local validation scripts. Kits are tested and versioned.",
+    "interactiveTitle": "Cluster map",
+    "interactiveBody": "Navigate by cluster, by SDLC phase, or by accent color. Each persona links to its full document and to its executable kit on GitHub.",
+    "audienceTitle": "Who this is for",
+    "audienceList": [
+      "Engineering leaders rewriting role definitions for the agent era",
+      "Platform teams building MCP servers and Copilot extensions for their org",
+      "Staff engineers and architects drafting internal agent playbooks",
+      "DevRel, enablement and HR teams scoping training programs for AI-native delivery"
+    ]
+  },
+  "common": {
+    "readChapter": "Read persona",
+    "chapter": "Persona",
+    "appendix": "Appendix",
+    "minRead": "min read",
+    "sections": "sections",
+    "updated": "Updated",
+    "viewKit": "View kit",
+    "readDoc": "Read full document"
+  },
+  "footer": {
+    "madeBy": "Written by Paula Silva, AI-Native Software Engineer.",
+    "license": "Content licensed MIT. Kits and prompts free to adapt.",
+    "designSystem": "Built with the paulasilvatech Design System."
+  }
+}

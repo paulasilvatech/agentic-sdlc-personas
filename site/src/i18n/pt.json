@@ -1,0 +1,67 @@
+{
+  "site": {
+    "title": "Personas do SDLC Agêntico",
+    "titleShort": "ASP",
+    "tagline": "24 personas para o ciclo de desenvolvimento aumentado por agentes",
+    "authorLine": "Paula Silva · AI-Native Software Engineer",
+    "slogan": "Pioneira em desenvolvimento de software com Agentic DevOps",
+    "version": "v1.0.0"
+  },
+  "nav": {
+    "introduction": "Visão geral",
+    "personas": "Personas",
+    "clusters": "Clusters",
+    "reference": "Referência",
+    "references": "Referências",
+    "glossary": "Glossário",
+    "about": "Sobre",
+    "search": "Buscar personas...",
+    "searchShortcut": "/",
+    "darkMode": "Alternar modo escuro",
+    "language": "Idioma",
+    "previousChapter": "Anterior",
+    "nextChapter": "Próxima",
+    "onThisPage": "Nesta página",
+    "backToTop": "Voltar ao topo",
+    "skipToContent": "Ir para o conteúdo"
+  },
+  "home": {
+    "heroEyebrow": "SDLC Agêntico · v1.0",
+    "heroTitle": "24 personas para o",
+    "heroTitleAccent": "ciclo de software",
+    "heroTitleRest": "aumentado por agentes.",
+    "heroSubtitle": "Catálogo de papéis testado em campo para times que entregam com assistentes de IA, Copilot e agentes autônomos. Cada persona vem com playbook, manifesto MCP e kit pronto para uso.",
+    "heroCtaStart": "Explorar personas",
+    "heroCtaDeck": "Ler o framework",
+    "whyTitle": "Por que os papéis precisam evoluir",
+    "whyBody": "Agentes mudam quem faz o quê. Um dev não só escreve código, um QA não só escreve testes, um PO não só escreve histórias. Estas 24 personas capturam a nova distribuição de responsabilidade quando a IA entra no loop.",
+    "chaptersTitle": "Os nove clusters",
+    "chaptersSubtitle": "Cada cluster agrupa personas que compartilham uma cor de acento, uma fase do SDLC e um modo de falha.",
+    "integrationTitle": "Kits de persona",
+    "integrationBody": "Toda persona tem um kit: manifesto MCP, instruções para Copilot, biblioteca de prompts e scripts de validação local. Kits são testados e versionados.",
+    "interactiveTitle": "Mapa de clusters",
+    "interactiveBody": "Navegue por cluster, por fase do SDLC ou por cor de acento. Cada persona aponta para seu documento completo e para seu kit executável no GitHub.",
+    "audienceTitle": "Para quem é isso",
+    "audienceList": [
+      "Líderes de engenharia reescrevendo definições de papel para a era dos agentes",
+      "Times de plataforma construindo servidores MCP e extensões Copilot na empresa",
+      "Staff engineers e arquitetos escrevendo playbooks internos para agentes",
+      "DevRel, enablement e RH desenhando treinamentos para entrega AI-native"
+    ]
+  },
+  "common": {
+    "readChapter": "Ler persona",
+    "chapter": "Persona",
+    "appendix": "Apêndice",
+    "minRead": "min de leitura",
+    "sections": "seções",
+    "updated": "Atualizado",
+    "viewKit": "Ver kit",
+    "readDoc": "Ler documento completo"
+  },
+  "footer": {
+    "madeBy": "Escrito por Paula Silva, AI-Native Software Engineer.",
+    "license": "Conteúdo sob MIT. Kits e prompts livres para adaptar.",
+    "designSystem": "Feito com o paulasilvatech Design System."
+  }
+}

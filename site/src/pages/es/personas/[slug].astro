@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import PersonaLayout from '../../../layouts/PersonaLayout.astro';
+
+export async function getStaticPaths() {
+  const personas = await getCollection('personas', ({ id }) => id.startsWith('es/'));
+  return personas.map(persona => {
+    const fname = persona.id.split('/').pop() || '';
+    const slug = fname.replace(/^\d+-/, '').replace(/\.mdx$/, '');
+    return {
+      params: { slug },
+      props: { persona },
+    };
+  });
+}
+
+const { persona } = Astro.props;
+const fname = persona.id.split('/').pop() || '';
+const slug = fname.replace(/^\d+-/, '').replace(/\.mdx$/, '');
+const { Content, headings } = await persona.render();
+---
+
+<PersonaLayout frontmatter={persona.data} slug={slug} locale="es" headings={headings}>
+  <Content />
+</PersonaLayout>

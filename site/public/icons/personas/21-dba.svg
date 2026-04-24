@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title desc">
+  <title id="title">DBA</title>
+  <desc id="desc">Persona icon for DBA. Database stack with key.</desc>
+  <defs>
+    <linearGradient id="dba-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFB900"/>
+      <stop offset="1" stop-color="#B88500"/>
+    </linearGradient>
+  </defs>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="10" ry="10" fill="#FFF7E0" stroke="#FFB900" stroke-width="1.2"/>
+  <ellipse cx="28" cy="16" rx="14" ry="4" fill="url(#dba-accent)" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M14 16 L14 44 C14 47, 22 49, 28 49 C34 49, 42 47, 42 44 L42 16" fill="url(#dba-accent)" stroke="#1A1A1A" stroke-width="1.8"/>
+  <path d="M14 26 C14 29, 22 31, 28 31 C34 31, 42 29, 42 26" fill="none" stroke="#1A1A1A" stroke-width="1.6"/>
+  <path d="M14 36 C14 39, 22 41, 28 41 C34 41, 42 39, 42 36" fill="none" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="48" cy="40" r="5" fill="#F25022" stroke="#1A1A1A" stroke-width="1.6"/>
+  <path d="M48 45 L48 52 M46 50 L50 50" stroke="#1A1A1A" stroke-width="1.8" stroke-linecap="round"/>
+</svg>

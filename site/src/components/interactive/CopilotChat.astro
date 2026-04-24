@@ -1,0 +1,193 @@
+---
+/**
+ * CopilotChat, simulação visual de uma sessão GitHub Copilot Chat.
+ * Uso em MDX para mostrar como o agente responde a perguntas.
+ */
+interface Message {
+  role: 'user' | 'copilot';
+  text: string;
+  code?: { lang: string; body: string };
+  files?: string[];
+}
+interface Props {
+  title?: string;
+  messages: Message[];
+  model?: string;
+}
+const { title = 'GitHub Copilot Chat', messages, model = 'Claude Sonnet' } = Astro.props;
+---
+
+<figure class="copilot-chat">
+  <div class="copilot-chat__header">
+    <div class="copilot-chat__header-left">
+      <svg class="copilot-chat__logo" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.49c-2.23.48-2.7-.94-2.7-.94-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.58.83-2.14-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.52.56.83 1.27.83 2.14 0 3.07-1.87 3.75-3.65 3.95.29.24.54.73.54 1.47v2.18c0 .22.15.46.55.38A8 8 0 0 0 8 0z" fill="#ffffff"/>
+      </svg>
+      <span class="copilot-chat__title">{title}</span>
+    </div>
+    <span class="copilot-chat__model">{model}</span>
+  </div>
+  <div class="copilot-chat__thread">
+    {messages.map(msg => (
+      <div class={`copilot-chat__msg copilot-chat__msg--${msg.role}`}>
+        <div class="copilot-chat__avatar">
+          {msg.role === 'user' ? (
+            <span class="copilot-chat__avatar-user">You</span>
+          ) : (
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.49c-2.23.48-2.7-.94-2.7-.94-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.67.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.58.83-2.14-.08-.2-.36-1.02.08-2.12 0 0 .67-.22 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.52.56.83 1.27.83 2.14 0 3.07-1.87 3.75-3.65 3.95.29.24.54.73.54 1.47v2.18c0 .22.15.46.55.38A8 8 0 0 0 8 0z" fill="currentColor"/>
+            </svg>
+          )}
+        </div>
+        <div class="copilot-chat__bubble">
+          {msg.files && msg.files.length > 0 && (
+            <div class="copilot-chat__files">
+              {msg.files.map(f => (
+                <span class="copilot-chat__file">
+                  <svg viewBox="0 0 12 12" width="10" height="10" fill="currentColor" aria-hidden="true">
+                    <path d="M2.5 0A1.5 1.5 0 0 0 1 1.5v9A1.5 1.5 0 0 0 2.5 12h7a1.5 1.5 0 0 0 1.5-1.5V4L7 0H2.5z"/>
+                  </svg>
+                  {f}
+                </span>
+              ))}
+            </div>
+          )}
+          <div class="copilot-chat__text" set:html={msg.text} />
+          {msg.code && (
+            <pre class="copilot-chat__code"><code data-lang={msg.code.lang}>{msg.code.body}</code></pre>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</figure>
+
+<style>
+  .copilot-chat {
+    margin: 28px 0;
+    background: #1e1e1e;
+    border: 1px solid #3e3e42;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  .copilot-chat__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: #252526;
+    border-bottom: 1px solid #3e3e42;
+  }
+  .copilot-chat__header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .copilot-chat__logo {
+    width: 16px;
+    height: 16px;
+  }
+  .copilot-chat__title {
+    font-family: var(--ps-font-sans);
+    font-size: 12px;
+    color: #cccccc;
+    font-weight: 500;
+  }
+  .copilot-chat__model {
+    font-family: var(--ps-font-mono);
+    font-size: 10px;
+    color: #858585;
+    padding: 2px 8px;
+    background: #1e1e1e;
+    border-radius: 3px;
+  }
+  .copilot-chat__thread {
+    padding: 16px 18px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  .copilot-chat__msg {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .copilot-chat__avatar {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .copilot-chat__msg--user .copilot-chat__avatar {
+    background: #0076ac;
+  }
+  .copilot-chat__avatar-user {
+    font-family: var(--ps-font-mono);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: white;
+  }
+  .copilot-chat__msg--copilot .copilot-chat__avatar {
+    background: #24292f;
+    color: white;
+  }
+  .copilot-chat__msg--copilot .copilot-chat__avatar svg {
+    width: 16px;
+    height: 16px;
+  }
+  .copilot-chat__bubble {
+    color: #d4d4d4;
+    font-size: 13.5px;
+    line-height: 1.55;
+    font-family: var(--ps-font-sans);
+    min-width: 0;
+  }
+  .copilot-chat__msg--user .copilot-chat__bubble { color: #e6e6e6; }
+  .copilot-chat__text :global(code) {
+    font-family: var(--ps-font-mono);
+    font-size: 12px;
+    background: #2d2d30;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #ffb900;
+  }
+  .copilot-chat__text :global(strong) { color: white; font-weight: 600; }
+  .copilot-chat__files {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 8px;
+  }
+  .copilot-chat__file {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 8px;
+    background: #2d2d30;
+    border: 1px solid #3e3e42;
+    border-radius: 3px;
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    color: #9cdcfe;
+  }
+  .copilot-chat__code {
+    margin: 10px 0 0;
+    padding: 12px 14px;
+    background: #0f1115;
+    border: 1px solid #3e3e42;
+    border-radius: 5px;
+    font-family: var(--ps-font-mono);
+    font-size: 12px;
+    line-height: 1.55;
+    overflow-x: auto;
+    color: #d4d4d4;
+  }
+</style>

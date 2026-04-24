@@ -1,0 +1,145 @@
+---
+import BrandMark from './BrandMark.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import type { Locale } from '../../lib/i18n';
+import { getStrings, localePath } from '../../lib/i18n';
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+const { locale, currentPath } = Astro.props;
+const t = getStrings(locale);
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <div class="site-header__left">
+      <BrandMark size="md" href={localePath(locale, '/')}>
+        <span>paulasilvatech</span>
+      </BrandMark>
+      <span class="site-header__sep" aria-hidden="true">/</span>
+      <a href={localePath(locale, '/')} class="site-header__title">
+        <span class="site-header__title-short">{t.site.titleShort ?? 'ASP'}</span>
+        <span class="site-header__title-full">{t.site.title}</span>
+        <span class="site-header__version">{t.site.version}</span>
+      </a>
+    </div>
+
+    <div class="site-header__right">
+      <button
+        type="button"
+        class="site-header__search-trigger"
+        id="search-trigger"
+        aria-label={t.nav.search}
+      >
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <circle cx="9" cy="9" r="6"/>
+          <path d="m14 14 4 4"/>
+        </svg>
+        <span class="site-header__search-text">{t.nav.search}</span>
+        <kbd class="site-header__search-kbd">/</kbd>
+      </button>
+
+      <LanguageSwitcher currentLocale={locale} currentPath={currentPath} />
+      <ThemeToggle label={t.nav.darkMode} />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--ps-color-paper) 92%, transparent);
+    backdrop-filter: saturate(180%) blur(12px);
+    -webkit-backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--ps-color-rule);
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 14px 28px;
+  }
+  .site-header__left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    flex: 1;
+  }
+  .site-header__sep {
+    color: var(--ps-color-rule-2);
+    font-size: 16px;
+    line-height: 1;
+  }
+  .site-header__title {
+    text-decoration: none;
+    color: var(--ps-color-ink);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.3;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    min-width: 0;
+  }
+  .site-header__title-short { display: none; }
+  .site-header__title-full { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .site-header__version {
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ps-color-ink-3);
+    letter-spacing: 0.04em;
+  }
+  .site-header__right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .site-header__search-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 14px;
+    background: var(--ps-color-bg-alt);
+    border: 1px solid var(--ps-color-rule);
+    border-radius: 6px;
+    color: var(--ps-color-ink-3);
+    font-family: var(--ps-font-sans);
+    font-size: 13px;
+    cursor: pointer;
+    min-width: 260px;
+    transition: border-color 0.12s ease, background 0.12s ease;
+  }
+  .site-header__search-trigger:hover {
+    border-color: var(--ps-color-rule-2);
+    background: var(--ps-color-paper);
+  }
+  .site-header__search-text { flex: 1; text-align: left; }
+  .site-header__search-kbd {
+    padding: 2px 7px;
+    background: var(--ps-color-paper);
+    border: 1px solid var(--ps-color-rule);
+    border-radius: 3px;
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    color: var(--ps-color-ink-3);
+  }
+  @media (max-width: 960px) {
+    .site-header__search-trigger { min-width: 44px; }
+    .site-header__search-text,
+    .site-header__search-kbd { display: none; }
+    .site-header__title-full { display: none; }
+    .site-header__title-short { display: inline; }
+  }
+</style>

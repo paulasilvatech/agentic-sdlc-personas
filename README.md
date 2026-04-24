@@ -121,10 +121,9 @@ Full documents in [`docs/en/personas/`](./docs/en/personas/) (and `pt-br/`, `es/
 
 ## 4. Quickstart
 
-Install one persona kit into an existing repository:
+### 4.1 Install a persona kit into an existing repository
 
 ```bash
-# Clone this repo, pick the persona you need, run the installer
 git clone https://github.com/paulasilvatech/agentic-sdlc-personas.git
 cd agentic-sdlc-personas
 
@@ -133,7 +132,27 @@ cd persona-kits/22-developer
 ./install.sh /path/to/your-repo
 ```
 
-Run the site locally:
+### 4.2 Run the site locally with Docker Desktop (recommended)
+
+No Node required on the host. Docker Desktop only.
+
+```bash
+# Dev with hot reload on http://localhost:4321
+make dev
+
+# Production build served by nginx on http://localhost:8080/agentic-sdlc-personas/
+make prod
+
+# One-shot static build (no server)
+make build
+
+# Stop everything
+make down
+```
+
+Under the hood, `docker compose` uses three profiles (`dev`, `preview`, `prod`) against a multi-stage Dockerfile. Full details in [LOCAL_DEV.md](./LOCAL_DEV.md).
+
+### 4.3 Run the site locally with native Node
 
 ```bash
 cd site

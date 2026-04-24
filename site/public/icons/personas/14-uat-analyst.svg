@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title desc">
+  <title id="title">UAT Analyst</title>
+  <desc id="desc">Persona icon for UAT Analyst. Clipboard with acceptance checkmark.</desc>
+  <defs>
+    <linearGradient id="uat-analyst-accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7FBA00"/>
+      <stop offset="1" stop-color="#5A8500"/>
+    </linearGradient>
+  </defs>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="10" ry="10" fill="#F1F8E3" stroke="#7FBA00" stroke-width="1.2"/>
+  <rect x="18" y="14" width="28" height="40" rx="2" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.4"/>
+  <rect x="25" y="10" width="14" height="8" rx="1" fill="#1A1A1A"/>
+  <path d="M24 34 L30 40 L42 28" fill="none" stroke="url(#uat-analyst-accent)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="24" y1="46" x2="40" y2="46" stroke="#1A1A1A" stroke-width="2" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,89 @@
+---
+interface Row {
+  key: string;
+  value: string;
+  accent?: 'red' | 'green' | 'blue' | 'yellow';
+}
+interface Props {
+  caption?: string;
+  rows: Row[];
+  keyLabel?: string;
+  valueLabel?: string;
+}
+const { caption, rows, keyLabel, valueLabel } = Astro.props;
+
+const ACCENT: Record<string, string> = {
+  red: 'var(--ps-color-ms-red-700)',
+  green: 'var(--ps-color-ms-green-700)',
+  blue: 'var(--ps-color-ms-blue-700)',
+  yellow: 'var(--ps-color-ms-yellow-700)',
+};
+---
+
+<figure class="kv-table">
+  <table>
+    {(keyLabel || valueLabel) && (
+      <thead>
+        <tr>
+          <th>{keyLabel}</th>
+          <th>{valueLabel}</th>
+        </tr>
+      </thead>
+    )}
+    <tbody>
+      {rows.map(r => (
+        <tr>
+          <td class="kv-table__key" style={r.accent ? `color:${ACCENT[r.accent]}` : undefined}>{r.key}</td>
+          <td set:html={r.value} />
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>
+
+<style>
+  .kv-table {
+    margin: 28px 0;
+  }
+  .kv-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--ps-color-paper);
+    border: 1px solid var(--ps-color-rule);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .kv-table th {
+    text-align: left;
+    font-family: var(--ps-font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ps-color-ink-3);
+    padding: 12px 18px;
+    background: var(--ps-color-bg-alt);
+    border-bottom: 1px solid var(--ps-color-rule);
+  }
+  .kv-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--ps-color-rule);
+    font-size: 14px;
+    line-height: 1.55;
+    vertical-align: top;
+  }
+  .kv-table tr:last-child td { border-bottom: none; }
+  .kv-table__key {
+    font-weight: 500;
+    white-space: nowrap;
+    background: var(--ps-color-bg-alt);
+    width: 1%;
+  }
+  .kv-table figcaption {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--ps-color-ink-3);
+    font-style: italic;
+  }
+</style>
