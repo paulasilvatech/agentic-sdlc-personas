@@ -30,3 +30,5 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 *.pyc
+site-legacy/
+.tmp-gen/
