@@ -1,0 +1,232 @@
+---
+title: "Business Manager | Agentic SDLC Personas"
+description: "The Business Manager is the persona that binds strategy to measurement. In an AI-native SDLC, the Business Manager operates a stack of validated primitives that turn business intent into machine-reada"
+author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"
+date: "2026-04-24"
+version: "1.0.0"
+status: "approved"
+locale: "en"
+persona_id: "02-business-manager"
+sdlc_phase: "Planning"
+cluster: "product"
+previous: "01-product-owner"
+next: "03-requirements-engineer"
+reading_time: 18
+tags: ["persona", "business-manager", "copilot", "kpi", "okr"]
+---
+
+# <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28" style="vertical-align:-6px;"><rect x="1.5" y="1.5" width="61" height="61" rx="10" ry="10" fill="#FDECEA" stroke="#E74856" stroke-width="1.2"/><path d="M20 44V24l12-8 12 8v20" fill="none" stroke="#E74856" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><rect x="28" y="34" width="8" height="10" fill="#E74856"/></svg> Business Manager
+
+[← Previous: Product Owner](./01-product-owner.md) · [↑ Index](../index.md) · [Next: Requirements Engineer →](./03-requirements-engineer.md)
+
+## Change log
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0.0 | 2026-04-24 | Paula Silva | Initial persona document aligned with Agentic SDLC Personas v1.0.0 |
+
+## Table of contents
+
+1. [Executive summary](#1-executive-summary)
+2. [Role and responsibilities](#2-role-and-responsibilities)
+3. [Jobs to be done](#3-jobs-to-be-done)
+4. [Pain points before AI-native](#4-pain-points-before-ai-native)
+5. [AI-native daily workflow](#5-ai-native-daily-workflow)
+6. [Recommended primitives](#6-recommended-primitives)
+7. [Validated MCPs](#7-validated-mcps)
+8. [Real examples](#8-real-examples)
+9. [Anti-patterns](#9-anti-patterns)
+10. [KPIs and impact metrics](#10-kpis-and-impact-metrics)
+11. [Maturity in four levels](#11-maturity-in-four-levels)
+12. [Integration with other personas](#12-integration-with-other-personas)
+13. [Glossary](#13-glossary)
+14. [References](#14-references)
+
+> The Business Manager is the persona that binds strategy to measurement. In an AI-native SDLC, the Business Manager operates a stack of validated primitives that turn business intent into machine-readable KPIs and outcome hypotheses.
+
+## 1. Executive summary
+
+The Business Manager translates enterprise strategy and OKRs into product-level KPIs, value stories, and investment cases that the rest of the SDLC can optimize against. In an AI-native SDLC the Business Manager operates inside the Planning phase with a fixed set of primitives: one KPI translation agent, four slash prompts, scoped instructions, schema-validated hooks, and a curated list of validated MCPs. Primary outputs are OKR trees, KPI specifications, business cases, and value stories linked to spec anchors.
+
+## 2. Role and responsibilities
+
+Think of the Business Manager like the conductor of an orchestra reading the score the composer wrote. The conductor does not play any instrument, but they are accountable for the fact that every section plays in time and on key, and that what the audience hears matches the composer's intent. In an AI-native SDLC the OKR tree is the score, the KPI specs are the tempo markings, and the Business Manager is responsible for the performance across product, architecture, and build.
+
+Primary responsibilities:
+
+- Author and maintain the OKR tree in `docs/okrs/` with measurable, time-bounded key results
+- Translate every strategic objective into a product-level KPI with baseline, target, and measurement method
+- Publish the value story for every initiative, linked to the `SPECIFICATION.md` owned by the Product Owner
+- Maintain the business case with cost, benefit, and risk for every feature above a defined threshold
+- Operate the KPI Translator agent and the `/okrs`, `/kpi-map`, `/biz-case`, `/value-story` prompts
+- Govern the portfolio review in GitHub Projects or Azure Boards
+- Close the loop with Application Insights and Azure Monitor telemetry to verify KPI achievement
+
+## 3. Jobs to be done
+
+1. As a Business Manager, I want to convert a strategic objective into an OKR tree within a day, so that the portfolio is aligned at the start of every quarter.
+2. As a Business Manager, I want every KPI to have a baseline, target, and measurement method, so that outcomes are auditable, not anecdotal.
+3. As a Business Manager, I want the value story to be linked to the spec, so that engineering decisions trace back to business intent.
+4. As a Business Manager, I want business cases generated from templated inputs, so that the cycle time from idea to funding is measured in days, not weeks.
+5. As a Business Manager, I want live telemetry on KPI achievement from Application Insights, so that I can intervene before the quarter ends.
+6. As a Business Manager, I want a monthly portfolio health report generated automatically, so that leadership decisions are grounded in current data.
+
+## 4. Pain points before AI-native
+
+1. **OKRs written as slides, not data**. Slide decks cannot be queried. Mid-quarter drift is invisible until the review meeting.
+2. **KPIs without baselines**. A target without a baseline is a wish. Teams optimize what is easy to measure, not what matters.
+3. **Value stories disconnected from specs**. Leadership hears one narrative, engineering delivers another, and the gap only surfaces at launch.
+4. **Business cases authored in spreadsheets**. Cost, benefit, and risk live in static files with no link to execution artifacts.
+5. **Telemetry ignored after launch**. Feature success is declared on ship date. Actual impact is never measured against the original target.
+
+## 5. AI-native daily workflow
+
+The Business Manager operates a fixed loop each day. The loop uses GitHub Copilot primitives inside Visual Studio Code and Claude Code at the terminal, plus a small catalog of validated MCPs for external context.
+
+### Morning setup
+
+1. Open the portfolio repository in Visual Studio Code. GitHub Copilot Chat loads `AGENTS.md` and the scoped OKR instructions.
+2. Pull the latest KPI telemetry from Application Insights via the Azure MCP Server and refresh the KPI dashboards.
+3. Review overnight stakeholder input captured in Teams and Outlook through the Microsoft 365 Agents SDK MCP.
+4. Run `/kpi-map` to confirm every active initiative is mapped to at least one KR.
+
+### Midday execution
+
+1. **OKR authoring**. Invoke `/okrs` on the quarter's strategic theme. The KPI Translator agent produces an OKR tree with numbered objectives and measurable key results, and refuses to emit a KR without a baseline and target.
+2. **KPI translation**. Invoke `/kpi-map` to bind each KR to a product-level KPI. The agent checks that the measurement method references a concrete data source, typically Application Insights, Azure Monitor, or GitHub Projects.
+3. **Business case**. Invoke `/biz-case` for any initiative above the funding threshold. The agent fills cost, benefit, risk, and assumption sections against the template.
+4. **Value story**. Invoke `/value-story` to bind the business case to the `SPECIFICATION.md` owned by the Product Owner. The agent produces a one-page narrative with measurable outcomes.
+
+### Afternoon review
+
+1. Run a portfolio health sweep across all active OKRs. Flag any KR without fresh telemetry, any KPI below trajectory, and any initiative without a linked spec.
+2. Open a pull request on the OKR tree. GitHub Copilot Code Review comments on measurability; leadership reviewers approve content.
+3. Publish the daily portfolio digest to the executive Teams channel via the Microsoft 365 Agents SDK, summarizing progress, risks, and decisions required.
+4. Sync the backlog in GitHub Projects or Azure Boards so every item carries the OKR and KPI tags.
+
+## 6. Recommended primitives
+
+### Agent
+
+| Agent | File | Purpose |
+|-------|------|---------|
+| `kpi-translator` | `.github/agents/kpi-translator.agent.md` | Translate objectives into KPIs, author OKR trees, generate business cases and value stories |
+
+The KPI Translator uses `claude-sonnet-4-6` by default. Tools: `read`, `edit`, `search`, `grep`, `glob`. No `bash` access. Extended thinking is enabled for `/biz-case` only, where benefit and risk modeling benefits from deeper reasoning.
+
+### Slash prompts
+
+| Command | File | Purpose |
+|---------|------|---------|
+| `/okrs` | `.github/prompts/okrs.prompt.md` | Author or revise the OKR tree for a strategic theme |
+| `/kpi-map` | `.github/prompts/kpi-map.prompt.md` | Bind each KR to a product-level KPI with baseline, target, and source |
+| `/biz-case` | `.github/prompts/biz-case.prompt.md` | Generate a structured business case with cost, benefit, risk |
+| `/value-story` | `.github/prompts/value-story.prompt.md` | Produce a one-page narrative linking business case to spec |
+
+### Instructions scoped
+
+Scoped `applyTo` reduces token cost by approximately 68 percent compared to global instructions.
+
+| Scope (`applyTo`) | File | Purpose |
+|-------------------|------|---------|
+| `docs/okrs/**/*.md` | `.github/instructions/okrs.instructions.md` | OKR tree format, measurability rules, banned vague verbs |
+| `docs/kpis/**/*.md` | `.github/instructions/kpis.instructions.md` | KPI spec schema: baseline, target, source, cadence |
+| `docs/biz/**/*.md` | `.github/instructions/biz-case.instructions.md` | Business case template and evidence requirements |
+
+### Hooks
+
+Hooks cost zero LLM tokens. They are the strongest governance layer for business artifacts.
+
+- `pre-commit`: reject any OKR without a measurable KR and any KPI without a baseline or source
+- `post-commit`: refresh the portfolio dashboard from the latest OKR and KPI files
+- `pre-merge`: block merge of any business case that lacks a linked spec anchor
+
+## 7. Validated MCPs
+
+| MCP | Purpose | Owner |
+|-----|---------|-------|
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Query Application Insights and Azure Monitor for live KPI telemetry | Microsoft (official) |
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Read and update GitHub Projects for portfolio governance and OKR-tagged backlog | GitHub (official) |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Sync OKRs and KPIs with Azure Boards when the team uses Azure DevOps | Microsoft (official) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Publish digests to Teams and ingest decisions from Outlook | Microsoft (official) |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Ground business cases in current Microsoft and Azure pricing and capability documentation | Microsoft (official) |
+
+## 8. Real examples
+
+### Example 1: quarterly OKR authoring
+
+**Input**: A strategic theme from the annual plan, "Increase self-service contract renewal rate from 22 percent to 55 percent by Q4."
+
+**Invocation**: `/okrs` with the theme and last year's telemetry pulled from the Azure MCP.
+
+**Expected output**:
+
+1. A `docs/okrs/2026-q3.md` with one objective and three KRs, each carrying a baseline, target, and Application Insights query as the measurement source.
+2. Three issues in GitHub Projects tagged with the OKR and assigned to the owning squads.
+3. A digest posted to the leadership Teams channel via the Microsoft 365 Agents SDK.
+
+### Example 2: business case for a funding gate
+
+**Input**: A proposal for a new partner API integration above the funding threshold.
+
+**Invocation**: `/biz-case` followed by `/value-story`.
+
+**Expected output**:
+
+1. A `docs/biz/partner-api-2026.md` with cost, benefit, risk, and assumption sections filled against the template.
+2. A one-page value story in `docs/biz/partner-api-2026-value.md` that links to the `SPECIFICATION.md` anchor and names the KPI the initiative will move.
+3. A pull request that triggers the funding gate review, with Copilot Code Review commenting on measurability and scope.
+
+## 9. Anti-patterns
+
+1. **KRs without baselines**. A target of "increase adoption" is unmeasurable. Mitigation: the `pre-commit` hook rejects any KR without a baseline and source.
+2. **Slide-first OKRs**. If the authoritative copy lives in a deck, it cannot be queried or diffed. Mitigation: the OKR tree is authored in markdown under version control.
+3. **Value stories disconnected from specs**. When the narrative does not link to a spec anchor, engineering optimizes something else. Mitigation: `/value-story` refuses to close without a spec link.
+4. **Telemetry ignored post-launch**. Declaring success on ship date is a habit, not a measurement. Mitigation: the portfolio dashboard flags any KR with stale telemetry.
+5. **Business cases in spreadsheets**. Static files drift from reality. Mitigation: business cases live in markdown with hooks that validate template completeness.
+
+## 10. KPIs and impact metrics
+
+| KPI | Baseline | Target | Measurement |
+|-----|----------|--------|-------------|
+| OKR coverage, initiatives mapped to a KR | 55 percent | 100 percent | Portfolio dashboard query |
+| KPIs with baseline and measurement source | 40 percent | 100 percent | KPI spec linter in GitHub Actions |
+| Time from strategy update to OKR tree | 3 weeks | < 3 days | GitHub PR timestamps |
+| Funding cycle time, proposal to gate | 6 weeks | < 2 weeks | Business case PR timestamps |
+| KR on-track rate at mid-quarter | Unknown | > 75 percent | Azure MCP telemetry query |
+| Post-launch outcome verified against target | 20 percent | 100 percent | Application Insights vs target |
+
+## 11. Maturity in four levels
+
+| Level | Name | Markers |
+|-------|------|---------|
+| L1 | Manual | OKRs in slides, KPIs in spreadsheets, value stories verbal |
+| L2 | Assisted | Copilot used to polish OKR prose, still no machine-readable artifacts |
+| L3 | Augmented | KPI Translator agent, four slash prompts, scoped instructions, Azure MCP for telemetry, KPIs with baselines |
+| L4 | Autonomous | Full primitives kit, hooks enforced, portfolio dashboard live, leadership digest automated, post-launch verification standard |
+
+## 12. Integration with other personas
+
+- **From Enterprise Architect**: capability scan and constitution principles that constrain the OKR tree
+- **To Product Owner**: approved OKRs and KPIs that the spec must hook into via `/link-acceptance`
+- **To Requirements Engineer**: KPI-bound outcomes that inform gap scans and traceability
+- **To Engineering Manager**: OKR tree that drives capacity planning and squad assignment
+- **To SRE**: SLOs aligned with customer-facing KPIs for reliability investment
+- **To Release Manager**: value story as the backbone of release narrative and stakeholder comms
+
+## 13. Glossary
+
+- **OKR**: Objectives and Key Results. A quarterly goal-setting framework with measurable outcomes.
+- **KPI**: Key Performance Indicator. A product-level metric with baseline, target, source, and cadence.
+- **KR**: Key Result. A measurable component of an objective, bound to one or more KPIs.
+- **Value story**: a one-page narrative linking a business case to a spec anchor and a KPI.
+- **Business case**: structured document with cost, benefit, risk, and assumption sections used at funding gates.
+- **Portfolio dashboard**: generated view aggregating all OKRs, KPIs, and initiative statuses.
+
+## 14. References
+
+- [Azure Monitor documentation](https://learn.microsoft.com/azure/azure-monitor/) — telemetry platform for KPI measurement
+- [Application Insights documentation](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — application telemetry for outcome verification
+- [GitHub Projects documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects) — portfolio tracking for OKR-tagged initiatives
+- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — cost, reliability, and operational excellence pillars for business cases
+- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — authoritative source for Copilot features, agent mode, and instructions

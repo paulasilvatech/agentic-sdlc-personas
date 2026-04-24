@@ -1,0 +1,234 @@
+---
+title: "InfoSec Officer | Agentic SDLC Personas"
+description: "The InfoSec Officer is the persona that keeps software and AI systems defensible under change. In an AI-native SDLC, the InfoSec Officer operates a Threat Triager agent, four slash prompts, and a vali"
+author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at Microsoft"
+date: "2026-04-24"
+version: "1.0.0"
+status: "approved"
+locale: "en"
+persona_id: "18-infosec-officer"
+sdlc_phase: "Governance"
+cluster: "security"
+previous: "17-release-manager"
+next: "19-compliance-auditor"
+reading_time: 19
+tags: ["persona", "infosec-officer", "copilot", "vulnerability", "compliance"]
+---
+
+# <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="28" height="28" style="vertical-align:-6px;"><rect x="1.5" y="1.5" width="61" height="61" rx="10" ry="10" fill="#FDECEA" stroke="#E74856" stroke-width="1.2"/><path d="M32 16l14 6v12c0 8-6 14-14 18-8-4-14-10-14-18V22Z" fill="none" stroke="#E74856" stroke-width="2.5"/></svg> InfoSec Officer
+
+[← Previous: Release Manager](./17-release-manager.md) · [↑ Index](../index.md) · [Next: Compliance Auditor →](./19-compliance-auditor.md)
+
+## Change log
+
+| Version | Date | Author | Changes |
+|---------|------|--------|---------|
+| 1.0.0 | 2026-04-24 | Paula Silva | Initial persona document aligned with Agentic SDLC Personas v1.0.0 |
+
+## Table of contents
+
+1. [Executive summary](#1-executive-summary)
+2. [Role and responsibilities](#2-role-and-responsibilities)
+3. [Jobs to be done](#3-jobs-to-be-done)
+4. [Pain points before AI-native](#4-pain-points-before-ai-native)
+5. [AI-native daily workflow](#5-ai-native-daily-workflow)
+6. [Recommended primitives](#6-recommended-primitives)
+7. [Validated MCPs](#7-validated-mcps)
+8. [Real examples](#8-real-examples)
+9. [Anti-patterns](#9-anti-patterns)
+10. [KPIs and impact metrics](#10-kpis-and-impact-metrics)
+11. [Maturity in four levels](#11-maturity-in-four-levels)
+12. [Integration with other personas](#12-integration-with-other-personas)
+13. [Glossary](#13-glossary)
+14. [References](#14-references)
+
+> The InfoSec Officer is the persona that keeps software and AI systems defensible under change. In an AI-native SDLC, the InfoSec Officer operates a Threat Triager agent, four slash prompts, and a validated MCP catalog anchored on GitHub Advanced Security and Microsoft Defender for Cloud — not a backlog of PDF checklists.
+
+## 1. Executive summary
+
+The InfoSec Officer owns the security posture of the delivery pipeline and the products it ships. In an AI-native SDLC, they operate a Threat Triager agent with four slash prompts (`/vuln-triage`, `/sbom-scan`, `/threat-model`, `/incident-security`), scoped instructions for security-sensitive paths, and a validated MCP catalog that reaches into GitHub Advanced Security, Dependabot, CodeQL, Secret Scanning, Push Protection, Microsoft Defender for Cloud, Microsoft Sentinel, Microsoft Purview, Entra ID, and Azure Key Vault.
+
+Primary deliverables are triaged vulnerability queues with SLAs, signed software bills of materials, threat models attached to each architecture decision, and incident responses coordinated through Sentinel. The InfoSec Officer turns security from a release-blocker into a continuous, mostly automatic, evidence-producing layer.
+
+Security is a property of the pipeline, not an audit event. The InfoSec Officer wires policies, detections, and remediations into everyday tools so that by the time a PR reaches merge, most questions are already answered.
+
+## 2. Role and responsibilities
+
+Think of the InfoSec Officer like the fire marshal for a city. They do not fight every fire, but they write the building code, certify inspections, run drills, and coordinate the response when a real fire happens. In an AI-native SDLC, the InfoSec Officer enforces the code and orchestrates the response across GitHub, Azure, and Microsoft 365 surfaces.
+
+Primary responsibilities:
+
+- Triage vulnerability alerts from GitHub Advanced Security, Dependabot, and Defender for Cloud
+- Maintain the SBOM (software bill of materials) per service with signed provenance
+- Author threat models for every new architecture; update when the architecture changes
+- Coordinate security incident response through Microsoft Sentinel and GitHub issues
+- Enforce Push Protection, Secret Scanning, CodeQL, and Dependabot policies on every repository
+- Integrate AI safety (content filters, PII redaction) with the ML AI Engineer's pipelines
+- Operate the Threat Triager agent and `/vuln-triage`, `/sbom-scan`, `/threat-model`, `/incident-security` prompts
+- Manage identity and secret hygiene via Microsoft Entra ID and Azure Key Vault
+
+## 3. Jobs to be done
+
+1. As an InfoSec Officer, I want every Dependabot or CodeQL alert triaged within SLA, so that exposed windows are minimized.
+2. As an InfoSec Officer, I want a signed SBOM published with every release, so that supply-chain questions have immediate answers.
+3. As an InfoSec Officer, I want threat models attached to architecture PRs, so that mitigations are in place before code lands.
+4. As an InfoSec Officer, I want Push Protection and Secret Scanning on by default, so that credentials never reach a remote branch.
+5. As an InfoSec Officer, I want Defender for Cloud findings converted into GitHub issues automatically, so that remediation work is visible in the same backlog as features.
+6. As an InfoSec Officer, I want Sentinel alerts enriched with repo context, so that triage is fast and accurate.
+7. As an InfoSec Officer, I want incident timelines produced automatically from chat, commits, and alerts, so that post-incident reviews are fact-based.
+8. As an InfoSec Officer, I want all secrets stored in Azure Key Vault with managed identity, so that no long-lived credentials sit in CI.
+
+## 4. Pain points before AI-native
+
+- **Alert fatigue**. Thousands of Dependabot and CodeQL alerts with no triage, so real issues hide in noise.
+- **SBOMs as PDFs**. Bills of materials produced once, never signed, never consumed in CI.
+- **Threat models in a vault**. Threat models written at project kickoff, never revisited; they describe a system that no longer exists.
+- **Incident chaos**. Incidents managed across five tools; the timeline is recovered later by interviewing people.
+- **Credentials in CI**. API keys in GitHub Actions secrets, rotated on holidays, stored in plain YAML by accident.
+- **Policies as slides**. Security policies exist in SharePoint, not as enforced configuration.
+- **Siloed AI safety**. AI safety controls owned by a different team, not integrated into the same review.
+
+## 5. AI-native daily workflow
+
+The InfoSec Officer works from Visual Studio Code and the terminal with Claude Code, orchestrating the Threat Triager and enforcing hooks across every repository.
+
+### Morning setup
+
+1. Open Microsoft Defender for Cloud, Microsoft Sentinel, and GitHub Advanced Security dashboards.
+2. Run `/vuln-triage --since=yesterday` to cluster new alerts by service and severity.
+3. Review Push Protection bypasses and Secret Scanning notifications from overnight.
+4. Check Azure Key Vault access logs for anomalies; confirm Entra ID Conditional Access is healthy.
+5. Post the security standup digest in Microsoft Teams with open incidents and SLA clocks.
+
+### Midday execution
+
+1. For each architecture PR, invoke `/threat-model`; the Threat Triager drafts STRIDE findings and mitigations, then opens tracking issues.
+2. For every vulnerability cluster, triage with `/vuln-triage`: assign owner, severity, fix window, compensating controls.
+3. Run `/sbom-scan` as part of CI; block release on unsigned or policy-violating components.
+4. Coordinate the active incident channel in Microsoft Teams; `/incident-security` keeps the timeline current.
+
+### Afternoon review
+
+1. Verify Defender for Cloud recommendations and file Azure Policy exceptions where warranted.
+2. Review CodeQL query additions and merge approved custom queries into the shared pack.
+3. Update the quarterly risk register in the repo; publish the updated posture score to Microsoft Loop.
+
+## 6. Recommended primitives
+
+### Agent
+
+| Agent | File | Purpose |
+|-------|------|---------|
+| `threat-triager` | `.github/agents/threat-triager.agent.md` | Triages vulnerabilities, runs SBOM scans, drafts threat models, coordinates incidents |
+
+### Slash prompts
+
+| Command | File | Purpose |
+|---------|------|---------|
+| `/vuln-triage` | `.github/prompts/vuln-triage.prompt.md` | Cluster alerts, assign owners, set SLA, propose remediations |
+| `/sbom-scan` | `.github/prompts/sbom-scan.prompt.md` | Generate, sign, and verify the SBOM for a release |
+| `/threat-model` | `.github/prompts/threat-model.prompt.md` | Draft STRIDE analysis and mitigation tasks on an architecture PR |
+| `/incident-security` | `.github/prompts/incident-security.prompt.md` | Maintain live incident timeline from Sentinel, Teams, and GitHub |
+
+### Instructions scoped
+
+| Scope (`applyTo`) | File | Purpose |
+|-------------------|------|---------|
+| `.github/workflows/**/*.yml` | `.github/instructions/actions-security.instructions.md` | OIDC to Azure, no long-lived secrets, pinned SHA actions |
+| `infra/**/*.bicep` | `.github/instructions/infra-security.instructions.md` | Key Vault references, managed identity, network isolation |
+| `src/**/auth/**` | `.github/instructions/auth.instructions.md` | Entra ID patterns, token handling, least privilege |
+| `prompts/**/*.prompt.md` | `.github/instructions/ai-safety.instructions.md` | Content-safety guardrails and PII redaction |
+
+### Hooks
+
+- `pre-commit`: Secret Scanning, push protection, dependency policy check
+- `pre-push`: CodeQL fast queries on changed files
+- `post-merge`: Dependabot triage, SBOM refresh, Defender for Cloud sync
+- `pre-release`: SBOM signature and threat-model presence gate
+- `on-incident`: create a Sentinel incident record and pin the Microsoft Teams channel
+
+## 7. Validated MCPs
+
+| MCP | Purpose | Owner |
+|-----|---------|-------|
+| GitHub MCP Server | Read Advanced Security alerts, Dependabot, CodeQL, manage issues and PRs | GitHub |
+| Azure MCP Server | Drive Defender for Cloud, Sentinel, Key Vault, Entra ID, Azure Policy operations | Microsoft |
+| Microsoft Learn Docs MCP | Resolve current security guidance across Microsoft stacks | Microsoft |
+| Azure DevOps MCP Server | Track remediation work items when the team uses Azure DevOps | Microsoft |
+| Playwright MCP | Validate security UX flows (SSO, MFA, consent) end-to-end | Microsoft |
+
+## 8. Real examples
+
+### Example 1: zero-day triage inside an hour
+
+A CVE lands in a widely used dependency. `/vuln-triage` identifies 23 repos exposed and maps each to its service owner. The Threat Triager opens issues with linked fix PRs already drafted by Copilot. Within an hour, 19 PRs are merged; the remaining 4 get documented compensating controls. Defender for Cloud confirms the exposure has closed.
+
+### Example 2: threat model drives a design change
+
+An architecture PR proposes a new endpoint that accepts signed URLs. `/threat-model` flags a replay risk and suggests a nonce plus short expiry. The Software Architect updates the design before the PR merges; the mitigation tasks are linked and closed automatically when the implementation lands.
+
+### Example 3: signed SBOM blocks a release
+
+The release workflow invokes `/sbom-scan`. The pipeline detects an unsigned transitive dependency and blocks release. The InfoSec Officer confirms the component is not under active exploitation, files a temporary exception in Azure Policy, and the release proceeds with full audit trail.
+
+## 9. Anti-patterns
+
+- **Spreadsheet triage**. Triage outside GitHub loses context and SLA tracking; stay in issues.
+- **Long-lived secrets**. Any secret older than 90 days is a liability; use managed identity and Key Vault references.
+- **One-time threat models**. Models must evolve with the system; tie them to architecture PRs.
+- **Ignoring Push Protection bypasses**. Every bypass is reviewed the same day, not at quarter end.
+- **Safety silos**. AI safety belongs in the same pipeline as app security, with the same reviewers.
+- **Policy as PDF**. Policies that are not Azure Policy or GitHub Advanced Security configurations do not exist.
+- **Incidents without timelines**. Every incident yields a reproducible timeline generated from tools, not memory.
+
+## 10. KPIs and impact metrics
+
+| Metric | Baseline (manual) | Target (agentic) | Source |
+|--------|-------------------|------------------|--------|
+| Mean time to triage CVE | 4 days | < 4 hours | `/vuln-triage` history |
+| SBOM coverage | 40 percent | 100 percent of releases | GitHub Actions |
+| Threat model coverage on arch PRs | 20 percent | 100 percent | `/threat-model` runs |
+| Secrets detected at push time | 12 per month | 0 | Push Protection logs |
+| Defender for Cloud high findings > 7 days | 30 | < 5 | Defender for Cloud |
+| Sentinel incidents with automated timeline | 10 percent | 100 percent | Sentinel workbooks |
+| Key Vault credential rotation on time | 60 percent | 100 percent | Entra ID audit |
+
+## 11. Maturity in four levels
+
+- **L1 Manual**: Advisories tracked in a spreadsheet, no SBOM, threat models at kickoff only.
+- **L2 Assisted**: Dependabot and Secret Scanning enabled but untriaged; Defender for Cloud dashboards watched ad hoc.
+- **L3 Augmented**: Threat Triager agent, four slash prompts, scoped instructions, CodeQL custom pack, Sentinel integration.
+- **L4 Autonomous**: Automated triage with SLA enforcement, signed SBOMs blocking release, threat models attached to every architecture PR, incidents with auto-generated timelines.
+
+## 12. Integration with other personas
+
+- **From Software Architect**: design diagrams and ADRs feeding `/threat-model`.
+- **To Developer**: remediation issues with linked fix drafts.
+- **With ML AI Engineer**: AI safety configuration, content-safety filters, PII redaction.
+- **With SRE**: shared Sentinel runbooks and incident response.
+- **With Compliance Auditor**: SBOMs, threat models, and audit-grade evidence packs.
+- **From Data Engineer**: Purview classifications driving data-handling controls.
+- **With DBA**: database access reviews and least-privilege checks.
+
+## 13. Glossary
+
+- **SBOM**: software bill of materials — signed list of every component in a release.
+- **STRIDE**: threat modeling taxonomy (Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege).
+- **Push Protection**: GitHub Advanced Security feature blocking secrets from reaching remote branches.
+- **Managed identity**: Microsoft Entra ID identity used by workloads, eliminating stored credentials.
+- **Dependabot**: GitHub service that opens PRs for vulnerable dependencies.
+- **Sentinel incident**: a Microsoft Sentinel case object collecting alerts, entities, and timeline.
+- **Compensating control**: an alternative mitigation when the preferred fix is not yet feasible.
+
+## 14. References
+
+- [GitHub Advanced Security](https://docs.github.com/code-security) — CodeQL, Dependabot, Secret Scanning, Push Protection
+- [Microsoft Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/) — posture and workload protection
+- [Microsoft Sentinel](https://learn.microsoft.com/azure/sentinel/) — SIEM and SOAR
+- [Azure Key Vault](https://learn.microsoft.com/azure/key-vault/) — secret, key, and certificate management
+- [Microsoft Entra ID](https://learn.microsoft.com/entra/identity/) — identity and access management
+- [Azure Policy](https://learn.microsoft.com/azure/governance/policy/) — policy as code enforcement
+- [Microsoft Purview](https://learn.microsoft.com/purview/) — data governance and sensitivity
+- [GitHub Actions](https://docs.github.com/actions) — CI and deployment orchestration across the stack
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — first-party documentation retrieval at implementation time
+- [GitHub Advanced Security](https://docs.github.com/code-security) — CodeQL, Dependabot, Secret Scanning, Push Protection
