@@ -7,6 +7,195 @@ phase: "Governance"
 title: "Arquitecto Empresarial"
 oneLiner: 'Constitución y ADRs.'
 order: 4
+updated: "2026-04-24"
 ---
 
-La persona **Arquitecto Empresarial** forma parte del clúster `architect` en el Agentic SDLC. Esta página es un resumen; el documento completo está en [`docs/es/personas/04-enterprise-architect.md`](https://github.com/paulasilvatech/agentic-sdlc-personas/blob/main/docs/es/personas/04-enterprise-architect.md) y el kit ejecutable en [`persona-kits/04-enterprise-architect/`](https://github.com/paulasilvatech/agentic-sdlc-personas/tree/main/persona-kits/04-enterprise-architect).
+> The Enterprise Architect es la persona que authors the constitution and curates the decision record. En un SDLC AI-native, el Enterprise Architect opera un stack de primitivas validadas that turn principles into enforceable policy.
+
+## Resumen ejecutivo
+
+The Enterprise Architect defines the enduring architectural principles, capability model, and decision records that constrain every squad decision in the organization. En un SDLC AI-native, el Enterprise Architect opera dentro de la fase de Governance phase con un conjunto fijo de primitivas: un agente ADR authoring, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema, and una lista curada de MCPs validados. Las salidas principales son the `CONSTITUTION.md`, the Architecture Decision Record catalog, the capability scan report, and the principle-check gates that run on every pull request.
+
+## Rol y responsabilidades
+
+Piense en el Enterprise Architect like a constitutional court. They do not pass laws and they do not deliver judgments on every parking ticket, but when a case brings a principle into question, the judgment they render becomes binding precedent. En un SDLC AI-native, el principles live in `CONSTITUTION.md`, the precedents live in ADRs under `docs/adr/`, and the Enterprise Architect is accountable for coherence across both.
+
+Responsabilidades principales:
+
+- Author and maintain `CONSTITUTION.md` with the enduring architectural principles and constraints
+- Curate the ADR catalog with a stable ID schema, status lifecycle, and supersession links
+- Run capability scans that surface coverage, overlap, and gaps across the enterprise technology portfolio
+- Govern the principle-check gate that runs on every architecture-adjacent pull request
+- Operate the ADR Drafter agent and the `/constitution`, `/adr`, `/principle-check`, `/capability-scan` prompts
+- Publish the quarterly architecture review to the leadership Teams channel
+- Align enterprise direction with Microsoft Azure Well-Architected Framework pillars and GitHub platform standards
+
+## Jobs to be done
+
+1. As an Enterprise Architect, I want principles authored in markdown with machine-readable tags, para que gates can enforce them without me in the loop.
+2. As an Enterprise Architect, I want every significant decision captured as an ADR within 48 hours, para que context never evaporates with the author.
+3. As an Enterprise Architect, I want principle checks to run on every architecture PR, para que violations are caught before merge.
+4. As an Enterprise Architect, I want capability scans to surface overlap and gaps, para que portfolio rationalization is data-driven.
+5. As an Enterprise Architect, I want ADRs to supersede, not overwrite, para que the decision history remains auditable.
+6. As an Enterprise Architect, I want quarterly reviews generated from the ADR diff, para que leadership sees the direction of travel.
+
+## Puntos de dolor antes de la era AI-native
+
+1. **Principles trapped in slide decks**. Slides cannot be enforced by a hook or referenced by a PR comment. Compliance drifts silently.
+2. **ADRs written after the fact**. Records authored months later miss the real trade-offs and the people who made them have moved on.
+3. **Capability portfolio invisible**. Multiple teams solve the same problem with different stacks, and nobody notices until an acquisition.
+4. **Principle checks done in review meetings**. A review that catches a violation after sprint planning is weeks too late.
+5. **Supersession as edit in place**. When an ADR is overwritten, audit trail and reasoning evaporate.
+
+## Flujo diario AI-native
+
+The Enterprise Architect operates a fixed loop each day. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
+
+### Setup de la mañana
+
+1. Open the architecture repository in Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` and the scoped constitution instructions.
+2. Hacer pull de la última `main`, review overnight ADR drafts, and list architecture PRs awaiting principle-check.
+3. Run `/principle-check` across open PRs using the GitHub MCP to surface potential violations.
+4. Review the capability scan dashboard generated from the Azure MCP Server telemetry.
+
+### Ejecución al mediodía
+
+1. **ADR drafting**. Invoke `/adr` on each decision captured in yesterday's design conversation. The ADR Drafter agent produces a dated record with context, options, decision, and consequences.
+2. **Constitution update**. Invoke `/constitution` when a recurring ADR pattern warrants a new principle. The agent drafts the clause, tags it, and proposes the gate expression.
+3. **Capability scan**. Invoke `/capability-scan` on the portfolio to detect overlap, gaps, and principle violations in production workloads. The agent uses the Azure MCP and GitHub MCP to aggregate evidence.
+4. **Principle-check consultations**. Respond to squad requests in Microsoft Teams via the Microsoft 365 Agents SDK, with ADR links as the canonical citation.
+
+### Revisión al final de la tarde
+
+1. Invoke `/principle-check` as the final sweep on all open architecture PRs. Block merge on unresolved principle violations, unblock with a linked ADR that either complies or explicitly supersedes.
+2. Abrir un pull request on the ADR catalog and `CONSTITUTION.md` changes. GitHub Copilot Code Review comments on clause quality and cross-references.
+3. Regenerate the quarterly architecture review draft from the ADR diff. A post-commit hook updates the draft on every merge.
+4. Publish the daily architecture digest to the leadership Teams channel via the Microsoft 365 Agents SDK.
+
+## Primitivas recomendadas
+
+### Agente
+
+| Agente | Archivo | Propósito |
+|-------|------|---------|
+| `adr-drafter` | `.github/agents/adr-drafter.agent.md` | Draft and curate ADRs, maintain `CONSTITUTION.md`, run principle checks and capability scans |
+
+The ADR Drafter uses `claude-sonnet-4-6` by default. Tools: `read`, `edit`, `search`, `grep`, `glob`. No `bash` access. Extended thinking is enabled for `/capability-scan` only, where cross-portfolio correlation benefits from deep reasoning.
+
+### Slash prompts
+
+| Comando | Archivo | Propósito |
+|---------|------|---------|
+| `/constitution` | `.github/prompts/constitution.prompt.md` | Author or revise an enduring architectural principle |
+| `/adr` | `.github/prompts/adr.prompt.md` | Draft an Architecture Decision Record with context, options, decision, consequences |
+| `/principle-check` | `.github/prompts/principle-check.prompt.md` | Sweep open PRs for principle violations and ADR alignment |
+| `/capability-scan` | `.github/prompts/capability-scan.prompt.md` | Detect portfolio overlap, gaps, and principle violations in production |
+
+### Instrucciones con alcance
+
+El alcance `applyTo` reduce el costo de tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
+
+| Alcance (`applyTo`) | Archivo | Propósito |
+|-------------------|------|---------|
+| `CONSTITUTION.md` | `.github/instructions/constitution.instructions.md` | Principle clause format, tag schema, gate expression syntax |
+| `docs/adr/**/*.md` | `.github/instructions/adr.instructions.md` | ADR template, status lifecycle, supersession rules |
+| `docs/capability/**/*.md` | `.github/instructions/capability.instructions.md` | Capability map schema and evidence requirements |
+
+### Hooks
+
+Los hooks cuestan cero tokens de LLM. Son la capa de gobernanza más fuerte for enterprise architecture.
+
+- `pre-commit`: reject any ADR without context, options, decision, and consequences; reject any principle without a tag and a gate expression
+- `post-commit`: regenerate the ADR index and the quarterly review draft
+- `pre-merge`: run principle-check on the diff and block merge on unresolved violations unless a linked ADR supersedes
+
+## MCPs validados
+
+| MCP | Propósito | Dueño |
+|-----|---------|-------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Read architecture PRs, ADRs, and principle-check runs across the organization | GitHub (official) |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Inspect production workloads, Azure Policy state, and Azure Monitor telemetry for capability scans | Microsoft (official) |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Ground principles and ADRs in the current Well-Architected Framework and Microsoft product documentation | Microsoft (official) |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Read Azure Boards portfolio items when the team uses Azure DevOps | Microsoft (official) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Publish digests to leadership Teams channels and ingest decisions from Outlook | Microsoft (official) |
+
+## Ejemplos reales
+
+### Example 1: author a new principle from a recurring ADR pattern
+
+**Entrada**: Four recent ADRs independently adopted Azure Key Vault for secret storage in four different squads.
+
+**Invocación**: `/constitution` followed by `/principle-check`.
+
+**Salida esperada**:
+
+1. A new principle in `CONSTITUTION.md` titled "Secret storage must use Azure Key Vault with managed identity", tagged `security`, with a gate expression that matches direct secret values in `.env` files.
+2. Four ADR updates marking the prior decisions as instances of the new principle.
+3. A sweep report that flags three new violations across repositories, each filed as a GitHub issue via the GitHub MCP.
+
+### Example 2: capability scan ahead of a reorganization
+
+**Entrada**: Leadership requests a portfolio rationalization view ahead of the fiscal planning cycle.
+
+**Invocación**: `/capability-scan` with scope `enterprise`.
+
+**Salida esperada**:
+
+1. A `docs/capability/2026-q3-scan.md` with overlap rings for customer identity, payment processing, and document storage.
+2. Nine principle violations in production workloads detected via the Azure MCP, each linked to the owning team and the offending resource ID.
+3. A summary digest posted to the leadership Teams channel via the Microsoft 365 Agents SDK.
+
+## Anti-patrones
+
+1. **Principles without gates**. A principle that cannot be checked is a poster. Mitigación: the `pre-commit` hook rejects principles without a gate expression.
+2. **ADRs edited in place**. Overwriting destroys audit trail. Mitigación: supersession via a new ADR ID is the only allowed path.
+3. **Verbal architecture reviews**. If the review does not produce an ADR, the decision will be relitigated. Mitigación: every review closes by invoking `/adr`.
+4. **Capability sprawl unmeasured**. Without a scan, overlap grows quietly. Mitigación: `/capability-scan` runs on a scheduled GitHub Actions workflow.
+5. **Principle-check as review-meeting item**. Too late, too verbal. Mitigación: `pre-merge` hook runs the check automatically.
+
+## KPIs y métricas de impacto
+
+| KPI | Línea base | Meta | Medición |
+|-----|----------|--------|-------------|
+| ADR cycle time, decision to merged record | 2 weeks | < 48 hours | GitHub PR timestamps |
+| Principle-check PR coverage | 25 percent | 100 percent | GitHub Actions runs |
+| Principles with gate expressions | 10 percent | 100 percent | Constitution linter |
+| Capability scan cadence | Ad-hoc | Monthly | Scheduled GitHub Actions run |
+| Principle violations remediated within SLA | 40 percent | > 90 percent | Violation issues closed |
+| ADR supersession rate vs overwrite | 30 percent | 100 percent | ADR history diff audit |
+
+## Madurez en cuatro niveles
+
+| Nivel | Nombre | Marcadores |
+|-------|------|---------|
+| L1 | Manual | Principles in slides, ADRs irregular, capability map verbal |
+| L2 | Asistido | Copilot used to polish ADR prose, no gates, no catalog structure |
+| L3 | Aumentado | ADR Drafter agent, cuatro slash prompts, instrucciones con alcance, GitHub and Azure MCPs, principle-check on PR |
+| L4 | Autónomo | Full primitives kit, hooks enforced, capability scans scheduled, quarterly review generated, supersession discipline |
+
+## Integración con otras personas
+
+- **Del Business Manager**: OKR tree that informs principle priorities and capability coverage
+- **Para el Software Architect**: principles and ADRs that constrain `CODEMAP.md` and API contract decisions
+- **Para el Technical Lead**: machine-readable principles that feed instrucciones con alcance and hooks across squads
+- **Para el Platform Architect**: capability scan evidence that drives platform service roadmap
+- **Para el InfoSec Officer**: security principles with gate expressions that align with GitHub Advanced Security and Azure Policy
+- **Para el Compliance Auditor**: ADR history as auditable decision record
+- **Para el DevOps Engineer**: principle-check as a required status check on every architecture-adjacent workflow
+
+## Glosario
+
+- **Constitution**: the living document of enduring architectural principles, tagged and bound to gate expressions.
+- **ADR**: Architecture Decision Record. A dated, numbered record with context, options, decision, and consequences.
+- **Principle**: a constraint that all squads must satisfy unless a linked ADR explicitly supersedes.
+- **Principle-check**: automated sweep that verifies pull request changes against principle gate expressions.
+- **Capability scan**: portfolio-wide analysis of coverage, overlap, and gaps across services.
+- **Supersession**: the act of replacing an ADR with a new ADR that explicitly links the prior record.
+
+## Referencias
+
+- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — pillars used as the backbone of enterprise principles
+- [Azure Policy documentation](https://learn.microsoft.com/azure/governance/policy/) — policy as code that enforces principles on Azure resources
+- [GitHub Advanced Security documentation](https://docs.github.com/en/get-started/learning-about-github/about-github-advanced-security) — security gates that align with enterprise principles
+- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — modo agente, prompts e instrucciones
+- [Microsoft Cloud Adoption Framework](https://learn.microsoft.com/azure/cloud-adoption-framework/) — governance patterns for enterprise architecture

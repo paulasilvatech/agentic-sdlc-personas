@@ -7,6 +7,220 @@ phase: "Release"
 title: "Gerente de Release"
 oneLiner: 'Release notes e risco.'
 order: 17
+updated: "2026-04-24"
 ---
 
-A persona **Gerente de Release** faz parte do cluster `ops` no Agentic SDLC. Esta página é um resumo; o documento completo está em [`docs/pt/personas/17-release-manager.md`](https://github.com/paulasilvatech/agentic-sdlc-personas/blob/main/docs/pt/personas/17-release-manager.md) e o kit executável em [`persona-kits/17-release-manager/`](https://github.com/paulasilvatech/agentic-sdlc-personas/tree/main/persona-kits/17-release-manager).
+> The Release Manager é a persona que decides what ships, when it ships, and how to undo it when it must. Em um SDLC AI-native, o Release Manager opera uma stack de primitivas validadas, not a last-minute spreadsheet.
+
+## Resumo executivo
+
+The Release Manager owns the release lifecycle: composition, risk assessment, gating, communication, canary analysis, and rollback. Em um SDLC AI-native, o Release Manager opera dentro da fase de Release phase com um conjunto fixo de primitivas: um agente release, quatro slash prompts, instruções escopadas, hooks validados por schema, and uma lista curada de MCPs validados. Releases are orchestrated through GitHub Releases and Azure DevOps release gates, communicated via Microsoft 365 and Teams, and monitored through Azure Monitor and Application Insights. The primary outputs are release notes, CHANGELOG entries, gated approvals, canary reports, and rollback plans.
+
+## Papel e responsabilidades
+
+Pense no Release Manager like a harbor pilot. The ship was built by the shipyard, loaded by the stevedores, and captained by someone else, but it cannot enter the harbor without a pilot who knows the channel, the tides, and the traffic. The pilot's job is not to build, load, or captain; it is to ensure safe passage through the last mile. Em um SDLC AI-native, o harbor is production, the tides are business hours and compliance windows, and the channel is the sequence of gates from build artifact to user impact.
+
+Responsabilidades principais:
+
+- Compose release trains from merged PRs on a predictable cadence
+- Draft release notes and CHANGELOG entries with risk tiers and stakeholder callouts
+- Define and operate release gates in Azure DevOps and GitHub Environments
+- Coordinate canary deployments and read the canary signal in Application Insights
+- Own rollback plans for every release; rehearse them in lower environments
+- Communicate release status to stakeholders via Microsoft 365 Teams and SharePoint
+- Operate the Release Scribe agent and the `/release-notes`, `/risk-gate`, `/rollback-plan`, `/canary-report` prompts
+
+## Jobs to be done
+
+1. Como Release Manager, eu quero release notes generated from merged PRs, para que cut day is a signoff, not a scramble.
+2. Como Release Manager, eu quero every release to carry a risk tier and a rollback plan, para que go or no-go is a minutes-long meeting.
+3. Como Release Manager, eu quero canary signals read by an agent, para que human attention is spent on ambiguous cases only.
+4. Como Release Manager, eu quero CHANGELOG entries versioned alongside the code, para que downstream consumers never diff by hand.
+5. Como Release Manager, eu quero release communication sent to Teams and SharePoint automatically, para que the release channel is never the bottleneck.
+6. Como Release Manager, eu quero postmortems to feed forward into future release gates, para que the same incident never ships again.
+
+## Dores antes da era AI-native
+
+1. **Release notes written at 10 PM on cut day**. Scraped from commits and Slack, missing half the context, frustrating customers and support.
+2. **Risk tier by vibes**. The gate reviewer asks "feels risky?" and approves either way. No reproducible heuristic.
+3. **Canary reads by staring**. A human watches Application Insights for 45 minutes and declares "looks fine." Anomalies under 5 percent are missed.
+4. **Rollback plan is "redeploy previous tag"**. Nobody has rehearsed it; nobody knows which feature flags flip back.
+5. **Communication by forwarding emails**. Stakeholders learn about the release when the alert fires, not when the train leaves the station.
+
+## Fluxo diário AI-native
+
+The Release Manager operates a fixed loop each release cycle. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code e Claude Code no terminal, além de um pequeno catálogo de MCPs validados para contexto externo.
+
+### Setup da manhã
+
+1. Open the release coordination repo in Visual Studio Code. GitHub Copilot Chat carrega `AGENTS.md` and the scoped `.github/instructions/release.instructions.md`.
+2. In Claude Code, run the daily release briefing that queries the GitHub MCP and Azure DevOps MCP for merged PRs since the previous release, open incidents, and upcoming compliance windows.
+3. Review the risk register in Azure Boards for any accepted risk due to close in this cycle.
+4. Confirm the cut window with the DevOps Engineer and the SRE on-call.
+
+### Execução no meio do dia
+
+Each midday cycle covers the composition and gating of one release, typically 2 to 3 hours of focused work.
+
+1. **Compose**. Invoke `/release-notes` to draft the release notes from merged PRs. The Release Scribe agent groups entries by service, attaches risk tiers, and links ADRs.
+2. **Risk gate**. Invoke `/risk-gate` to run the risk heuristic across the release. The agent pulls Azure Policy compliance, GitHub Advanced Security alerts, and change failure rate trend to produce a go/no-go recommendation with rationale.
+3. **Rollback plan**. Invoke `/rollback-plan` to draft the rollback sequence, including feature flag flips, data migration reversal, and the canary cutover script.
+4. **Self-review**. Validate the release notes against the CHANGELOG schema via the pre-merge hook. Confirm every risk tier has an owner.
+5. **Pull request**. Open the release PR with notes, CHANGELOG, and rollback plan. GitHub Copilot Code Review scans for missing links or unattributed changes.
+
+### Afternoon release window
+
+1. Kick off the deploy via GitHub Actions or the Azure DevOps release pipeline. The canary stage routes 5 percent of traffic to the new build.
+2. Invoke `/canary-report` after the canary soak window. The agent reads Application Insights metrics, Azure Monitor alerts, and the smoke test results from Playwright MCP, producing a go/no-go recommendation.
+3. Promote to 100 percent or trigger the rollback plan. Either way, update the release ticket and broadcast the status to Teams via the Microsoft 365 Agents SDK MCP.
+4. Close the release with the GitHub Release created from the tag, the CHANGELOG merged into `main`, and the SharePoint release log updated.
+
+## Primitivas recomendadas
+
+### Agents
+
+| Agente | Arquivo | Propósito |
+|-------|------|---------|
+| `release-scribe` | `.github/agents/release-scribe.agent.md` | Compose release notes, compute risk tiers, draft rollback plans, read canary signals |
+
+The Release Scribe agent uses `claude-sonnet-4-6` by default. It holds tools `read`, `edit`, `search`, `grep`, `glob`, `bash`, and MCP bindings to GitHub MCP, Azure DevOps MCP, and Azure MCP for observability reads.
+
+### Prompts
+
+| Comando | Arquivo | Propósito |
+|---------|------|---------|
+| `/release-notes` | `.github/prompts/release-notes.prompt.md` | Draft release notes and CHANGELOG entry from merged PRs |
+| `/risk-gate` | `.github/prompts/risk-gate.prompt.md` | Compute risk tier and emit go/no-go recommendation with rationale |
+| `/rollback-plan` | `.github/prompts/rollback-plan.prompt.md` | Draft the rollback sequence, including feature flags and data migration reversal |
+| `/canary-report` | `.github/prompts/canary-report.prompt.md` | Read canary telemetry and emit go/no-go for full promotion |
+
+### Instructions
+
+O escopo `applyTo` reduz o custo de tokens em aproximadamente 68 por cento comparado com instruções globais.
+
+| Escopo (`applyTo`) | Arquivo | Propósito |
+|-------------------|------|---------|
+| `CHANGELOG.md` | `.github/instructions/changelog.instructions.md` | Keep a Changelog format, semver discipline, risk tier per entry |
+| `releases/**/*.md` | `.github/instructions/release.instructions.md` | Release note template, stakeholder callouts, link discipline |
+| `runbooks/rollback/**/*.md` | `.github/instructions/rollback.instructions.md` | Rollback runbook format, validation checklist, flag inventory |
+
+### Skills
+
+Skills are lazy-loaded, so the Release Manager can install many and pay tokens only for the ones that trigger.
+
+- `risk-heuristic`: computes risk tier from PR size, blast radius, Advanced Security alert deltas, and change failure rate trend
+- `canary-reader`: calls Azure MCP to read Application Insights anomaly scores and returns a structured verdict
+
+### Hooks
+
+Hooks custam zero tokens de LLM. Eles são a camada de governança mais forte.
+
+- `pre-commit`: validate CHANGELOG schema and release note front matter
+- `pre-merge`: require risk tier and rollback plan links on the release PR
+- `post-release`: publish the release tag, open the SharePoint release log entry, notify Teams
+
+## MCPs validados
+
+Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+
+| MCP | Status | Use in this persona |
+|-----|--------|---------------------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | List merged PRs, create GitHub Releases, manage environments and tags |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | Read release pipelines, manage approvals, update Azure Boards work items |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | Consultar Application Insights, Azure Monitor alerts, and Azure Policy compliance |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Publish release notifications and canary reports to Teams and SharePoint |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Official (Microsoft) | Run smoke tests against the canary build and return structured results |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Fetch current deployment and release guidance for Azure services when drafting runbooks |
+
+## Exemplos reais
+
+### Scenario A: compose a weekly release train
+
+**Entrada**: 42 PRs have merged across 7 services since the previous release tag `v2.14.0`.
+
+**Invocação**: `/release-notes` followed by `/risk-gate`.
+
+**Saída esperada**:
+
+1. A release note `releases/v2.15.0.md` with entries grouped by service, risk tiers per entry, and links to ADRs and specifications.
+2. A CHANGELOG entry under `v2.15.0` following Keep a Changelog format.
+3. A risk gate report identifying 3 high-risk changes (schema migrations), 11 medium-risk (new endpoints), 28 low-risk (fixes and docs), with go/no-go recommendations per tier.
+4. A rollback plan `runbooks/rollback/v2.15.0.md` covering feature flag flips and a reversal SQL migration.
+
+### Scenario B: read a canary signal
+
+**Entrada**: The canary of `v2.15.0` has been at 5 percent traffic for 30 minutes. Latency p95 is up 8 percent; error rate is within noise.
+
+**Invocação**: `/canary-report`.
+
+**Saída esperada**:
+
+1. A canary report that reads Application Insights p50/p95/p99, error rate, and anomaly score over the soak window.
+2. A comparison to the previous 4 canaries on the same service.
+3. A go/no-go recommendation: `hold` with rationale "p95 increase exceeds 5 percent SLO envelope; investigate slow dependency before full promotion."
+4. A Teams message posted via the Microsoft 365 Agents SDK MCP to the release channel with the recommendation and the evidence links.
+
+## Anti-padrões
+
+1. **Cut-day release notes**. Notes written the night before with scraped commits. Mitigação: `/release-notes` composes continuously from merged PRs, not at cut.
+2. **Risk tier by feel**. Reviewers approve without a reproducible heuristic. Mitigação: `risk-heuristic` skill produces tier from PR size, blast radius, and security alert deltas.
+3. **Rollback plan as "redeploy previous tag"**. No flag inventory, no data reversal. Mitigação: `/rollback-plan` produces the complete sequence; rehearsed in staging before release.
+4. **Canary read by staring**. A human watches dashboards for 45 minutes. Mitigação: `/canary-report` reads Application Insights programmatically.
+5. **Release communication by email forward**. Stakeholders learn about the release when alerts fire. Mitigação: Microsoft 365 Agents SDK MCP posts the train departure and arrival automatically.
+
+## KPIs e métricas de impacto
+
+The Release Manager persona is evaluated with a mix of DORA and release-specific metrics.
+
+| Metric | Baseline (manual) | Target (agentic) | Medição |
+|--------|-------------------|------------------|-------------|
+| Release note drafting time | 4 hours | < 15 min | Time from cut trigger to draft PR |
+| Change failure rate | 18 percent | < 5 percent | Percent of releases rolled back within 24 hours |
+| Mean time to rollback | 2 hours | < 15 min | Time from rollback decision to full revert |
+| Canary decision time | 45 min (human) | < 5 min | Time from soak end to go/no-go decision |
+| Release communication latency | 2 hours | < 5 min | Time from release event to Teams notification |
+| CHANGELOG completeness | 60 percent | > 99 percent | Merged PRs represented in CHANGELOG |
+| Rollback rehearsal frequency | Never | Every release | Rehearsed in staging before production |
+| Token efficiency | N/A | < 400k tokens per release | Copilot usage report |
+
+## Maturidade em quatro níveis
+
+| Nível | Nome | Marcadores |
+|-------|------|---------|
+| L1 | Manual | Notes drafted at cut, no risk tiers, rollback by memory |
+| L2 | Assistido | GitHub Copilot helps draft notes, CHANGELOG maintained, no agent |
+| L3 | Aumentado | One Release Scribe agent, quatro slash prompts, instruções escopadas, two MCPs, canary read semi-automated |
+| L4 | Agentic | Full primitives kit, hooks enforced, canary decisions automated, rollback rehearsed every cycle, Teams and SharePoint publishing automatic |
+
+## Integração com outras personas
+
+Handoffs:
+
+- **Do DevOps Engineer**: release train candidate, risk tiers, what-if diffs
+- **Do QA Engineer**: test matrix, regression report, known issues
+- **Para o SRE**: deployed build, canary window, alert posture
+- **Para o Tech Writer**: release notes, CHANGELOG, migration guides
+- **Para o Product Owner**: stakeholder-facing release summary posted to SharePoint
+
+## Glossário
+
+- **Agent**: a configured LLM role with tools, instructions, and a defined output shape.
+- **Prompt**: a reusable slash command that invokes an agent with a specific task.
+- **Instructions**: scoped guidance applied by pattern match on file paths via `applyTo`.
+- **Skill**: a lazy-loaded capability that activates on keyword match.
+- **Hook**: a zero-token rule enforced at a specific lifecycle event.
+- **MCP**: Model Context Protocol server that exposes external systems to the agent.
+- **Risk tier**: a reproducible classification of release risk (low, medium, high) produced by a heuristic, not a vibe.
+- **Canary**: a small percentage of production traffic routed to a new build for soak testing.
+- **Rollback plan**: the reversal sequence including redeploy, feature flag flips, and data migration reversal.
+- **CHANGELOG**: the versioned, human-readable record of what changed per release, following Keep a Changelog.
+
+## Referências
+
+- [Keep a Changelog](https://keepachangelog.com/) — the canonical format the CHANGELOG.md follows
+- [Semantic Versioning](https://semver.org/) — versioning discipline for tags and releases
+- [GitHub Releases documentation](https://docs.github.com/en/repositories/releasing-projects-on-github) — release creation and asset publishing
+- [Azure DevOps release approvals](https://learn.microsoft.com/azure/devops/pipelines/release/approvals/) — gate configuration and deployment stages
+- [Application Insights documentation](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — canary telemetry and anomaly detection
+- [Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — Teams and SharePoint publishing
+- [DORA metrics research](https://dora.dev/research/) — the empirical foundation behind change failure rate and mean time to restore
