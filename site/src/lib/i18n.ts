@@ -30,11 +30,15 @@ export function getLocaleFromUrl(pathname: string): Locale {
 
 /**
  * Build a locale-aware path. Default locale 'en' gets no prefix.
+ * Prepends Astro's configured base (e.g. "/agentic-sdlc-personas") so the
+ * URL works on GitHub Pages under a project subpath.
  */
 export function localePath(locale: Locale, path: string): string {
   const clean = path.startsWith('/') ? path : '/' + path;
-  if (locale === DEFAULT_LOCALE) return clean;
-  return `/${locale}${clean}`;
+  const localized = locale === DEFAULT_LOCALE ? clean : `/${locale}${clean}`;
+  const base = import.meta.env.BASE_URL || '/';
+  const baseNoSlash = base.endsWith('/') ? base.slice(0, -1) : base;
+  return `${baseNoSlash}${localized}`;
 }
 
 /**
