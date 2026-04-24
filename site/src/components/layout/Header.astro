@@ -1,0 +1,45 @@
+---
+import type { Locale } from '@lib/i18n';
+import { ui, getLandingPath } from '@lib/i18n';
+
+interface Props {
+  locale: Locale;
+  base?: string;
+}
+const { locale, base = import.meta.env.BASE_URL.replace(/\/$/, '') } = Astro.props;
+const t = ui[locale];
+---
+<header class="meta-bar">
+  <a href={getLandingPath(locale, base)} class="brand" aria-label="Agentic SDLC Personas home">
+    <div class="brand__squares" aria-hidden="true">
+      <i class="r"></i><i class="g"></i><i class="b"></i><i class="y"></i>
+    </div>
+    <div>
+      <div class="brand__title">Agentic SDLC Personas</div>
+      <div class="brand__sub">by Paula Silva</div>
+    </div>
+  </a>
+
+  <nav class="top-tools" aria-label="Primary">
+    <a class="top-link" href={`${base}/${locale === 'en' ? '' : locale + '/'}personas`}>{t.nav.personas}</a>
+    <a class="top-link" href={`${base}/mcp-catalog`}>{t.nav.mcp}</a>
+    <a class="top-link" href={`${base}/style-guide`}>{t.nav.styleGuide}</a>
+    <a class="top-link" href="https://github.com/paulasilvatech/agentic-sdlc-personas">{t.nav.github}</a>
+
+    <span class="lang-switch" aria-label="Language">
+      <a class={locale === 'en' ? 'active' : ''} href={getLandingPath('en', base)}>EN</a>
+      <a class={locale === 'pt' ? 'active' : ''} href={getLandingPath('pt', base)}>PT</a>
+      <a class={locale === 'es' ? 'active' : ''} href={getLandingPath('es', base)}>ES</a>
+    </span>
+
+    <button class="tool-btn" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+      <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+      </svg>
+      <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </nav>
+</header>

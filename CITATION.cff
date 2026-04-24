@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this framework or these persona kits, please cite them as below."
+title: "Agentic SDLC Personas: 24 AI-Native Primitives Kits for the Software Development Lifecycle"
+abstract: "A public framework of 24 persona kits (agents, prompts, instructions, skills, hooks, and validated MCP servers) that operationalize GitHub Copilot and Claude Code primitives across the full software development lifecycle."
+authors:
+  - family-names: Silva
+    given-names: Paula
+    affiliation: "Microsoft Americas, Global Black Belt"
+    orcid: ""
+    website: "https://agenticdevops.platform.com"
+    alias: "@paulasilvatech"
+version: 1.0.0
+date-released: 2026-04-23
+license: MIT
+repository-code: "https://github.com/paulasilvatech/agentic-sdlc-personas"
+url: "https://paulasilvatech.github.io/agentic-sdlc-personas/"
+keywords:
+  - agentic-ai
+  - sdlc
+  - github-copilot
+  - claude-code
+  - spec-driven-development
+  - personas
+  - mcp
+  - devops
+  - agentic-devops

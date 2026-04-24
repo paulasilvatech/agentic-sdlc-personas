@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-projects": {
+      "description": "Query GitHub Projects for backlog and sprint data"
+    },
+    "azure-devops": {
+      "description": "Sync work items with Azure DevOps Boards"
+    }
+  }
+}

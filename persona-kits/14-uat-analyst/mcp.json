@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "azure-devops-test-plans": {
+      "description": "UAT test cases"
+    }
+  }
+}

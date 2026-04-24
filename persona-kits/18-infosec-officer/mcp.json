@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-advanced-security": {
+      "description": "CodeQL, secrets, dependencies"
+    },
+    "microsoft-defender": {
+      "description": "Cloud security posture"
+    }
+  }
+}

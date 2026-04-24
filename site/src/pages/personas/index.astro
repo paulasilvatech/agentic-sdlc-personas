@@ -1,0 +1,33 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { personas, clusters } from '@lib/personas';
+import { getPersonaPath } from '@lib/i18n';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const accentToCss = (a: string) => ({
+  'red':'var(--c-red-500)','green':'var(--c-green-500)','blue':'var(--c-blue-500)','yellow':'var(--c-yellow-500)','ink':'var(--ink)'
+}[a] || 'var(--ink-3)');
+---
+<BaseLayout locale="en" title="Personas · Agentic SDLC Personas" description="Full index of the twenty-four persona kits.">
+  <section class="section">
+    <div class="container">
+      <div class="section__header">
+        <div class="section__label">Index</div>
+        <h1 class="section__title">Twenty-four personas, one framework</h1>
+        <p class="section__lead">Every persona in the agentic SDLC, grouped by cluster. Click a card to read the full document.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">
+        {personas.map(p => (
+          <a class="persona-card" href={getPersonaPath('en', p.slug, base)} data-accent={p.accent} style={`--card-accent:${accentToCss(p.accent)};`}>
+            <img class="persona-card__icon" src={`${base}/icons/personas/${p.id}.svg`} alt="" loading="lazy" onerror="this.style.opacity='0.3';" />
+            <div>
+              <div class="persona-card__id">{String(p.number).padStart(2,'0')} · {clusters[p.cluster].label.en}</div>
+              <div class="persona-card__name">{p.title.en}</div>
+              <div style="font-size:12px;color:var(--ink-3);margin-top:4px;">{p.one_liner.en}</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

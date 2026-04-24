@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "azure-monitor": {
+      "description": "Infrastructure monitoring"
+    },
+    "github-actions": {
+      "description": "Workflow status"
+    }
+  }
+}

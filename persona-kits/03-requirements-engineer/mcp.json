@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-projects": {
+      "description": "Requirement tracking"
+    },
+    "azure-devops-test-plans": {
+      "description": "Traceability"
+    }
+  }
+}

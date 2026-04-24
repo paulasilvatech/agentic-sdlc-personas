@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-copilot": {
+      "description": "Code completions"
+    },
+    "azure-app-insights": {
+      "description": "Production debugging"
+    }
+  }
+}

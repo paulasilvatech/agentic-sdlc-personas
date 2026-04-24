@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "azure-monitor": {
+      "description": "Metrics and alerts"
+    },
+    "azure-chaos-studio": {
+      "description": "Chaos engineering"
+    }
+  }
+}

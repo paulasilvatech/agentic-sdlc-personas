@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-releases": {
+      "description": "Release management"
+    },
+    "azure-monitor": {
+      "description": "Post-deploy health"
+    }
+  }
+}

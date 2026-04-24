@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Framework discussion
+    url: https://github.com/paulasilvatech/agentic-sdlc-personas/discussions
+    about: Ask questions or share ideas about Agentic SDLC Personas
+  - name: Website
+    url: https://agenticdevops.platform.com
+    about: Agentic DevOps resources by Paula Silva

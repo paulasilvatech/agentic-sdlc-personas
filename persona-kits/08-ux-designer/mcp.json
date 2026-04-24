@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "azure-app-insights": {
+      "description": "User behavior analytics"
+    }
+  }
+}

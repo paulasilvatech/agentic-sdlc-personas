@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "azure-ml": {
+      "description": "ML workspace"
+    },
+    "github-actions-ai-inference": {
+      "description": "Model inference in Actions"
+    }
+  }
+}

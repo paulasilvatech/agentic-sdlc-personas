@@ -1,0 +1,51 @@
+name: New persona request
+description: Propose a new persona kit to be added to the framework
+title: "[persona] "
+labels: ["enhancement", "persona"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Persona name
+      placeholder: "Platform Product Manager"
+    validations:
+      required: true
+  - type: dropdown
+    id: cluster
+    attributes:
+      label: Cluster
+      options:
+        - product
+        - architect
+        - build
+        - ops
+        - quality
+        - data
+        - platform
+        - security
+        - enablement
+    validations:
+      required: true
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Why this persona is needed
+      description: What gap does it fill that the 24 default personas do not cover
+    validations:
+      required: true
+  - type: textarea
+    id: responsibilities
+    attributes:
+      label: Primary responsibilities
+    validations:
+      required: true
+  - type: textarea
+    id: primitives
+    attributes:
+      label: Suggested primitives
+      description: Agents, prompts, instructions, skills, hooks, MCPs
+  - type: textarea
+    id: validated_mcps
+    attributes:
+      label: Validated MCPs
+      description: List the official MCP servers this persona would use, with links. All MCPs must follow the validation policy.

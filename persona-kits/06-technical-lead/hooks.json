@@ -1,0 +1,23 @@
+{
+  "hooks": {
+    "preToolUse": [
+      {
+        "trigger": "edit_file",
+        "description": "Scope check",
+        "command": "if [ -f docs/IMPLEMENTATION_PLAN.md ]; then grep -q $TOOL_FILE docs/IMPLEMENTATION_PLAN.md 2>/dev/null || echo WARNING: File not in plan; fi"
+      }
+    ],
+    "postToolUse": [
+      {
+        "trigger": "edit_file",
+        "description": "Lint",
+        "command": "npx eslint $TOOL_FILE --quiet 2>/dev/null || true"
+      },
+      {
+        "trigger": "edit_file",
+        "description": "Test",
+        "command": "npx jest --findRelatedTests $TOOL_FILE --passWithNoTests 2>/dev/null || true"
+      }
+    ]
+  }
+}

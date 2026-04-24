@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-insights": {
+      "description": "Team metrics"
+    },
+    "workiq": {
+      "description": "Workload patterns"
+    }
+  }
+}

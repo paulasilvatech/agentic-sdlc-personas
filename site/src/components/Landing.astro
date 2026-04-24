@@ -1,0 +1,175 @@
+---
+import type { Locale } from '@lib/i18n';
+import { ui, getPersonaPath } from '@lib/i18n';
+import { personas, clusters } from '@lib/personas';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const t = ui[locale];
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const accentToCss = (a: string) => ({
+  'red':    'var(--c-red-500)',
+  'green':  'var(--c-green-500)',
+  'blue':   'var(--c-blue-500)',
+  'yellow': 'var(--c-yellow-500)',
+  'ink':    'var(--ink)'
+}[a] || 'var(--ink-3)');
+---
+<section class="hero">
+  <div class="container hero__grid">
+    <div>
+      <div class="hero__eyebrow eyebrow"><span class="dot" style="background:var(--c-green-500);"></span>{t.hero.eyebrow}</div>
+      <h1 class="hero__title">{t.hero.title}</h1>
+      <p class="hero__subtitle">{t.hero.subtitle}</p>
+      <div class="hero__cta">
+        <a href={`${base}/${locale === 'en' ? '' : locale + '/'}personas`} class="btn btn--primary">
+          {t.hero.primary}
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href={`${base}/style-guide`} class="btn btn--ghost">{t.hero.secondary}</a>
+      </div>
+    </div>
+    <div class="hero__art">
+      <svg viewBox="0 0 500 420" role="img" aria-labelledby="heroTitle heroDesc">
+        <title id="heroTitle">Four layers of the agentic SDLC stack</title>
+        <desc id="heroDesc">Four stacked layers. Intent on top in red, Context in yellow, Platform in green, Infrastructure in blue.</desc>
+
+        <!-- Layer 4: Intent (red) -->
+        <rect x="20" y="20" width="460" height="80" rx="10" fill="var(--c-red-50)" stroke="var(--c-red-500)" stroke-width="0.8"/>
+        <rect x="20" y="20" width="6" height="80" fill="var(--c-red-500)"/>
+        <text x="44" y="46" font-family="JetBrains Mono,monospace" font-size="10.5" font-weight="500" letter-spacing="0.14em" fill="var(--c-red-700)">LAYER 04 · INTENT</text>
+        <text x="44" y="68" font-family="Inter,sans-serif" font-size="15" font-weight="500" fill="var(--c-red-700)">Product Owner · Requirements Engineer · InfoSec · Compliance</text>
+        <text x="44" y="89" font-family="Inter,sans-serif" font-size="12" fill="var(--ink-3)">What should the system optimize for?</text>
+
+        <line x1="250" y1="108" x2="250" y2="128" stroke="var(--ink-3)" stroke-width="1.2"/>
+        <polygon points="246,130 254,130 250,136" fill="var(--ink-3)"/>
+
+        <!-- Layer 3: Context (yellow) -->
+        <rect x="20" y="142" width="460" height="80" rx="10" fill="var(--c-yellow-50)" stroke="var(--c-yellow-500)" stroke-width="0.8"/>
+        <rect x="20" y="142" width="6" height="80" fill="var(--c-yellow-500)"/>
+        <text x="44" y="168" font-family="JetBrains Mono,monospace" font-size="10.5" font-weight="500" letter-spacing="0.14em" fill="var(--c-yellow-700)">LAYER 03 · CONTEXT</text>
+        <text x="44" y="190" font-family="Inter,sans-serif" font-size="15" font-weight="500" fill="var(--c-yellow-700)">Architect · Tech Lead · Data Engineer · ML AI · DBA</text>
+        <text x="44" y="211" font-family="Inter,sans-serif" font-size="12" fill="var(--ink-3)">What can the agent know?</text>
+
+        <line x1="250" y1="230" x2="250" y2="250" stroke="var(--ink-3)" stroke-width="1.2"/>
+        <polygon points="246,252 254,252 250,258" fill="var(--ink-3)"/>
+
+        <!-- Layer 2: Platform (green) -->
+        <rect x="20" y="264" width="460" height="80" rx="10" fill="var(--c-green-50)" stroke="var(--c-green-500)" stroke-width="0.8"/>
+        <rect x="20" y="264" width="6" height="80" fill="var(--c-green-500)"/>
+        <text x="44" y="290" font-family="JetBrains Mono,monospace" font-size="10.5" font-weight="500" letter-spacing="0.14em" fill="var(--c-green-700)">LAYER 02 · PLATFORM</text>
+        <text x="44" y="312" font-family="Inter,sans-serif" font-size="15" font-weight="500" fill="var(--c-green-700)">Developer · QA · UAT · UX · Platform Architect</text>
+        <text x="44" y="333" font-family="Inter,sans-serif" font-size="12" fill="var(--ink-3)">What can agents build and ship?</text>
+
+        <line x1="250" y1="352" x2="250" y2="370" stroke="var(--ink-3)" stroke-width="1.2"/>
+        <polygon points="246,372 254,372 250,378" fill="var(--ink-3)"/>
+
+        <!-- Layer 1: Infra (blue, dashed) -->
+        <rect x="20" y="382" width="460" height="30" rx="8" fill="var(--c-blue-50)" stroke="var(--c-blue-500)" stroke-width="0.6" stroke-dasharray="4 3"/>
+        <text x="44" y="402" font-family="JetBrains Mono,monospace" font-size="10.5" font-weight="500" letter-spacing="0.14em" fill="var(--c-blue-700)">LAYER 01 · DEVOPS · SRE · RELEASE MANAGER · INFRASTRUCTURE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="personas">
+  <div class="container">
+    <div class="section__header">
+      <div class="section__label">{t.sections.personas}</div>
+      <h2 class="section__title">{t.sections.personasTitle}</h2>
+      <p class="section__lead">{t.sections.personasLead}</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+      {personas.map(p => (
+        <a class="persona-card" href={getPersonaPath(locale, p.slug, base)} data-accent={p.accent} style={`--card-accent:${accentToCss(p.accent)};`}>
+          <img class="persona-card__icon" src={`${base}/icons/personas/${p.id}.svg`} alt="" loading="lazy" onerror="this.style.opacity='0.4';this.src='';this.alt='';" />
+          <div>
+            <div class="persona-card__id">{String(p.number).padStart(2,'0')} · {clusters[p.cluster].label[locale]}</div>
+            <div class="persona-card__name">{p.title[locale]}</div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="mcp">
+  <div class="container">
+    <div class="section__header">
+      <div class="section__label">{t.sections.mcp}</div>
+      <h2 class="section__title">{t.sections.mcpTitle}</h2>
+      <p class="section__lead">{t.sections.mcpLead}</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;">
+      {[
+        { name: 'GitHub MCP', href: 'https://github.com/github/github-mcp-server', accent: 'ink' },
+        { name: 'Azure DevOps MCP', href: 'https://github.com/microsoft/azure-devops-mcp', accent: 'blue' },
+        { name: 'Microsoft Learn Docs MCP', href: 'https://github.com/microsoftdocs/mcp', accent: 'blue' },
+        { name: 'Azure MCP Server', href: 'https://github.com/microsoft/mcp/blob/main/servers/Azure.Mcp.Server/README.md', accent: 'blue' },
+        { name: 'Atlassian Rovo MCP', href: 'https://github.com/atlassian/atlassian-mcp-server', accent: 'ink' },
+        { name: 'Linear MCP', href: 'https://linear.app/docs/mcp', accent: 'ink' },
+        { name: 'Notion MCP', href: 'https://github.com/makenotion/notion-mcp-server', accent: 'ink' },
+        { name: 'Figma Dev Mode MCP', href: 'https://developers.figma.com/docs/figma-mcp-server/', accent: 'red' },
+        { name: 'Sentry MCP', href: 'https://github.com/getsentry/sentry-mcp', accent: 'red' },
+        { name: 'Slack MCP', href: 'https://slack.dev/secure-data-connectivity-for-the-modern-ai-era/', accent: 'yellow' },
+        { name: 'PostgreSQL MCP', href: 'https://www.npmjs.com/package/@modelcontextprotocol/server-postgres', accent: 'green' },
+        { name: 'Grafana MCP', href: 'https://github.com/grafana/mcp-grafana', accent: 'yellow' },
+        { name: 'Terraform MCP', href: 'https://github.com/hashicorp/terraform-mcp-server', accent: 'ink' },
+        { name: 'Snyk MCP', href: 'https://docs.snyk.io/scan-with-snyk/snyk-mcp', accent: 'red' },
+        { name: 'Playwright MCP', href: 'https://github.com/microsoft/playwright-mcp', accent: 'green' },
+        { name: 'Filesystem MCP', href: 'https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem', accent: 'ink' }
+      ].map(m => (
+        <a class="card" href={m.href} data-accent={m.accent} style={`display:block;padding:0;`}>
+          <div class="card__accent"></div>
+          <div class="card__body" style="padding:18px 20px;">
+            <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;color:var(--ink-3);text-transform:uppercase;">Official</div>
+            <div style="font-size:16px;font-weight:500;margin-top:4px;">{m.name}</div>
+          </div>
+        </a>
+      ))}
+    </div>
+    <p style="margin-top:24px;"><a class="btn btn--ghost" href={`${base}/mcp-catalog`}>View the full MCP catalog <svg viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a></p>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <div class="section__header">
+      <div class="section__label">{t.sections.about}</div>
+      <h2 class="section__title">{t.sections.aboutTitle}</h2>
+      <p class="section__lead">{t.about.body}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding: 88px 0 72px; background: var(--paper); border-bottom: 1px solid var(--rule-2); }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: 64px;
+    align-items: start;
+  }
+  .hero__eyebrow { color: var(--c-green-700); margin-bottom: 24px; }
+  .hero__title {
+    font-size: clamp(36px, 4.8vw, 56px);
+    font-weight: 500;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    margin: 0 0 22px;
+  }
+  .hero__subtitle {
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--ink-2);
+    margin: 0 0 32px;
+    max-width: 620px;
+  }
+  .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero__art svg { width: 100%; height: auto; }
+  @media (max-width: 900px) {
+    .hero__grid { grid-template-columns: 1fr; }
+  }
+</style>

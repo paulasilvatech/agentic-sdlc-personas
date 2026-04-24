@@ -1,0 +1,42 @@
+---
+import type { Locale } from '@lib/i18n';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const year = new Date().getFullYear();
+const msg = {
+  en: { tagline: 'Pioneering software development with AI and Agentic DevOps', license: 'MIT licensed. Contributions welcome.' },
+  pt: { tagline: 'Pioneirando o desenvolvimento de software com IA e Agentic DevOps', license: 'Licenciado MIT. Contribuições são bem-vindas.' },
+  es: { tagline: 'Pionera del desarrollo de software con IA y Agentic DevOps', license: 'Licencia MIT. Contribuciones bienvenidas.' }
+}[locale];
+---
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <div style="display:flex;gap:14px;align-items:center;margin-bottom:16px;">
+        <div class="brand__squares" aria-hidden="true"><i class="r"></i><i class="g"></i><i class="b"></i><i class="y"></i></div>
+        <strong style="color:var(--ink);font-size:15px;">Agentic SDLC Personas</strong>
+      </div>
+      <p style="max-width:520px;margin:0 0 16px;">{msg.tagline}. {msg.license}</p>
+      <p style="font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;color:var(--ink-3);">v1.0.0 · © {year} Paula Silva</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;font-size:14px;">
+      <div>
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;color:var(--ink-3);text-transform:uppercase;margin-bottom:10px;">Resources</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="https://github.com/paulasilvatech/agentic-sdlc-personas">GitHub</a></li>
+          <li><a href="https://github.com/paulasilvatech/agentic-sdlc-personas/blob/main/CONTRIBUTING.md">Contributing</a></li>
+          <li><a href="https://github.com/paulasilvatech/agentic-sdlc-personas/blob/main/docs/STYLE_GUIDE.md">Style guide</a></li>
+          <li><a href="https://github.com/paulasilvatech/agentic-sdlc-personas/blob/main/docs/registry/mcp-catalog.md">MCP catalog</a></li>
+        </ul>
+      </div>
+      <div>
+        <div style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.12em;color:var(--ink-3);text-transform:uppercase;margin-bottom:10px;">Paula Silva</div>
+        <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;">
+          <li><a href="https://github.com/paulasilvatech">@paulasilvatech</a></li>
+          <li><a href="https://agenticdevops.platform.com">agenticdevops.platform.com</a></li>
+          <li><a href="https://www.linkedin.com/in/paulanunes/">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

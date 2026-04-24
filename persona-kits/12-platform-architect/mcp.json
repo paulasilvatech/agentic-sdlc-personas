@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-enterprise": {
+      "description": "Org-wide policies"
+    },
+    "azure-policy": {
+      "description": "Platform guardrails"
+    }
+  }
+}

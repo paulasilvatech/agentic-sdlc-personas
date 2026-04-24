@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "azure-architecture-center": {
+      "description": "Reference architectures"
+    },
+    "github-advanced-security": {
+      "description": "Security scanning"
+    }
+  }
+}

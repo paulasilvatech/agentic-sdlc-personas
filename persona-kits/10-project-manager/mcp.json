@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-projects": {
+      "description": "Milestone tracking"
+    },
+    "azure-cost-management": {
+      "description": "Budget"
+    }
+  }
+}

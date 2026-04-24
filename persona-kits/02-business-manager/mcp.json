@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-projects": {
+      "description": "Sprint and backlog metrics"
+    },
+    "power-bi": {
+      "description": "Business dashboards"
+    }
+  }
+}

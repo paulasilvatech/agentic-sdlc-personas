@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-enterprise-audit": {
+      "description": "Org audit logs"
+    },
+    "microsoft-purview": {
+      "description": "Compliance Manager"
+    }
+  }
+}

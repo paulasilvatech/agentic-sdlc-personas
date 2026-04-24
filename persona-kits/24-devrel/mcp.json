@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "github-discussions": {
+      "description": "Community Q&A"
+    },
+    "github-codespaces": {
+      "description": "Demo environments"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+name: MCP addition request
+description: Request addition of a new MCP server to the validated catalog
+title: "[mcp] "
+labels: ["mcp", "triage"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: MCP server name
+      placeholder: "GitHub MCP Server"
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Official URL
+      description: Repository or hosted endpoint
+      placeholder: "https://github.com/github/github-mcp-server"
+    validations:
+      required: true
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status classification
+      options:
+        - Official (from product vendor)
+        - Anthropic reference implementation
+        - Community stable (500+ stars, maintained < 6 months)
+    validations:
+      required: true
+  - type: textarea
+    id: personas
+    attributes:
+      label: Persona mapping
+      description: Which of the 24 personas would use this MCP
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Validation evidence
+      description: Link to release notes, stars count, maintenance activity, product announcement
+    validations:
+      required: true

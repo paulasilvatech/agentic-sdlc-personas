@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "azure-devops-test-plans": {
+      "description": "Test management"
+    },
+    "azure-load-testing": {
+      "description": "Performance tests"
+    }
+  }
+}

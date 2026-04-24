@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "azure-data-factory": {
+      "description": "Pipeline orchestration"
+    },
+    "azure-purview": {
+      "description": "Data catalog"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Node / Astro
+node_modules/
+dist/
+.astro/
+.cache/
+
+# Env
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python caches (from previous scripts)
+__pycache__/
+.mypy_cache/
+.ruff_cache/
+*.pyc

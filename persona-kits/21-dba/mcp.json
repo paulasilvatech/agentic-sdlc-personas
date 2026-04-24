@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "azure-sql": {
+      "description": "Azure SQL management"
+    },
+    "azure-cosmos": {
+      "description": "Cosmos DB"
+    }
+  }
+}

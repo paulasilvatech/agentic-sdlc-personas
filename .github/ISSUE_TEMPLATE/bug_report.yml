@@ -1,0 +1,52 @@
+name: Bug report
+description: Report something that is broken in a persona kit, a document, or the site
+title: "[bug] "
+labels: ["bug", "triage"]
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: One-sentence description of the problem
+    validations:
+      required: true
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Where is the bug
+      options:
+        - Persona kit
+        - Documentation
+        - Astro site
+        - MCP catalog entry
+        - CI / workflow
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: persona
+    attributes:
+      label: Persona (if applicable)
+      placeholder: "22-developer"
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce the issue
+      placeholder: |
+        1. Go to ...
+        2. Run ...
+        3. Observe ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      placeholder: "OS, VS Code version, Copilot version, Claude Code version"
