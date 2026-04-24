@@ -5,7 +5,7 @@ author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at
 date: "2026-04-14"
 version: "1.0.0"
 status: "approved"
-locale: "pt-BR"
+locale: "en"
 tags: ["primitive", "ai-native-sdlc", "quality-gates"]
 ---
 
@@ -15,22 +15,22 @@ tags: ["primitive", "ai-native-sdlc", "quality-gates"]
 
 ---
 
-## WHAT — O que são Quality Gates e Hooks
+## WHAT: What are Quality Gates and Hooks
 
-**Quality Gates** são checkpoints automáticos obrigatórios que código deve passar antes de avançar no pipeline. São a defesa contra a acumulação de dívida técnica causada por agentes sem supervision.
+**Quality Gates** are mandatory automated checkpoints that code must pass before advancing in the pipeline. They are the defense against the accumulation of technical debt caused by unsupervised agents.
 
-**Hooks** são interceptores no ciclo de execução do agente — `preToolUse` e `postToolUse` — que validam o comportamento do agente antes e depois de cada ação.
+**Hooks** are interceptors in the agent execution lifecycle - `preToolUse` and `postToolUse` - that validate agent behavior before and after each action.
 
-### Dois tipos complementares
+### Two complementary types
 
 ```
-PREVENTIVOS (Hooks — antes do dano):
-├─ preToolUse: antes de qualquer edição de arquivo
-│  └─ Agente descreve o que entende? Tem test plan? Qual o scope?
-└─ postToolUse: após cada edição
-   └─ Código compila? Tests passam? Complexity aumentou?
+PREVENTIVE (Hooks - before the damage):
+├─ preToolUse: before any file edit
+│  └─ Does the agent state what it understands? Has a test plan? What's the scope?
+└─ postToolUse: after each edit
+   └─ Does the code compile? Do tests pass? Did complexity increase?
 
-REATIVOS (CI/CD Gates — detectam o dano):
+REACTIVE (CI/CD Gates - detect the damage):
 ├─ pre-commit: linting + type check
 ├─ PR gate: tests + security + coverage
 ├─ Merge gate: integration + quality score
@@ -39,40 +39,40 @@ REATIVOS (CI/CD Gates — detectam o dano):
 
 ---
 
-## WHY — Por que são obrigatórios com AI
+## WHY: Why they are mandatory with AI
 
-### Evidências científicas
+### Scientific evidence
 
-**Sem gates, agentes causam:**
-- **+18% static analysis warnings** acumulados (2601.13597, CMU, longitudinal causal study)
-- **+39% cognitive complexity** persistente (2601.13597)
-- Dívida técnica que **não desaparece** — acumula sprint over sprint
+**Without gates, agents cause:**
+- **+18% static analysis warnings** accumulated (2601.13597, CMU, longitudinal causal study)
+- **+39% cognitive complexity** persistent (2601.13597)
+- Technical debt that **does not disappear** - it accumulates sprint over sprint
 
-**Merge rate não é proxy de qualidade:**
-- Cursor: 331 issues de código, média 8.3 por PR que FOI mergeado (2601.20109, Saskatchewan)
-- Merge ≠ qualidade. SonarQube differential analysis mostra code smells críticos/major em PRs merged
+**Merge rate is not a proxy for quality:**
+- Cursor: 331 code issues, average 8.3 per PR that WAS merged (2601.20109, Saskatchewan)
+- Merge ≠ quality. SonarQube differential analysis shows critical/major code smells in merged PRs
 
-**Code Review Agents isolados são insuficientes:**
-- CRA-only: **45.20% merge rate** vs **68.37% humano** (gap de 23pp) (2604.03196)
-- **60.2%** de PRs com CRA-only têm signal quality de apenas 0-30%
-- **40%** de tasks resolvidas pelo melhor agente de code review (c-CRAB benchmark, 2603.23448)
+**Code Review Agents alone are insufficient:**
+- CRA-only: **45.20% merge rate** vs **68.37% human** (23pp gap) (2604.03196)
+- **60.2%** of PRs with CRA-only have signal quality of only 0-30%
+- **40%** of tasks resolved by the best code review agent (c-CRAB benchmark, 2603.23448)
 
-**O padrão de sucesso exige verificação:**
-- understand→reproduce→fix→**verify** — o último passo é crítico (2604.02547)
-- Hooks `postToolUse` implementam o "verify" automaticamente
+**The success pattern requires verification:**
+- understand→reproduce→fix→**verify** - the last step is critical (2604.02547)
+- `postToolUse` hooks implement "verify" automatically
 
 **GHA evolution:**
-- 7.3% de workflow files modificados por semana (2602.14572) — pipelines precisam de automação
-- Nenhum scanner único cobre todas as vulnerabilidades (2601.14455) — combinar ≥2 scanners
+- 7.3% of workflow files modified per week (2602.14572) - pipelines need automation
+- No single scanner covers all vulnerabilities (2601.14455) - combine ≥2 scanners
 
 ---
 
-## HOW — Implementação Completa
+## HOW: Complete Implementation
 
-### Hook: preToolUse (antes de qualquer edição)
+### Hook: preToolUse (before any edit)
 
 ```yaml
-# .github/copilot-instructions.md — seção de hooks
+# .github/copilot-instructions.md - hooks section
 ## AGENT BEHAVIOR PROTOCOL
 
 ### Before ANY file edit (preToolUse):
@@ -95,7 +95,7 @@ REATIVOS (CI/CD Gates — detectam o dano):
 - You're unsure which of 2+ approaches is correct
 ```
 
-### Hook: postToolUse (após cada edição)
+### Hook: postToolUse (after each edit)
 
 ```yaml
 ### After EVERY file edit (postToolUse):
@@ -108,9 +108,9 @@ REATIVOS (CI/CD Gates — detectam o dano):
 
 ---
 
-### Pipeline CI/CD Completo
+### Complete CI/CD Pipeline
 
-**Arquivo: `.github/workflows/ai-quality-gate.yml`**
+**File: `.github/workflows/ai-quality-gate.yml`**
 
 ```yaml
 name: AI Quality Gate
@@ -328,7 +328,7 @@ echo "✅ Pre-commit checks passed"
 
 ---
 
-### PR Template com Quality Checklist
+### PR Template with Quality Checklist
 
 **`.github/PULL_REQUEST_TEMPLATE.md`:**
 
@@ -364,39 +364,39 @@ echo "✅ Pre-commit checks passed"
 
 ---
 
-## WHO — Responsabilidades
+## WHO: Responsibilities
 
-| Gate | Configura | Mantém | Ignora nunca |
+| Gate | Configures | Maintains | Never bypass |
 |------|-----------|--------|-------------|
-| Pre-commit hooks | Dev Sênior | Todos os devs | Nunca usar `--no-verify` sem aprovação |
-| CI/CD pipeline | DevOps/Platform | Tech Lead | Falhas são bloqueadoras |
-| SonarQube rules | Arquiteto | Tech Lead | Quality gate é obrigatório no merge |
-| Security scanners | Security team | DevOps | CVE High/Critical = bloqueia merge |
-| PR template | Tech Lead | Todos | Seção AI disclosure é obrigatória |
+| Pre-commit hooks | Senior Dev | All devs | Never use `--no-verify` without approval |
+| CI/CD pipeline | DevOps/Platform | Tech Lead | Failures are blockers |
+| SonarQube rules | Architect | Tech Lead | Quality gate is mandatory on merge |
+| Security scanners | Security team | DevOps | CVE High/Critical = blocks merge |
+| PR template | Tech Lead | Everyone | AI disclosure section is mandatory |
 
 ---
 
-## WHEN — Cadência de quality gates
+## WHEN: Quality gates cadence
 
 ```
-DIA 0 (setup):   Configurar pre-commit hooks + CI/CD pipeline básico
-SPRINT 1:        Adicionar SonarQube + 2+ security scanners
-SPRINT 2:        Afinar thresholds com base em baseline do projeto
-QUARTERLY:       Revisar thresholds (são muito permissivos? muito rígidos?)
-POR MODELO NOVO: Re-calibrar se agente diferente passa a gerar código no projeto
+DAY 0 (setup):     Configure pre-commit hooks + basic CI/CD pipeline
+SPRINT 1:          Add SonarQube + 2+ security scanners
+SPRINT 2:          Fine-tune thresholds based on project baseline
+QUARTERLY:         Review thresholds (too permissive? too strict?)
+PER NEW MODEL:     Re-calibrate if a different agent starts generating code in the project
 ```
 
 ---
 
 ## WHICH MODEL
 
-| Tarefa | Modelo | Notas |
+| Task | Model | Notes |
 |--------|--------|-------|
-| Configurar pipeline CI/CD | Sonnet 4.6 | Estruturado, padrão claro |
-| Analisar falha de gate | Sonnet 4.6 | Diagnóstico estruturado |
-| Investigar root cause de falha complexa | Opus 4.6 | understand→reproduce→fix→verify |
-| Revisar output de scanner | Haiku 4.5 | Triagem inicial de resultados |
-| Criar security review de PR | Opus 4.6 + ET | Decisão de segurança |
+| Configure CI/CD pipeline | Sonnet 4.6 | Structured, clear pattern |
+| Analyze gate failure | Sonnet 4.6 | Structured diagnosis |
+| Investigate complex failure root cause | Opus 4.6 | understand→reproduce→fix→verify |
+| Review scanner output | Haiku 4.5 | Initial results triage |
+| Create PR security review | Opus 4.6 + ET | Security decision |
 
 ---
 

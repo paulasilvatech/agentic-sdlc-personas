@@ -5,7 +5,7 @@ author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at
 date: "2026-04-14"
 version: "1.0.0"
 status: "approved"
-locale: "pt-BR"
+locale: "en"
 tags: ["primitive", "ai-native-sdlc", "orchestration"]
 ---
 
@@ -15,86 +15,86 @@ tags: ["primitive", "ai-native-sdlc", "orchestration"]
 
 ---
 
-## WHAT — O que é Multi-Agent Orchestration
+## WHAT: What is Multi-Agent Orchestration
 
-Multi-Agent Orchestration é a estratégia de **coordenar múltiplos agentes especializados** para realizar tarefas que nenhum agente único faria com eficiência máxima. Cada agente tem um papel, um modelo otimizado, e uma interface clara com os demais.
+Multi-Agent Orchestration is the strategy of **coordinating multiple specialized agents** to perform tasks that no single agent would accomplish with maximum efficiency. Each agent has a role, an optimized model, and a clear interface with the others.
 
-### As 4 Topologias (AdaptOrch — 2602.16873)
+### The 4 Topologies (AdaptOrch — 2602.16873)
 
 ```
-PARALLEL: Agentes independentes executam simultaneamente
+PARALLEL: Independent agents execute simultaneously
 ┌─────────────────────────────────────────┐
 │  Orchestrator                           │
-│  ├─ Agent A (análise de arquivo 1)      │
-│  ├─ Agent B (análise de arquivo 2)      │
-│  └─ Agent C (análise de arquivo 3)      │
-│  → Merge resultados                     │
+│  ├─ Agent A (file 1 analysis)           │
+│  ├─ Agent B (file 2 analysis)           │
+│  └─ Agent C (file 3 analysis)           │
+│  → Merge results                        │
 └─────────────────────────────────────────┘
-Quando usar: tarefas independentes, análise multi-arquivo, geração de testes
+When to use: independent tasks, multi-file analysis, test generation
 
-SEQUENTIAL: Agentes em cadeia, output de um é input do próximo
+SEQUENTIAL: Agents in a chain, one's output is the next's input
 ┌─────────────────────────────────────────┐
 │  Spec Agent → Code Agent → Test Agent → Review Agent
 └─────────────────────────────────────────┘
-Quando usar: pipeline com dependências claras (spec→impl→test→review)
+When to use: pipeline with clear dependencies (spec→impl→test→review)
 
-HIERARCHICAL: Orchestrator delega para agentes especializados
+HIERARCHICAL: Orchestrator delegates to specialized agents
 ┌─────────────────────────────────────────┐
 │  Orchestrator (Opus)                    │
 │  ├─ Spec Agent (Opus)                   │
-│  ├─ Code Agent (Sonnet) ← especialista  │
-│  ├─ Test Agent (Sonnet) ← especialista  │
+│  ├─ Code Agent (Sonnet) ← specialist    │
+│  ├─ Test Agent (Sonnet) ← specialist    │
 │  └─ Review Agent (Sonnet/Haiku)         │
 └─────────────────────────────────────────┘
-Quando usar: projetos greenfield complexos, múltiplos domínios
+When to use: complex greenfield projects, multiple domains
 
-HYBRID: Hierárquico com parallelismo interno
+HYBRID: Hierarchical with internal parallelism
 ┌─────────────────────────────────────────┐
 │  Orchestrator (Opus)                    │
 │  ├─ [Sequential] Spec → Constitution    │
-│  ├─ [Parallel] Code + Test (simultâneo) │
+│  ├─ [Parallel] Code + Test (simultaneous)│
 │  └─ [Sequential] Review → Deploy        │
 └─────────────────────────────────────────┘
-Quando usar: feature development completo enterprise-grade
+When to use: complete enterprise-grade feature development
 ```
 
 ---
 
-## WHY — Por que orquestrar
+## WHY: Why orchestrate
 
-### Evidências científicas
+### Scientific evidence
 
-**Topologia > seleção de modelo:**
-- Com modelos convergindo em performance, **topologia de orquestração domina** como driver de resultado (AdaptOrch 2602.16873, Korea National Open Univ)
-- **12-23% improvement** sobre estáticas baselines usando topology routing
-- Performance Convergence Scaling Law: à medida que modelos melhoram, escolher topologia certa vale mais que escolher modelo
+**Topology > model selection:**
+- With models converging in performance, **orchestration topology dominates** as the result driver (AdaptOrch 2602.16873, Korea National Open Univ)
+- **12-23% improvement** over static baselines using topology routing
+- Performance Convergence Scaling Law: as models improve, choosing the right topology is worth more than choosing the model
 
 **Planner-Coder Gap:**
-- **75.3% de falhas em MAS** vêm da interface planner → coder (2504.11805)
-- Spec ambígua do planner → código incorreto do coder → falha em cadeia
-- Separar planner (Opus) de coder (Sonnet) com interface de spec explícita resolve 75% das falhas
+- **75.3% of failures in MAS** come from the planner → coder interface (2504.11805)
+- Ambiguous spec from planner → incorrect code from coder → cascading failure
+- Separating planner (Opus) from coder (Sonnet) with an explicit spec interface resolves 75% of failures
 
-**Token economy por fase:**
-- Code Review = **59.42% de todos os tokens** (2601.14470)
-- Input tokens = **53.9%** do total
-- → Agente de review dedicado com Haiku para triagem + Sonnet para análise profunda reduz custo 40-60%
+**Token economy per phase:**
+- Code Review = **59.42% of all tokens** (2601.14470)
+- Input tokens = **53.9%** of total
+- → Dedicated review agent with Haiku for triage + Sonnet for deep analysis reduces cost 40-60%
 
 **Communication tax:**
-- Inter-agent coordination tem "communication tax" (2601.14470)
-- Minimizar: interfaces claras, outputs estruturados, sem re-leitura desnecessária
+- Inter-agent coordination has a "communication tax" (2601.14470)
+- Minimize: clear interfaces, structured outputs, no unnecessary re-reads
 
-**3 camadas de raciocínio agentivo (2601.12538):**
-- Foundational: planning, tool use, search → hooks e prompts básicos
-- Self-evolving: feedback, memory, adaptation → skills com memory
-- Collective: role assigning, collaboration, co-evolving → orquestração multi-agent
+**3 layers of agentic reasoning (2601.12538):**
+- Foundational: planning, tool use, search → basic hooks and prompts
+- Self-evolving: feedback, memory, adaptation → skills with memory
+- Collective: role assigning, collaboration, co-evolving → multi-agent orchestration
 
 ---
 
-## HOW — Implementação por fase SDLC
+## HOW: Implementation by SDLC phase
 
-### Topologia para cada fase
+### Topology for each phase
 
-| Fase SDLC | Topologia | Agentes | Modelos |
+| SDLC Phase | Topology | Agents | Models |
 |-----------|-----------|---------|---------|
 | Requirements | Sequential | Req Analyst → Spec Validator | Opus → Sonnet |
 | Architecture | Sequential | Architect → Security Reviewer | Opus+ET → Opus |
@@ -104,7 +104,7 @@ Quando usar: feature development completo enterprise-grade
 
 ---
 
-### Template: Orquestração para Feature Development Completo
+### Template: Orchestration for Complete Feature Development
 
 **`.github/prompts/orchestrate-feature.prompt.md`:**
 
@@ -204,7 +204,7 @@ The spec passed from Planner to Coder MUST include:
 
 ---
 
-### Configuração em AGENTS.md
+### Configuration in AGENTS.md
 
 ```markdown
 ## MULTI-AGENT COORDINATION PROTOCOL
@@ -271,59 +271,59 @@ The 59.42% of tokens spent on inter-agent code review can be reduced:
 
 ---
 
-## WHO — Responsabilidades
+## WHO: Responsibilities
 
-| Papel | Responsabilidade |
+| Role | Responsibility |
 |-------|-----------------|
-| Arquiteto | Define topologia de orquestração por tipo de feature |
-| Tech Lead | Implementa orchestration prompts em `.github/prompts/` |
-| Dev Sênior | Aplica topologia correta para cada task |
-| Todo o time | Respeita interfaces entre agentes (não expandir scope) |
+| Architect | Defines orchestration topology per feature type |
+| Tech Lead | Implements orchestration prompts in `.github/prompts/` |
+| Senior Dev | Applies correct topology for each task |
+| Entire team | Respects interfaces between agents (do not expand scope) |
 
 ---
 
-## WHEN — Cadência
+## WHEN: Cadence
 
 ```
-DIA 0:         Definir roles no AGENTS.md + topologia padrão no copilot-instructions.md
-NOVA FEATURE:  Usar Hybrid topologia para features complexas (>3 arquivos)
-SIMPLE FIX:    Sequential (entender → corrigir → verificar) sem orchestrator separado
-SECURITY WORK: Sempre Planner-Coder Split com Security Reviewer independente
-QUARTERLY:     Avaliar se topologia atual ainda é ideal (modelos evoluem)
+DAY 0:           Define roles in AGENTS.md + default topology in copilot-instructions.md
+NEW FEATURE:     Use Hybrid topology for complex features (>3 files)
+SIMPLE FIX:      Sequential (understand → fix → verify) without separate orchestrator
+SECURITY WORK:   Always Planner-Coder Split with independent Security Reviewer
+QUARTERLY:       Evaluate if current topology is still optimal (models evolve)
 ```
 
 ---
 
-## WHICH MODEL — Meta-routing
+## WHICH MODEL: Meta-routing
 
-| Tarefa de Orquestração | Modelo | Notas |
+| Orchestration Task | Model | Notes |
 |----------------------|--------|-------|
-| Definir topologia para novo projeto | Opus 4.6 + ET | Decisão arquitetural |
-| Escrever orchestration prompts | Sonnet 4.6 | Estruturado |
-| Executar como Orchestrator | Opus 4.6 | Precisa de reasoning profundo |
-| Executar como Code Agent | Sonnet 4.6 | Implementação iterativa |
-| Executar como Style Reviewer | Haiku 4.5 | Task simples |
-| Executar como Security Reviewer | Opus 4.6 + ET | Decisão de segurança |
+| Define topology for new project | Opus 4.6 + ET | Architectural decision |
+| Write orchestration prompts | Sonnet 4.6 | Structured |
+| Execute as Orchestrator | Opus 4.6 | Requires deep reasoning |
+| Execute as Code Agent | Sonnet 4.6 | Iterative implementation |
+| Execute as Style Reviewer | Haiku 4.5 | Simple task |
+| Execute as Security Reviewer | Opus 4.6 + ET | Security decision |
 
 ---
 
-## QUICK REFERENCE — Topology Selection
+## QUICK REFERENCE: Topology Selection
 
 ```
-Feature tem > 3 arquivos independentes para analisar?
-├─ Sim → Parallel (análise simultânea)
-└─ Não ↓
+Does the feature have > 3 independent files to analyze?
+├─ Yes → Parallel (simultaneous analysis)
+└─ No ↓
 
-Feature segue pipeline claro (A→B→C)?
-├─ Sim → Sequential
-└─ Não ↓
+Does the feature follow a clear pipeline (A→B→C)?
+├─ Yes → Sequential
+└─ No ↓
 
-Feature precisa de múltiplos especialistas (code + test + security)?
-├─ Sim → Hierarchical (com Orchestrator)
-└─ Não ↓
+Does the feature need multiple specialists (code + test + security)?
+├─ Yes → Hierarchical (with Orchestrator)
+└─ No ↓
 
-Feature é complexa E precisa de fases sequenciais com parallelismo interno?
-└─ Hybrid (ex: spec → [code parallel test] → review)
+Is the feature complex AND requires sequential phases with internal parallelism?
+└─ Hybrid (e.g.: spec → [code parallel test] → review)
 ```
 
 ---

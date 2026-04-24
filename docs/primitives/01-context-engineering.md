@@ -5,7 +5,7 @@ author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at
 date: "2026-04-14"
 version: "1.0.0"
 status: "approved"
-locale: "pt-BR"
+locale: "en"
 tags: ["primitive", "ai-native-sdlc", "context-engineering"]
 ---
 
@@ -15,17 +15,17 @@ tags: ["primitive", "ai-native-sdlc", "context-engineering"]
 
 ---
 
-## WHAT — O que é Context Engineering
+## WHAT: What is Context Engineering
 
-Context Engineering é a **construção deliberada e estruturada de artefatos de contexto** que guiam agentes de AI de forma consistente, eficiente e segura. É a disciplina de decidir *o que o agente deve saber*, *quando deve saber*, e *como esse conhecimento é representado*.
+Context Engineering is the **deliberate and structured construction of context artifacts** that guide AI agents consistently, efficiently, and safely. It is the discipline of deciding *what the agent should know*, *when it should know it*, and *how that knowledge is represented*.
 
-Diferente de "dar um prompt", context engineering cria uma **infraestrutura de conhecimento persistente** — arquivos versionados no repositório que sobrevivem entre sessões, entre devs, e entre sprints.
+Unlike "giving a prompt", context engineering creates a **persistent knowledge infrastructure** — versioned files in the repository that survive across sessions, across developers, and across sprints.
 
-### Os três tiers de contexto (Vasilopoulos 2026 — 2602.20478)
+### The three context tiers (Vasilopoulos 2026 — 2602.20478)
 
 ```
 ┌─────────────────────────────────────────────────────────┐
-│  TIER 1: HOT-MEMORY (~660 linhas, sempre carregado)     │
+│  TIER 1: HOT-MEMORY (~660 lines, always loaded)         │
 │  copilot-instructions.md / CLAUDE.md                    │
 │  • Model routing rules                                  │
 │  • Quality standards                                    │
@@ -33,7 +33,7 @@ Diferente de "dar um prompt", context engineering cria uma **infraestrutura de c
 │  • Agent behavior protocols                             │
 │  • Skill trigger tables                                 │
 └─────────────────────────────────────────────────────────┘
-           ↓ agente consulta quando necessário ↓
+           ↓ agent consults when needed ↓
 ┌─────────────────────────────────────────────────────────┐
 │  TIER 2: WARM-MEMORY (domain-specialist agents/skills)  │
 │  .github/instructions/*.instructions.md                 │
@@ -42,7 +42,7 @@ Diferente de "dar um prompt", context engineering cria uma **infraestrutura de c
 │  • Feature-area instructions (applyTo scoping)          │
 │  • Reusable slash commands                              │
 └─────────────────────────────────────────────────────────┘
-           ↓ agente carrega on-demand ↓
+           ↓ agent loads on-demand ↓
 ┌─────────────────────────────────────────────────────────┐
 │  TIER 3: COLD-MEMORY (spec docs, on-demand)             │
 │  docs/CONSTITUTION.md                                   │
@@ -55,62 +55,62 @@ Diferente de "dar um prompt", context engineering cria uma **infraestrutura de c
 └─────────────────────────────────────────────────────────┘
 ```
 
-### Artefatos de contexto — inventário completo
+### Context artifacts — complete inventory
 
-| Arquivo | Tier | Carregado | Responsável | Ferramenta |
-|---------|------|-----------|-------------|------------|
-| `.github/copilot-instructions.md` | 1 | Sempre | Tech Lead | GitHub Copilot |
-| `CLAUDE.md` | 1 | Sempre | Tech Lead | Claude Code |
-| `AGENTS.md` | 1 | Sempre | Tech Lead | Todos os agentes |
-| `.github/instructions/*.instructions.md` | 2 | Por glob (applyTo) | Dev Sênior | GitHub Copilot |
-| `.github/prompts/*.prompt.md` | 2 | On-demand (slash) | Dev Sênior | GitHub Copilot |
-| `.claude/commands/*.md` | 2 | On-demand (slash) | Dev Sênior | Claude Code |
-| `docs/CONSTITUTION.md` | 3 | On-demand | Arquiteto | Qualquer agente |
-| `docs/SPECIFICATION.md` | 3 | On-demand | Product/Dev | Qualquer agente |
-| `docs/IMPLEMENTATION_PLAN.md` | 3 | On-demand | Tech Lead | Qualquer agente |
-| `src/CODEMAP.md` | 3 | On-demand | IDE/Dev | Qualquer agente |
+| File | Tier | Loaded | Owner | Tool |
+|------|------|--------|-------|------|
+| `.github/copilot-instructions.md` | 1 | Always | Tech Lead | GitHub Copilot |
+| `CLAUDE.md` | 1 | Always | Tech Lead | Claude Code |
+| `AGENTS.md` | 1 | Always | Tech Lead | All agents |
+| `.github/instructions/*.instructions.md` | 2 | By glob (applyTo) | Senior Dev | GitHub Copilot |
+| `.github/prompts/*.prompt.md` | 2 | On-demand (slash) | Senior Dev | GitHub Copilot |
+| `.claude/commands/*.md` | 2 | On-demand (slash) | Senior Dev | Claude Code |
+| `docs/CONSTITUTION.md` | 3 | On-demand | Architect | Any agent |
+| `docs/SPECIFICATION.md` | 3 | On-demand | Product/Dev | Any agent |
+| `docs/IMPLEMENTATION_PLAN.md` | 3 | On-demand | Tech Lead | Any agent |
+| `src/CODEMAP.md` | 3 | On-demand | IDE/Dev | Any agent |
 
 ---
 
-## WHY — Por que é crítico
+## WHY: Why it is critical
 
-### Evidências científicas
+### Scientific evidence
 
-**Redução de custo operacional:**
+**Operational cost reduction:**
 - AGENTS.md human-curated → **-28.64% runtime**, **-16.58% output tokens** (2601.20404, Singapore/Heidelberg/Bamberg/London, 10 repos, 124 PRs)
-- applyTo scoping em .instructions.md → **-68% tokens de instrução** (Paula's Model Routing Guide)
-- Arquivos gerados por LLM reduzem sucesso em -3%; human-curated = +4% (2602.20478 citando ETH Zurich)
+- applyTo scoping in .instructions.md → **-68% instruction tokens** (Paula's Model Routing Guide)
+- LLM-generated files reduce success by -3%; human-curated = +4% (2602.20478 citing ETH Zurich)
 
-**Prevenção de dívidas:**
-- Sem context engineering: cognitive debt (erosão do entendimento da equipe) + intent debt (falta de rationale para AI) acumulam (2603.22106, Storey UVic)
-- AI reduz technical debt mas **acelera** cognitive + intent debt sem contexto estruturado
-- 108K-line C# system com 3-tier context: 2,801 prompts, 1,197 agent invocações bem-sucedidas sem context collapse (2602.20478)
+**Debt prevention:**
+- Without context engineering: cognitive debt (erosion of team understanding) + intent debt (lack of rationale for AI) accumulate (2603.22106, Storey UVic)
+- AI reduces technical debt but **accelerates** cognitive + intent debt without structured context
+- 108K-line C# system with 3-tier context: 2,801 prompts, 1,197 successful agent invocations without context collapse (2602.20478)
 
-**Qualidade de código:**
-- Sem governance/contexto: agentes causam **+18% static warnings**, **+39% cognitive complexity** (2601.13597, CMU)
-- Com contexto rico: agente usa padrão understand→reproduce→fix→verify consistentemente (2604.02547)
+**Code quality:**
+- Without governance/context: agents cause **+18% static warnings**, **+39% cognitive complexity** (2601.13597, CMU)
+- With rich context: agent consistently uses the understand→reproduce→fix→verify pattern (2604.02547)
 
 **Semantic density:**
-- Compressão agressiva de context: **-17% input tokens** → **+67% session cost total** (2604.07502)
-- **Linguagem natural rica = mais barata** que abreviações (counter-intuitive finding)
-- Ceremony-to-logic ratio Java Spring Boot = 8:1 (desperdício); Go = 2:1 (eficiente)
+- Aggressive context compression: **-17% input tokens** → **+67% total session cost** (2604.07502)
+- **Rich natural language = cheaper** than abbreviations (counter-intuitive finding)
+- Ceremony-to-logic ratio Java Spring Boot = 8:1 (wasteful); Go = 2:1 (efficient)
 
 ---
 
-## HOW — Como implementar
+## HOW: How to implement
 
-### Passo 0 — Definir o projeto (5 min)
-Antes de criar qualquer arquivo, responder:
-1. Qual é o stack? (Node/Python/Java/.NET/Go)
-2. Qual é o domínio? (fintech/healthtech/e-commerce/platform)
-3. Qual é o nível de maturidade? (greenfield/brownfield/legacy)
-4. Quais são os modelos disponíveis? (Opus/Sonnet/Haiku)
+### Step 0 — Define the project (5 min)
+Before creating any file, answer:
+1. What is the stack? (Node/Python/Java/.NET/Go)
+2. What is the domain? (fintech/healthtech/e-commerce/platform)
+3. What is the maturity level? (greenfield/brownfield/legacy)
+4. What are the available models? (Opus/Sonnet/Haiku)
 
-### Passo 1 — Criar Tier 1: Hot-Memory (30 min)
+### Step 1 — Create Tier 1: Hot-Memory (30 min)
 
-**Arquivo: `.github/copilot-instructions.md`**
+**File: `.github/copilot-instructions.md`**
 
-Este é o arquivo mais importante. Estrutura mínima obrigatória (~660 linhas):
+This is the most important file. Required minimum structure (~660 lines):
 
 ```markdown
 # [PROJECT NAME] — GitHub Copilot Instructions
@@ -148,11 +148,11 @@ Este é o arquivo mais importante. Estrutura mínima obrigatória (~660 linhas):
 [Security decisions, arch decisions, coverage drops, perf degradation]
 ```
 
-> ⚠️ **CRÍTICO**: Escrever em linguagem natural rica. NÃO usar abreviações.
-> "VerifyOrderByAvailableAmount" é melhor que "verifyOrdByAvAmt" para agentes.
-> Cada abreviação que o agente precisa decodificar custa tokens de reasoning (2604.07502).
+> ⚠️ **CRITICAL**: Write in rich natural language. DO NOT use abbreviations.
+> "VerifyOrderByAvailableAmount" is better than "verifyOrdByAvAmt" for agents.
+> Every abbreviation the agent needs to decode costs reasoning tokens (2604.07502).
 
-**Arquivo: `AGENTS.md`** (root)
+**File: `AGENTS.md`** (root)
 
 ```markdown
 # AGENTS.md
@@ -176,9 +176,9 @@ Este é o arquivo mais importante. Estrutura mínima obrigatória (~660 linhas):
 [PR format, commit format, documentation format]
 ```
 
-### Passo 2 — Criar Tier 2: Warm-Memory (1h)
+### Step 2 — Create Tier 2: Warm-Memory (1h)
 
-**Arquivo: `.github/instructions/typescript.instructions.md`**
+**File: `.github/instructions/typescript.instructions.md`**
 
 ```markdown
 ---
@@ -189,7 +189,7 @@ applyTo: "**/*.ts,**/*.tsx"
 [applyTo scoping = -68% tokens vs global instructions]
 ```
 
-**Estrutura de .instructions.md files:**
+**Structure of .instructions.md files:**
 ```
 .github/instructions/
   backend.instructions.md      (applyTo: "src/api/**,src/services/**")
@@ -199,12 +199,12 @@ applyTo: "**/*.ts,**/*.tsx"
   infra.instructions.md        (applyTo: "infrastructure/**,*.tf,*.yaml")
 ```
 
-**Arquivo: `.github/prompts/[name].prompt.md`**
+**File: `.github/prompts/[name].prompt.md`**
 
 ```markdown
 ---
 mode: agent
-description: [2 frases max: o que faz + quando usar]
+description: [2 sentences max: what it does + when to use]
 ---
 # [Slash Command Name]
 
@@ -220,14 +220,14 @@ You are helping with [specific task].
 [Expected format of the result]
 ```
 
-### Passo 3 — Criar Tier 3: Cold-Memory (2h)
+### Step 3 — Create Tier 3: Cold-Memory (2h)
 
-**Ver Primitive 03 (SDD) para templates completos de:**
+**See Primitive 03 (SDD) for complete templates of:**
 - `docs/CONSTITUTION.md`
 - `docs/SPECIFICATION.md`
 - `docs/IMPLEMENTATION_PLAN.md`
 
-**Arquivo: `src/CODEMAP.md`** (Program Skeleton — 2604.07502)
+**File: `src/CODEMAP.md`** (Program Skeleton — 2604.07502)
 
 ```markdown
 # CODEMAP.md — Program Skeleton
@@ -263,87 +263,87 @@ updateProfile(id: string, data: Partial<User>): Promise<User>
 [Key files and what they contain — 20 lines max]
 ```
 
-### Passo 4 — Validar com checklist
+### Step 4 — Validate with checklist
 
 ```
-□ copilot-instructions.md criado (~660 linhas, linguagem natural rica)
-□ AGENTS.md escrito por humano (não gerado por IA)
-□ .instructions.md files com applyTo scoping correto
-□ .prompt.md slash commands com description ≤ 2 frases
-□ CODEMAP.md presente e atualizado
-□ CONSTITUTION.md presente (ver Primitive 03)
-□ Nenhum arquivo de contexto contém abreviações
-□ Nenhum arquivo de contexto foi gerado automaticamente sem revisão humana
+□ copilot-instructions.md created (~660 lines, rich natural language)
+□ AGENTS.md written by human (not AI-generated)
+□ .instructions.md files with correct applyTo scoping
+□ .prompt.md slash commands with description ≤ 2 sentences
+□ CODEMAP.md present and up to date
+□ CONSTITUTION.md present (see Primitive 03)
+□ No context file contains abbreviations
+□ No context file was automatically generated without human review
 ```
 
 ---
 
-## WHO — Quem cria cada artefato
+## WHO: Who creates each artifact
 
-| Artefato | Criador | Revisor | Frequência de atualização |
-|----------|---------|---------|--------------------------|
-| `copilot-instructions.md` | Tech Lead | Arquiteto | Por sprint ou mudança de stack |
-| `AGENTS.md` | Tech Lead | Todo o time | Por sprint |
-| `.instructions.md` | Dev Sênior | Tech Lead | Por mudança de convenção |
-| `.prompt.md` | Qualquer dev | Dev Sênior | Quando padrão se repete ≥3x |
-| `CODEMAP.md` | Dev + IDE | Tech Lead | Por mudança de topologia |
-| `CONSTITUTION.md` | Arquiteto de Segurança | Tech Lead | Por release ou novo requisito de segurança |
-| `SPECIFICATION.md` | Product Owner + Dev | Todos | Por feature |
-| `IMPLEMENTATION_PLAN.md` | Tech Lead | Dev | Por sprint |
+| Artifact | Creator | Reviewer | Update frequency |
+|----------|---------|----------|------------------|
+| `copilot-instructions.md` | Tech Lead | Architect | Per sprint or stack change |
+| `AGENTS.md` | Tech Lead | Entire team | Per sprint |
+| `.instructions.md` | Senior Dev | Tech Lead | Per convention change |
+| `.prompt.md` | Any dev | Senior Dev | When a pattern repeats ≥3x |
+| `CODEMAP.md` | Dev + IDE | Tech Lead | Per topology change |
+| `CONSTITUTION.md` | Security Architect | Tech Lead | Per release or new security requirement |
+| `SPECIFICATION.md` | Product Owner + Dev | Everyone | Per feature |
+| `IMPLEMENTATION_PLAN.md` | Tech Lead | Dev | Per sprint |
 
 ---
 
-## WHEN — Em qual fase do SDLC
+## WHEN: At which SDLC phase
 
 ```
-PROJETO NOVO (Greenfield):
-Dia 0:   CONSTITUTION.md → AGENTS.md → copilot-instructions.md
-Dia 1:   SPECIFICATION.md → IMPLEMENTATION_PLAN.md
-Dia 2+:  .instructions.md por domínio conforme código cresce
-Ongoing: CODEMAP.md atualizado a cada mudança de topologia
+NEW PROJECT (Greenfield):
+Day 0:    CONSTITUTION.md → AGENTS.md → copilot-instructions.md
+Day 1:    SPECIFICATION.md → IMPLEMENTATION_PLAN.md
+Day 2+:   .instructions.md per domain as code grows
+Ongoing:  CODEMAP.md updated on every topology change
 
-PROJETO EXISTENTE (Brownfield):
+EXISTING PROJECT (Brownfield):
 Sprint 1: AGENTS.md + copilot-instructions.md (quick wins)
-Sprint 2: CODEMAP.md do código existente
-Sprint 3: SPECIFICATION.md retroativa (spec-anchored)
+Sprint 2: CODEMAP.md for existing code
+Sprint 3: Retroactive SPECIFICATION.md (spec-anchored)
 Sprint 4: CONSTITUTION.md + quality gates
-Ongoing: .prompt.md para padrões que se repetem
+Ongoing:  .prompt.md for repeating patterns
 ```
 
 ---
 
-## WHICH MODEL — Qual modelo usar
+## WHICH MODEL: Which model to use
 
-| Tarefa de Context Engineering | Modelo | Extended Thinking | Razão |
-|-------------------------------|--------|-------------------|-------|
-| Criar `CONSTITUTION.md` | Opus 4.6 | ✅ Sim | Decisões de segurança ambíguas, sem feedback loop |
-| Criar `SPECIFICATION.md` | Opus 4.6 | ❌ Não | Estruturado, iterativo |
-| Criar `IMPLEMENTATION_PLAN.md` | Sonnet 4.6 | ❌ Não | Task decomposition, iterativo |
-| Criar/atualizar `CODEMAP.md` | Haiku 4.5 | ❌ Não | Summarização de código existente |
-| Criar `.instructions.md` | Sonnet 4.6 | ❌ Não | Refinamento iterativo de convenções |
-| Criar `.prompt.md` slash commands | Sonnet 4.6 | ❌ Não | Padrão claro, estruturado |
-| Revisar/auditar context files | Sonnet 4.6 | ❌ Não | Análise estruturada |
-| Criar `AGENTS.md` | **HUMANO** | N/A | Pesquisa mostra: LLM-generated = -3% success rate |
+| Context Engineering Task | Model | Extended Thinking | Reason |
+|--------------------------|-------|-------------------|--------|
+| Create `CONSTITUTION.md` | Opus 4.6 | ✅ Yes | Ambiguous security decisions, no feedback loop |
+| Create `SPECIFICATION.md` | Opus 4.6 | ❌ No | Structured, iterative |
+| Create `IMPLEMENTATION_PLAN.md` | Sonnet 4.6 | ❌ No | Task decomposition, iterative |
+| Create/update `CODEMAP.md` | Haiku 4.5 | ❌ No | Summarization of existing code |
+| Create `.instructions.md` | Sonnet 4.6 | ❌ No | Iterative convention refinement |
+| Create `.prompt.md` slash commands | Sonnet 4.6 | ❌ No | Clear pattern, structured |
+| Review/audit context files | Sonnet 4.6 | ❌ No | Structured analysis |
+| Create `AGENTS.md` | **HUMAN** | N/A | Research shows: LLM-generated = -3% success rate |
 
-> 📌 **Regra de ouro**: `AGENTS.md` DEVE ser escrito por humanos.
-> Arquivos gerados por LLM têm >20% token overhead e reduzem qualidade.
-> Source: Augment Code study citado em 2602.20478, ETH Zurich.
+> 📌 **Golden rule**: `AGENTS.md` MUST be written by humans.
+> LLM-generated files have >20% token overhead and reduce quality.
+> Source: Augment Code study cited in 2602.20478, ETH Zurich.
 
 ---
 
-## ANTI-PATTERNS — O que evitar
+## ANTI-PATTERNS: What to avoid
 
-❌ **Compressão excessiva**: Abreviações poupam 17% de input tokens mas aumentam custo total em 67% (reasoning tax — 2604.07502)
+❌ **Excessive compression**: Abbreviations save 17% of input tokens but increase total cost by 67% (reasoning tax — 2604.07502)
 
-❌ **Mega-arquivo único**: Colocar tudo em um copilot-instructions.md de 5000 linhas. Use applyTo para distribuir.
+❌ **Single mega-file**: Putting everything in a 5000-line copilot-instructions.md. Use applyTo to distribute.
 
-❌ **Context stale**: Criar CODEMAP.md e nunca atualizar. Contexto desatualizado = alucinações.
+❌ **Stale context**: Creating CODEMAP.md and never updating it. Outdated context = hallucinations.
 
-❌ **Copiar para AGENTS.md o que o LLM gerou**: Pesquisa mostra que instruções geradas por IA não são eficazes. Escreva com suas palavras.
+❌ **Copying LLM-generated content into AGENTS.md**: Research shows that AI-generated instructions are not effective. Write in your own words.
 
-❌ **Background no body de skills**: Coloque background em references, não inline. 60%+ de skills públicas são não-acionáveis (2603.29919).
+❌ **Background in skill body**: Place background in references, not inline. 60%+ of public skills are non-actionable (2603.29919).
 
-❌ **Sem applyTo**: Instructions globais são carregadas em todo contexto. Use applyTo para reduzir 68% dos tokens.
+❌ **No applyTo**: Global instructions are loaded in every context. Use applyTo to reduce 68% of tokens.
 
 ---
 

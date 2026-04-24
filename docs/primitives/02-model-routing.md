@@ -5,7 +5,7 @@ author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at
 date: "2026-04-14"
 version: "1.0.0"
 status: "approved"
-locale: "pt-BR"
+locale: "en"
 tags: ["primitive", "ai-native-sdlc", "model-routing"]
 ---
 
@@ -15,124 +15,124 @@ tags: ["primitive", "ai-native-sdlc", "model-routing"]
 
 ---
 
-## WHAT — O que é Model Routing
+## WHAT: What is Model Routing
 
-Model Routing é a **estratégia sistemática de atribuir o modelo correto** (Opus/Sonnet/Haiku) **ao tipo correto de tarefa** no ciclo SDLC, com a configuração correta de extended thinking, para maximizar qualidade e minimizar custo.
+Model Routing is the **systematic strategy of assigning the correct model** (Opus/Sonnet/Haiku) **to the correct type of task** in the SDLC cycle, with the correct extended thinking configuration, to maximize quality and minimize cost.
 
-Com os modelos convergindo em performance, **a escolha de topologia e routing domina a escolha de modelo** como driver de sucesso (AdaptOrch, 2602.16873). Routing errado = custo 3x+ sem ganho de qualidade — ou qualidade 30% pior com o modelo errado.
+With models converging in performance, **topology and routing choice dominates model choice** as a success driver (AdaptOrch, 2602.16873). Wrong routing = 3x+ cost with no quality gain — or 30% worse quality with the wrong model.
 
-### Os três modelos e seus perfis
+### The three models and their profiles
 
-| Modelo | Custo Relativo | Contexto | Melhor para |
-|--------|---------------|---------|------------|
-| **Claude Opus 4.6** | 3x (baseline Sonnet) | Até 200K tokens | Spec, arquitetura, segurança, decisões ambíguas |
-| **Claude Sonnet 4.6** | 1x (baseline) | Até 200K tokens | Implementação, TDD, code review, análise estruturada |
-| **Claude Haiku 4.5** | 0.33x | Até 200K tokens | Summarização, ask/chat, boilerplate, tarefas simples |
+| Model | Relative Cost | Context | Best for |
+|-------|--------------|---------|----------|
+| **Claude Opus 4.6** | 3x (Sonnet baseline) | Up to 200K tokens | Spec, architecture, security, ambiguous decisions |
+| **Claude Sonnet 4.6** | 1x (baseline) | Up to 200K tokens | Implementation, TDD, code review, structured analysis |
+| **Claude Haiku 4.5** | 0.33x | Up to 200K tokens | Summarization, ask/chat, boilerplate, simple tasks |
 
-### Extended Thinking — quando usar e quando NÃO usar
+### Extended Thinking — when to use and when NOT to use
 
-| Contexto | Extended Thinking | Resultado esperado |
-|---------|-------------------|-------------------|
-| Spec/arquitetura aberta (ambígua, sem feedback loop) | ✅ **SIM** | Melhor cobertura de edge cases, reasoning mais profundo |
-| Security analysis (cenários de ameaça) | ✅ **SIM** | Identificação de vetores não-óbvios |
-| Implementation TDD iterativo | ❌ **NÃO** | **-30% quality**, **+43% cost** (2505.01622) |
-| Code review estruturado | ❌ **NÃO** | Overhead sem benefício |
-| Test generation | ❌ **NÃO** | Iterativo, padrão claro |
-| Documentação | ❌ **NÃO** | Overhead sem benefício |
-| Summarização/Ask | ❌ **NÃO** | Simples demais |
+| Context | Extended Thinking | Expected result |
+|---------|-------------------|-----------------|
+| Open spec/architecture (ambiguous, no feedback loop) | ✅ **YES** | Better edge case coverage, deeper reasoning |
+| Security analysis (threat scenarios) | ✅ **YES** | Identification of non-obvious vectors |
+| Iterative TDD implementation | ❌ **NO** | **-30% quality**, **+43% cost** (2505.01622) |
+| Structured code review | ❌ **NO** | Overhead with no benefit |
+| Test generation | ❌ **NO** | Iterative, clear pattern |
+| Documentation | ❌ **NO** | Overhead with no benefit |
+| Summarization/Ask | ❌ **NO** | Too simple |
 
-> ⚠️ **REGRA CRÍTICA**: Extended thinking prejudica tarefas iterativas com feedback loop.
-> Use **somente** para tarefas abertas onde não há uma resposta certa/errada clara
-> e onde o agente não pode testar sua solução imediatamente.
+> ⚠️ **CRITICAL RULE**: Extended thinking harms iterative tasks with feedback loops.
+> Use **only** for open-ended tasks where there is no clear right/wrong answer
+> and where the agent cannot test its solution immediately.
 
 ---
 
-## WHY — Por que importa
+## WHY: Why it matters
 
-### Evidências científicas
+### Scientific evidence
 
 **Extended thinking:**
-- Implementação iterativa com extended thinking: **-30% quality degradation**, **+43% cost increase** (2505.01622, benchmark controlado)
-- Spec/arquitetura com extended thinking: **benefício positivo** para tarefas abertas e ambíguas
+- Iterative implementation with extended thinking: **-30% quality degradation**, **+43% cost increase** (2505.01622, controlled benchmark)
+- Spec/architecture with extended thinking: **positive benefit** for open-ended and ambiguous tasks
 
-**Token economy por fase SDLC:**
-- Code Review = **59.42% de todos os tokens** em LLM-MA systems (2601.14470, Concordia, 30 traces)
-- Input tokens = **53.9%** do total (refinement > generation)
-- → Usar Haiku em review de primeiro nível, Sonnet para análise profunda
+**Token economy by SDLC phase:**
+- Code Review = **59.42% of all tokens** in LLM-MA systems (2601.14470, Concordia, 30 traces)
+- Input tokens = **53.9%** of total (refinement > generation)
+- → Use Haiku for first-level review, Sonnet for deep analysis
 
 **LLM vs Framework:**
-- **LLM capability > framework design** como driver de sucesso (2604.02547, NC State, 9,374 trajectories)
-- À medida que modelos melhoram, diferenças entre frameworks diminuem
-- → Investir no modelo certo é mais impactante que otimizar o framework
+- **LLM capability > framework design** as a success driver (2604.02547, NC State, 9,374 trajectories)
+- As models improve, differences between frameworks diminish
+- → Investing in the right model is more impactful than optimizing the framework
 
-**Topologia de orquestração:**
-- Com modelos convergindo em performance, **topologia domina seleção de modelo** (2602.16873)
-- 4 topologias: parallel/sequential/hierarchical/hybrid → **12-23% improvement** sobre estática
+**Orchestration topology:**
+- With models converging in performance, **topology dominates model selection** (2602.16873)
+- 4 topologies: parallel/sequential/hierarchical/hybrid → **12-23% improvement** over static
 
 **5 Workload Types (OpenDev — 2603.05344):**
-- Cada tipo tem binding ideal a um modelo
-- Mapear workloads → modelos = economia de 40-60% de custo em projetos reais
+- Each type has an ideal binding to a model
+- Mapping workloads → models = 40-60% cost savings in real projects
 
 ---
 
-## HOW — Tabela de Decisão Completa
+## HOW: Complete Decision Table
 
-### Por fase SDLC
+### By SDLC phase
 
-| Fase SDLC | Tarefa específica | Modelo | Extended Thinking | Topologia |
-|-----------|------------------|--------|-------------------|-----------|
-| **Requirements** | Escrever requisitos funcionais | Sonnet 4.6 | ❌ | Sequential |
-| **Requirements** | Criar CONSTITUTION.md | Opus 4.6 | ✅ | Sequential |
-| **Requirements** | Revisar/validar spec | Sonnet 4.6 | ❌ | Sequential |
-| **Architecture** | Design de sistema | Opus 4.6 | ✅ | Sequential |
+| SDLC Phase | Specific task | Model | Extended Thinking | Topology |
+|------------|--------------|-------|-------------------|----------|
+| **Requirements** | Write functional requirements | Sonnet 4.6 | ❌ | Sequential |
+| **Requirements** | Create CONSTITUTION.md | Opus 4.6 | ✅ | Sequential |
+| **Requirements** | Review/validate spec | Sonnet 4.6 | ❌ | Sequential |
+| **Architecture** | System design | Opus 4.6 | ✅ | Sequential |
 | **Architecture** | ADR (Architecture Decision Record) | Opus 4.6 | ✅ | Sequential |
-| **Architecture** | Criar CODEMAP.md | Haiku 4.5 | ❌ | Sequential |
-| **Implementation** | Geração de código novo | Sonnet 4.6 | ❌ | Hierarchical |
+| **Architecture** | Create CODEMAP.md | Haiku 4.5 | ❌ | Sequential |
+| **Implementation** | New code generation | Sonnet 4.6 | ❌ | Hierarchical |
 | **Implementation** | Refactoring | Sonnet 4.6 | ❌ | Sequential |
 | **Implementation** | IaC (Terraform/Bicep) | Sonnet 4.6 | ❌ | Sequential + verifier loop |
-| **Testing** | Geração de unit tests | Sonnet 4.6 | ❌ | Parallel |
-| **Testing** | Análise de cobertura | Haiku 4.5 | ❌ | Sequential |
+| **Testing** | Unit test generation | Sonnet 4.6 | ❌ | Parallel |
+| **Testing** | Coverage analysis | Haiku 4.5 | ❌ | Sequential |
 | **Testing** | Test characterization (legacy) | Sonnet 4.6 | ❌ | Sequential |
 | **Code Review** | First pass (style/lint) | Haiku 4.5 | ❌ | Parallel |
 | **Code Review** | Security review | Opus 4.6 | ✅ | Sequential |
 | **Code Review** | Logic/correctness review | Sonnet 4.6 | ❌ | Sequential |
 | **Documentation** | Docstrings/comments | Haiku 4.5 | ❌ | Parallel |
 | **Documentation** | Technical docs/README | Sonnet 4.6 | ❌ | Sequential |
-| **Operations** | Summarização de logs | Haiku 4.5 | ❌ | Parallel |
+| **Operations** | Log summarization | Haiku 4.5 | ❌ | Parallel |
 | **Operations** | Incident analysis | Sonnet 4.6 | ❌ | Sequential |
-| **Operations** | Root cause analysis complexo | Opus 4.6 | ✅ | Sequential |
+| **Operations** | Complex root cause analysis | Opus 4.6 | ✅ | Sequential |
 
-### Por workload type (OpenDev framework — 2603.05344)
+### By workload type (OpenDev framework — 2603.05344)
 
-| Workload Type | Descrição | Modelo ideal | Notas |
-|--------------|-----------|-------------|-------|
-| **Execution** | Uso de ferramentas, comandos | Sonnet 4.6 | Precisa de tool use confiável |
-| **Thinking** | Raciocínio complexo, planejamento | Opus 4.6 | +ET para tarefas abertas |
-| **Compaction** | Compressão de contexto, summarização | Haiku 4.5 | Custo mínimo, tarefa simples |
-| **Subagent** | Delegação para agentes especializados | Haiku→Sonnet | Depende da task delegada |
-| **Vision** | Análise de imagens, diagramas | Sonnet 4.6 | Capacidade multimodal |
+| Workload Type | Description | Ideal model | Notes |
+|--------------|-------------|-------------|-------|
+| **Execution** | Tool use, commands | Sonnet 4.6 | Needs reliable tool use |
+| **Thinking** | Complex reasoning, planning | Opus 4.6 | +ET for open-ended tasks |
+| **Compaction** | Context compression, summarization | Haiku 4.5 | Minimal cost, simple task |
+| **Subagent** | Delegation to specialized agents | Haiku→Sonnet | Depends on the delegated task |
+| **Vision** | Image analysis, diagrams | Sonnet 4.6 | Multimodal capability |
 
-### Regras de escalação
+### Escalation rules
 
 ```
-ESCALAÇÃO (upgrade):
-Haiku → Sonnet: se task envolve lógica condicional complexa ou depende de contexto > 5 arquivos
-Haiku → Sonnet: se Haiku falhou na mesma task 2 vezes
-Sonnet → Opus:  se task envolve decisão de segurança ou arquitetura
-Sonnet → Opus:  se resultado precisa ser defendido para stakeholders
-Sonnet → Opus:  se tarefa não tem resposta correta clara (ambígua/exploratória)
+ESCALATION (upgrade):
+Haiku → Sonnet: if task involves complex conditional logic or depends on context > 5 files
+Haiku → Sonnet: if Haiku failed on the same task 2 times
+Sonnet → Opus:  if task involves a security or architecture decision
+Sonnet → Opus:  if result needs to be defended to stakeholders
+Sonnet → Opus:  if task has no clear correct answer (ambiguous/exploratory)
 
-DEGRADAÇÃO (downgrade para custo):
-Opus → Sonnet:  para tasks com feedback loop (iterativo, testável)
-Opus → Sonnet:  para tasks estruturadas com spec clara
-Sonnet → Haiku: para tasks de summarização ou single-turn informational
+DEGRADATION (downgrade for cost):
+Opus → Sonnet:  for tasks with feedback loop (iterative, testable)
+Opus → Sonnet:  for structured tasks with clear spec
+Sonnet → Haiku: for summarization or single-turn informational tasks
 ```
 
 ---
 
-## Configuração em copilot-instructions.md
+## Configuration in copilot-instructions.md
 
-Adicionar esta seção no Tier 1 (hot-memory):
+Add this section in Tier 1 (hot-memory):
 
 ```markdown
 ## 2. MODEL ROUTING RULES
@@ -163,57 +163,57 @@ Adicionar esta seção no Tier 1 (hot-memory):
 
 ---
 
-## WHO — Responsabilidades
+## WHO: Responsibilities
 
-| Responsabilidade | Quem |
-|-----------------|------|
-| Definir routing rules no copilot-instructions.md | Tech Lead |
-| Atualizar routing quando modelo novo disponível | Tech Lead |
-| Aplicar routing nas tasks diárias | Todos os devs |
-| Auditar custo e ajustar downward quando possível | Tech Lead + Platform |
-| Criar skill routing triggers no Tier 1 | Dev Sênior |
-
----
-
-## WHEN — Cadência
-
-```
-DIA 0 (setup):     Definir routing table no copilot-instructions.md
-SPRINT REVIEW:     Auditar custo por fase — estamos usando Opus onde deveríamos usar Haiku?
-MODELO NOVO:       Retestar benchmarks e atualizar tabela (modelos evoluem rapidamente)
-NOVO DOMAIN:       Adicionar regras de domínio específico (ex: fintech → segurança extra em Opus)
-```
+| Responsibility | Who |
+|---------------|-----|
+| Define routing rules in copilot-instructions.md | Tech Lead |
+| Update routing when new model is available | Tech Lead |
+| Apply routing in daily tasks | All devs |
+| Audit cost and adjust downward when possible | Tech Lead + Platform |
+| Create skill routing triggers in Tier 1 | Senior Dev |
 
 ---
 
-## WHICH MODEL — Para criar o routing
+## WHEN: Cadence
 
-| Tarefa | Modelo | Notas |
-|--------|--------|-------|
-| Definir routing table inicial | Opus 4.6 + ET | Decisão estratégica, impacto de custo longo prazo |
-| Atualizar routing table | Sonnet 4.6 | Incremental, estruturado |
-| Auditar custos e ajustar | Haiku 4.5 | Análise de dados, comparação de números |
+```
+DAY 0 (setup):     Define routing table in copilot-instructions.md
+SPRINT REVIEW:     Audit cost by phase — are we using Opus where we should use Haiku?
+NEW MODEL:         Re-test benchmarks and update table (models evolve rapidly)
+NEW DOMAIN:        Add domain-specific rules (e.g.: fintech → extra security on Opus)
+```
 
 ---
 
-## QUICK REFERENCE — Decision Flowchart
+## WHICH MODEL: For creating the routing
+
+| Task | Model | Notes |
+|------|-------|-------|
+| Define initial routing table | Opus 4.6 + ET | Strategic decision, long-term cost impact |
+| Update routing table | Sonnet 4.6 | Incremental, structured |
+| Audit costs and adjust | Haiku 4.5 | Data analysis, number comparison |
+
+---
+
+## QUICK REFERENCE: Decision Flowchart
 
 ```
-É uma decisão de SEGURANÇA ou ARQUITETURA?
-├─ Sim → Opus 4.6 + Extended Thinking
-└─ Não ↓
+Is it a SECURITY or ARCHITECTURE decision?
+├─ Yes → Opus 4.6 + Extended Thinking
+└─ No ↓
 
-É ITERATIVO com feedback loop (TDD, implementação)?
-├─ Sim → Sonnet 4.6 (sem ET — ET prejudica iteração)
-└─ Não ↓
+Is it ITERATIVE with a feedback loop (TDD, implementation)?
+├─ Yes → Sonnet 4.6 (no ET — ET harms iteration)
+└─ No ↓
 
-É ABERTO e AMBÍGUO (sem resposta certa clara)?
-├─ Sim → Opus 4.6 + Extended Thinking
-└─ Não ↓
+Is it OPEN-ENDED and AMBIGUOUS (no clear right answer)?
+├─ Yes → Opus 4.6 + Extended Thinking
+└─ No ↓
 
-É SIMPLES (summarização, docs, single-turn)?
-├─ Sim → Haiku 4.5
-└─ Não → Sonnet 4.6 (default seguro)
+Is it SIMPLE (summarization, docs, single-turn)?
+├─ Yes → Haiku 4.5
+└─ No → Sonnet 4.6 (safe default)
 ```
 
 ---

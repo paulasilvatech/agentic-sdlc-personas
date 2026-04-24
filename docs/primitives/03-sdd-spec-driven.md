@@ -5,7 +5,7 @@ author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at
 date: "2026-04-14"
 version: "1.0.0"
 status: "approved"
-locale: "pt-BR"
+locale: "en"
 tags: ["primitive", "ai-native-sdlc", "sdd"]
 ---
 
@@ -15,77 +15,77 @@ tags: ["primitive", "ai-native-sdlc", "sdd"]
 
 ---
 
-## WHAT — O que é SDD
+## WHAT: What is SDD
 
-Spec-Driven Development é a prática de **tratar a especificação como o artefato primário** do desenvolvimento — o código deriva da spec, não o contrário. No contexto de AI-native SDLC, a spec serve tanto para humanos quanto para agentes de IA.
+Spec-Driven Development is the practice of **treating the specification as the primary artifact** of development - code derives from the spec, not the other way around. In the context of AI-native SDLC, the spec serves both humans and AI agents.
 
-**Princípio central (Piskala 2026 — 2602.00180):**
+**Core principle (Piskala 2026 - 2602.00180):**
 > "The spec declares intent, the code realizes it."
 
-### Os 3 Níveis de SDD
+### The 3 Levels of SDD
 
 ```
-NÍVEL 3: Spec-as-Source
-├─ Humanos editam APENAS a spec
-├─ Código 100% gerado a partir da spec
-├─ Validação por test suite executável
-└─ Para: projetos totalmente greenfield com domínio bem definido
+LEVEL 3: Spec-as-Source
+├─ Humans edit ONLY the spec
+├─ Code 100% generated from the spec
+├─ Validation via executable test suite
+└─ For: fully greenfield projects with well-defined domains
 
-NÍVEL 2: Spec-Anchored (recomendado para maioria dos casos)
-├─ Spec evolui junto com o código como living document
-├─ Spec atualizada ANTES de implementar cada feature
-├─ Código pode ter variações, spec é referência canônica
-└─ Para: projetos ativos, brownfield, times com devs humanos + agentes
+LEVEL 2: Spec-Anchored (recommended for most cases)
+├─ Spec evolves alongside code as a living document
+├─ Spec updated BEFORE implementing each feature
+├─ Code may have variations, spec is the canonical reference
+└─ For: active projects, brownfield, teams with human devs + agents
 
-NÍVEL 1: Spec-First
-├─ Spec guia desenvolvimento inicial
-├─ Spec pode divergir do código com o tempo
-├─ Útil como ponto de partida antes de escalar
-└─ Para: MVPs, experimentos, projetos pequenos
+LEVEL 1: Spec-First
+├─ Spec guides initial development
+├─ Spec may diverge from code over time
+├─ Useful as a starting point before scaling
+└─ For: MVPs, experiments, small projects
 ```
 
-### A Trilogia de Documentos SDD
+### The SDD Document Trilogy
 
 ```
 docs/
-├── CONSTITUTION.md      → O QUÊ o sistema NUNCA deve fazer (constraints imutáveis)
-├── SPECIFICATION.md     → O QUÊ o sistema DEVE fazer (funcionalidades)
-└── IMPLEMENTATION_PLAN.md → COMO implementar (tasks sequenciadas)
+├── CONSTITUTION.md      → WHAT the system MUST NEVER do (immutable constraints)
+├── SPECIFICATION.md     → WHAT the system MUST do (features)
+└── IMPLEMENTATION_PLAN.md → HOW to implement (sequenced tasks)
 ```
 
 ---
 
-## WHY — Por que é crítico
+## WHY: Why it is critical
 
-### Evidências científicas
+### Scientific evidence
 
-**Segurança:**
+**Security:**
 - Constitutional SDD → **-73% security defects** vs unconstrained AI coding (2602.02584, Marri, banking microservices)
-- Sem Constitution.md: AI gera código que passa nos testes mas viola constraints de segurança implícitas
+- Without Constitution.md: AI generates code that passes tests but violates implicit security constraints
 
 **Planner-Coder Gap:**
-- **75.3% de falhas em Multi-Agent Systems** vêm do gap entre planning e coding (2504.11805)
-- Planner gera spec ambígua → Coder implementa incorretamente → Falha
-- SDD resolve: spec explícita = planner output de qualidade para o coder
+- **75.3% of failures in Multi-Agent Systems** come from the gap between planning and coding (2504.11805)
+- Planner generates ambiguous spec → Coder implements incorrectly → Failure
+- SDD solves this: explicit spec = quality planner output for the coder
 
-**Dívida de intenção (Intent Debt):**
-- Sem spec: AI acelera **cognitive debt** (erosão de entendimento da equipe) e **intent debt** (ausência de rationale documentado) (2603.22106, Storey UVic)
-- Com SDD: SPECIFICATION.md e CONSTITUTION.md são o remédio direto para intent debt
+**Intent Debt:**
+- Without spec: AI accelerates **cognitive debt** (erosion of team understanding) and **intent debt** (absence of documented rationale) (2603.22106, Storey UVic)
+- With SDD: SPECIFICATION.md and CONSTITUTION.md are the direct remedy for intent debt
 - "AI agents need externalized goals and constraints to act as true collaborators"
 
-**Performance empírica:**
-- SDD workflow (CURRANTE) em benchmarks controlados: melhora pass rate, reduz iterations para convergência (2601.03878)
-- Spec como primeiro artefato → agente understand→reproduce→fix→verify mais eficaz (2604.02547)
+**Empirical performance:**
+- SDD workflow (CURRANTE) in controlled benchmarks: improves pass rate, reduces iterations to convergence (2601.03878)
+- Spec as first artifact → agent understand→reproduce→fix→verify more effective (2604.02547)
 
-**Velocity vs Qualidade:**
-- Sem SDD: coding agents causam +39% cognitive complexity, acumulam debt persistentemente (2601.13597)
-- Com SDD: spec explícita direciona agente para soluções corretas desde a primeira iteração
+**Velocity vs Quality:**
+- Without SDD: coding agents cause +39% cognitive complexity, accumulate debt persistently (2601.13597)
+- With SDD: explicit spec directs agent toward correct solutions from the first iteration
 
 ---
 
-## HOW — Templates e Step-by-Step
+## HOW: Templates and Step-by-Step
 
-### CONSTITUTION.md — Template Completo
+### CONSTITUTION.md - Complete Template
 
 ```markdown
 # CONSTITUTION.md
@@ -170,7 +170,7 @@ If implementation would violate any constraint above:
 
 ---
 
-### SPECIFICATION.md — Template Completo
+### SPECIFICATION.md - Complete Template
 
 ```markdown
 # SPECIFICATION.md
@@ -239,7 +239,7 @@ And [additional assertion]
 
 ---
 
-### IMPLEMENTATION_PLAN.md — Template Completo
+### IMPLEMENTATION_PLAN.md - Complete Template
 
 ```markdown
 # IMPLEMENTATION_PLAN.md
@@ -292,105 +292,105 @@ Maximum parallel tasks: [3-5, adjust for team size]
 
 ---
 
-### Step-by-Step: Iniciar um projeto com SDD
+### Step-by-Step: Starting a project with SDD
 
-**DIA 0 — Greenfield setup:**
+**DAY 0 - Greenfield setup:**
 
 ```bash
-# 1. Criar estrutura
+# 1. Create structure
 mkdir -p docs .github/instructions .github/prompts .github/workflows
 
-# 2. Criar CONSTITUTION.md primeiro
-# → Usar Opus 4.6 + Extended Thinking
+# 2. Create CONSTITUTION.md first
+# → Use Opus 4.6 + Extended Thinking
 # → Prompt: "Create a CONSTITUTION.md for a [domain] system using [stack].
 #   Include CWE/MITRE Top 25 relevant constraints and OWASP Top 10 LLM 2025.
 #   Every constraint must be machine-readable and actionable."
 
-# 3. Criar SPECIFICATION.md
-# → Usar Opus 4.6 (sem ET — estruturado)
-# → Começar com user stories, converter para EARS notation
+# 3. Create SPECIFICATION.md
+# → Use Opus 4.6 (no ET - structured)
+# → Start with user stories, convert to EARS notation
 
-# 4. Criar IMPLEMENTATION_PLAN.md
-# → Usar Sonnet 4.6 (iterativo, task decomposition)
-# → Incluir [P] para parallelization opportunities
+# 4. Create IMPLEMENTATION_PLAN.md
+# → Use Sonnet 4.6 (iterative, task decomposition)
+# → Include [P] for parallelization opportunities
 
-# 5. Criar copilot-instructions.md (Tier 1 hot-memory)
-# → Humano escreve, referenciando Constitution e Spec
+# 5. Create copilot-instructions.md (Tier 1 hot-memory)
+# → Human writes, referencing Constitution and Spec
 
-# 6. Criar AGENTS.md
-# → HUMANO escreve (não AI-generated)
+# 6. Create AGENTS.md
+# → HUMAN writes (not AI-generated)
 ```
 
-**CADA FEATURE nova (spec-anchored mode):**
+**EACH NEW FEATURE (spec-anchored mode):**
 
 ```
-1. Atualizar SPECIFICATION.md com nova feature
-2. Revisar CONSTITUTION.md — alguma constraint precisa ser adicionada?
-3. Criar/atualizar IMPLEMENTATION_PLAN.md para o sprint
-4. Só então: implementar com agente
+1. Update SPECIFICATION.md with new feature
+2. Review CONSTITUTION.md - does any constraint need to be added?
+3. Create/update IMPLEMENTATION_PLAN.md for the sprint
+4. Only then: implement with agent
 ```
 
 ---
 
-## WHO — Responsabilidades
+## WHO: Responsibilities
 
-| Artefato | Criador primário | Aprovador | Quando atualizar |
-|----------|-----------------|-----------|------------------|
-| `CONSTITUTION.md` | Arquiteto de Segurança | Tech Lead | Por release ou novo requisito de segurança |
-| `SPECIFICATION.md` | Product Owner + Dev | Tech Lead + Stakeholder | Antes de cada feature |
-| `IMPLEMENTATION_PLAN.md` | Tech Lead | Dev team | Por sprint |
+| Artifact | Primary Creator | Approver | When to update |
+|----------|----------------|----------|----------------|
+| `CONSTITUTION.md` | Security Architect | Tech Lead | Per release or new security requirement |
+| `SPECIFICATION.md` | Product Owner + Dev | Tech Lead + Stakeholder | Before each feature |
+| `IMPLEMENTATION_PLAN.md` | Tech Lead | Dev team | Per sprint |
 
-**Regra de ouro**: Se código e SPECIFICATION.md divergem, a spec tem precedência. Code Review deve incluir spec compliance check.
+**Golden rule**: If code and SPECIFICATION.md diverge, the spec takes precedence. Code Review must include a spec compliance check.
 
 ---
 
-## WHEN — Cadência SDD
+## WHEN: SDD Cadence
 
 ```
 GREENFIELD:
-├─ Dia 0: CONSTITUTION.md (Arquiteto, Opus + ET)
-├─ Dia 1: SPECIFICATION.md draft (PO + Dev, Opus)
-├─ Dia 2: IMPLEMENTATION_PLAN.md (Tech Lead, Sonnet)
-└─ Ongoing: atualizar spec antes de cada feature
+├─ Day 0: CONSTITUTION.md (Architect, Opus + ET)
+├─ Day 1: SPECIFICATION.md draft (PO + Dev, Opus)
+├─ Day 2: IMPLEMENTATION_PLAN.md (Tech Lead, Sonnet)
+└─ Ongoing: update spec before each feature
 
-BROWNFIELD (adoção incremental):
-├─ Sprint 1: CONSTITUTION.md retroativa (o que já existe implicitamente)
-├─ Sprint 2: SPECIFICATION.md das features existentes (reverse-engineer)
-├─ Sprint 3: IMPLEMENTATION_PLAN.md para próximas features
-└─ Ongoing: manter spec-anchored a partir daqui
+BROWNFIELD (incremental adoption):
+├─ Sprint 1: Retroactive CONSTITUTION.md (what already exists implicitly)
+├─ Sprint 2: SPECIFICATION.md for existing features (reverse-engineer)
+├─ Sprint 3: IMPLEMENTATION_PLAN.md for upcoming features
+└─ Ongoing: maintain spec-anchored from here on
 
-SPEC DRIFT (quando código divergiu da spec):
-├─ Detectar: comparar comportamento real vs SPECIFICATION.md
-├─ Decidir: atualizar spec (se mudança foi intencional) ou reverter código
-└─ Registrar: ADR explicando a decisão
+SPEC DRIFT (when code has diverged from the spec):
+├─ Detect: compare actual behavior vs SPECIFICATION.md
+├─ Decide: update spec (if change was intentional) or revert code
+└─ Record: ADR explaining the decision
 ```
 
 ---
 
-## WHICH MODEL — Por artefato
+## WHICH MODEL: Per artifact
 
-| Artefato | Modelo | Extended Thinking | Justificativa |
-|----------|--------|-------------------|---------------|
-| `CONSTITUTION.md` | Opus 4.6 | ✅ | Decisões de segurança ambíguas, alta importância |
-| `SPECIFICATION.md` | Opus 4.6 | ❌ | Estruturado, iterativo com PO |
+| Artifact | Model | Extended Thinking | Rationale |
+|----------|-------|-------------------|-----------|
+| `CONSTITUTION.md` | Opus 4.6 | ✅ | Ambiguous security decisions, high importance |
+| `SPECIFICATION.md` | Opus 4.6 | ❌ | Structured, iterative with PO |
 | `IMPLEMENTATION_PLAN.md` | Sonnet 4.6 | ❌ | Task decomposition, clear structure |
-| Validação/review de spec | Sonnet 4.6 | ❌ | Análise estruturada |
-| Spec sync (drift detection) | Haiku 4.5→Sonnet | ❌ | Comparação, escalação se drift encontrado |
-| EARS notation conversion | Sonnet 4.6 | ❌ | Transformação estruturada |
+| Spec validation/review | Sonnet 4.6 | ❌ | Structured analysis |
+| Spec sync (drift detection) | Haiku 4.5→Sonnet | ❌ | Comparison, escalation if drift found |
+| EARS notation conversion | Sonnet 4.6 | ❌ | Structured transformation |
 
 ---
 
 ## ANTI-PATTERNS
 
-❌ **Spec como afterthought**: Escrever código e depois tentar criar spec retroativa sem entender o intent original → intent debt não é resolvido.
+❌ **Spec as afterthought**: Writing code and then trying to create a retroactive spec without understanding the original intent → intent debt is not resolved.
 
-❌ **Spec too detailed**: Especificar detalhes de implementação na spec (nomes de variáveis, algoritmos). Spec deve declarar WHAT e WHY, não HOW.
+❌ **Spec too detailed**: Specifying implementation details in the spec (variable names, algorithms). Spec should declare WHAT and WHY, not HOW.
 
-❌ **Spec nunca atualizada**: SPECIFICATION.md de 6 meses atrás que o código já não segue. Pior que não ter spec.
+❌ **Spec never updated**: A SPECIFICATION.md from 6 months ago that the code no longer follows. Worse than having no spec.
 
-❌ **Constitution sem agent constraints**: CONSTITUTION.md que só tem segurança de aplicação mas não define limites para agentes (LLM06 Excessive Agency).
+❌ **Constitution without agent constraints**: CONSTITUTION.md that only has application security but does not define limits for agents (LLM06 Excessive Agency).
 
-❌ **IMPLEMENTATION_PLAN sem [P]**: Todo o plano sequencial quando tarefas poderiam rodar em paralelo. Perde velocidade sem razão.
+❌ **IMPLEMENTATION_PLAN without [P]**: Entire plan is sequential when tasks could run in parallel. Loses speed for no reason.
 
 ---
 

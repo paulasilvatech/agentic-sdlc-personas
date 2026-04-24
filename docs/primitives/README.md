@@ -5,7 +5,7 @@ author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at
 date: "2026-04-23"
 version: "1.0.0"
 status: "approved"
-locale: "pt-BR"
+locale: "en"
 ---
 
 # The 6 Primitives

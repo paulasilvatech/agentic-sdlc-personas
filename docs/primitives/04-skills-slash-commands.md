@@ -5,7 +5,7 @@ author: "Paula Silva, AI-Native Software Engineer, Americas Global Black Belt at
 date: "2026-04-14"
 version: "1.0.0"
 status: "approved"
-locale: "pt-BR"
+locale: "en"
 tags: ["primitive", "ai-native-sdlc", "skills"]
 ---
 
@@ -15,114 +15,114 @@ tags: ["primitive", "ai-native-sdlc", "skills"]
 
 ---
 
-## WHAT — O que são Skills e Slash Commands
+## WHAT: What are Skills and Slash Commands
 
-**Agent Skills** são artefatos reutilizáveis que encapsulam conhecimento especializado e passos de execução para tarefas recorrentes. No GitHub Copilot, skills são implementadas como:
+**Agent Skills** are reusable artifacts that encapsulate specialized knowledge and execution steps for recurring tasks. In GitHub Copilot, skills are implemented as:
 
-| Artefato | Extensão | Ativação | Uso |
-|----------|----------|----------|-----|
-| **Skill file** | `SKILL.md` | Referenciado por agentes | Comportamento especializado encapsulado |
-| **Slash command** | `.prompt.md` | `/nome-do-comando` | Workflow de uma só vez, por usuário |
-| **Instructions** | `.instructions.md` | `applyTo` glob | Contexto sempre ativo para arquivos específicos |
-| **Agent definition** | `.agent.md` | Por nome | Agente especializado configurável |
+| Artifact | Extension | Activation | Usage |
+|----------|-----------|------------|-------|
+| **Skill file** | `SKILL.md` | Referenced by agents | Encapsulated specialized behavior |
+| **Slash command** | `.prompt.md` | `/command-name` | One-off workflow, per user |
+| **Instructions** | `.instructions.md` | `applyTo` glob | Always-active context for specific files |
+| **Agent definition** | `.agent.md` | By name | Configurable specialized agent |
 
-### Os 3 paradigmas de skill engineering (2602.12430)
+### The 3 paradigms of skill engineering (2602.12430)
 
 ```
-PARADIGMA 1: Prompt Engineering
-└─ Instruções inline no chat/copilot-instructions.md
-   Vantagem: simples. Desvantagem: não reutilizável, sem governance.
+PARADIGM 1: Prompt Engineering
+└─ Inline instructions in chat/copilot-instructions.md
+   Advantage: simple. Disadvantage: not reusable, no governance.
 
-PARADIGMA 2: Tool Use
-└─ Skills como ferramentas com input/output definidos
-   Vantagem: composável. Desvantagem: overhead de plumbing.
+PARADIGM 2: Tool Use
+└─ Skills as tools with defined input/output
+   Advantage: composable. Disadvantage: plumbing overhead.
 
-PARADIGMA 3: Skill Engineering ← RECOMENDADO
+PARADIGM 3: Skill Engineering ← RECOMMENDED
 └─ SKILL.md: description + body + references + scripts
-   Vantagem: reutilizável, governado, escalável, progressive disclosure.
+   Advantage: reusable, governed, scalable, progressive disclosure.
 ```
 
 ---
 
-## WHY — Por que estruturar skills
+## WHY: Why structure skills
 
-### Evidências científicas
+### Scientific evidence
 
-**O problema atual das skills públicas (2603.29919, HKUST+Tsinghua+ZJU, 55,315 skills):**
-- **26.4%** das skills não têm routing description → agente não consegue encontrá-las
-- **60%+** do body é conteúdo não-acionável (background, exemplos, contexto)
-- Reference files podem injetar **dezenas de milhares de tokens** desnecessariamente
-- Less-is-more effect: comprimir skill melhora qualidade funcional **+2.8%**
+**The current problem with public skills (2603.29919, HKUST+Tsinghua+ZJU, 55,315 skills):**
+- **26.4%** of skills have no routing description → agent cannot find them
+- **60%+** of body content is non-actionable (background, examples, context)
+- Reference files can inject **tens of thousands of tokens** unnecessarily
+- Less-is-more effect: compressing skills improves functional quality **+2.8%**
 
-**Economia de tokens com applyTo:**
-- Instructions com `applyTo` scoping correto → **-68% tokens** vs instruções globais
+**Token savings with applyTo:**
+- Instructions with correct `applyTo` scoping → **-68% tokens** vs global instructions
 - (Paula's Model Routing Guide)
 
-**Governance é crítico:**
-- **26.1%** de skills comunitárias têm vulnerabilidades (2602.12430, Zhejiang Univ)
-- 4-tier governance framework previne skills maliciosas ou defeituosas
+**Governance is critical:**
+- **26.1%** of community skills have vulnerabilities (2602.12430, Zhejiang Univ)
+- 4-tier governance framework prevents malicious or defective skills
 
-**62,000 GitHub stars** para anthropics/skills em <4 meses → skills são padrão da indústria
+**62,000 GitHub stars** for anthropics/skills in <4 months → skills are an industry standard
 
 ---
 
-## HOW — Como criar skills eficazes
+## HOW: How to create effective skills
 
-### Anatomia de uma SKILL.md eficaz
+### Anatomy of an effective SKILL.md
 
 ```markdown
 # Skill Name
 
 ## Description
-[TRIGGER KEYWORDS que ativam esta skill]. [O que esta skill faz em 1 frase].
-[Quando NÃO usar esta skill — anti-triggers explícitos].
+[TRIGGER KEYWORDS that activate this skill]. [What this skill does in 1 sentence].
+[When NOT to use this skill - explicit anti-triggers].
 
 ## Steps
-1. [Passo acionável específico]
-2. [Passo acionável específico]
-3. [Passo acionável específico]
-4. [Passo acionável específico]
+1. [Specific actionable step]
+2. [Specific actionable step]
+3. [Specific actionable step]
+4. [Specific actionable step]
 
 ## References
-- [Link para documentação externa, não conteúdo inline]
-- [Link para spec relevante]
+- [Link to external documentation, not inline content]
+- [Link to relevant spec]
 ```
 
-**REGRAS CRÍTICAS para cada seção:**
+**CRITICAL RULES for each section:**
 
-### Description (max 2 frases — regras SkillReducer):
+### Description (max 2 sentences - SkillReducer rules):
 ```
-✅ BOM:  "Creates a CONSTITUTION.md with security constraints for AI agents.
+✅ GOOD: "Creates a CONSTITUTION.md with security constraints for AI agents.
           Use when starting a new project or adding security governance."
           
-✅ BOM:  "Analyzes existing code to detect spec drift against SPECIFICATION.md.
+✅ GOOD: "Analyzes existing code to detect spec drift against SPECIFICATION.md.
           Do NOT use for initial spec creation — use sdd-spec-generate instead."
 
-❌ RUIM: "This skill helps developers understand the importance of security in modern
-          AI-native development. Security is critical because... [3 parágrafos de contexto]"
+❌ BAD:  "This skill helps developers understand the importance of security in modern
+          AI-native development. Security is critical because... [3 paragraphs of context]"
           
-❌ RUIM: Sem anti-trigger → agente não sabe quando NÃO usar
-❌ RUIM: > 2 frases → compressão de 48% reduz, não remove, funcionalidade
+❌ BAD:  No anti-trigger → agent does not know when NOT to use
+❌ BAD:  > 2 sentences → 48% compression reduces, does not remove, functionality
 ```
 
-### Steps (apenas acionáveis):
+### Steps (actionable only):
 ```
-✅ BOM:  "1. Read SPECIFICATION.md to understand current feature scope"
-✅ BOM:  "2. Compare against existing code using file search"
-✅ BOM:  "3. Generate gap report with: [missing features] | [diverging behaviors] | [undocumented code]"
+✅ GOOD: "1. Read SPECIFICATION.md to understand current feature scope"
+✅ GOOD: "2. Compare against existing code using file search"
+✅ GOOD: "3. Generate gap report with: [missing features] | [diverging behaviors] | [undocumented code]"
 
-❌ RUIM: "1. Understand the importance of specification compliance (it's crucial because...)"
-❌ RUIM: Steps com exemplos inline (coloque em References)
-❌ RUIM: Steps que são na verdade sub-steps de outro step (progressive disclosure)
+❌ BAD:  "1. Understand the importance of specification compliance (it's crucial because...)"
+❌ BAD:  Steps with inline examples (put them in References)
+❌ BAD:  Steps that are actually sub-steps of another step (progressive disclosure)
 ```
 
-### References (links, não conteúdo):
+### References (links, not content):
 ```
-✅ BOM:  "- [EARS Notation Guide](docs/ears-notation.md)"
-✅ BOM:  "- [OWASP Top 10 LLM 2025](https://owasp.org/...)"
+✅ GOOD: "- [EARS Notation Guide](docs/ears-notation.md)"
+✅ GOOD: "- [OWASP Top 10 LLM 2025](https://owasp.org/...)"
 
-❌ RUIM: Copiar e colar 200 linhas de guia EARS diretamente no References
-❌ RUIM: Reference files que injetam 10K+ tokens (verificar tamanho)
+❌ BAD:  Copy and paste 200 lines of the EARS guide directly into References
+❌ BAD:  Reference files that inject 10K+ tokens (check size)
 ```
 
 ---
@@ -133,7 +133,7 @@ PARADIGMA 3: Skill Engineering ← RECOMENDADO
 ---
 mode: agent
 model: claude-sonnet-4-6
-description: [Trigger keywords]. [O que faz]. [Quando usar].
+description: [Trigger keywords]. [What it does]. [When to use].
 ---
 
 # [Command Name]
@@ -160,7 +160,7 @@ Before finishing, verify:
 
 ---
 
-### Template: `.instructions.md` com applyTo
+### Template: `.instructions.md` with applyTo
 
 ```markdown
 ---
@@ -219,7 +219,7 @@ TIER 4 — RUNTIME MONITORING
 
 ---
 
-### Estrutura de diretórios — Skills por projeto
+### Directory structure - Skills per project
 
 ```
 .github/
@@ -249,57 +249,57 @@ TIER 4 — RUNTIME MONITORING
 
 ---
 
-## WHO — Responsabilidades
+## WHO: Responsibilities
 
-| Artefato | Criador | Reviewr | Cadência |
-|----------|---------|---------|----------|
-| `.instructions.md` (domain) | Dev Sênior | Tech Lead | Por mudança de convenção |
-| `.prompt.md` (slash commands) | Qualquer dev | Dev Sênior | Quando padrão se repete ≥3x |
-| `SKILL.md` (encapsulado) | Dev Sênior | Security (Tier 2) | Por novo padrão de equipe |
-| `.agent.md` (custom agents) | Arquiteto | Tech Lead | Por novo domínio especializado |
+| Artifact | Creator | Reviewer | Frequency |
+|----------|---------|----------|-----------|
+| `.instructions.md` (domain) | Senior Dev | Tech Lead | Per convention change |
+| `.prompt.md` (slash commands) | Any dev | Senior Dev | When pattern repeats ≥3x |
+| `SKILL.md` (encapsulated) | Senior Dev | Security (Tier 2) | Per new team pattern |
+| `.agent.md` (custom agents) | Architect | Tech Lead | Per new specialized domain |
 
-**Regra dos 3x**: Se você fez o mesmo tipo de prompt 3 vezes, crie um `.prompt.md` para isso.
+**Rule of 3x**: If you have done the same type of prompt 3 times, create a `.prompt.md` for it.
 
 ---
 
-## WHEN — Cadência
+## WHEN: Cadence
 
 ```
-DIA 0 (setup): Criar .instructions.md base por domínio (backend/frontend/tests/infra)
-SPRINT 1:      Criar os 5-7 slash commands mais usados pelo time
-ONGOING:       Quando dev faz mesmo prompt pela terceira vez → criar .prompt.md
-QUARTERLY:     Auditar skills com SkillReducer: remover conteúdo não-acionável
-SEMPRE:        Verificar governance tier antes de usar skill de fonte externa
+DAY 0 (setup):  Create base .instructions.md per domain (backend/frontend/tests/infra)
+SPRINT 1:       Create the 5-7 most used slash commands by the team
+ONGOING:        When dev does same prompt for the third time → create .prompt.md
+QUARTERLY:      Audit skills with SkillReducer: remove non-actionable content
+ALWAYS:         Verify governance tier before using skill from external source
 ```
 
 ---
 
 ## WHICH MODEL
 
-| Tarefa | Modelo | Notas |
-|--------|--------|-------|
-| Criar `.instructions.md` | Sonnet 4.6 | Refinamento iterativo |
-| Criar `.prompt.md` | Sonnet 4.6 | Padrão claro |
-| Criar `SKILL.md` | Sonnet 4.6 | Estruturado |
-| Auditar skills existentes | Haiku 4.5 | Análise de conteúdo simples |
-| Criar `.agent.md` especializado | Opus 4.6 | Decisão de arquitetura |
-| Executar skills rotineiras | Haiku 4.5 ou Sonnet | Depende da complexidade |
+| Task | Model | Notes |
+|------|-------|-------|
+| Create `.instructions.md` | Sonnet 4.6 | Iterative refinement |
+| Create `.prompt.md` | Sonnet 4.6 | Clear pattern |
+| Create `SKILL.md` | Sonnet 4.6 | Structured |
+| Audit existing skills | Haiku 4.5 | Simple content analysis |
+| Create specialized `.agent.md` | Opus 4.6 | Architecture decision |
+| Execute routine skills | Haiku 4.5 or Sonnet | Depends on complexity |
 
 ---
 
-## QUICK REFERENCE — Checklist de skill de qualidade
+## QUICK REFERENCE - Quality skill checklist
 
 ```
-□ Description tem ≤ 2 frases
-□ Description inclui trigger keywords
-□ Description inclui anti-trigger ("Do NOT use when...")
-□ Body tem ≥ 60% de conteúdo acionável
-□ Body NÃO tem background/contexto/exemplos inline
-□ References são links, não conteúdo inline
-□ Nenhum reference file com > 5K tokens
-□ applyTo scoping correto (se .instructions.md)
-□ Governance tier verificado (se skill externa)
-□ Model recommendation incluída (qual modelo deve executar)
+□ Description has ≤ 2 sentences
+□ Description includes trigger keywords
+□ Description includes anti-trigger ("Do NOT use when...")
+□ Body has ≥ 60% actionable content
+□ Body does NOT have background/context/inline examples
+□ References are links, not inline content
+□ No reference file with > 5K tokens
+□ applyTo scoping is correct (if .instructions.md)
+□ Governance tier verified (if external skill)
+□ Model recommendation included (which model should execute)
 ```
 
 ---
