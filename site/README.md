@@ -22,8 +22,7 @@ site-astro/
 ├── tailwind.config.mjs         # Tailwind with DS tokens
 ├── tsconfig.json               # TS config with path aliases
 ├── public/
-│   ├── tokens.css              # Copy of DS tokens, served at /tokens.css
-│   └── favicon.svg             # Four-colored squares logo
+│   └── tokens.css              # Copy of DS tokens, served at /tokens.css
 └── src/
     ├── components/
     │   ├── content/            # MDX building blocks (Callout, StatRow, KeyValueTable, HomePage)
