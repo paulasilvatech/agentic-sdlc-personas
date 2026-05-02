@@ -10,217 +10,217 @@ order: 20
 updated: "2026-04-24"
 ---
 
-> The SRE es la persona que keeps production honest. En un SDLC AI-native, el SRE opera un stack de primitivas validadas, not a wall of dashboards.
+> El SRE es la persona que mantiene la producción honesta. En un SDLC AI-nativo, el SRE opera una pila de primitivas validadas, no un muro de dashboards.
 
 ## Resumen ejecutivo
 
-The SRE owns production reliability: service level objectives, incident response, on-call operations, toil reduction, and postmortems. En un SDLC AI-native, el SRE opera dentro de la fase de Operation phase con un conjunto fijo de primitivas: un agente incident, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema, and una lista curada de MCPs validados. SLOs are defined in Azure Monitor, incident communication flows through Microsoft Teams via the M365 Agents SDK, and postmortems live as versioned markdown in GitHub. The primary outputs are SLO definitions, incident briefs, postmortem documents, and toil reduction proposals.
+El SRE es responsable de la confiabilidad en producción: objetivos de nivel de servicio, respuesta a incidentes, operaciones de on-call, reducción de toil y postmortems. En un SDLC AI-nativo, el SRE opera dentro de la fase de Operation con un conjunto fijo de primitivas: un agente de incidentes, cuatro slash prompts, instrucciones con alcance, hooks validados por schema y una lista curada de MCPs validados. Los SLOs se definen en Azure Monitor, la comunicación de incidentes fluye por Microsoft Teams a través del M365 Agents SDK, y los postmortems viven como markdown versionado en GitHub. Las salidas primarias son definiciones de SLO, briefings de incidentes, documentos de postmortem y propuestas de reducción de toil.
 
 ## Rol y responsabilidades
 
-Piense en el SRE like a hospital attending physician on night shift. They do not build the hospital, nor design the treatments, but when a patient crashes they lead the room: triage, stabilize, diagnose, document, and feed the learnings into protocol. The measure of an attending is not heroics on a single night; it is the rate at which the same crisis stops happening. En un SDLC AI-native, el hospital is the production estate, the patient is the SLO, and the protocol is the runbook library backed by agentic primitives.
+Piensa en el SRE como un médico de guardia de un hospital en el turno nocturno. No construye el hospital ni diseña los tratamientos, pero cuando un paciente entra en crisis lidera la sala: triage, estabiliza, diagnostica, documenta y alimenta los aprendizajes en el protocolo. La medida de un médico de guardia no son los heroísmos en una sola noche; es la tasa con la que la misma crisis deja de ocurrir. En un SDLC AI-nativo, el hospital es la flota de producción, el paciente es el SLO, y el protocolo es la biblioteca de runbooks respaldada por primitivas agénticas.
 
-Responsabilidades principales:
+Responsabilidades primarias:
 
-- Define and maintain SLOs and error budgets in Azure Monitor workbooks
-- Lead incident response: triage, mitigation, communication, recovery
-- Coordinate on-call via Microsoft Teams with the M365 Agents SDK-backed incident bot
-- Author postmortems in GitHub and drive the action items to closure
-- Reduce toil through runbook automation and hook enforcement
-- Partner with DevOps Engineer and Release Manager on deployment safety
-- Operate the Incident Captain agent and the `/slo-review`, `/incident-brief`, `/postmortem-draft`, `/toil-scan` prompts
+- Definir y mantener SLOs y presupuestos de error en workbooks de Azure Monitor
+- Liderar la respuesta a incidentes: triage, mitigación, comunicación, recuperación
+- Coordinar el on-call vía Microsoft Teams con el bot de incidentes basado en el M365 Agents SDK
+- Redactar postmortems en GitHub e impulsar los action items hasta su cierre
+- Reducir el toil mediante automatización de runbooks y enforcement de hooks
+- Colaborar con el DevOps Engineer y el Release Manager en seguridad de despliegue
+- Operar el agente Incident Captain y los prompts `/slo-review`, `/incident-brief`, `/postmortem-draft`, `/toil-scan`
 
 ## Jobs to be done
 
-1. As an SRE, I want SLOs reviewed monthly with error budget burn, para que reliability is a budget, not a mood.
-2. As an SRE, I want an incident brief drafted in the first 5 minutes, para que responders work from the same understanding.
-3. As an SRE, I want postmortems drafted from incident telemetry, para que the document writes itself while humans focus on action items.
-4. As an SRE, I want toil scanned continuously, para que repetitive manual work is converted to code, not absorbed.
-5. As an SRE, I want runbooks executable from the incident bot in Teams, para que mitigation is a conversation, not a wiki hunt.
-6. As an SRE, I want the same incident class to never ship twice, para que the action item backlog is short and closed.
+1. Como SRE, quiero que los SLOs se revisen mensualmente con el burn del presupuesto de error, para que la confiabilidad sea un presupuesto, no un estado de ánimo.
+2. Como SRE, quiero un brief de incidente redactado en los primeros 5 minutos, para que los responders trabajen desde el mismo entendimiento.
+3. Como SRE, quiero postmortems redactados a partir de la telemetría del incidente, para que el documento se escriba solo mientras los humanos se enfocan en los action items.
+4. Como SRE, quiero el toil escaneado de forma continua, para que el trabajo manual repetitivo se convierta en código, no se absorba.
+5. Como SRE, quiero runbooks ejecutables desde el bot de incidentes en Teams, para que la mitigación sea una conversación, no una caza por la wiki.
+6. Como SRE, quiero que la misma clase de incidente nunca se repita, para que el backlog de action items sea corto y se cierre.
 
-## Puntos de dolor antes de la era AI-native
+## Dolores antes del AI-nativo
 
-1. **SLOs as slogans**. Every service claims 99.9 percent; nobody computes burn. The first real outage exposes the lie.
-2. **Incident chaos**. The first 15 minutes are "who is seeing what." Facts are collected on Slack, lost when the thread scrolls.
-3. **Postmortems late and thin**. Written two weeks later, signed off without action items, filed in a folder nobody reads.
-4. **Toil invisible**. Engineers burn afternoons restarting pods and rotating certs. Nobody measures it; nobody budgets against it.
-5. **Runbooks rot**. The runbook was correct three architectures ago. Responders skip it and improvise.
+1. **SLOs como eslóganes**. Cada servicio reclama 99,9 por ciento; nadie computa el burn. La primera caída real expone la mentira.
+2. **Caos en incidentes**. Los primeros 15 minutos son "quién está viendo qué". Los hechos se recogen en Slack y se pierden cuando el hilo desaparece.
+3. **Postmortems tardíos y delgados**. Escritos dos semanas después, firmados sin action items, archivados en una carpeta que nadie lee.
+4. **Toil invisible**. Los ingenieros queman tardes reiniciando pods y rotando certificados. Nadie lo mide; nadie le asigna presupuesto.
+5. **Runbooks podridos**. El runbook era correcto hace tres arquitecturas. Los responders lo saltan e improvisan.
 
-## Flujo diario AI-native
+## Flujo diario AI-nativo
 
 El SRE opera un loop fijo cada día. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
 
-### Setup de la mañana
+### Setup matinal
 
-1. Open the reliability repo in Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` and the scoped `.github/instructions/reliability.instructions.md`.
-2. In Claude Code, run the daily reliability briefing that queries the Azure MCP for the previous 24 hours of SLO burn, Azure Monitor alerts, and Application Insights anomalies.
-3. Review the open incident backlog and action item aging in GitHub Projects.
-4. Confirm the on-call schedule for the day in Microsoft Teams.
+1. Abre el repo de confiabilidad en Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` y las `.github/instructions/reliability.instructions.md` con alcance.
+2. En Claude Code, ejecuta el briefing diario de confiabilidad que consulta el Azure MCP por las últimas 24 horas de burn de SLO, alertas de Azure Monitor y anomalías de Application Insights.
+3. Revisa el backlog abierto de incidentes y el aging de action items en GitHub Projects.
+4. Confirma el calendario de on-call del día en Microsoft Teams.
 
 ### Ejecución al mediodía
 
-Each midday cycle is a single reliability improvement or planned incident drill, typically 2 to 3 hours of focused work.
+Cada ciclo de mediodía es una mejora de confiabilidad o un drill planeado de incidentes, típicamente de 2 a 3 horas de trabajo enfocado.
 
-1. **SLO review**. Invoke `/slo-review` monthly to recompute error budgets, identify services burning faster than expected, and flag SLOs that are no longer meaningful.
-2. **Toil scan**. Invoke `/toil-scan` to read the previous sprint's runbook executions and manual interventions. The agent proposes automations, prioritized by hours saved.
-3. **Runbook update**. Edit the runbooks affected by recent architecture changes; the pre-merge hook validates the runbook schema and the linked dashboards.
-4. **Pull request**. Open PRs for SLO changes, runbook updates, and toil reduction automation. GitHub Copilot Code Review scans diffs.
+1. **Revisión de SLOs**. Invoca `/slo-review` mensualmente para recalcular presupuestos de error, identificar servicios que queman más rápido de lo esperado y marcar SLOs que ya no son significativos.
+2. **Escaneo de toil**. Invoca `/toil-scan` para leer las ejecuciones de runbooks e intervenciones manuales del sprint anterior. El agente propone automatizaciones, priorizadas por horas ahorradas.
+3. **Actualización de runbooks**. Edita los runbooks afectados por cambios recientes de arquitectura; el hook pre-merge valida el schema del runbook y los dashboards enlazados.
+4. **Pull request**. Abre PRs para cambios de SLO, actualizaciones de runbook y automatización de reducción de toil. GitHub Copilot Code Review escanea los diffs.
 
-### Afternoon incident response (when an incident fires)
+### Respuesta a incidentes por la tarde (cuando se dispara un incidente)
 
-1. **Brief**. When Azure Monitor fires an SLO-breaching alert, the M365 Agents SDK-backed incident bot opens a Teams channel and invokes `/incident-brief`. The Incident Captain agent produces a 5-minute brief from alerts, recent deploys, and Application Insights errors.
-2. **Stabilize**. Responders follow the linked runbook; mitigation commands are executed from the incident bot with audit trail in the Teams channel.
-3. **Communicate**. Status updates are posted to Teams on a cadence (5 min for high-severity, 15 min for medium). Stakeholders read the channel, not separate emails.
-4. **Postmortem**. Within 48 hours of resolution, invoke `/postmortem-draft` to produce a timeline, contributing factors, and action items from the incident telemetry. The SRE edits for narrative and assigns owners in GitHub Projects.
+1. **Brief**. Cuando Azure Monitor dispara una alerta de breach de SLO, el bot de incidentes basado en el M365 Agents SDK abre un canal en Teams e invoca `/incident-brief`. El agente Incident Captain produce un brief de 5 minutos a partir de alertas, despliegues recientes y errores de Application Insights.
+2. **Estabilizar**. Los responders siguen el runbook enlazado; los comandos de mitigación se ejecutan desde el bot de incidentes con audit trail en el canal de Teams.
+3. **Comunicar**. Las actualizaciones de estado se publican en Teams con cadencia (5 min para alta severidad, 15 min para media). Los stakeholders leen el canal, no correos separados.
+4. **Postmortem**. En las 48 horas siguientes a la resolución, invoca `/postmortem-draft` para producir una línea de tiempo, factores contribuyentes y action items desde la telemetría del incidente. El SRE edita la narrativa y asigna dueños en GitHub Projects.
 
 ## Primitivas recomendadas
 
-### Agents
+### Agentes
 
 | Agente | Archivo | Propósito |
-|-------|------|---------|
-| `incident-captain` | `.github/agents/incident-captain.agent.md` | Lead incident brief, postmortem draft, SLO review, and toil scan |
+|--------|---------|-----------|
+| `incident-captain` | `.github/agents/incident-captain.agent.md` | Liderar brief de incidente, draft de postmortem, revisión de SLO y escaneo de toil |
 
-The Incident Captain agent uses `claude-sonnet-4-6` by default. It holds tools `read`, `edit`, `search`, `grep`, `glob`, `bash`, and MCP bindings to Azure MCP, GitHub MCP, and Microsoft 365 Agents SDK MCP. Extended thinking is enabled for postmortem causal reasoning.
+El agente Incident Captain usa `claude-sonnet-4-6` por defecto. Mantiene las herramientas `read`, `edit`, `search`, `grep`, `glob`, `bash`, y bindings MCP a Azure MCP, GitHub MCP y Microsoft 365 Agents SDK MCP. Extended thinking está habilitado para el razonamiento causal del postmortem.
 
 ### Prompts
 
 | Comando | Archivo | Propósito |
-|---------|------|---------|
-| `/slo-review` | `.github/prompts/slo-review.prompt.md` | Review error budget burn and flag SLOs that need revision |
-| `/incident-brief` | `.github/prompts/incident-brief.prompt.md` | Produce a 5-minute incident brief from alerts, recent deploys, and errors |
-| `/postmortem-draft` | `.github/prompts/postmortem-draft.prompt.md` | Draft the postmortem from incident telemetry, conversation, and runbook execution logs |
-| `/toil-scan` | `.github/prompts/toil-scan.prompt.md` | Identify toil from the previous sprint and propose automations prioritized by hours saved |
+|---------|---------|-----------|
+| `/slo-review` | `.github/prompts/slo-review.prompt.md` | Revisar el burn del presupuesto de error y marcar SLOs que necesitan revisión |
+| `/incident-brief` | `.github/prompts/incident-brief.prompt.md` | Producir un brief de incidente de 5 minutos desde alertas, despliegues recientes y errores |
+| `/postmortem-draft` | `.github/prompts/postmortem-draft.prompt.md` | Redactar el postmortem desde telemetría de incidente, conversación y logs de ejecución de runbook |
+| `/toil-scan` | `.github/prompts/toil-scan.prompt.md` | Identificar toil del sprint anterior y proponer automatizaciones priorizadas por horas ahorradas |
 
-### Instructions
+### Instrucciones
 
-El alcance `applyTo` reduce el costo de tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
+`applyTo` con alcance reduce el costo en tokens aproximadamente un 68 por ciento comparado con instrucciones globales.
 
 | Alcance (`applyTo`) | Archivo | Propósito |
-|-------------------|------|---------|
-| `slo/**/*.yaml` | `.github/instructions/slo.instructions.md` | SLO definition schema, burn rate windows, budget policies |
-| `runbooks/**/*.md` | `.github/instructions/runbook.instructions.md` | Runbook format: symptoms, checks, mitigations, validations |
-| `postmortems/**/*.md` | `.github/instructions/postmortem.instructions.md` | Blameless postmortem template, action item discipline |
+|---------------------|---------|-----------|
+| `slo/**/*.yaml` | `.github/instructions/slo.instructions.md` | Schema de definición de SLO, ventanas de burn rate, políticas de presupuesto |
+| `runbooks/**/*.md` | `.github/instructions/runbook.instructions.md` | Formato del runbook: síntomas, chequeos, mitigaciones, validaciones |
+| `postmortems/**/*.md` | `.github/instructions/postmortem.instructions.md` | Plantilla de postmortem sin culpa, disciplina de action items |
 
 ### Skills
 
-Skills are lazy-loaded, so the SRE can install many and pay tokens only for the ones that trigger.
+Los skills se cargan bajo demanda, así que el SRE puede instalar muchos y pagar tokens solo por los que disparan.
 
-- `burn-rate-reader`: calls the Azure MCP to compute multi-window multi-burn-rate alerts on SLOs
-- `action-item-tracker`: ensures every postmortem action item is opened as a GitHub issue with owner and due date
+- `burn-rate-reader`: llama al Azure MCP para computar alertas multi-ventana multi-burn-rate sobre SLOs
+- `action-item-tracker`: garantiza que cada action item de postmortem se abra como issue de GitHub con dueño y fecha límite
 
 ### Hooks
 
 Los hooks cuestan cero tokens de LLM. Son la capa de gobernanza más fuerte.
 
-- `pre-commit`: validate SLO YAML schema and runbook front matter
-- `pre-merge`: require action item issues linked on every merged postmortem
-- `post-incident`: open the postmortem draft PR within 48 hours, escalate if not merged within 7 days
+- `pre-commit`: validar schema YAML de SLO y frontmatter de runbook
+- `pre-merge`: requerir issues de action items enlazados en cada postmortem mergeado
+- `post-incident`: abrir el PR del draft de postmortem dentro de las 48 horas, escalar si no se mergea en 7 días
 
 ## MCPs validados
 
-Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+Cada MCP a continuación está registrado en el catálogo de MCPs. No referencies ningún MCP que no esté en el catálogo.
 
-| MCP | Status | Use in this persona |
+| MCP | Estado | Uso en esta persona |
 |-----|--------|---------------------|
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | Query Azure Monitor, Application Insights, Log Analytics for SLO burn, alerts, and incident telemetry |
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | Open postmortem PRs, track action items, read deploy history |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Operate the incident bot in Teams: channel creation, status updates, runbook execution audit |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | Read release pipelines and link incidents to release trains |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Fetch Azure reliability and observability reference guidance while authoring runbooks |
-| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Official (Microsoft) | Run synthetic probes from the incident bot to validate recovery |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Oficial (Microsoft) | Consultar Azure Monitor, Application Insights y Log Analytics para burn de SLO, alertas y telemetría de incidentes |
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Abrir PRs de postmortem, rastrear action items, leer historial de despliegues |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Oficial (Microsoft) | Operar el bot de incidentes en Teams: creación de canal, actualizaciones de estado, audit de ejecución de runbook |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Oficial (Microsoft) | Leer pipelines de release y enlazar incidentes a release trains |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Traer guía de referencia de confiabilidad y observabilidad de Azure al redactar runbooks |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Oficial (Microsoft) | Ejecutar probes sintéticos desde el bot de incidentes para validar la recuperación |
 
 ## Ejemplos reales
 
-### Scenario A: a p0 incident fires on checkout latency
+### Escenario A: se dispara un incidente p0 en latencia de checkout
 
-**Entrada**: Azure Monitor fires a 2-hour burn rate alert on the checkout SLO (99.9 percent success, 300 ms p95). Application Insights shows a 4x error rate on the `CheckoutController`.
+**Entrada**: Azure Monitor dispara una alerta de burn rate de 2 horas en el SLO de checkout (99,9 por ciento de éxito, 300 ms p95). Application Insights muestra 4x la tasa de errores en el `CheckoutController`.
 
-**Invocación**: The incident bot in Teams auto-invokes `/incident-brief` on alert fire.
-
-**Salida esperada**:
-
-1. A Teams channel `inc-2026-04-24-checkout-latency` created within 60 seconds.
-2. An incident brief posted: current SLO burn, last 3 deploys (service and dependency), top 5 error signatures from Application Insights, linked runbook.
-3. Responders execute the mitigation step ("scale out to 2x, flip feature flag `new-pricing-engine` off") from the bot with audit trail.
-4. Status updates every 5 minutes for the first 30 minutes; incident resolved within 42 minutes.
-
-### Scenario B: draft a postmortem
-
-**Entrada**: The checkout incident from Scenario A is resolved. The SRE invokes `/postmortem-draft` the next morning.
-
-**Invocación**: `/postmortem-draft` with the incident channel ID.
+**Invocación**: El bot de incidentes en Teams invoca automáticamente `/incident-brief` cuando se dispara la alerta.
 
 **Salida esperada**:
 
-1. A postmortem `postmortems/2026-04-24-checkout-latency.md` with timeline, contributing factors, impact, and proposed action items.
-2. Five action items opened as GitHub issues, each with owner and due date, grouped by theme (observability, rollout safety, rollback automation).
-3. A link to the related release train and the feature flag that was flipped off during mitigation.
-4. A draft PR that the SRE edits for narrative before merging.
+1. Un canal de Teams `inc-2026-04-24-checkout-latency` creado en menos de 60 segundos.
+2. Un brief de incidente publicado: burn actual del SLO, últimos 3 despliegues (servicio y dependencias), top 5 firmas de error de Application Insights, runbook enlazado.
+3. Los responders ejecutan el paso de mitigación ("escalar a 2x, apagar el feature flag `new-pricing-engine`") desde el bot con audit trail.
+4. Actualizaciones de estado cada 5 minutos durante los primeros 30 minutos; incidente resuelto en 42 minutos.
+
+### Escenario B: redactar un postmortem
+
+**Entrada**: El incidente de checkout del Escenario A está resuelto. El SRE invoca `/postmortem-draft` a la mañana siguiente.
+
+**Invocación**: `/postmortem-draft` con el ID del canal del incidente.
+
+**Salida esperada**:
+
+1. Un postmortem `postmortems/2026-04-24-checkout-latency.md` con línea de tiempo, factores contribuyentes, impacto y action items propuestos.
+2. Cinco action items abiertos como issues de GitHub, cada uno con dueño y fecha límite, agrupados por tema (observabilidad, seguridad de rollout, automatización de rollback).
+3. Un enlace al release train relacionado y al feature flag que se apagó durante la mitigación.
+4. Un PR draft que el SRE edita por narrativa antes de mergear.
 
 ## Anti-patrones
 
-1. **SLOs without burn rate alerts**. SLOs defined but nothing alerts until the budget is fully consumed. Mitigación: multi-window multi-burn-rate alerts via the `burn-rate-reader` skill.
-2. **Heroic incident response**. One senior engineer in their DMs fixes every incident. Mitigación: incident bot in Teams enforces brief, channel, and audit trail for every p0 and p1.
-3. **Postmortems filed, not read**. Written, signed, ignored. Mitigación: `action-item-tracker` ensures each postmortem opens real issues with owners and due dates.
-4. **Toil absorbed**. Engineers rotate certs and restart pods without logging. Mitigación: `/toil-scan` reads the runbook execution logs and proposes automations.
-5. **Runbook drift**. Runbooks describe an old architecture. Mitigación: `pre-merge` hook validates runbook schema and the linked dashboards return 200.
+1. **SLOs sin alertas de burn rate**. SLOs definidos pero nada alerta hasta que el presupuesto se consume por completo. Mitigación: alertas multi-ventana multi-burn-rate vía el skill `burn-rate-reader`.
+2. **Respuesta heroica a incidentes**. Un ingeniero senior en sus DMs corrige cada incidente. Mitigación: el bot de incidentes en Teams enforza brief, canal y audit trail para cada p0 y p1.
+3. **Postmortems archivados, no leídos**. Escritos, firmados, ignorados. Mitigación: `action-item-tracker` garantiza que cada postmortem abra issues reales con dueños y fechas límite.
+4. **Toil absorbido**. Los ingenieros rotan certificados y reinician pods sin registrarlo. Mitigación: `/toil-scan` lee los logs de ejecución de runbooks y propone automatizaciones.
+5. **Drift de runbooks**. Los runbooks describen una arquitectura vieja. Mitigación: el hook `pre-merge` valida el schema del runbook y que los dashboards enlazados retornen 200.
 
 ## KPIs y métricas de impacto
 
-The SRE persona is evaluated with a mix of SRE and DORA metrics.
+La persona SRE se evalúa con una mezcla de métricas SRE y DORA.
 
-| Metric | Baseline (manual) | Target (agentic) | Medición |
-|--------|-------------------|------------------|-------------|
-| SLO coverage | 30 percent of services | > 95 percent | Services with defined SLOs in Azure Monitor |
-| Error budget burn visibility | Weekly | Continuous | Burn rate dashboards per service |
-| Incident brief latency | 30 min | < 5 min | Time from alert fire to brief posted |
-| Mean time to mitigate | 90 min | < 30 min | Azure Monitor incident duration |
-| Mean time to restore | 4 hours | < 1 hour | Full recovery to SLO |
-| Postmortem completion rate | 50 percent | > 95 percent | Incidents with merged postmortem within 7 days |
-| Action item closure rate | 40 percent | > 80 percent | Action items closed within quarter |
-| Toil percentage | 50 percent | < 25 percent | On-call hours on manual interventions |
+| Métrica | Baseline (manual) | Objetivo (agéntico) | Medición |
+|---------|-------------------|---------------------|----------|
+| Cobertura de SLO | 30 por ciento de servicios | > 95 por ciento | Servicios con SLOs definidos en Azure Monitor |
+| Visibilidad de burn de presupuesto de error | Semanal | Continua | Dashboards de burn rate por servicio |
+| Latencia de brief de incidente | 30 min | < 5 min | Tiempo desde disparo de alerta hasta brief publicado |
+| Tiempo medio de mitigación | 90 min | < 30 min | Duración del incidente en Azure Monitor |
+| Tiempo medio de restauración | 4 horas | < 1 hora | Recuperación completa al SLO |
+| Tasa de finalización de postmortem | 50 por ciento | > 95 por ciento | Incidentes con postmortem mergeado en 7 días |
+| Tasa de cierre de action items | 40 por ciento | > 80 por ciento | Action items cerrados en el trimestre |
+| Porcentaje de toil | 50 por ciento | < 25 por ciento | Horas de on-call en intervenciones manuales |
 
 ## Madurez en cuatro niveles
 
 | Nivel | Nombre | Marcadores |
-|-------|------|---------|
-| L1 | Manual | SLOs as slogans, incidents managed in Slack threads, postmortems optional |
-| L2 | Asistido | GitHub Copilot helps draft postmortems, some SLOs defined, no incident bot |
-| L3 | Aumentado | One Incident Captain agent, cuatro slash prompts, instrucciones con alcance, Azure and M365 MCPs, incident bot live |
-| L4 | Agentic | Full primitives kit, hooks enforced, SLO coverage > 95 percent, incident brief in < 5 min, action items closed > 80 percent |
+|-------|--------|------------|
+| L1 | Manual | SLOs como eslóganes, incidentes gestionados en hilos de Slack, postmortems opcionales |
+| L2 | Asistido | GitHub Copilot ayuda a redactar postmortems, algunos SLOs definidos, sin bot de incidentes |
+| L3 | Aumentado | Un agente Incident Captain, cuatro slash prompts, instrucciones con alcance, MCPs de Azure y M365, bot de incidentes activo |
+| L4 | Agéntico | Kit completo de primitivas, hooks enforzados, cobertura de SLO > 95 por ciento, brief de incidente en < 5 min, action items cerrados > 80 por ciento |
 
 ## Integración con otras personas
 
-Handoffs:
+Entregas:
 
-- **Del Release Manager**: release train, risk tiers, rollback plan, canary report
-- **Del DevOps Engineer**: deployed artifact, dashboards, alert rules
-- **Para el Developer**: incident findings and action items as issues with reproduction steps
-- **Para el Platform Architect**: toil scan results feed the capability matrix roadmap
-- **Para el InfoSec Officer**: incidents classified as security are co-owned, with a joint postmortem
+- **Del Release Manager**: release train, niveles de riesgo, plan de rollback, reporte de canary
+- **Del DevOps Engineer**: artefacto desplegado, dashboards, reglas de alerta
+- **Al Developer**: hallazgos de incidente y action items como issues con pasos de reproducción
+- **Al Platform Architect**: resultados del escaneo de toil alimentan el roadmap de la matriz de capacidades
+- **Al InfoSec Officer**: incidentes clasificados como de seguridad son co-propiedad, con un postmortem conjunto
 
 ## Glosario
 
-- **Agent**: a configured LLM role with tools, instructions, and a defined output shape.
-- **Prompt**: a reusable slash command that invokes an agent with a specific task.
-- **Instructions**: scoped guidance applied by pattern match on file paths via `applyTo`.
-- **Skill**: a lazy-loaded capability that activates on keyword match.
-- **Hook**: a zero-token rule enforced at a specific lifecycle event.
-- **MCP**: Model Context Protocol server that exposes external systems to the agent.
-- **SLO**: Service Level Objective, the reliability target (e.g., 99.9 percent success at 300 ms p95).
-- **Error budget**: the allowed unreliability derived from the SLO (e.g., 0.1 percent over 28 days).
-- **Burn rate**: the rate at which error budget is being consumed; alerted on multi-window multi-burn-rate.
-- **Toil**: manual, repetitive, automatable operational work that scales linearly with service growth.
-- **Postmortem**: a blameless document capturing timeline, contributing factors, impact, and action items.
+- **Agente**: un rol de LLM configurado con herramientas, instrucciones y un shape de salida definido.
+- **Prompt**: un slash command reutilizable que invoca un agente con una tarea específica.
+- **Instrucciones**: guía con alcance aplicada por pattern match en paths de archivo vía `applyTo`.
+- **Skill**: capacidad cargada bajo demanda que se activa por match de palabra clave.
+- **Hook**: regla de cero tokens enforzada en un evento específico del ciclo de vida.
+- **MCP**: servidor Model Context Protocol que expone sistemas externos al agente.
+- **SLO**: Service Level Objective, el objetivo de confiabilidad (p. ej., 99,9 por ciento de éxito a 300 ms p95).
+- **Presupuesto de error**: la falta de confiabilidad permitida derivada del SLO (p. ej., 0,1 por ciento en 28 días).
+- **Burn rate**: la tasa a la que se consume el presupuesto de error; alertado en multi-ventana multi-burn-rate.
+- **Toil**: trabajo operacional manual, repetitivo y automatizable que escala linealmente con el crecimiento del servicio.
+- **Postmortem**: documento sin culpa que captura línea de tiempo, factores contribuyentes, impacto y action items.
 
 ## Referencias
 
-- [Google SRE Book](https://sre.google/books/) — canonical reference for SLOs, error budgets, and toil
-- [Azure Monitor documentation](https://learn.microsoft.com/azure/azure-monitor/) — alerts, workbooks, and SLO dashboards
-- [Application Insights documentation](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — distributed tracing and anomaly detection
-- [Log Analytics KQL reference](https://learn.microsoft.com/azure/data-explorer/kusto/query/) — query language for incident investigation
-- [Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — incident bot integration with Teams
-- [GitHub Projects documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects) — action item tracking and aging
-- [DORA metrics research](https://dora.dev/research/) — mean time to restore and change failure rate foundations
+- [Google SRE Book](https://sre.google/books/) — referencia canónica para SLOs, presupuestos de error y toil
+- [Documentación de Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/) — alertas, workbooks y dashboards de SLO
+- [Documentación de Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — tracing distribuido y detección de anomalías
+- [Referencia KQL de Log Analytics](https://learn.microsoft.com/azure/data-explorer/kusto/query/) — lenguaje de consulta para investigación de incidentes
+- [Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — integración del bot de incidentes con Teams
+- [Documentación de GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects) — seguimiento de action items y aging
+- [Investigación DORA](https://dora.dev/research/) — fundamentos de tiempo medio de restauración y tasa de fallo de cambio

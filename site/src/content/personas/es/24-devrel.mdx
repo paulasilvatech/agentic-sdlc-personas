@@ -10,194 +10,194 @@ order: 24
 updated: "2026-04-24"
 ---
 
-> The DevRel is the persona accountable for the developer experience outside the core team: tutorials, demo repositories, community conversations, and feedback loops back into the product. En un SDLC AI-native, DevRel operates a content and community pipeline, not an event calendar.
+> El DevRel es la persona responsable de la experiencia de developer fuera del equipo central: tutoriales, repositorios de demo, conversaciones con la comunidad y loops de feedback de regreso al producto. En un SDLC AI-nativo, DevRel opera una pipeline de contenido y comunidad, no un calendario de eventos.
 
 ## Resumen ejecutivo
 
-DevRel turns product capability into community proficiency. En un SDLC AI-native, DevRel works inside the Community phase con un conjunto fijo de primitivas: un agente demo-builder, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema, and una lista curada de MCPs validados. The primary outputs are reproducible demo repositories on GitHub, tutorials published through Microsoft Learn-style content, video briefs for recorded sessions, and a regular community digest that feeds both external readers and the product team.
+DevRel convierte la capacidad del producto en proficiencia de la comunidad. En un SDLC AI-nativo, DevRel trabaja dentro de la fase de Community con un conjunto fijo de primitivas: un agente demo-builder, cuatro slash prompts, instrucciones con alcance, hooks validados por schema y una lista curada de MCPs validados. Las salidas primarias son repositorios de demo reproducibles en GitHub, tutoriales publicados en estilo Microsoft Learn, briefs de video para sesiones grabadas y un digest regular de la comunidad que alimenta tanto a lectores externos como al equipo de producto.
 
 ## Rol y responsabilidades
 
-Piense en el DevRel like a concert promoter and a session musician rolled into one. The promoter books the venue and warms up the crowd; the session musician can sit in with the band and make the music sound better. En un SDLC AI-native DevRel both amplifies the product and plays alongside developers who adopt it.
+Piensa en el DevRel como un promotor de conciertos y un músico de sesión a la vez. El promotor reserva el lugar y calienta al público; el músico de sesión puede tocar con la banda y hacer que la música suene mejor. En un SDLC AI-nativo, DevRel amplifica el producto y al mismo tiempo toca al lado de los developers que lo adoptan.
 
-Responsabilidades principales:
+Responsabilidades primarias:
 
-- Produce demo repositories on GitHub that build with GitHub Actions and deploy to Azure (typically Azure Static Web Apps or Azure Container Apps for live instances)
-- Write tutorials grounded in current Microsoft Learn content, validated by the Microsoft Learn Docs MCP
-- Run the community cadence on GitHub Discussions, surfacing themes to the product team weekly
-- Script and structure recorded sessions, live streams, and conference talks with reusable video briefs
-- Feed community insight into Azure Boards as prioritized product feedback
-- Partner with the Tech Writer to keep tutorials, demos, and reference docs cross-linked
-- Operate the Demo Builder agent and the `/demo-script`, `/tutorial-outline`, `/video-brief`, `/community-digest` prompts
+- Producir repositorios de demo en GitHub que se construyen con GitHub Actions y se despliegan en Azure (típicamente Azure Static Web Apps o Azure Container Apps para instancias en vivo)
+- Escribir tutoriales grounded en contenido vigente de Microsoft Learn, validados por el Microsoft Learn Docs MCP
+- Mantener la cadencia de la comunidad en GitHub Discussions, surgiendo temas al equipo de producto semanalmente
+- Guionizar y estructurar sesiones grabadas, livestreams y charlas de conferencia con briefs de video reutilizables
+- Alimentar Azure Boards con insight de la comunidad como feedback de producto priorizado
+- Colaborar con el Tech Writer para mantener tutoriales, demos y docs de referencia con cross-links
+- Operar el agente Demo Builder y los prompts `/demo-script`, `/tutorial-outline`, `/video-brief`, `/community-digest`
 
 ## Jobs to be done
 
-1. Como DevRel, quiero a demo repository scaffolded in minutes from a chosen scenario, para que I record a session the same afternoon.
-2. Como DevRel, quiero tutorials that cite current Microsoft Learn pages, para que readers never follow outdated steps.
-3. Como DevRel, quiero a weekly digest of GitHub Discussions themes, para que the product team hears what the community is actually asking.
-4. Como DevRel, quiero video briefs with time-boxed sections and reproducible code snippets, para que recordings stay tight and editable.
-5. Como DevRel, quiero every demo repository covered by GitHub Actions CI, para que viewers can fork and run without hitting stale dependencies.
-6. Como DevRel, quiero community contributions acknowledged systematically, para que the best contributors stay engaged.
+1. Como DevRel, quiero un repositorio de demo scaffoldeado en minutos a partir de un escenario elegido, para grabar una sesión esa misma tarde.
+2. Como DevRel, quiero tutoriales que citen páginas vigentes de Microsoft Learn, para que los lectores nunca sigan pasos desactualizados.
+3. Como DevRel, quiero un digest semanal de los temas de GitHub Discussions, para que el equipo de producto escuche lo que la comunidad realmente está pidiendo.
+4. Como DevRel, quiero briefs de video con secciones cronometradas y snippets de código reproducibles, para que las grabaciones se mantengan ajustadas y editables.
+5. Como DevRel, quiero que cada repositorio de demo esté cubierto por CI de GitHub Actions, para que los espectadores puedan forkear y correr sin chocar con dependencias obsoletas.
+6. Como DevRel, quiero que las contribuciones de la comunidad se reconozcan sistemáticamente, para que los mejores contribuidores sigan engaged.
 
-## Puntos de dolor antes de la era AI-native
+## Dolores antes del AI-nativo
 
-1. **Demos that break six weeks later**. A demo recorded in January fails in March because a dependency moved. Viewers lose trust.
-2. **Tutorials grounded in yesterday's docs**. The tutorial cites a flag that was renamed two releases ago. Readers fork the repo and hit errors.
-3. **Community themes invisible to product**. The product team hears the three loudest issues and nothing else; the quiet ninety percent of feedback is lost.
-4. **Video sessions that drift**. Without a structured brief, a twenty-minute demo becomes a fifty-minute monologue.
-5. **Contributor recognition ad hoc**. Top contributors churn because their work goes unacknowledged.
+1. **Demos que se rompen seis semanas después**. Una demo grabada en enero falla en marzo porque una dependencia se movió. Los espectadores pierden confianza.
+2. **Tutoriales grounded en docs de ayer**. El tutorial cita un flag que se renombró hace dos releases. Los lectores forkean el repo y chocan con errores.
+3. **Temas de comunidad invisibles para producto**. El equipo de producto escucha los tres issues más ruidosos y nada más; el 90 por ciento silencioso del feedback se pierde.
+4. **Sesiones de video que derivan**. Sin un brief estructurado, una demo de veinte minutos se convierte en un monólogo de cincuenta.
+5. **Reconocimiento de contribuidores ad hoc**. Los top contribuidores se van porque su trabajo pasa sin reconocimiento.
 
-## Flujo diario AI-native
+## Flujo diario AI-nativo
 
-The DevRel operates a daily loop. El loop usa primitivas de GitHub Copilot inside Visual Studio Code, Claude Code at the terminal for long-form scripting, and the Microsoft Learn Docs MCP for grounded tutorials on Azure and Microsoft 365 topics.
+El DevRel opera un loop diario. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code, Claude Code en la terminal para guionado de formato largo, y el Microsoft Learn Docs MCP para tutoriales grounded sobre temas de Azure y Microsoft 365.
 
-### Setup de la mañana
+### Setup matinal
 
-1. Open Visual Studio Code on the `devrel` repository. GitHub Copilot Chat carga the scoped `.github/instructions/devrel.instructions.md`.
-2. Invoke `/community-digest`. The Demo Builder agent reads GitHub Discussions across the org, clusters themes, and drafts a digest in `devrel/digests/YYYY-WW.md`.
-3. Skim overnight GitHub Actions results on all demo repositories: any red demo is triaged immediately so forkers do not hit broken code.
+1. Abre Visual Studio Code en el repositorio `devrel`. GitHub Copilot Chat carga `.github/instructions/devrel.instructions.md` con alcance.
+2. Invoca `/community-digest`. El agente Demo Builder lee GitHub Discussions a través de la org, agrupa temas y redacta un digest en `devrel/digests/YYYY-WW.md`.
+3. Hojea los resultados de la madrugada de GitHub Actions sobre todos los repositorios de demo: cualquier demo en rojo se triagea de inmediato para que los forkeadores no choquen con código roto.
 
 ### Ejecución al mediodía
 
-1. Build or refresh a demo. Invoke `/demo-script <scenario>`. The agent scaffolds a repository with a `README.md`, a GitHub Actions workflow that builds and deploys to Azure Static Web Apps or Azure Container Apps, and a minimal test suite.
-2. Write or update a tutorial. Invoke `/tutorial-outline <topic>`. The agent produces a section plan grounded in Microsoft Learn content via the Microsoft Learn Docs MCP, with code blocks matching the demo repo.
-3. Pair with a developer from an ambassador program on their own contribution. Claude Code at the terminal drives through the repo and proposes improvements.
+1. Construye o refresca una demo. Invoca `/demo-script <escenario>`. El agente scaffoldea un repositorio con un `README.md`, un workflow de GitHub Actions que construye y despliega a Azure Static Web Apps o a Azure Container Apps, y una suite de pruebas mínima.
+2. Escribe o actualiza un tutorial. Invoca `/tutorial-outline <tema>`. El agente produce un plan de secciones grounded en contenido de Microsoft Learn vía el Microsoft Learn Docs MCP, con bloques de código que matchean el repo de demo.
+3. Empareja con un developer de un programa de embajadores en su propia contribución. Claude Code en la terminal recorre el repo y propone mejoras.
 
 ### Revisión al final de la tarde
 
-1. Record or prepare a session. Invoke `/video-brief <session>`. The agent produces a brief with time-boxed sections, reproducible code snippets, on-screen cues, and a checklist for the editor.
-2. Publish content. GitHub Actions builds the demo, deploys to Azure, and posts a Teams announcement via the M365 Agents SDK when a new tutorial lands.
-3. Close the day by pushing the digest. Product Managers subscribed to the Teams channel receive the digest; high-signal items get created as Azure Boards work items.
+1. Graba o prepara una sesión. Invoca `/video-brief <sesión>`. El agente produce un brief con secciones cronometradas, snippets de código reproducibles, cues en pantalla y un checklist para el editor.
+2. Publica contenido. GitHub Actions construye la demo, despliega a Azure y publica un anuncio en Teams vía el M365 Agents SDK cuando cae un nuevo tutorial.
+3. Cierra el día haciendo push del digest. Los Product Managers suscritos al canal de Teams reciben el digest; los items de alta señal se crean como work items en Azure Boards.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Archivo | Propósito |
-|-------|------|---------|
-| `demo-builder` | `.github/agents/demo-builder.agent.md` | Scaffold demos, draft tutorials grounded in Microsoft Learn, produce video briefs, synthesize the community digest |
+|--------|---------|-----------|
+| `demo-builder` | `.github/agents/demo-builder.agent.md` | Scaffoldear demos, redactar tutoriales grounded en Microsoft Learn, producir briefs de video, sintetizar el digest de la comunidad |
 
-The Demo Builder agent uses `claude-sonnet-4-6` by default, with tools `read`, `edit`, `search`, `grep`, `glob`, `bash`. It pulls context from GitHub, Microsoft Learn Docs, and Azure MCPs, and uses Playwright MCP to verify that deployed demos run.
+El agente Demo Builder usa `claude-sonnet-4-6` por defecto, con las herramientas `read`, `edit`, `search`, `grep`, `glob`, `bash`. Trae contexto desde GitHub, Microsoft Learn Docs y Azure MCPs, y usa el Playwright MCP para verificar que las demos desplegadas corren.
 
 ### Slash prompts
 
 | Comando | Archivo | Propósito |
-|---------|------|---------|
-| `/demo-script` | `.github/prompts/demo-script.prompt.md` | Scaffold a demo repository with CI, deploy target, and reproducible steps |
-| `/tutorial-outline` | `.github/prompts/tutorial-outline.prompt.md` | Produce a tutorial section plan grounded in Microsoft Learn |
-| `/video-brief` | `.github/prompts/video-brief.prompt.md` | Draft a time-boxed brief for a recorded session with on-screen cues |
-| `/community-digest` | `.github/prompts/community-digest.prompt.md` | Cluster GitHub Discussions themes and draft a digest |
+|---------|---------|-----------|
+| `/demo-script` | `.github/prompts/demo-script.prompt.md` | Scaffoldear un repositorio de demo con CI, target de despliegue y pasos reproducibles |
+| `/tutorial-outline` | `.github/prompts/tutorial-outline.prompt.md` | Producir un plan de secciones de tutorial grounded en Microsoft Learn |
+| `/video-brief` | `.github/prompts/video-brief.prompt.md` | Redactar un brief cronometrado para una sesión grabada con cues en pantalla |
+| `/community-digest` | `.github/prompts/community-digest.prompt.md` | Agrupar temas de GitHub Discussions y redactar un digest |
 
 ### Instrucciones con alcance
 
-Scoped `applyTo` keeps community-facing content distinct from internal docs.
+`applyTo` con alcance mantiene el contenido orientado a la comunidad distinto de los docs internos.
 
 | Alcance (`applyTo`) | Archivo | Propósito |
-|-------------------|------|---------|
-| `devrel/demos/**` | `.github/instructions/demos.instructions.md` | Demo repo conventions, CI must deploy, README discipline |
-| `devrel/tutorials/**` | `.github/instructions/tutorials.instructions.md` | Tutorial voice, citation of Microsoft Learn sources, accessibility checks |
-| `devrel/videos/**` | `.github/instructions/videos.instructions.md` | Video brief format, time-box discipline, on-screen cues |
+|---------------------|---------|-----------|
+| `devrel/demos/**` | `.github/instructions/demos.instructions.md` | Convenciones de repo de demo, CI debe desplegar, disciplina de README |
+| `devrel/tutorials/**` | `.github/instructions/tutorials.instructions.md` | Voz del tutorial, cita de fuentes de Microsoft Learn, chequeos de accesibilidad |
+| `devrel/videos/**` | `.github/instructions/videos.instructions.md` | Formato de brief de video, disciplina de cronometrado, cues en pantalla |
 
 ### Hooks
 
-Hooks are zero-token governance for community artifacts.
+Los hooks son gobernanza de cero tokens para artefactos de comunidad.
 
-- `pre-commit`: reject a tutorial without a citation to a Microsoft Learn or GitHub Docs page when the topic touches Microsoft or GitHub stacks
-- `post-commit`: trigger a Playwright MCP smoke test against the deployed demo whenever the demo repo changes
-- `pre-push`: verify that every demo repository has a passing GitHub Actions workflow within the last seven days
+- `pre-commit`: rechazar un tutorial sin cita a una página de Microsoft Learn o de GitHub Docs cuando el tema toca stacks de Microsoft o GitHub
+- `post-commit`: disparar un smoke test del Playwright MCP contra la demo desplegada cada vez que el repo de demo cambia
+- `pre-push`: verificar que cada repositorio de demo tenga un workflow de GitHub Actions verde dentro de los últimos siete días
 
 ## MCPs validados
 
-Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+Cada MCP a continuación está registrado en el catálogo de MCPs. No referencies ningún MCP que no esté en el catálogo.
 
-| MCP | Status | Use in this persona |
+| MCP | Estado | Uso en esta persona |
 |-----|--------|---------------------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | Manage demo repositories, read Discussions, create issues for community themes |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Ground tutorials in current Microsoft Learn content for Azure and Microsoft 365 topics |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | Deploy and inspect demo environments on Azure Static Web Apps and Azure Container Apps |
-| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Official (Microsoft) | Smoke-test deployed demos end-to-end so forkers never land on broken instances |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | File community-driven feedback as Azure Boards work items when the product team uses Azure Boards |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Announce new tutorials, demos, and digests into Microsoft Teams channels |
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Gestionar repositorios de demo, leer Discussions, crear issues para temas de comunidad |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Grounding de tutoriales en contenido vigente de Microsoft Learn para temas de Azure y Microsoft 365 |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Oficial (Microsoft) | Desplegar e inspeccionar entornos de demo en Azure Static Web Apps y Azure Container Apps |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Oficial (Microsoft) | Smoke-test end-to-end de demos desplegadas para que los forkeadores nunca aterricen en instancias rotas |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Oficial (Microsoft) | Registrar feedback impulsado por la comunidad como work items en Azure Boards cuando el equipo de producto usa Azure Boards |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Oficial (Microsoft) | Anunciar nuevos tutoriales, demos y digests en canales de Microsoft Teams |
 
 ## Ejemplos reales
 
-### Example 1: demo for a new Azure AI Foundry feature
+### Ejemplo 1: demo para una nueva feature de Azure AI Foundry
 
-**Entrada**: A new capability ships in Azure AI Foundry; the product team wants a demo in seven days.
+**Entrada**: Una nueva capacidad sale en Azure AI Foundry; el equipo de producto quiere una demo en siete días.
 
 **Invocación**: `/demo-script foundry-agent-chat`.
 
 **Salida esperada**:
 
-1. A new repository `devrel-demos/foundry-agent-chat` with a `README.md`, a working sample, a GitHub Actions workflow that deploys to Azure Container Apps, and a Playwright smoke test.
-2. The tutorial draft `devrel/tutorials/foundry-agent-chat.mdx` cross-linked to Microsoft Learn pages on Azure AI Foundry, via the Microsoft Learn Docs MCP.
-3. A video brief in `devrel/videos/foundry-agent-chat.md` with a ten-minute run time, three code-walkthrough sections, and on-screen cues.
-4. A Teams announcement via the M365 Agents SDK to the developer-community channel when the demo deploys successfully.
+1. Un nuevo repositorio `devrel-demos/foundry-agent-chat` con un `README.md`, un sample funcionando, un workflow de GitHub Actions que despliega a Azure Container Apps y un smoke test de Playwright.
+2. El draft de tutorial `devrel/tutorials/foundry-agent-chat.mdx` con cross-links a páginas de Microsoft Learn sobre Azure AI Foundry, vía el Microsoft Learn Docs MCP.
+3. Un brief de video en `devrel/videos/foundry-agent-chat.md` con tiempo de ejecución de diez minutos, tres secciones de walkthrough de código y cues en pantalla.
+4. Un anuncio de Teams vía el M365 Agents SDK al canal de comunidad de developers cuando la demo despliega exitosamente.
 
-### Example 2: weekly community digest
+### Ejemplo 2: digest semanal de la comunidad
 
-**Entrada**: Over the last seven days, GitHub Discussions saw 42 threads across three repositories.
+**Entrada**: En los últimos siete días, GitHub Discussions vio 42 hilos en tres repositorios.
 
 **Invocación**: `/community-digest`.
 
 **Salida esperada**:
 
-1. A digest in `devrel/digests/2026-W17.md` with three theme clusters: onboarding friction in the CLI, requests for a Terraform provider, confusion about pricing tiers.
-2. Each theme cites at least two representative Discussions links.
-3. For each theme, a proposed Azure Boards work item is drafted for the product team to consider; the DevRel triages before filing.
-4. A Teams post via the M365 Agents SDK summarizing the digest for the product managers who subscribe.
+1. Un digest en `devrel/digests/2026-W17.md` con tres clusters de tema: fricción de onboarding en la CLI, pedidos de un provider de Terraform, confusión sobre niveles de pricing.
+2. Cada tema cita al menos dos enlaces representativos de Discussions.
+3. Para cada tema, se redacta un work item de Azure Boards propuesto para que el equipo de producto considere; el DevRel triagea antes de archivar.
+4. Una publicación en Teams vía el M365 Agents SDK que resume el digest para los product managers que se suscriben.
 
 ## Anti-patrones
 
-1. **Demos without CI**. A demo that is not built by GitHub Actions breaks silently. Mitigación: the pre-push hook rejects demos with no green workflow in the last seven days.
-2. **Tutorials grounded in memory**. Writing from memory is a drift generator. Mitigación: `tutorials.instructions.md` requires Microsoft Learn citations via the Microsoft Learn Docs MCP.
-3. **Community feedback as anecdotes**. Sharing one or two loud quotes is not a signal. Mitigación: `/community-digest` clusters themes with representative links.
-4. **Video sessions with no brief**. An unbriefed session runs long and edits poorly. Mitigación: `/video-brief` enforces time-box and on-screen cue discipline.
-5. **Contribution recognition ad hoc**. Ad hoc thank-you posts miss most contributors. Mitigación: the digest section on contributors pulls merged PRs and accepted Discussions answers from the GitHub MCP.
+1. **Demos sin CI**. Una demo que no es construida por GitHub Actions se rompe en silencio. Mitigación: el hook pre-push rechaza demos sin un workflow verde en los últimos siete días.
+2. **Tutoriales grounded en la memoria**. Escribir desde la memoria es un generador de drift. Mitigación: `tutorials.instructions.md` requiere citas a Microsoft Learn vía el Microsoft Learn Docs MCP.
+3. **Feedback de comunidad como anécdotas**. Compartir una o dos quotes ruidosas no es señal. Mitigación: `/community-digest` agrupa temas con enlaces representativos.
+4. **Sesiones de video sin brief**. Una sesión sin brief corre largo y edita mal. Mitigación: `/video-brief` enforza disciplina de cronometrado y cues en pantalla.
+5. **Reconocimiento de contribución ad hoc**. Los thank-you ad hoc se pierden la mayoría de los contribuidores. Mitigación: la sección de contribuidores del digest trae PRs mergeados y respuestas aceptadas en Discussions desde el GitHub MCP.
 
 ## KPIs y métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Medición |
-|--------|-------------------|------------------|-------------|
-| Demo build success rate on fork | 60 percent | Over 95 percent | GitHub Actions history |
-| Time from product release to demo | 14 days | Under 3 days | Release-to-demo lag |
-| Tutorial citation coverage | 30 percent | Over 90 percent | Citation audit |
-| Community themes fed to product per week | Zero to one | Three to five | Digest history |
-| Community-driven Azure Boards items per month | Under 5 | Over 20 | Work-item source label |
-| Token efficiency | N/A | Under 300k tokens per week | Copilot usage report |
+| Métrica | Baseline (manual) | Objetivo (agéntico) | Medición |
+|---------|-------------------|---------------------|----------|
+| Tasa de éxito de build de demo en fork | 60 por ciento | Más del 95 por ciento | Historial de GitHub Actions |
+| Tiempo desde release de producto hasta demo | 14 días | Menos de 3 días | Lag release-a-demo |
+| Cobertura de citas en tutoriales | 30 por ciento | Más del 90 por ciento | Auditoría de citas |
+| Temas de comunidad alimentados a producto por semana | Cero a uno | Tres a cinco | Historial del digest |
+| Items de Azure Boards impulsados por comunidad por mes | Menos de 5 | Más de 20 | Etiqueta de fuente de work-item |
+| Eficiencia de tokens | N/A | Menos de 300k tokens por semana | Reporte de uso de Copilot |
 
 ## Madurez en cuatro niveles
 
 | Nivel | Nombre | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Demos without CI, tutorials from memory, no community digest |
-| L2 | Asistido | GitHub Copilot Chat for drafting, some demos on GitHub Actions, inconsistent citations |
-| L3 | Aumentado | Demo Builder agent, cuatro slash prompts, instrucciones con alcance, Microsoft Learn Docs MCP grounding, Playwright smoke tests |
-| L4 | Agentic | Full primitives kit, hooks enforced, community themes feeding Azure Boards weekly, demos deployed to Azure with green CI at all times, maturity scorecard above 80 percent |
+|-------|--------|------------|
+| L1 | Manual | Demos sin CI, tutoriales desde la memoria, sin digest de comunidad |
+| L2 | Asistido | GitHub Copilot Chat para redacción, algunas demos en GitHub Actions, citas inconsistentes |
+| L3 | Aumentado | Agente Demo Builder, cuatro slash prompts, instrucciones con alcance, grounding del Microsoft Learn Docs MCP, smoke tests de Playwright |
+| L4 | Agéntico | Kit completo de primitivas, hooks enforzados, temas de comunidad alimentando Azure Boards semanalmente, demos desplegadas en Azure con CI verde en todo momento, scorecard de madurez por encima del 80 por ciento |
 
 ## Integración con otras personas
 
-- **With Product Owner**: community themes influence roadmap negotiations
-- **With Tech Writer**: tutorials cross-link to reference docs
-- **With Developer**: demos exercise real APIs and surface friction
-- **With Release Manager**: release cadence aligns with demo and tutorial publication
-- **With UX Designer**: tutorial flow and onboarding friction feed UX research
-- **With Engineering Manager**: community load and ambassador program capacity
-- **With InfoSec Officer**: demos reviewed for credential hygiene before publication
+- **Con el Product Owner**: los temas de comunidad influyen en negociaciones de roadmap
+- **Con el Tech Writer**: los tutoriales hacen cross-link con docs de referencia
+- **Con el Developer**: las demos ejercitan APIs reales y surgen fricciones
+- **Con el Release Manager**: la cadencia de release se alinea con publicación de demos y tutoriales
+- **Con el UX Designer**: el flujo de tutorial y la fricción de onboarding alimentan investigación de UX
+- **Con el Engineering Manager**: carga de comunidad y capacidad del programa de embajadores
+- **Con el InfoSec Officer**: las demos se revisan por higiene de credenciales antes de la publicación
 
 ## Glosario
 
-- **Demo repository**: a forkable GitHub repository that builds and deploys on Azure, covered by CI and Playwright smoke tests.
-- **Tutorial**: a step-by-step guide grounded in current Microsoft Learn content and cross-linked to a demo.
-- **Community digest**: a weekly synthesis of GitHub Discussions themes, with representative links and proposed product-feedback items.
-- **Video brief**: a structured outline for a recorded session, with time-boxed sections, on-screen cues, and reproducible code snippets.
-- **Ambassador program**: a structured engagement with external community contributors who champion the product.
-- **Citation discipline**: the rule that tutorials on Microsoft or GitHub topics cite current Microsoft Learn or GitHub Docs pages.
+- **Repositorio de demo**: un repositorio de GitHub forkeable que construye y despliega en Azure, cubierto por CI y smoke tests de Playwright.
+- **Tutorial**: una guía paso a paso grounded en contenido vigente de Microsoft Learn y con cross-link a una demo.
+- **Digest de comunidad**: una síntesis semanal de los temas de GitHub Discussions, con enlaces representativos e items de feedback de producto propuestos.
+- **Brief de video**: un esquema estructurado para una sesión grabada, con secciones cronometradas, cues en pantalla y snippets de código reproducibles.
+- **Programa de embajadores**: un engagement estructurado con contribuidores externos de la comunidad que defienden el producto.
+- **Disciplina de citas**: la regla de que los tutoriales sobre temas de Microsoft o GitHub citan páginas vigentes de Microsoft Learn o de GitHub Docs.
 
 ## Referencias
 
-- [GitHub Discussions documentation](https://docs.github.com/discussions) — authoritative source for community hosting on GitHub
-- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — grounding for tutorials on Microsoft 365 and Azure
-- [Azure Static Web Apps documentation](https://learn.microsoft.com/azure/static-web-apps/) — hosting target for static demo deployments
-- [Azure Container Apps documentation](https://learn.microsoft.com/azure/container-apps/) — hosting target for live demo services
-- [GitHub Actions documentation](https://docs.github.com/actions) — CI and deployment automatización para demo repositories
+- [Documentación de GitHub Discussions](https://docs.github.com/discussions) — fuente autoritativa para hosting de comunidad en GitHub
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — grounding para tutoriales sobre Microsoft 365 y Azure
+- [Documentación de Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/) — target de hosting para despliegues de demo estáticos
+- [Documentación de Azure Container Apps](https://learn.microsoft.com/azure/container-apps/) — target de hosting para servicios de demo en vivo
+- [Documentación de GitHub Actions](https://docs.github.com/actions) — automatización de CI y despliegue para repositorios de demo
