@@ -10,193 +10,193 @@ order: 9
 updated: "2026-04-24"
 ---
 
-> The Scrum Master is the persona accountable for team flow and sprint health. Em um SDLC AI-native, o Scrum Master operates a facilitation stack, not a ceremony schedule, and measures flow with primitives, not vibes.
+> O Scrum Master é a persona responsável pelo fluxo do time e pela saúde do sprint. Em um SDLC AI-native, o Scrum Master opera uma pilha de facilitação, não um calendário de cerimônias, e mede fluxo com primitivas, não com feeling.
 
 ## Resumo executivo
 
-The Scrum Master makes the sprint a learning loop rather than a delivery treadmill. Em um SDLC AI-native, o Scrum Master works inside the Delivery phase com um conjunto fixo de primitivas: um agente flow-coach, quatro slash prompts, instruções escopadas, hooks validados por schema, and uma lista curada de MCPs validados. The primary outputs are facilitated ceremonies with data-grounded agendas, impediment briefs with owners, and sprint-over-sprint flow reports that turn retrospectives into measurable experiments.
+O Scrum Master transforma o sprint em um loop de aprendizado em vez de uma esteira de entrega. Em um SDLC AI-native, o Scrum Master trabalha dentro da fase de Delivery com um conjunto fixo de primitivas: um agente flow-coach, quatro slash prompts, instruções escopadas, hooks validados por schema e uma lista curada de MCPs validados. As saídas primárias são cerimônias facilitadas com agendas ancoradas em dados, briefs de impedimentos com donos e relatórios de fluxo sprint a sprint que transformam retrospectivas em experimentos mensuráveis.
 
 ## Papel e responsabilidades
 
-Pense no Scrum Master like the pit crew chief at a race. The engineers drive the car and the team designs the engine, but it is the pit crew chief who times the stops, reads the tire data, and decides when to pull in. The driver trusts the call because it is grounded in telemetry, not opinion. Em um SDLC AI-native, o Scrum Master owns the telemetry of flow.
+Pense no Scrum Master como o chefe dos boxes numa corrida. Os engenheiros dirigem o carro e o time projeta o motor, mas é o chefe dos boxes quem cronometra as paradas, lê os dados dos pneus e decide quando chamar para dentro. O piloto confia na decisão porque ela é ancorada em telemetria, não em opinião. Em um SDLC AI-native, o Scrum Master é dono da telemetria do fluxo.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Facilitate sprint planning, daily standups, reviews, and retrospectives using Azure Boards and GitHub Projects as the source of truth
-- Keep the sprint burn-down accurate in GitHub Projects and reconcile with Azure Boards daily
-- Run retrospectives grounded in flow data, not opinions
-- Maintain the impediment log, escalate aging blockers to the Engineering Manager or Project Manager
-- Coach the team on WIP limits, pull rather than push, and slice-to-thin-vertical
-- Partner with the Technical Lead on spike scoping for uncertain work
-- Operate the Flow Coach agent and the `/plan-sprint`, `/run-retro`, `/impediment-scan`, `/spike-scope` prompts
+- Facilitar sprint planning, dailys, reviews e retrospectivas usando Azure Boards e GitHub Projects como fonte da verdade
+- Manter o burn-down do sprint acurado em GitHub Projects e reconciliar com Azure Boards diariamente
+- Conduzir retrospectivas ancoradas em dados de fluxo, não em opiniões
+- Manter o log de impedimentos, escalar bloqueios envelhecidos para o Engineering Manager ou Project Manager
+- Fazer coaching do time em limites de WIP, pull em vez de push, e fatiar em vertical fino
+- Fazer parceria com o Technical Lead no escopo de spikes para trabalho incerto
+- Operar o agente Flow Coach e os prompts `/plan-sprint`, `/run-retro`, `/impediment-scan`, `/spike-scope`
 
 ## Jobs to be done
 
-1. Como Scrum Master, eu quero sprint planning grounded in last sprint's throughput, para que the team commits to realistic scope instead of aspirational scope.
-2. Como Scrum Master, eu quero a retro agenda that cites specific incidents, flow outliers, and WIP spikes, para que the conversation yields experiments and owners.
-3. Como Scrum Master, eu quero impediments detected automatically from stalled PRs and aged Azure Boards items, para que the daily standup discovers nothing new.
-4. Como Scrum Master, eu quero spikes scoped with a time-box, explicit learning goals, and a decision rubric, para que research converts into decisions.
-5. Como Scrum Master, eu quero team-level WIP limits enforced with gentle reminders, para que context switching is visible.
-6. Como Scrum Master, eu quero every retro experiment tracked across sprints, para que continuous improvement is a measurable practice.
+1. Como Scrum Master, eu quero o sprint planning ancorado no throughput do último sprint, para que o time se comprometa com escopo realista em vez de aspiracional.
+2. Como Scrum Master, eu quero uma agenda de retro que cite incidentes específicos, outliers de fluxo e picos de WIP, para que a conversa gere experimentos e donos.
+3. Como Scrum Master, eu quero impedimentos detectados automaticamente a partir de PRs parados e itens envelhecidos no Azure Boards, para que a daily não descubra nada de novo.
+4. Como Scrum Master, eu quero spikes com escopo, time-box, metas explícitas de aprendizado e uma rubrica de decisão, para que pesquisa vire decisão.
+5. Como Scrum Master, eu quero limites de WIP em nível de time aplicados com lembretes gentis, para que troca de contexto fique visível.
+6. Como Scrum Master, eu quero cada experimento de retro rastreado entre sprints, para que melhoria contínua seja uma prática mensurável.
 
 ## Dores antes da era AI-native
 
-1. **Planning by last sprint's memory**. Without a throughput chart, the team debates capacity in abstract points and overcommits by 30 percent.
-2. **Retros that turn into therapy**. Venting is healthy, but without data-grounded prompts, the team cannot convert feelings into experiments.
-3. **Impediment logs that grow without shrinking**. Old blockers become team folklore. The Scrum Master escalates only when someone complains loudly enough.
-4. **Spikes that never end**. A spike started to answer a question becomes an open-ended research project. No decision, no deliverable.
-5. **Burn-downs drawn by hand**. The chart everyone looks at is maintained manually, so it is two days stale and quietly ignored.
+1. **Planejamento pela memória do último sprint**. Sem um gráfico de throughput, o time debate capacidade em pontos abstratos e se compromete 30 por cento acima.
+2. **Retros que viram terapia**. Desabafar é saudável, mas sem prompts ancorados em dados, o time não converte sentimentos em experimentos.
+3. **Logs de impedimento que crescem sem encolher**. Bloqueios velhos viram folclore do time. O Scrum Master só escala quando alguém reclama alto o suficiente.
+4. **Spikes que nunca acabam**. Um spike iniciado para responder uma pergunta vira um projeto de pesquisa aberto. Sem decisão, sem entregável.
+5. **Burn-downs desenhados à mão**. O gráfico que todo mundo olha é mantido manualmente, então está dois dias desatualizado e silenciosamente ignorado.
 
 ## Fluxo diário AI-native
 
-The Scrum Master operates a daily and weekly loop. O loop usa primitivas do GitHub Copilot inside Visual Studio Code, Claude Code at the terminal for report synthesis, and Microsoft Teams via the M365 Agents SDK for async ceremonies.
+O Scrum Master opera um loop diário e semanal. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code, Claude Code no terminal para síntese de relatórios e Microsoft Teams via M365 Agents SDK para cerimônias assíncronas.
 
 ### Setup da manhã
 
-1. Open Visual Studio Code on the `team-ops` repository. GitHub Copilot Chat carrega the scoped `.github/instructions/scrum.instructions.md`.
-2. Invoke `/impediment-scan`. The Flow Coach agent calls the GitHub MCP for stalled PRs, the Azure DevOps MCP for aged Azure Boards items, and surfaces anything over the staleness threshold.
-3. Post the daily standup prompt in the team Teams channel via the M365 Agents SDK. The prompt includes yesterday's flow anomalies, not a round-robin update.
+1. Abra o Visual Studio Code no repositório `team-ops`. GitHub Copilot Chat carrega o `.github/instructions/scrum.instructions.md` escopado.
+2. Invoque `/impediment-scan`. O agente Flow Coach chama o GitHub MCP para PRs parados, o Azure DevOps MCP para itens envelhecidos no Azure Boards e traz à tona qualquer coisa acima do limiar de staleness.
+3. Poste o prompt da daily no canal do time no Teams via M365 Agents SDK. O prompt inclui as anomalias de fluxo de ontem, não um round-robin de updates.
 
 ### Execução no meio do dia
 
-1. Lead or attend ceremonies. For sprint planning, invoke `/plan-sprint`. The agent pulls last sprint's throughput, the current backlog from Azure Boards and GitHub Projects, and proposes a commitment range with confidence bands.
-2. Coach a team member through a spike. Invoke `/spike-scope <topic>`. The agent returns a time-boxed outline with learning goals, exit criteria, and a decision rubric.
-3. Reconcile the sprint burn-down between Azure Boards and GitHub Projects. Any drift is logged as a hook warning.
+1. Conduza ou participe de cerimônias. Para sprint planning, invoque `/plan-sprint`. O agente puxa o throughput do último sprint, o backlog atual do Azure Boards e GitHub Projects e propõe uma faixa de compromisso com bandas de confiança.
+2. Faça coaching de um membro do time em um spike. Invoque `/spike-scope <tópico>`. O agente retorna um outline com time-box, metas de aprendizado, critérios de saída e rubrica de decisão.
+3. Reconcilie o burn-down do sprint entre Azure Boards e GitHub Projects. Qualquer deriva é registrada como hook warning.
 
 ### Revisão no fim da tarde
 
-1. Run a retrospective when scheduled. Invoke `/run-retro`. The agent synthesizes sprint data (throughput, lead time, flaky tests, incident count) into a retro brief with three sections: observed flow patterns, candidate experiments, proposed owners.
-2. Update the impediment log. Any impediment older than seven days is escalated to the Engineering Manager via a Teams message.
-3. Close the day by pushing the retro brief and the impediment log to the `team-ops` repository. GitHub Actions publishes them to the team's Azure Static Web App landing page.
+1. Conduza uma retrospectiva quando agendada. Invoque `/run-retro`. O agente sintetiza dados do sprint (throughput, lead time, testes flaky, contagem de incidentes) em um brief de retro com três seções: padrões de fluxo observados, experimentos candidatos, donos propostos.
+2. Atualize o log de impedimentos. Qualquer impedimento com mais de sete dias é escalado para o Engineering Manager via mensagem no Teams.
+3. Encerre o dia fazendo push do brief de retro e do log de impedimentos para o repositório `team-ops`. GitHub Actions publica-os na landing page Azure Static Web App do time.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `flow-coach` | `.github/agents/flow-coach.agent.md` | Facilitate sprint ceremonies, scan for impediments, scope spikes, synthesize retros |
+|--------|---------|-----------|
+| `flow-coach` | `.github/agents/flow-coach.agent.md` | Facilitar cerimônias de sprint, escanear por impedimentos, escopar spikes, sintetizar retros |
 
-The Flow Coach agent uses `claude-sonnet-4-6` by default, with tools `read`, `search`, `grep`, `bash`. It pulls context from GitHub, Azure DevOps, and Microsoft 365 Agents SDK MCPs. Extended thinking is disabled because facilitation tasks are iterative, not deep-reasoning.
+O agente Flow Coach usa `claude-sonnet-4-6` por padrão, com ferramentas `read`, `search`, `grep`, `bash`. Ele puxa contexto dos MCPs do GitHub, Azure DevOps e Microsoft 365 Agents SDK. Extended thinking fica desabilitado porque tarefas de facilitação são iterativas, não de raciocínio profundo.
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/plan-sprint` | `.github/prompts/plan-sprint.prompt.md` | Generate a sprint plan proposal grounded in throughput history |
-| `/run-retro` | `.github/prompts/run-retro.prompt.md` | Produce a retro brief with data-backed observations and experiment candidates |
-| `/impediment-scan` | `.github/prompts/impediment-scan.prompt.md` | Detect stalled PRs and aged Azure Boards items across the team |
-| `/spike-scope` | `.github/prompts/spike-scope.prompt.md` | Scope a spike with time-box, learning goals, and decision rubric |
+|---------|---------|-----------|
+| `/plan-sprint` | `.github/prompts/plan-sprint.prompt.md` | Gerar uma proposta de sprint plan ancorada no histórico de throughput |
+| `/run-retro` | `.github/prompts/run-retro.prompt.md` | Produzir um brief de retro com observações ancoradas em dados e experimentos candidatos |
+| `/impediment-scan` | `.github/prompts/impediment-scan.prompt.md` | Detectar PRs parados e itens envelhecidos do Azure Boards no time |
+| `/spike-scope` | `.github/prompts/spike-scope.prompt.md` | Escopar um spike com time-box, metas de aprendizado e rubrica de decisão |
 
 ### Instruções escopadas
 
-Scoped `applyTo` keeps facilitation language distinct from technical review language.
+Um `applyTo` escopado mantém a linguagem de facilitação distinta da linguagem de review técnico.
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `team-ops/sprints/**` | `.github/instructions/scrum.instructions.md` | Ceremony structure, Scrum-Guide-aligned phrasing, Agile-not-agile distinction |
-| `team-ops/retros/**` | `.github/instructions/retros.instructions.md` | Retro framing, systemic-cause over individual-blame |
-| `team-ops/spikes/**` | `.github/instructions/spikes.instructions.md` | Spike template, time-box enforcement, decision rubric |
+|--------------------|---------|-----------|
+| `team-ops/sprints/**` | `.github/instructions/scrum.instructions.md` | Estrutura de cerimônia, fraseado alinhado ao Scrum Guide, distinção Agile-não-agile |
+| `team-ops/retros/**` | `.github/instructions/retros.instructions.md` | Framing de retro, causa sistêmica acima de culpa individual |
+| `team-ops/spikes/**` | `.github/instructions/spikes.instructions.md` | Template de spike, aplicação de time-box, rubrica de decisão |
 
 ### Hooks
 
-Hooks are zero-token governance for ceremony artifacts.
+Hooks são governança de custo zero em tokens para artefatos de cerimônia.
 
-- `pre-commit`: reject a sprint plan that commits above the throughput confidence band
-- `post-commit`: regenerate the burn-down JSON whenever sprint scope changes
-- `pre-push`: validate that every retro experiment has a named owner and a target sprint
+- `pre-commit`: rejeita um plano de sprint que se compromete acima da banda de confiança de throughput
+- `post-commit`: regenera o JSON do burn-down sempre que o escopo do sprint muda
+- `pre-push`: valida que todo experimento de retro tenha um dono nomeado e um sprint-alvo
 
 ## MCPs validados
 
-Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+Todos os MCPs abaixo estão registrados no catálogo de MCPs. Não referencie nenhum MCP que não esteja no catálogo.
 
-| MCP | Status | Use in this persona |
-|-----|--------|---------------------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | Read Projects boards, Actions runs, and PR state for burn-down reconciliation |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | Read and update Azure Boards sprint iterations, work items, impediments |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | Query Azure Monitor for incident counts that affect sprint flow |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Ground facilitation guidance in Microsoft Learn and GitHub Docs |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Post ceremony prompts, impediment escalations, and retro briefs into Teams |
+| MCP | Status | Uso nesta persona |
+|-----|--------|-------------------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Ler boards de Projects, runs do Actions e estado de PR para reconciliação de burn-down |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Oficial (Microsoft) | Ler e atualizar iterações de sprint, work items e impedimentos no Azure Boards |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Oficial (Microsoft) | Consultar Azure Monitor para contagens de incidente que afetam o fluxo do sprint |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Ancorar guia de facilitação em Microsoft Learn e GitHub Docs |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Oficial (Microsoft) | Postar prompts de cerimônia, escalações de impedimento e briefs de retro no Teams |
 
 ## Exemplos reais
 
-### Example 1: sprint planning with confidence bands
+### Exemplo 1: sprint planning com bandas de confiança
 
-**Entrada**: The team is planning Sprint 47. Last three sprints averaged 38 story points completed, with a standard deviation of 6.
+**Entrada**: O time está planejando o Sprint 47. Os últimos três sprints tiveram em média 38 story points concluídos, com desvio padrão de 6.
 
 **Invocação**: `/plan-sprint`.
 
 **Saída esperada**:
 
-1. A proposed commitment of 34 to 42 story points with a confidence note.
-2. A ranked backlog slice from Azure Boards, with dependencies flagged against the architecture-health view in Azure Monitor.
-3. A draft in `team-ops/sprints/47/plan.md` ready for the team review.
-4. A Teams post via the Microsoft 365 Agents SDK inviting the team to refine the plan before the planning meeting.
+1. Um compromisso proposto de 34 a 42 story points com uma nota de confiança.
+2. Uma fatia de backlog ranqueada do Azure Boards, com dependências sinalizadas contra a view de architecture-health no Azure Monitor.
+3. Um rascunho em `team-ops/sprints/47/plan.md` pronto para review do time.
+4. Um post no Teams via Microsoft 365 Agents SDK convidando o time a refinar o plano antes da reunião de planning.
 
-### Example 2: retro for a sprint with two rollbacks
+### Exemplo 2: retro de um sprint com dois rollbacks
 
-**Entrada**: Sprint 46 had two production rollbacks, three flaky-test spikes, and one engineer on-call for two consecutive weekends.
+**Entrada**: O Sprint 46 teve dois rollbacks em produção, três picos de testes flaky e um engenheiro em on-call por dois finais de semana seguidos.
 
 **Invocação**: `/run-retro`.
 
 **Saída esperada**:
 
-1. A retro brief in `team-ops/retros/46.md` with observed flow patterns: rollback cluster in the payments module, flaky tests in the checkout suite, on-call imbalance.
-2. Three candidate experiments: introduce a pre-merge contract test for payments, quarantine the flaky checkout tests, rotate on-call with a stricter cap.
-3. Each experiment has an owner and a target sprint, enforced by the pre-push hook.
-4. A follow-up Azure Boards work item for each experiment, created automatically.
+1. Um brief de retro em `team-ops/retros/46.md` com padrões de fluxo observados: cluster de rollback no módulo de pagamentos, testes flaky na suíte de checkout, desequilíbrio de on-call.
+2. Três experimentos candidatos: introduzir um contract test pré-merge para pagamentos, colocar em quarentena os testes flaky de checkout, rodar on-call com cap mais estrito.
+3. Cada experimento tem um dono e um sprint-alvo, aplicados pelo hook pre-push.
+4. Um work item de follow-up no Azure Boards para cada experimento, criado automaticamente.
 
 ## Anti-padrões
 
-1. **Facilitation by template alone**. A copy-pasted retro template without data produces generic insights. Mitigação: every prompt cites flow metrics from GitHub and Azure Boards.
-2. **Impediment logs that only the Scrum Master reads**. Blockers are team property. Mitigação: `/impediment-scan` posts to the team Teams channel, not a private note.
-3. **Spikes that skip the decision rubric**. A spike without exit criteria becomes research-for-research. Mitigação: `/spike-scope` refuses to scaffold a spike without a decision rubric.
-4. **Burn-downs updated manually**. Manual charts lie. Mitigação: the burn-down JSON is regenerated by a post-commit hook.
-5. **Commitment-pressure planning**. Committing to last quarter's ambition instead of last sprint's throughput is dishonest. Mitigação: the pre-commit hook rejects above-confidence commitments.
+1. **Facilitação apenas por template**. Um template de retro copiado sem dados produz insights genéricos. Mitigação: todo prompt cita métricas de fluxo do GitHub e Azure Boards.
+2. **Logs de impedimento que só o Scrum Master lê**. Bloqueios são propriedade do time. Mitigação: `/impediment-scan` posta no canal do time no Teams, não em uma nota privada.
+3. **Spikes que pulam a rubrica de decisão**. Um spike sem critérios de saída vira pesquisa-por-pesquisa. Mitigação: `/spike-scope` se recusa a fazer scaffold de um spike sem rubrica de decisão.
+4. **Burn-downs atualizados manualmente**. Gráficos manuais mentem. Mitigação: o JSON do burn-down é regenerado por hook post-commit.
+5. **Planejamento por pressão de compromisso**. Se comprometer com a ambição do último trimestre em vez do throughput do último sprint é desonesto. Mitigação: o hook pre-commit rejeita compromissos acima da confiança.
 
 ## KPIs e métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Medição |
-|--------|-------------------|------------------|-------------|
-| Sprint commitment accuracy | Plus or minus 35 percent | Plus or minus 10 percent | Completed versus committed points |
-| Retro experiment completion rate | 20 percent | Over 70 percent | Experiment tracker across sprints |
-| Impediment median age | 9 days | Under 3 days | Impediment log analytics |
-| Spike time-box adherence | 45 percent | Over 90 percent | Spike closure audit |
-| Ceremony prep time per week | 6 hours | Under 2 hours | Time-to-agenda log |
-| Token efficiency | N/A | Under 150k tokens per week | Copilot usage report |
+| Métrica | Linha base (manual) | Meta (agentic) | Medição |
+|---------|---------------------|----------------|---------|
+| Acurácia de compromisso do sprint | Mais ou menos 35 por cento | Mais ou menos 10 por cento | Pontos concluídos versus comprometidos |
+| Taxa de conclusão de experimento de retro | 20 por cento | Acima de 70 por cento | Rastreador de experimentos entre sprints |
+| Idade mediana de impedimento | 9 dias | Menos de 3 dias | Analytics do log de impedimentos |
+| Aderência ao time-box de spike | 45 por cento | Acima de 90 por cento | Auditoria de fechamento de spike |
+| Tempo de prep de cerimônia por semana | 6 horas | Menos de 2 horas | Log de time-to-agenda |
+| Eficiência de tokens | N/A | Menos de 150k tokens por semana | Relatório de uso do Copilot |
 
 ## Maturidade em quatro níveis
 
 | Nível | Nome | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Handmade burn-down, retros from memory, impediments in a side channel |
-| L2 | Assistido | GitHub Copilot Chat for drafting ceremonies, no agent, mixed tools for flow data |
-| L3 | Aumentado | Flow Coach agent, quatro slash prompts, instruções escopadas, Azure Boards and GitHub Projects reconciled |
-| L4 | Agentic | Full primitives kit, hooks enforced, retros producing tracked experiments, impediment escalation automated, maturity scorecard above 80 percent |
+|-------|------|------------|
+| L1 | Manual | Burn-down feito à mão, retros de memória, impedimentos em canal paralelo |
+| L2 | Assistido | GitHub Copilot Chat para rascunho de cerimônias, sem agente, ferramentas misturadas para dados de fluxo |
+| L3 | Aumentado | Agente Flow Coach, quatro slash prompts, instruções escopadas, Azure Boards e GitHub Projects reconciliados |
+| L4 | Autônomo | Kit completo de primitivas, hooks aplicados, retros produzindo experimentos rastreados, escalação de impedimento automatizada, scorecard de maturidade acima de 80 por cento |
 
 ## Integração com outras personas
 
-- **With Engineering Manager**: shared retro output, attrition and burnout signals
-- **With Project Manager**: sprint flow feeds the stakeholder status cadence
-- **With Technical Lead**: spike scoping for uncertain architectural work
-- **With Developer**: WIP limits and ceremony cadence
-- **With QA Engineer**: flaky-test quarantine and test-reliability goals
-- **With SRE**: on-call load and incident count inform sprint capacity
-- **With Release Manager**: deployment windows reconciled with sprint commitments
+- **Com Engineering Manager**: saída de retro compartilhada, sinais de attrition e burnout
+- **Com Project Manager**: fluxo de sprint alimenta a cadência de status para stakeholders
+- **Com Technical Lead**: escopo de spike para trabalho arquitetural incerto
+- **Com Developer**: limites de WIP e cadência de cerimônia
+- **Com QA Engineer**: quarentena de testes flaky e metas de confiabilidade de teste
+- **Com SRE**: carga de on-call e contagem de incidentes informam capacidade de sprint
+- **Com Release Manager**: janelas de deployment reconciliadas com compromissos de sprint
 
 ## Glossário
 
-- **Flow**: the rate at which the team converts commitments into merged, deployed work, with WIP visible end-to-end.
-- **Throughput**: points or items completed per sprint, used as a capacity estimator.
-- **Burn-down**: a time-series view of remaining sprint scope; regenerated automatically.
-- **Impediment**: any external or internal blocker that prevents the team from completing committed work.
-- **Spike**: a time-boxed investigation with explicit learning goals and a decision rubric.
-- **Confidence band**: the plus-or-minus range on a sprint commitment, derived from historical throughput variance.
+- **Fluxo**: a taxa com que o time converte compromissos em trabalho merged e deployado, com WIP visível ponta a ponta.
+- **Throughput**: pontos ou itens concluídos por sprint, usado como estimador de capacidade.
+- **Burn-down**: uma view de série temporal do escopo restante do sprint; regenerada automaticamente.
+- **Impedimento**: qualquer bloqueio externo ou interno que impeça o time de concluir o trabalho comprometido.
+- **Spike**: uma investigação com time-box, metas explícitas de aprendizado e uma rubrica de decisão.
+- **Banda de confiança**: a faixa mais-ou-menos em um compromisso de sprint, derivada da variância histórica de throughput.
 
 ## Referências
 
-- [GitHub Projects documentation](https://docs.github.com/issues/planning-and-tracking-with-projects) — authoritative source for Projects boards and automation
-- [Azure Boards documentation](https://learn.microsoft.com/azure/devops/boards/) — sprint iterations, work items, and dashboards on Azure DevOps
-- [Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — post ceremony prompts and retro briefs into Teams channels
-- [GitHub Actions documentation](https://docs.github.com/actions) — schedule reconciliation jobs for burn-down and impediment scans
-- [DORA metrics research](https://dora.dev/research/) — the empirical foundation behind flow metrics
+- [Documentação do GitHub Projects](https://docs.github.com/issues/planning-and-tracking-with-projects) — fonte autoritativa para boards de Projects e automação
+- [Documentação do Azure Boards](https://learn.microsoft.com/azure/devops/boards/) — iterações de sprint, work items e dashboards no Azure DevOps
+- [Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — postar prompts de cerimônia e briefs de retro em canais do Teams
+- [Documentação do GitHub Actions](https://docs.github.com/actions) — agendar jobs de reconciliação para burn-down e scan de impedimentos
+- [Pesquisa de métricas DORA](https://dora.dev/research/) — a fundação empírica por trás das métricas de fluxo

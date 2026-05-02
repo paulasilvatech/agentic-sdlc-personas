@@ -10,193 +10,193 @@ order: 1
 updated: "2026-04-24"
 ---
 
-> The Product Owner é a persona que writes, governs, and closes the loop on the specification. Em um SDLC AI-native, o Product Owner opera uma stack de primitivas validadas that turn intent into a machine-readable contract.
+> O Product Owner é a persona que escreve, governa e fecha o loop da especificação. Em um SDLC AI-native, o Product Owner opera uma pilha de primitivas validadas que transforma intenção em um contrato legível por máquina.
 
 ## Resumo executivo
 
-The Product Owner converts ambiguous business intent into an approved, testable specification that the rest of the SDLC can execute without translation loss. Em um SDLC AI-native, o Product Owner opera dentro da fase de Planning phase com um conjunto fixo de primitivas: um agente specification, quatro slash prompts, instruções escopadas, hooks validados por schema, and uma lista curada de MCPs validados. Saídas principais são `SPECIFICATION.md` documents in EARS form, acceptance criteria in Given-When-Then, traceability links from requirement to test, and decision records for every scope change.
+O Product Owner converte intenção de negócio ambígua em uma especificação aprovada e testável que o resto do SDLC pode executar sem perda de tradução. Em um SDLC AI-native, o Product Owner opera dentro da fase de Planning com um conjunto fixo de primitivas: um agente de specification, quatro slash prompts, instruções escopadas, hooks validados por schema e uma lista curada de MCPs validados. As saídas primárias são documentos `SPECIFICATION.md` em formato EARS, critérios de aceitação em Given-When-Then, links de rastreabilidade de requisito para teste e registros de decisão para toda mudança de escopo.
 
 ## Papel e responsabilidades
 
-Pense no Product Owner like a civil engineer authoring the specification of a bridge. The builders, inspectors, and regulators all read the same document and derive their work from it. The Product Owner does not pour concrete, but they are accountable for the fact that every pour, weld, and cable matches a numbered clause that someum agente can verify under load. Em um SDLC AI-native, o specification is the contract between humans ands, and the Product Owner is its editor in chief.
+Pense no Product Owner como um engenheiro civil que escreve a especificação de uma ponte. Os construtores, inspetores e reguladores leem todos o mesmo documento e derivam seu trabalho a partir dele. O Product Owner não despeja concreto, mas é responsável pelo fato de cada despejo, solda e cabo corresponder a uma cláusula numerada que alguém pode verificar sob carga. Em um SDLC AI-native, a especificação é o contrato entre humanos e agentes, e o Product Owner é seu editor-chefe.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Author and maintain `SPECIFICATION.md` for every feature, using EARS requirements and Given-When-Then acceptance criteria
-- Govern the backlog in GitHub Projects or Azure Boards, ensuring every item links to a spec section
-- Define and protect the product outcome hypothesis, not the output list
-- Resolve scope conflicts between stakeholders before they reach the Developer
-- Operate the Spec Scribe agent and the `/draft-spec`, `/earsify`, `/review-spec`, `/link-acceptance` prompts
-- Close the loop by confirming acceptance on merged pull requests in GitHub
-- Maintain the traceability matrix from requirement to test to deployed artifact
-- Publish release notes from the specification diff, not from the code diff
+- Escrever e manter o `SPECIFICATION.md` para toda feature, usando requisitos EARS e critérios de aceitação Given-When-Then
+- Governar o backlog no GitHub Projects ou Azure Boards, garantindo que todo item aponte para uma seção da spec
+- Definir e proteger a hipótese de outcome do produto, não a lista de outputs
+- Resolver conflitos de escopo entre stakeholders antes que cheguem ao Developer
+- Operar o agente Spec Scribe e os prompts `/draft-spec`, `/earsify`, `/review-spec`, `/link-acceptance`
+- Fechar o loop confirmando aceitação em pull requests merged no GitHub
+- Manter a matriz de rastreabilidade de requisito para teste para artefato implantado
+- Publicar release notes a partir do diff da especificação, não do diff de código
 
 ## Jobs to be done
 
-1. Como Product Owner, eu quero convert a stakeholder conversation into a draft spec within one hour, para que the team never waits on me to start discovery.
-2. Como Product Owner, eu quero every requirement in EARS form, para que agents can parse it without interpretation.
-3. Como Product Owner, eu quero every acceptance criterion in Given-When-Then, para que the QA Engineer can generate tests directly from the spec.
-4. Como Product Owner, eu quero a live traceability link from each requirement to its test and its deployed artifact, para que I can answer audit questions in minutes.
-5. Como Product Owner, eu quero the spec to refuse merge when acceptance is missing, para que scope drift is caught before code is written.
-6. Como Product Owner, eu quero release notes to be generated from the spec diff, para que stakeholders see value delivered, not commits shipped.
+1. Como Product Owner, eu quero converter uma conversa com stakeholder em um draft de spec em até uma hora, para que o time nunca fique esperando por mim para iniciar a descoberta.
+2. Como Product Owner, eu quero todo requisito em formato EARS, para que os agentes possam parseá-lo sem interpretação.
+3. Como Product Owner, eu quero todo critério de aceitação em Given-When-Then, para que o QA Engineer possa gerar testes direto da spec.
+4. Como Product Owner, eu quero um link de rastreabilidade ao vivo de cada requisito para seu teste e seu artefato implantado, para que eu consiga responder a questões de auditoria em minutos.
+5. Como Product Owner, eu quero que a spec recuse merge quando a aceitação estiver ausente, para que o desvio de escopo seja pego antes de o código ser escrito.
+6. Como Product Owner, eu quero release notes geradas a partir do diff da spec, para que stakeholders vejam valor entregue, não commits enviados.
 
 ## Dores antes da era AI-native
 
-1. **Ambiguous tickets**. Free-form descriptions in a tracker force every reader to guess intent. Developers implement the easiest interpretation; QA tests the most defensive one.
-2. **Verbal handoffs**. Scope lives in meeting memory. When the meeting is over, the scope quietly forks.
-3. **Acceptance criteria invented at review time**. Reviewers negotiate the definition of done after the code is written, so rework is inevitable.
-4. **Traceability built by hand in spreadsheets**. The matrix is obsolete the day it is published, and auditors know it.
-5. **Release notes written by the release manager from commit logs**. Stakeholders see technical churn, not product outcomes, and trust erodes.
+1. **Tickets ambíguos**. Descrições em texto livre em um tracker forçam todo leitor a adivinhar a intenção. Developers implementam a interpretação mais fácil; QA testa a mais defensiva.
+2. **Handoffs verbais**. O escopo vive na memória da reunião. Quando a reunião termina, o escopo silenciosamente bifurca.
+3. **Critérios de aceitação inventados na hora do review**. Revisores negociam a definição de pronto depois que o código já foi escrito, então retrabalho é inevitável.
+4. **Rastreabilidade construída à mão em planilhas**. A matriz está obsoleta no dia em que é publicada, e os auditores sabem disso.
+5. **Release notes escritas pelo release manager a partir de logs de commit**. Stakeholders veem churn técnico, não outcomes de produto, e a confiança se deteriora.
 
 ## Fluxo diário AI-native
 
-The Product Owner operates a fixed loop each day. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code e Claude Code no terminal, além de um pequeno catálogo de MCPs validados para contexto externo.
+O Product Owner opera um loop fixo todo dia. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code e Claude Code no terminal, além de um pequeno catálogo de MCPs validados para contexto externo.
 
 ### Setup da manhã
 
-1. Abrir o repositório no Visual Studio Code. GitHub Copilot Chat carrega `AGENTS.md` and the scoped spec instructions.
-2. Fazer pull da última `main` and open the active feature branch for the spec in progress.
-3. Review overnight stakeholder input captured in Microsoft Teams threads and Outlook via the Microsoft 365 Agents SDK MCP.
-4. Run `/review-spec` on the previous day's draft to catch EARS violations and missing acceptance.
+1. Abra o repositório no Visual Studio Code. GitHub Copilot Chat carrega o `AGENTS.md` e as instruções escopadas da spec.
+2. Puxe o último `main` e abra a branch ativa da feature para a spec em andamento.
+3. Revise inputs noturnos de stakeholders capturados em threads do Microsoft Teams e no Outlook via o Microsoft 365 Agents SDK MCP.
+4. Rode `/review-spec` no draft do dia anterior para capturar violações de EARS e aceitação ausente.
 
 ### Execução no meio do dia
 
-1. **Stakeholder intake**. Invoke `/draft-spec` with the meeting transcript or Teams thread. The Spec Scribe agent produces a first draft with numbered requirements and open questions flagged.
-2. **EARS conversion**. Invoke `/earsify` on any free-form statements. The agent rewrites each one in `WHEN ... THE system SHALL ...` form and refuses to emit requirements without a triggering condition.
-3. **Acceptance linking**. Invoke `/link-acceptance` to attach Given-When-Then criteria to every requirement. The agent blocks the spec from moving to review until every requirement has at least one criterion.
-4. **Backlog sync**. Use the GitHub MCP or the Azure DevOps MCP to create or update work items that reference spec section anchors, not prose summaries.
+1. **Coleta de stakeholder**. Invoque `/draft-spec` com a transcrição da reunião ou thread do Teams. O agente Spec Scribe produz um primeiro draft com requisitos numerados e questões em aberto sinalizadas.
+2. **Conversão para EARS**. Invoque `/earsify` em qualquer declaração em texto livre. O agente reescreve cada uma no formato `WHEN ... THE system SHALL ...` e se recusa a emitir requisitos sem uma condição de disparo.
+3. **Vinculação de aceitação**. Invoque `/link-acceptance` para anexar critérios Given-When-Then a todo requisito. O agente bloqueia a spec de ir para review até que todo requisito tenha pelo menos um critério.
+4. **Sincronização do backlog**. Use o GitHub MCP ou o Azure DevOps MCP para criar ou atualizar work items que referenciem âncoras de seções da spec, não resumos em prosa.
 
 ### Revisão no fim da tarde
 
-1. Invoke `/review-spec` to run the final governance sweep. The agent checks for testability, contradictions, duplicates, and orphaned requirements.
-2. Abrir um pull request on `SPECIFICATION.md`. GitHub Copilot Code Review comments on structural issues; human stakeholders approve content.
-3. Update the traceability matrix. A post-merge hook regenerates the matrix from spec anchors, test IDs, and deployment records in GitHub Actions.
-4. Publish the daily spec digest to the Teams channel via Microsoft 365 Agents SDK, summarizing accepted requirements and open questions.
+1. Invoque `/review-spec` para rodar a varredura final de governança. O agente verifica testabilidade, contradições, duplicatas e requisitos órfãos.
+2. Abra um pull request no `SPECIFICATION.md`. GitHub Copilot Code Review comenta em problemas estruturais; stakeholders humanos aprovam o conteúdo.
+3. Atualize a matriz de rastreabilidade. Um hook de post-merge regenera a matriz a partir das âncoras da spec, IDs de teste e registros de deploy no GitHub Actions.
+4. Publique o digest diário da spec no canal do Teams via Microsoft 365 Agents SDK, resumindo requisitos aceitos e questões em aberto.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `spec-scribe` | `.github/agents/spec-scribe.agent.md` | Draft, earsify, review, and link acceptance for `SPECIFICATION.md` |
+|--------|---------|-----------|
+| `spec-scribe` | `.github/agents/spec-scribe.agent.md` | Escrever, earsify, revisar e vincular aceitação para o `SPECIFICATION.md` |
 
-The Spec Scribe uses `claude-sonnet-4-6` by default. Tools: `read`, `edit`, `search`, `grep`, `glob`. No `bash` access, because the Product Owner persona never executes code. Extended thinking is enabled for `/review-spec` only, where contradiction detection benefits from deep reasoning.
+O Spec Scribe usa `claude-sonnet-4-6` por padrão. Ferramentas: `read`, `edit`, `search`, `grep`, `glob`. Sem acesso a `bash`, porque a persona Product Owner nunca executa código. Extended thinking é habilitado apenas para `/review-spec`, onde a detecção de contradições se beneficia de raciocínio profundo.
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/draft-spec` | `.github/prompts/draft-spec.prompt.md` | Turn a raw stakeholder input into a numbered draft spec |
-| `/earsify` | `.github/prompts/earsify.prompt.md` | Rewrite free-form requirements into EARS syntax |
-| `/review-spec` | `.github/prompts/review-spec.prompt.md` | Governance sweep for testability, contradictions, orphans |
-| `/link-acceptance` | `.github/prompts/link-acceptance.prompt.md` | Attach Given-When-Then criteria to every requirement |
+|---------|---------|-----------|
+| `/draft-spec` | `.github/prompts/draft-spec.prompt.md` | Transformar um input cru de stakeholder em um draft numerado de spec |
+| `/earsify` | `.github/prompts/earsify.prompt.md` | Reescrever requisitos em texto livre na sintaxe EARS |
+| `/review-spec` | `.github/prompts/review-spec.prompt.md` | Varredura de governança para testabilidade, contradições, órfãos |
+| `/link-acceptance` | `.github/prompts/link-acceptance.prompt.md` | Anexar critérios Given-When-Then a todo requisito |
 
 ### Instruções escopadas
 
-O escopo `applyTo` reduz o custo de tokens em aproximadamente 68 por cento comparado com instruções globais.
+`applyTo` com escopo reduz o custo em tokens em aproximadamente 68 por cento comparado a instruções globais.
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `docs/specs/**/*.md` | `.github/instructions/specs.instructions.md` | EARS format, numbering, anchors, and banned vague verbs |
-| `docs/adr/**/*.md` | `.github/instructions/adr.instructions.md` | Decision record format when a spec requires an architectural choice |
-| `docs/releases/**/*.md` | `.github/instructions/release-notes.instructions.md` | Release notes generated from spec diff, not commit log |
+|--------------------|---------|-----------|
+| `docs/specs/**/*.md` | `.github/instructions/specs.instructions.md` | Formato EARS, numeração, âncoras e verbos vagos banidos |
+| `docs/adr/**/*.md` | `.github/instructions/adr.instructions.md` | Formato do registro de decisão quando uma spec exige uma escolha arquitetural |
+| `docs/releases/**/*.md` | `.github/instructions/release-notes.instructions.md` | Release notes geradas a partir do diff da spec, não do log de commits |
 
 ### Hooks
 
-Hooks custam zero tokens de LLM. Eles são a camada de governança mais forte for specifications.
+Hooks custam zero tokens de LLM. São a camada de governança mais forte para especificações.
 
-- `pre-commit`: reject any spec file with a requirement missing an EARS trigger or an orphaned acceptance criterion
-- `post-commit`: regenerate the traceability matrix from spec anchors and test IDs
-- `pre-merge`: block merge of any spec change that does not include a changelog entry and a linked work item
+- `pre-commit`: rejeitar qualquer arquivo de spec com um requisito sem trigger EARS ou um critério de aceitação órfão
+- `post-commit`: regenerar a matriz de rastreabilidade a partir das âncoras da spec e IDs de teste
+- `pre-merge`: bloquear o merge de qualquer mudança de spec que não inclua uma entrada de changelog e um work item vinculado
 
 ## MCPs validados
 
 | MCP | Propósito | Dono |
-|-----|---------|-------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Read and update GitHub Projects, issues, and PRs for backlog governance | GitHub (official) |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Read and update Azure Boards work items when the team uses Azure DevOps | Microsoft (official) |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Fetch current Microsoft product documentation when writing specs for M365 or Azure features | Microsoft (official) |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Pull Teams threads, Outlook decisions, and SharePoint artifacts into the spec intake | Microsoft (official) |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Consultar Application Insights and Azure Monitor to ground specs in production behavior | Microsoft (official) |
+|-----|-----------|------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Ler e atualizar GitHub Projects, issues e PRs para governança de backlog | GitHub (oficial) |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Ler e atualizar work items do Azure Boards quando o time usa Azure DevOps | Microsoft (oficial) |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Buscar documentação atualizada de produtos Microsoft ao escrever specs para features M365 ou Azure | Microsoft (oficial) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Puxar threads do Teams, decisões do Outlook e artefatos do SharePoint para dentro da coleta da spec | Microsoft (oficial) |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Consultar Application Insights e Azure Monitor para ancorar specs em comportamento de produção | Microsoft (oficial) |
 
 ## Exemplos reais
 
-### Example 1: draft a spec from a Teams conversation
+### Exemplo 1: escrever uma spec a partir de uma conversa no Teams
 
-**Entrada**: A 45-minute Microsoft Teams thread between sales and support proposing a self-service contract renewal flow.
+**Entrada**: Uma thread de 45 minutos no Microsoft Teams entre vendas e suporte propondo um fluxo de renovação de contrato self-service.
 
-**Invocação**: `/draft-spec` with the thread exported via the Microsoft 365 Agents SDK MCP.
+**Invocação**: `/draft-spec` com a thread exportada via o Microsoft 365 Agents SDK MCP.
 
 **Saída esperada**:
 
-1. A `docs/specs/contract-renewal/SPECIFICATION.md` with six numbered EARS requirements, each followed by Given-When-Then acceptance criteria.
-2. A GitHub issue per requirement created through the GitHub MCP, linked to the spec anchor.
-3. An open-questions section listing four points that require a decision before approval.
+1. Um `docs/specs/contract-renewal/SPECIFICATION.md` com seis requisitos EARS numerados, cada um seguido por critérios de aceitação Given-When-Then.
+2. Uma issue do GitHub por requisito criada através do GitHub MCP, vinculada à âncora da spec.
+3. Uma seção de perguntas em aberto listando quatro pontos que exigem decisão antes da aprovação.
 
-### Example 2: governance sweep before merge
+### Exemplo 2: varredura de governança antes do merge
 
-**Entrada**: A 28-requirement spec for a billing upgrade, already earsified by an earlier pass.
+**Entrada**: Uma spec de 28 requisitos para um upgrade de billing, já earsified em uma passagem anterior.
 
 **Invocação**: `/review-spec`.
 
 **Saída esperada**:
 
-1. A review report flagging two contradictions between requirements 7 and 14, one duplicate between 19 and 22, and three orphaned acceptance criteria not attached to any requirement.
-2. A pull request comment with anchor-linked suggestions.
-3. A blocked merge until the author resolves all three categories.
+1. Um relatório de review sinalizando duas contradições entre os requisitos 7 e 14, uma duplicata entre 19 e 22, e três critérios de aceitação órfãos não anexados a nenhum requisito.
+2. Um comentário de pull request com sugestões vinculadas por âncoras.
+3. Um merge bloqueado até que o autor resolva as três categorias.
 
 ## Anti-padrões
 
-1. **Writing specs as prose**. Paragraphs hide contradictions and cannot be consumed by agents. Mitigação: enforce EARS via the `pre-commit` hook and the `/earsify` prompt.
-2. **Skipping acceptance criteria**. A requirement without Given-When-Then is not testable. Mitigação: `/link-acceptance` refuses to close the loop, and the hook blocks commit.
-3. **Backlog items without spec anchors**. If the ticket does not link to a numbered requirement, scope will drift. Mitigação: the GitHub MCP auto-injects the anchor URL on issue creation.
-4. **Release notes generated from commits**. Stakeholders see technical noise. Mitigação: release notes are generated from the spec diff via the instruções escopadas.
-5. **Ambiguous verbs**. Words like "support", "handle", "improve" are banned by the spec instructions. Mitigação: the `pre-commit` hook rejects them.
+1. **Escrever specs como prosa**. Parágrafos escondem contradições e não podem ser consumidos por agentes. Mitigação: enforçar EARS via o hook de `pre-commit` e o prompt `/earsify`.
+2. **Pular critérios de aceitação**. Um requisito sem Given-When-Then não é testável. Mitigação: `/link-acceptance` se recusa a fechar o loop, e o hook bloqueia o commit.
+3. **Itens de backlog sem âncoras de spec**. Se o ticket não aponta para um requisito numerado, o escopo vai derivar. Mitigação: o GitHub MCP auto-injeta a URL da âncora na criação da issue.
+4. **Release notes geradas a partir de commits**. Stakeholders veem ruído técnico. Mitigação: release notes são geradas a partir do diff da spec via as instruções escopadas.
+5. **Verbos ambíguos**. Palavras como "suportar", "tratar", "melhorar" são banidas pelas instruções da spec. Mitigação: o hook de `pre-commit` as rejeita.
 
 ## KPIs e métricas de impacto
 
 | KPI | Linha base | Meta | Medição |
-|-----|----------|--------|-------------|
-| Spec lead time, intake to approved | 5 days | < 1 day | GitHub PR timestamps on `SPECIFICATION.md` |
-| Requirements in EARS form | 20 percent | 100 percent | Spec linter report in GitHub Actions |
-| Acceptance coverage, requirements with Given-When-Then | 40 percent | 100 percent | Traceability matrix |
-| Scope change rate post-approval | 35 percent | < 10 percent | Count of reopened spec PRs |
-| Time to answer an audit query | 2 days | < 1 hour | Traceability matrix query log |
-| Stakeholder satisfaction on clarity | Unknown | > 4.2 of 5 | Quarterly survey via Microsoft Forms |
+|-----|------------|------|---------|
+| Lead time da spec, coleta até aprovada | 5 dias | < 1 dia | Timestamps de PR do `SPECIFICATION.md` no GitHub |
+| Requisitos em formato EARS | 20 por cento | 100 por cento | Relatório do spec linter no GitHub Actions |
+| Cobertura de aceitação, requisitos com Given-When-Then | 40 por cento | 100 por cento | Matriz de rastreabilidade |
+| Taxa de mudança de escopo pós-aprovação | 35 por cento | < 10 por cento | Contagem de PRs de spec reabertos |
+| Tempo de resposta a uma consulta de auditoria | 2 dias | < 1 hora | Log de consultas da matriz de rastreabilidade |
+| Satisfação de stakeholder sobre clareza | Desconhecido | > 4.2 de 5 | Pesquisa trimestral via Microsoft Forms |
 
 ## Maturidade em quatro níveis
 
 | Nível | Nome | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Prose tickets, no EARS, no acceptance, scope negotiated at review |
-| L2 | Assistido | GitHub Copilot used to polish ticket text, still no machine-readable spec |
-| L3 | Aumentado | Spec Scribe agent, quatro slash prompts, instruções escopadas, one or two MCPs, EARS enforced |
-| L4 | Autônomo | Full primitives kit, hooks enforced, traceability auto-generated, release notes from spec diff, stakeholder digest automated |
+|-------|------|-----------|
+| L1 | Manual | Tickets em prosa, sem EARS, sem aceitação, escopo negociado no review |
+| L2 | Assistido | GitHub Copilot usado para polir o texto do ticket, ainda sem spec legível por máquina |
+| L3 | Aumentado | Agente Spec Scribe, quatro slash prompts, instruções escopadas, um ou dois MCPs, EARS enforçado |
+| L4 | Autônomo | Kit completo de primitivas, hooks enforçados, rastreabilidade auto-gerada, release notes a partir do diff da spec, digest de stakeholder automatizado |
 
 ## Integração com outras personas
 
-- **Para o Requirements Engineer**: approved `SPECIFICATION.md` with numbered EARS requirements as the canonical input for detailed decomposition
-- **Para o Business Manager**: requirement-level KPI hooks so outcomes can be tied to the value story
-- **Para o Enterprise Architect**: spec clauses that trigger a new ADR or invoke an existing principle
-- **Para o Software Architect**: contract surface area used to derive `CODEMAP.md` and API contracts
-- **Para o QA Engineer**: Given-When-Then acceptance as the direct source of test cases
-- **Para o Developer**: spec anchor on every pull request for traceable implementation
-- **Para o Tech Writer**: release notes generated from the spec diff, not the commit diff
+- **Para o Requirements Engineer**: `SPECIFICATION.md` aprovado com requisitos EARS numerados como input canônico para decomposição detalhada
+- **Para o Business Manager**: hooks de KPI em nível de requisito para que outcomes possam ser atados à história de valor
+- **Para o Enterprise Architect**: cláusulas da spec que disparam um novo ADR ou invocam um princípio existente
+- **Para o Software Architect**: superfície de contrato usada para derivar `CODEMAP.md` e contratos de API
+- **Para o QA Engineer**: aceitação Given-When-Then como fonte direta de casos de teste
+- **Para o Developer**: âncora da spec em todo pull request para implementação rastreável
+- **Para o Tech Writer**: release notes geradas a partir do diff da spec, não do diff do commit
 
 ## Glossário
 
-- **EARS**: Easy Approach to Requirements Syntax. The canonical `WHEN ... THE system SHALL ...` form used in `SPECIFICATION.md`.
-- **Given-When-Then**: acceptance criterion format that binds a precondition, an action, and an observable outcome.
-- **Spec anchor**: stable markdown anchor on a requirement ID, used as the canonical link target from issues, PRs, and tests.
-- **Traceability matrix**: generated table that maps each requirement to its tests, pull requests, and deployed artifacts.
-- **Outcome hypothesis**: the measurable business result the feature is supposed to produce, distinct from the output list.
-- **Backlog**: the ordered list of work items in GitHub Projects or Azure Boards, each linked to a spec anchor.
+- **EARS**: Easy Approach to Requirements Syntax. A forma canônica `WHEN ... THE system SHALL ...` usada no `SPECIFICATION.md`.
+- **Given-When-Then**: formato de critério de aceitação que vincula uma pré-condição, uma ação e um outcome observável.
+- **Âncora da spec**: âncora markdown estável sobre um ID de requisito, usada como alvo canônico de link a partir de issues, PRs e testes.
+- **Matriz de rastreabilidade**: tabela gerada que mapeia cada requisito para seus testes, pull requests e artefatos implantados.
+- **Hipótese de outcome**: o resultado de negócio mensurável que a feature deve produzir, distinto da lista de outputs.
+- **Backlog**: a lista ordenada de work items no GitHub Projects ou Azure Boards, cada um vinculado a uma âncora da spec.
 
 ## Referências
 
-- [GitHub Projects documentation](https://docs.github.com/en/issues/planning-and-tracking-with-projects) — planning and tracking specs and backlog
-- [Azure Boards documentation](https://learn.microsoft.com/azure/devops/boards/) — rastreamento de work items when the team uses Azure DevOps
-- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — authoritative source for Copilot features, agent mode, and instructions
-- [Microsoft 365 Agents SDK overview](https://learn.microsoft.com/microsoft-365/agents-sdk/) — integrating Teams and Microsoft 365 surfaces
-- [EARS notation reference, Microsoft Learn](https://learn.microsoft.com/azure/well-architected/) — guidance on requirement quality and architectural alignment
+- [Documentação do GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking-with-projects) — planejamento e acompanhamento de specs e backlog
+- [Documentação do Azure Boards](https://learn.microsoft.com/azure/devops/boards/) — rastreio de work items quando o time usa Azure DevOps
+- [Documentação do GitHub Copilot](https://docs.github.com/en/copilot) — fonte autoritativa para features do Copilot, modo agent e instruções
+- [Visão geral do Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — integração com Teams e superfícies do Microsoft 365
+- [Referência de notação EARS, Microsoft Learn](https://learn.microsoft.com/azure/well-architected/) — orientação sobre qualidade de requisito e alinhamento arquitetural

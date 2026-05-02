@@ -10,191 +10,191 @@ order: 13
 updated: "2026-04-24"
 ---
 
-> The QA Engineer é a persona que designs, runs, and evolves the test strategy for the whole product. Em um SDLC AI-native, o QA Engineer operates a Test Strategist agent, a bank of slash prompts, and a validated MCP catalog — not a manual test console.
+> O Engenheiro de QA é a persona que projeta, executa e evolui a estratégia de testes para todo o produto. Em um SDLC AI-nativo, o Engenheiro de QA opera um agente Test Strategist, um banco de slash prompts e um catálogo validado de MCPs — não um console de testes manual.
 
 ## Resumo executivo
 
-The QA Engineer owns the Verification phase. Their job is to prove that the code shipped by Developers actually satisfies the EARS requirements and Given-When-Then acceptance criteria locked into `SPECIFICATION.md`. Em um SDLC AI-native, that proof is produced by a Test Strategist agent, quatro slash prompts, instruções escopadas, and a small set of validated MCPs that reach into Azure DevOps Test Plans, GitHub Actions, and Playwright.
+O Engenheiro de QA é dono da fase de Verificação. Seu trabalho é provar que o código entregue pelos Developers realmente satisfaz os requisitos EARS e os critérios de aceitação Given-When-Then fixados no `SPECIFICATION.md`. Em um SDLC AI-nativo, essa prova é produzida por um agente Test Strategist, quatro slash prompts, instruções com escopo e um pequeno conjunto de MCPs validados que alcançam Azure DevOps Test Plans, GitHub Actions e Playwright.
 
-The primary outputs are a living test matrix, a mutation-tested suite, a flake register with root causes, and coverage-gap reports that route back to Developers as fresh issues. The QA Engineer does not compete with Developers on unit tests; they orchestrate the broader verification portfolio: integration, contract, end-to-end, resilience, and exploratory testing supported by AI.
+As saídas primárias são uma matriz de testes viva, uma suíte testada por mutação, um registro de flakes com causas-raiz e relatórios de lacunas de cobertura que retornam aos Developers como novas issues. O Engenheiro de QA não compete com Developers em testes unitários; ele orquestra o portfólio de verificação mais amplo: integração, contrato, ponta a ponta, resiliência e testes exploratórios apoiados por IA.
 
-The QA Engineer does not replace Developer-written unit tests; they guarantee that the union of all verification layers actually demonstrates the product meets its contract. They are the last principled defender of the invariant: no undocumented behavior reaches production.
+O Engenheiro de QA não substitui os testes unitários escritos pelo Developer; ele garante que a união de todas as camadas de verificação realmente demonstre que o produto cumpre seu contrato. Ele é o último defensor de princípios do invariante: nenhum comportamento não documentado chega à produção.
 
 ## Papel e responsabilidades
 
-Pense no QA Engineer like a flight-test engineer. The pilots fly, the mechanics build, but someone has to design the envelope-expansion plan that proves the aircraft safe across every regime it will ever see. Em um SDLC AI-native, o QA Engineer is accountable for the envelope of automated and exploratory evidence that lets the team ship every day with confidence.
+Pense no Engenheiro de QA como um engenheiro de ensaios de voo. Os pilotos voam, os mecânicos constroem, mas alguém precisa projetar o plano de expansão de envelope que prove a aeronave segura em cada regime que ela vai enfrentar. Em um SDLC AI-nativo, o Engenheiro de QA é responsável pelo envelope de evidências automatizadas e exploratórias que permite ao time entregar todo dia com confiança.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Translate each EARS requirement into at least one executable test and one manual exploratory charter
-- Own the test matrix across unit, contract, integration, end-to-end, performance, and accessibility lanes
-- Run mutation testing on critical modules and route survivors back as issues
-- Triage flaky tests within 24 hours, never silence them
-- Maintain the Playwright MCP fixtures for end-to-end and visual coverage
-- Operate the Test Strategist agent and the `/test-plan`, `/mutation-scan`, `/flake-triage`, `/coverage-gap` prompts
-- Publish weekly verification dashboards from Azure Monitor and GitHub Actions data
-- Coach Developers on test design during pair sessions and PR reviews
+- Traduzir cada requisito EARS em pelo menos um teste executável e um charter exploratório manual
+- Ser dono da matriz de testes em todas as lanes: unitário, contrato, integração, ponta a ponta, performance e acessibilidade
+- Executar testes de mutação em módulos críticos e encaminhar sobreviventes como issues
+- Triar testes flaky em até 24 horas, nunca silenciá-los
+- Manter os fixtures do Playwright MCP para cobertura ponta a ponta e visual
+- Operar o agente Test Strategist e os prompts `/test-plan`, `/mutation-scan`, `/flake-triage`, `/coverage-gap`
+- Publicar dashboards semanais de verificação a partir de dados do Azure Monitor e GitHub Actions
+- Mentorar Developers em design de testes durante sessões em par e revisões de PR
 
 ## Jobs to be done
 
-1. Como QA Engineer, eu quero a generated test plan for every feature that links back to spec IDs, para que no acceptance criterion ships unverified.
-2. Como QA Engineer, eu quero mutation scores per module, para que I know where assertions are weak before the incident finds out.
-3. Como QA Engineer, eu quero flaky tests triaged within one working day, para que the signal stays trustworthy.
-4. Como QA Engineer, eu quero coverage gaps routed as issues with suggested tests, para que Developers close them in the same sprint.
-5. Como QA Engineer, eu quero Playwright runs recorded and indexed, para que post-incident analysis is a query, not an archaeology expedition.
-6. Como QA Engineer, eu quero the test matrix exported to Azure DevOps Test Plans, para que non-engineering stakeholders can browse verification evidence.
-7. Como QA Engineer, eu quero accessibility checks embedded in every end-to-end run, para que WCAG regressions are caught at merge time.
-8. Como QA Engineer, eu quero a weekly summary posted to Microsoft Teams, para que the whole org sees product quality trend lines.
+1. Como Engenheiro de QA, eu quero um plano de testes gerado para cada feature que se liga aos IDs da spec, para que nenhum critério de aceitação seja entregue sem verificação.
+2. Como Engenheiro de QA, eu quero scores de mutação por módulo, para que eu saiba onde as asserções são fracas antes que o incidente descubra.
+3. Como Engenheiro de QA, eu quero testes flaky triados em um dia útil, para que o sinal continue confiável.
+4. Como Engenheiro de QA, eu quero lacunas de cobertura encaminhadas como issues com testes sugeridos, para que Developers as fechem na mesma sprint.
+5. Como Engenheiro de QA, eu quero execuções do Playwright gravadas e indexadas, para que a análise pós-incidente seja uma consulta, não uma expedição arqueológica.
+6. Como Engenheiro de QA, eu quero a matriz de testes exportada para o Azure DevOps Test Plans, para que stakeholders não técnicos possam navegar pelas evidências de verificação.
+7. Como Engenheiro de QA, eu quero verificações de acessibilidade embutidas em cada execução ponta a ponta, para que regressões WCAG sejam capturadas no momento do merge.
+8. Como Engenheiro de QA, eu quero um resumo semanal postado no Microsoft Teams, para que toda a organização veja as linhas de tendência de qualidade do produto.
 
-## Dores antes da era AI-native
+## Dores antes do AI-nativo
 
-- **Tests trail features**. QA writes tests after code ships; scope drifts and regressions leak into the backlog.
-- **Flake amnesia**. Flaky tests are quarantined and forgotten. The same race condition bites twice a quarter, and the team loses trust in red builds.
-- **Coverage theatre**. Line coverage hits 80 percent while critical branches are never exercised; audits pass and incidents still happen.
-- **Exploratory work undocumented**. Charters live in notebooks; learnings never become automated regression, so the same bug returns in a different screen.
-- **Handoffs lose context**. Developer fixes a bug, QA re-tests, but the failing scenario that proved the fix is not attached to the PR, so future regression is unprotected.
-- **No shared dashboard**. Verification status lives in five tools; leadership has no single, current view of product quality.
+- **Testes ficam atrás das features**. QA escreve testes depois que o código é entregue; o escopo se distorce e regressões vazam para o backlog.
+- **Amnésia de flakes**. Testes flaky são colocados em quarentena e esquecidos. A mesma race condition ataca duas vezes por trimestre, e o time perde confiança em builds vermelhos.
+- **Teatro de cobertura**. Cobertura de linha atinge 80 por cento enquanto branches críticas nunca são exercitadas; auditorias passam e incidentes continuam acontecendo.
+- **Trabalho exploratório não documentado**. Charters vivem em cadernos; aprendizados nunca se tornam regressão automatizada, então o mesmo bug retorna em uma tela diferente.
+- **Handoffs perdem contexto**. Developer corrige um bug, QA retesta, mas o cenário em falha que provou a correção não está anexado ao PR, deixando a regressão futura desprotegida.
+- **Sem dashboard compartilhado**. O status de verificação vive em cinco ferramentas; a liderança não tem uma visão única e atualizada da qualidade do produto.
 
-## Fluxo diário AI-native
+## Fluxo diário AI-nativo
 
-The QA Engineer works from Visual Studio Code with GitHub Copilot and from the terminal with Claude Code, invoking the Test Strategist agent throughout the day.
+O Engenheiro de QA trabalha a partir do Visual Studio Code com GitHub Copilot e do terminal com Claude Code, invocando o agente Test Strategist ao longo do dia.
 
 ### Setup da manhã
 
-1. Pull `main`, open the repo in VS Code, let Copilot Chat load `AGENTS.md` and the scoped `.github/instructions/tests.instructions.md`.
-2. Run `/test-plan --since=yesterday` to scan merged PRs and produce a delta plan: which new EARS requirements need coverage today.
-3. Open Azure DevOps Test Plans and GitHub Actions dashboards to review overnight runs; queue flake candidates.
-4. Review the overnight mutation scan output posted to the Verification channel in Microsoft Teams; pin the top three survivors as today's priority.
-5. Sync with the on-call SRE for any production incidents that should feed a new exploratory charter.
+1. Puxe `main`, abra o repo no VS Code, deixe o Copilot Chat carregar `AGENTS.md` e as instruções com escopo `.github/instructions/tests.instructions.md`.
+2. Rode `/test-plan --since=yesterday` para escanear PRs merged e produzir um plano delta: quais novos requisitos EARS precisam de cobertura hoje.
+3. Abra os dashboards do Azure DevOps Test Plans e GitHub Actions para revisar as execuções noturnas; enfileire candidatos a flake.
+4. Revise a saída do scan de mutação noturno postada no canal de Verificação no Microsoft Teams; fixe os três principais sobreviventes como prioridade do dia.
+5. Sincronize com o SRE de plantão sobre quaisquer incidentes de produção que devam alimentar um novo charter exploratório.
 
 ### Execução no meio do dia
 
-1. For each feature PR, invoke `/test-plan` with the linked spec section. The Test Strategist proposes missing lanes and writes skeleton tests.
-2. Run `/mutation-scan` on modules changed in the last 24 hours. Survivors become issues tagged `verification/weak-assertion`.
-3. Drive exploratory sessions with the Playwright MCP. Every finding that reproduces becomes a committed Playwright spec.
-4. Pair with the Developer on red tests; never approve a PR where a test was deleted without an equivalent replacement.
+1. Para cada PR de feature, invoque `/test-plan` com a seção da spec vinculada. O Test Strategist propõe lanes ausentes e escreve esqueletos de testes.
+2. Rode `/mutation-scan` nos módulos alterados nas últimas 24 horas. Sobreviventes se tornam issues tagueadas `verification/weak-assertion`.
+3. Conduza sessões exploratórias com o Playwright MCP. Todo achado que reproduz se torna uma spec Playwright commitada.
+4. Pareie com o Developer em testes vermelhos; nunca aprove um PR onde um teste foi deletado sem uma substituição equivalente.
 
 ### Revisão no fim da tarde
 
-1. Run `/flake-triage` against the daily Actions logs. The agent clusters failures, proposes root causes, and opens issues with a suggested fix owner.
-2. Publish the verification dashboard: coverage by module, mutation score, flake rate, open exploratory charters.
-3. Update `SPECIFICATION.md` traceability: every requirement ID links to at least one passing test.
+1. Rode `/flake-triage` contra os logs diários do Actions. O agente agrupa falhas, propõe causas-raiz e abre issues com um dono sugerido para a correção.
+2. Publique o dashboard de verificação: cobertura por módulo, score de mutação, taxa de flake, charters exploratórios abertos.
+3. Atualize a rastreabilidade do `SPECIFICATION.md`: cada ID de requisito deve estar linkado a pelo menos um teste passando.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `test-strategist` | `.github/agents/test-strategist.agent.md` | Designs test plans, runs mutation scans, triages flakes, routes coverage gaps |
+|--------|---------|-----------|
+| `test-strategist` | `.github/agents/test-strategist.agent.md` | Projeta planos de teste, executa scans de mutação, tria flakes, encaminha lacunas de cobertura |
 
-The Test Strategist runs on `claude-sonnet-4-6` with tools `read`, `grep`, `bash`, `edit`. Extended thinking is enabled for mutation analysis only.
+O Test Strategist roda com `claude-sonnet-4-6` e ferramentas `read`, `grep`, `bash`, `edit`. Extended thinking é habilitado apenas para análise de mutação.
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/test-plan` | `.github/prompts/test-plan.prompt.md` | Generate or update the test plan for a feature, linked to EARS IDs |
-| `/mutation-scan` | `.github/prompts/mutation-scan.prompt.md` | Run mutation testing on changed modules and route survivors |
-| `/flake-triage` | `.github/prompts/flake-triage.prompt.md` | Cluster failing Actions runs, propose root causes, open issues |
-| `/coverage-gap` | `.github/prompts/coverage-gap.prompt.md` | Map untested branches to specific spec sections and suggest tests |
+|---------|---------|-----------|
+| `/test-plan` | `.github/prompts/test-plan.prompt.md` | Gerar ou atualizar o plano de testes para uma feature, linkado aos IDs EARS |
+| `/mutation-scan` | `.github/prompts/mutation-scan.prompt.md` | Executar testes de mutação em módulos alterados e encaminhar sobreviventes |
+| `/flake-triage` | `.github/prompts/flake-triage.prompt.md` | Agrupar execuções falhando no Actions, propor causas-raiz, abrir issues |
+| `/coverage-gap` | `.github/prompts/coverage-gap.prompt.md` | Mapear branches não testadas a seções específicas da spec e sugerir testes |
 
-### Instruções escopadas
+### Instruções com escopo
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `tests/**/*` | `.github/instructions/tests.instructions.md` | AAA pattern, deterministic fixtures, no hidden sleeps |
-| `tests/e2e/**/*` | `.github/instructions/playwright.instructions.md` | Playwright locators, trace capture, retry policy |
-| `docs/specs/**/*.md` | `.github/instructions/traceability.instructions.md` | Every requirement links to at least one test ID |
+|--------------------|---------|-----------|
+| `tests/**/*` | `.github/instructions/tests.instructions.md` | Padrão AAA, fixtures determinísticos, sem sleeps ocultos |
+| `tests/e2e/**/*` | `.github/instructions/playwright.instructions.md` | Locators do Playwright, captura de trace, política de retry |
+| `docs/specs/**/*.md` | `.github/instructions/traceability.instructions.md` | Cada requisito linkado a pelo menos um ID de teste |
 
 ### Hooks
 
-- `pre-push`: run the fast test lane; block push on failure
-- `post-merge`: regenerate the test matrix and publish to Azure DevOps Test Plans
-- `nightly`: run the mutation scan on modules changed that day
-- `pre-release`: enforce minimum mutation score and traceability coverage thresholds
-- `on-flake`: open a GitHub issue automatically when a test fails twice in seven days
+- `pre-push`: rodar a fast test lane; bloquear push em falha
+- `post-merge`: regenerar a matriz de testes e publicar no Azure DevOps Test Plans
+- `nightly`: rodar o scan de mutação nos módulos alterados naquele dia
+- `pre-release`: enforçar score mínimo de mutação e limiares de cobertura de rastreabilidade
+- `on-flake`: abrir uma issue no GitHub automaticamente quando um teste falha duas vezes em sete dias
 
 ## MCPs validados
 
 | MCP | Propósito | Dono |
-|-----|---------|-------|
-| GitHub MCP Server | Read PRs, Actions runs, annotate issues | GitHub |
-| Azure DevOps MCP Server | Sync the test matrix into Azure DevOps Test Plans | Microsoft |
-| Playwright MCP | Drive exploratory sessions and recorded end-to-end runs | Microsoft |
-| Azure MCP Server | Query Azure Monitor and Application Insights for failure telemetry | Microsoft |
-| Microsoft Learn Docs MCP | Look up current test guidance for Azure services under test | Microsoft |
+|-----|-----------|------|
+| GitHub MCP Server | Ler PRs, execuções do Actions, anotar issues | GitHub |
+| Azure DevOps MCP Server | Sincronizar a matriz de testes no Azure DevOps Test Plans | Microsoft |
+| Playwright MCP | Conduzir sessões exploratórias e execuções ponta a ponta gravadas | Microsoft |
+| Azure MCP Server | Consultar Azure Monitor e Application Insights para telemetria de falhas | Microsoft |
+| Microsoft Learn Docs MCP | Consultar orientações de teste atualizadas para serviços Azure em teste | Microsoft |
 
 ## Exemplos reais
 
-### Example 1: mutation survivors become PRs
+### Exemplo 1: sobreviventes de mutação viram PRs
 
-Running `/mutation-scan src/billing/` returns 7 survivors in `invoice-total.ts`. The Test Strategist drafts 7 new test cases and opens a single issue titled `verification/weak-assertion: billing invoice-total`. A Developer picks it up, writes the tests, and the next mutation run returns zero survivors in that module. The KPI dashboard shows module mutation score climb from 58 to 94 percent.
+Rodar `/mutation-scan src/billing/` retorna 7 sobreviventes em `invoice-total.ts`. O Test Strategist elabora 7 novos casos de teste e abre uma única issue intitulada `verification/weak-assertion: billing invoice-total`. Um Developer assume, escreve os testes, e o próximo scan de mutação retorna zero sobreviventes naquele módulo. O dashboard de KPI mostra o score de mutação do módulo subindo de 58 para 94 por cento.
 
-### Example 2: flake triage ends a six-month bug
+### Exemplo 2: triagem de flake encerra um bug de seis meses
 
-`/flake-triage` clusters 14 failures in `checkout.spec.ts` from the last week and points to a race between a Playwright `page.click` and an inflight Azure Front Door cache revalidation. The Test Strategist proposes a fix: wait for the specific network response, not a timeout. The fix lands as a one-line change, the test stops flaking, and the Reliability KPI for that suite returns to 99.8 percent.
+`/flake-triage` agrupa 14 falhas em `checkout.spec.ts` da última semana e aponta para uma race entre um `page.click` do Playwright e uma revalidação de cache do Azure Front Door em andamento. O Test Strategist propõe uma correção: esperar pela resposta de rede específica, não por um timeout. A correção aterrissa como uma mudança de uma linha, o teste para de flakar e o KPI de Confiabilidade daquela suíte retorna a 99,8 por cento.
 
-### Example 3: coverage gap routed back to the Developer
+### Exemplo 3: lacuna de cobertura encaminhada ao Developer
 
-`/coverage-gap` inspects the last merged PR against `src/payments/refunds.ts` and finds the `partial_refund` branch is unreachable by any current test. The Test Strategist opens an issue with a drafted Given-When-Then, links it to the spec requirement `REQ-PAY-044`, and assigns it to the original author. The issue closes within the same sprint, and the traceability matrix flips from 96 to 100 percent for the Payments module.
+`/coverage-gap` inspeciona o último PR merged contra `src/payments/refunds.ts` e descobre que a branch `partial_refund` é inalcançável por qualquer teste atual. O Test Strategist abre uma issue com um Given-When-Then rascunhado, a linka ao requisito da spec `REQ-PAY-044` e a atribui ao autor original. A issue é fechada na mesma sprint, e a matriz de rastreabilidade salta de 96 para 100 por cento no módulo de Pagamentos.
 
 ## Anti-padrões
 
-- **Silencing flakes with retry counts**. Retries hide the defect; the incident still ships.
-- **Chasing line coverage**. Branches and mutants matter; lines are a vanity number.
-- **Manual regression packs**. Every manual regression that finds a bug must become an automated test in the same week.
-- **Writing tests after merge**. Verification work done post-merge loses leverage; design tests alongside the spec.
-- **End-to-end as the only net**. End-to-end tests are slow and brittle; push shift-left into contract and unit layers.
-- **Unowned fixtures**. Shared Playwright fixtures without a named owner rot silently; assign an owner and review every sprint.
-- **Treating agents as oracle**. The Test Strategist proposes; the QA Engineer decides. Every AI-generated test is reviewed before merge.
+- **Silenciar flakes com contagens de retry**. Retries escondem o defeito; o incidente continua sendo entregue.
+- **Perseguir cobertura de linha**. Branches e mutantes importam; linhas são número de vaidade.
+- **Packs de regressão manual**. Toda regressão manual que encontra um bug deve se tornar um teste automatizado na mesma semana.
+- **Escrever testes após o merge**. Trabalho de verificação feito após o merge perde alavancagem; projete testes junto com a spec.
+- **Ponta a ponta como única rede**. Testes ponta a ponta são lentos e frágeis; empurre shift-left para as camadas de contrato e unitário.
+- **Fixtures sem dono**. Fixtures compartilhados do Playwright sem um dono nomeado apodrecem silenciosamente; atribua um dono e revise a cada sprint.
+- **Tratar agentes como oráculo**. O Test Strategist propõe; o Engenheiro de QA decide. Todo teste gerado por IA é revisado antes do merge.
 
 ## KPIs e métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Source |
-|--------|-------------------|------------------|--------|
-| Escape rate (bugs found post-release) | 12 per release | < 2 per release | Application Insights, GitHub issues |
-| Mutation score on critical modules | Unknown | > 85 percent | Mutation runner in GitHub Actions |
-| Test suite reliability | 88 percent | > 99.5 percent | Actions flake rate |
-| Coverage gap closure time | 3 sprints | < 1 sprint | GitHub Projects |
-| Requirements with linked test | 55 percent | 100 percent | Traceability check in CI |
-| Accessibility violations per release | 18 | 0 critical | Playwright axe runs |
-| Mean time to triage a flake | 5 days | < 24 hours | GitHub Actions logs |
+| Métrica | Linha base (manual) | Meta (agêntico) | Fonte |
+|---------|---------------------|-----------------|-------|
+| Taxa de escape (bugs encontrados pós-release) | 12 por release | < 2 por release | Application Insights, issues do GitHub |
+| Score de mutação em módulos críticos | Desconhecido | > 85 por cento | Runner de mutação no GitHub Actions |
+| Confiabilidade da suíte de testes | 88 por cento | > 99,5 por cento | Taxa de flake do Actions |
+| Tempo de fechamento de lacuna de cobertura | 3 sprints | < 1 sprint | GitHub Projects |
+| Requisitos com teste linkado | 55 por cento | 100 por cento | Verificação de rastreabilidade no CI |
+| Violações de acessibilidade por release | 18 | 0 críticas | Execuções do Playwright axe |
+| Tempo médio para triar um flake | 5 dias | < 24 horas | Logs do GitHub Actions |
 
 ## Maturidade em quatro níveis
 
-- **L1 Manual**: Spreadsheet test cases, no mutation testing, flake quarantine folder, no agent. Verification is a bottleneck after code-complete.
-- **L2 Assistido**: Copilot autocomplete inside Playwright specs, test matrix in a wiki, manual flake triage, ad-hoc exploratory sessions.
-- **L3 Aumentado**: Test Strategist agent, quatro slash prompts, instruções escopadas, Playwright MCP wired to GitHub Actions, mutation scans on demand.
-- **L4 Autônomo**: Nightly mutation scan with auto-routed issues, flake triage closing root causes within 24 hours, requirements-to-tests traceability at 100 percent, verification dashboard published daily to Microsoft Teams.
+- **L1 Manual**: Casos de teste em planilha, sem testes de mutação, pasta de quarentena de flakes, sem agente. Verificação é gargalo após o code-complete.
+- **L2 Assistido**: Autocomplete do Copilot dentro de specs do Playwright, matriz de testes em wiki, triagem manual de flakes, sessões exploratórias ad hoc.
+- **L3 Aumentado**: Agente Test Strategist, quatro slash prompts, instruções com escopo, Playwright MCP conectado ao GitHub Actions, scans de mutação sob demanda.
+- **L4 Autônomo**: Scan de mutação noturno com issues encaminhadas automaticamente, triagem de flakes fechando causas-raiz em 24 horas, rastreabilidade de requisitos a testes em 100 por cento, dashboard de verificação publicado diariamente no Microsoft Teams.
 
 ## Integração com outras personas
 
-- **Do Business Analyst**: fresh EARS requirements with unique IDs for traceability.
-- **Do Developer**: merged PR with passing unit tests and a declared spec link.
-- **Para o Developer**: coverage-gap and mutation-survivor issues with suggested test drafts.
-- **Do Software Architect**: architectural risk register that informs resilience test lanes.
-- **Para o SRE**: verified deployment artifact and updated synthetic probes.
-- **Para o Compliance Auditor**: traceability matrix linking requirements to evidence of test execution.
-- **With UAT Analyst**: shared Playwright fixtures between system tests and acceptance tests.
+- **Do Business Analyst**: requisitos EARS frescos com IDs únicos para rastreabilidade.
+- **Do Developer**: PR merged com testes unitários passando e um link de spec declarado.
+- **Para o Developer**: issues de lacuna de cobertura e sobreviventes de mutação com rascunhos de testes sugeridos.
+- **Do Software Architect**: registro de risco arquitetural que informa lanes de teste de resiliência.
+- **Para o SRE**: artefato de deploy verificado e synthetic probes atualizados.
+- **Para o Compliance Auditor**: matriz de rastreabilidade linkando requisitos a evidências de execução de testes.
+- **Com o UAT Analyst**: fixtures Playwright compartilhados entre testes de sistema e testes de aceitação.
 
 ## Glossário
 
-- **Test matrix**: the living table mapping requirements to test lanes, owners, and status.
-- **Mutation score**: percentage of injected faults detected by the test suite.
-- **Flake**: a test that passes and fails non-deterministically on unchanged code.
-- **Exploratory charter**: a time-boxed investigation with a stated mission, not a script.
-- **Traceability**: a verifiable link from requirement ID to test ID to PR.
-- **Verification lane**: a category of automated checks (unit, contract, integration, end-to-end, performance, accessibility, resilience) with its own SLA and runner.
-- **Escape rate**: bugs discovered in production that should have been caught before release.
+- **Matriz de testes**: a tabela viva mapeando requisitos a lanes de teste, donos e status.
+- **Score de mutação**: percentual de falhas injetadas detectadas pela suíte de testes.
+- **Flake**: um teste que passa e falha de forma não determinística em código inalterado.
+- **Charter exploratório**: uma investigação com tempo limitado e missão declarada, não um script.
+- **Rastreabilidade**: um link verificável de ID de requisito a ID de teste a PR.
+- **Lane de verificação**: uma categoria de verificações automatizadas (unitário, contrato, integração, ponta a ponta, performance, acessibilidade, resiliência) com seu próprio SLA e runner.
+- **Taxa de escape**: bugs descobertos em produção que deveriam ter sido capturados antes do release.
 
 ## Referências
 
-- [Testing guidance on Microsoft Learn](https://learn.microsoft.com/azure/devops/test/) — Azure DevOps Test Plans and strategy
-- [GitHub Actions testing docs](https://docs.github.com/actions/automating-builds-and-tests) — CI patterns for verification
-- [Playwright MCP](https://github.com/microsoft/playwright-mcp) — Microsoft-maintained MCP for browser automation
-- [Application Insights availability tests](https://learn.microsoft.com/azure/azure-monitor/app/availability-overview) — synthetic monitoring
-- [GitHub Copilot for test generation](https://docs.github.com/copilot) — agent-assisted test authoring
-- [GitHub Advanced Security](https://docs.github.com/code-security) — CodeQL and secret scanning signals fed into the test plan
-- [Azure Load Testing](https://learn.microsoft.com/azure/load-testing/) — performance and resilience lane
-- [Azure Application Insights smart detection](https://learn.microsoft.com/azure/azure-monitor/alerts/proactive-diagnostics) — anomaly signals for exploratory charters
+- [Orientação de testes no Microsoft Learn](https://learn.microsoft.com/azure/devops/test/) — Azure DevOps Test Plans e estratégia
+- [Documentação de testes do GitHub Actions](https://docs.github.com/actions/automating-builds-and-tests) — Padrões de CI para verificação
+- [Playwright MCP](https://github.com/microsoft/playwright-mcp) — MCP mantido pela Microsoft para automação de navegador
+- [Testes de disponibilidade do Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/availability-overview) — Monitoramento sintético
+- [GitHub Copilot para geração de testes](https://docs.github.com/copilot) — Autoria de testes assistida por agente
+- [GitHub Advanced Security](https://docs.github.com/code-security) — Sinais de CodeQL e secret scanning alimentando o plano de testes
+- [Azure Load Testing](https://learn.microsoft.com/azure/load-testing/) — Lane de performance e resiliência
+- [Detecção inteligente do Azure Application Insights](https://learn.microsoft.com/azure/azure-monitor/alerts/proactive-diagnostics) — Sinais de anomalia para charters exploratórios

@@ -4,197 +4,197 @@ number: 6
 cluster: "architect"
 accent: "yellow"
 phase: "Design"
-title: "Tech Lead"
-oneLiner: 'Ingeniería de contexto para el equipo.'
+title: "Technical Lead"
+oneLiner: "Context engineering para el equipo."
 order: 6
 updated: "2026-04-24"
 ---
 
-> The Technical Lead es la persona que engineers context for the squad. En un SDLC AI-native, el Technical Lead opera un stack de primitivas validadas that make the team's agents fast, cheap, and correct.
+> El Technical Lead es la persona que hace ingeniería de contexto para la squad. En un SDLC AI-native, el Technical Lead opera un stack de primitivas validadas que vuelven a los agentes del equipo rápidos, baratos y correctos.
 
 ## Resumen ejecutivo
 
-The Technical Lead owns the team-level primitives catalog: `AGENTS.md`, instrucciones con alcance, prompts, skills, hooks, and the routing table that binds them. En un SDLC AI-native, el Technical Lead opera dentro de la fase de Design phase con un conjunto fijo de primitivas: un agente context auditing, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema, and una lista curada de MCPs validados. Las salidas principales son the audited context budget, the scope-split plan for large tasks, primed context packs for new features, and the squad primitives kit.
+El Technical Lead es dueño del catálogo de primitivas a nivel de equipo: `AGENTS.md`, instrucciones con alcance, prompts, skills, hooks y la tabla de routing que los amarra. En un SDLC AI-native, el Technical Lead opera dentro de la fase de Design con un conjunto fijo de primitivas: un agente de auditoría de contexto, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema y una lista curada de MCPs validados. Las salidas principales son el presupuesto de contexto auditado, el plan de scope-split para tareas grandes, paquetes de contexto preparados para nuevas features y el kit de primitivas de la squad.
 
 ## Rol y responsabilidades
 
-Piense en el Technical Lead like the chief of staff for a surgical team. They do not hold the scalpel, but they make sure the instruments are sterile, labeled, and within reach before the surgeon starts. En un SDLC AI-native, el instruments are agents, prompts, instructions, skills, and hooks, and the Technical Lead is accountable for the fact that the squad reaches for the right tool without reading the whole repository every time.
+Piensa en el Technical Lead como el jefe de personal de un equipo quirúrgico. No sostienen el bisturí, pero se aseguran de que los instrumentos estén estériles, etiquetados y al alcance antes de que el cirujano comience. En un SDLC AI-native, los instrumentos son agentes, prompts, instrucciones, skills y hooks, y el Technical Lead es responsable de que la squad alcance la herramienta correcta sin tener que leer todo el repositorio cada vez.
 
 Responsabilidades principales:
 
-- Author and maintain `AGENTS.md`, the root prompt for every agent in the repository
-- Curate the squad's instrucciones con alcance to keep the context budget low
-- Govern the prompt catalog, consolidating duplicates and retiring stale commands
-- Run context audits on every squad repository to detect bloat and leaks
-- Split oversized tasks into parallelizable units with clear scope boundaries
-- Operate the Context Auditor agent and the `/audit-context`, `/scope-split`, `/prime-context`, `/team-primitives` prompts
-- Align primitives with the Enterprise Architect's principles and the Software Architect's CODEMAP
+- Redactar y mantener `AGENTS.md`, el prompt raíz para cada agente en el repositorio
+- Curar las instrucciones con alcance de la squad para mantener bajo el presupuesto de contexto
+- Gobernar el catálogo de prompts, consolidando duplicados y retirando comandos obsoletos
+- Correr auditorías de contexto sobre cada repositorio de la squad para detectar bloat y fugas
+- Dividir tareas demasiado grandes en unidades paralelizables con fronteras de alcance claras
+- Operar el agente Context Auditor y los prompts `/audit-context`, `/scope-split`, `/prime-context`, `/team-primitives`
+- Alinear las primitivas con los principios del Enterprise Architect y el CODEMAP del Software Architect
 
 ## Jobs to be done
 
-1. Como Technical Lead, quiero the squad's context budget to stay under threshold, para que agents are fast and affordable.
-2. Como Technical Lead, quiero oversized tasks split into parallelizable units, para que the squad delivers in hours, not sprints.
-3. Como Technical Lead, quiero context primed before a Developer starts a feature, para que Copilot and Claude Code find the right files immediately.
-4. Como Technical Lead, quiero the squad primitives kit to be a single directory, para que onboarding a new engineer costs minutes.
-5. Como Technical Lead, quiero instrucciones con alcance to carry `applyTo` patterns, para que token cost scales with the diff, not the repo.
-6. Como Technical Lead, quiero context audits to run on every PR, para que the catalog does not rot.
+1. Como Technical Lead, quiero que el presupuesto de contexto de la squad se mantenga bajo el umbral, para que los agentes sean rápidos y costeables.
+2. Como Technical Lead, quiero que las tareas demasiado grandes se dividan en unidades paralelizables, para que la squad entregue en horas, no en sprints.
+3. Como Technical Lead, quiero que el contexto se prepare antes de que un Developer empiece una feature, para que Copilot y Claude Code encuentren los archivos correctos de inmediato.
+4. Como Technical Lead, quiero que el kit de primitivas de la squad sea un solo directorio, para que el onboarding de un nuevo ingeniero cueste minutos.
+5. Como Technical Lead, quiero que las instrucciones con alcance lleven patrones `applyTo`, para que el costo en tokens escale con el diff, no con el repo.
+6. Como Technical Lead, quiero que las auditorías de contexto corran en cada PR, para que el catálogo no se pudra.
 
 ## Puntos de dolor antes de la era AI-native
 
-1. **Unbounded `AGENTS.md`**. A root prompt grows without review, pushing every agent into the token ceiling.
-2. **Prompt sprawl**. Two squads independently author `/implement`, `/build`, and `/do`. Consistency collapses.
-3. **Context loaded eagerly**. Every session reads the whole `docs/` folder. Ten thousand tokens spent before the first question.
-4. **Large tasks stuck in un agente session**. A feature meant for three engineers takes one three days because nobody split the scope.
-5. **New engineers onboard by folklore**. The tribal knowledge of which prompt to use is spoken, not encoded.
+1. **`AGENTS.md` sin límite**. Un prompt raíz crece sin revisión, empujando a cada agente al techo de tokens.
+2. **Sprawl de prompts**. Dos squads escriben de forma independiente `/implement`, `/build` y `/do`. La consistencia colapsa.
+3. **Contexto cargado de forma ansiosa**. Cada sesión lee toda la carpeta `docs/`. Diez mil tokens gastados antes de la primera pregunta.
+4. **Tareas grandes atascadas en una sola sesión**. Una feature pensada para tres ingenieros le toma a un agente tres días porque nadie dividió el alcance.
+5. **Nuevos ingenieros que se onboardean por folklore**. El conocimiento tribal sobre qué prompt usar se habla, no se codifica.
 
 ## Flujo diario AI-native
 
-The Technical Lead operates a fixed loop each day. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
+El Technical Lead opera un loop fijo cada día. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
 
 ### Setup de la mañana
 
-1. Open the squad repository in Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` and the scoped primitives instructions.
-2. Hacer pull de la última `main` and list prompts, instructions, agents, and hooks changed overnight.
-3. Run `/audit-context` to confirm the squad's context budget is under threshold and that no prompt references a retired file.
-4. Review the primitives dashboard generated from GitHub MCP telemetry.
+1. Abrir el repositorio de la squad en Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` y las instrucciones de primitivas con alcance.
+2. Hacer pull del último `main` y listar prompts, instrucciones, agentes y hooks que cambiaron durante la noche.
+3. Ejecutar `/audit-context` para confirmar que el presupuesto de contexto de la squad esté bajo el umbral y que ningún prompt referencie un archivo retirado.
+4. Revisar el dashboard de primitivas generado a partir de la telemetría del MCP de GitHub.
 
 ### Ejecución al mediodía
 
-1. **Context priming**. Invoke `/prime-context` for every feature starting this week. The Context Auditor agent produces a primed context pack that lists the exact files, contracts, and requirement IDs the Developer should read first.
-2. **Scope splitting**. Invoke `/scope-split` on any task estimated above un agente working day. The decomposes the work into parallelizable units with explicit dependencies and handoffs.
-3. **Primitive curation**. Invoke `/team-primitives` on any new prompt, instruction, or hook proposed by the squad. The agent checks for duplication, scope correctness, and token-cost impact.
-4. **Cross-squad consultation**. Raise primitive proposals in the architecture Teams channel via the Microsoft 365 Agents SDK MCP for feedback from peer Technical Leads.
+1. **Preparación de contexto**. Invocar `/prime-context` para cada feature que arranque esta semana. El agente Context Auditor produce un paquete de contexto preparado que lista los archivos exactos, contratos e IDs de requisito que el Developer debería leer primero.
+2. **División de alcance**. Invocar `/scope-split` sobre cualquier tarea estimada por encima de un día de trabajo. El agente descompone el trabajo en unidades paralelizables con dependencias y handoffs explícitos.
+3. **Curaduría de primitivas**. Invocar `/team-primitives` sobre cualquier nuevo prompt, instrucción o hook propuesto por la squad. El agente verifica duplicación, corrección de alcance e impacto en el costo en tokens.
+4. **Consulta entre squads**. Levantar propuestas de primitivas en el canal de arquitectura de Teams a través del MCP del Microsoft 365 Agents SDK para feedback de Technical Leads pares.
 
 ### Revisión al final de la tarde
 
-1. Invoke `/audit-context` as the final sweep on all open PRs. Block merge on any PR that breaks the context budget unless a linked scope-split plan justifies the change.
-2. Abrir un pull request on primitives changes. GitHub Copilot Code Review comments on `applyTo` patterns, duplication, and token-cost impact.
-3. Publish the daily primitives digest to the squad Teams channel via the Microsoft 365 Agents SDK, summarizing new, revised, and retired primitives.
-4. Update the routing table in `docs/routing.md` so every repository maps its canonical prompt, agent, and instructions set.
+1. Invocar `/audit-context` como barrida final sobre todos los PRs abiertos. Bloquear el merge en cualquier PR que rompa el presupuesto de contexto salvo que un plan de scope-split enlazado lo justifique.
+2. Abrir un pull request sobre los cambios de primitivas. GitHub Copilot Code Review comenta sobre patrones `applyTo`, duplicación e impacto en el costo en tokens.
+3. Publicar el digest diario de primitivas al canal de squad en Teams a través del Microsoft 365 Agents SDK, resumiendo las primitivas nuevas, revisadas y retiradas.
+4. Actualizar la tabla de routing en `docs/routing.md` para que cada repositorio mapee su set canónico de prompts, agentes e instrucciones.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Archivo | Propósito |
-|-------|------|---------|
-| `context-auditor` | `.github/agents/context-auditor.agent.md` | Audit context budget, split scope, prime context, curate team primitives |
+|--------|---------|-----------|
+| `context-auditor` | `.github/agents/context-auditor.agent.md` | Auditar el presupuesto de contexto, dividir alcance, preparar contexto, curar primitivas de equipo |
 
-The Context Auditor uses `claude-sonnet-4-6` by default. Tools: `read`, `edit`, `search`, `grep`, `glob`. No `bash` access. Extended thinking is enabled for `/scope-split` only, where dependency analysis benefits from deeper reasoning.
+El Context Auditor usa `claude-sonnet-4-6` por defecto. Herramientas: `read`, `edit`, `search`, `grep`, `glob`. Sin acceso a `bash`. El extended thinking se habilita solo para `/scope-split`, donde el análisis de dependencias se beneficia de un razonamiento más profundo.
 
 ### Slash prompts
 
 | Comando | Archivo | Propósito |
-|---------|------|---------|
-| `/audit-context` | `.github/prompts/audit-context.prompt.md` | Confirm the context budget is under threshold and no prompt references a retired file |
-| `/scope-split` | `.github/prompts/scope-split.prompt.md` | Decompose an oversized task into parallelizable units with explicit dependencies |
-| `/prime-context` | `.github/prompts/prime-context.prompt.md` | Produce a primed context pack listing exact files, contracts, and requirement IDs |
-| `/team-primitives` | `.github/prompts/team-primitives.prompt.md` | Curate new prompts, instructions, and hooks for the squad |
+|---------|---------|-----------|
+| `/audit-context` | `.github/prompts/audit-context.prompt.md` | Confirmar que el presupuesto de contexto esté bajo el umbral y que ningún prompt referencie un archivo retirado |
+| `/scope-split` | `.github/prompts/scope-split.prompt.md` | Descomponer una tarea demasiado grande en unidades paralelizables con dependencias explícitas |
+| `/prime-context` | `.github/prompts/prime-context.prompt.md` | Producir un paquete de contexto preparado listando archivos, contratos e IDs de requisito exactos |
+| `/team-primitives` | `.github/prompts/team-primitives.prompt.md` | Curar nuevos prompts, instrucciones y hooks para la squad |
 
 ### Instrucciones con alcance
 
-El alcance `applyTo` reduce el costo de tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
+El `applyTo` con alcance reduce el costo en tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
 
 | Alcance (`applyTo`) | Archivo | Propósito |
-|-------------------|------|---------|
-| `AGENTS.md` | `.github/instructions/agents-root.instructions.md` | Root prompt format, token budget, routing syntax |
-| `.github/prompts/**/*.prompt.md` | `.github/instructions/prompts.instructions.md` | Prompt frontmatter, input contract, output shape |
-| `.github/instructions/**/*.instructions.md` | `.github/instructions/scoped-instructions.instructions.md` | `applyTo` discipline and content budget |
+|---------------------|---------|-----------|
+| `AGENTS.md` | `.github/instructions/agents-root.instructions.md` | Formato del prompt raíz, presupuesto de tokens, sintaxis de routing |
+| `.github/prompts/**/*.prompt.md` | `.github/instructions/prompts.instructions.md` | Frontmatter del prompt, contrato de entrada, forma de salida |
+| `.github/instructions/**/*.instructions.md` | `.github/instructions/scoped-instructions.instructions.md` | Disciplina de `applyTo` y presupuesto de contenido |
 
 ### Hooks
 
-Los hooks cuestan cero tokens de LLM. Son la capa de gobernanza más fuerte for primitives.
+Los hooks cuestan cero tokens de LLM. Son la capa de gobierno más fuerte para las primitivas.
 
-- `pre-commit`: reject any prompt or instructions file that exceeds the per-file token budget or lacks frontmatter
-- `post-commit`: regenerate the routing table and the primitives index
-- `pre-merge`: run `/audit-context` against the PR diff and block merge on unresolved findings
+- `pre-commit`: rechazar cualquier archivo de prompt o instructions que exceda el presupuesto de tokens por archivo o que carezca de frontmatter
+- `post-commit`: regenerar la tabla de routing y el índice de primitivas
+- `pre-merge`: correr `/audit-context` contra el diff del PR y bloquear el merge en hallazgos sin resolver
 
 ## MCPs validados
 
 | MCP | Propósito | Dueño |
-|-----|---------|-------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Inspect repositories, PRs, and Actions runs to audit context usage across the squad | GitHub (official) |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Ground primitives in current Microsoft and Azure documentation, avoiding stale snippets | Microsoft (official) |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Correlate primitives behavior with Application Insights telemetry on agent runs | Microsoft (official) |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Leer work items de Azure Boards that inform scope splits when the team uses Azure DevOps | Microsoft (official) |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Publish primitives digests to Teams and ingest feedback from Outlook | Microsoft (official) |
+|-----|-----------|-------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Inspeccionar repositorios, PRs y corridas de Actions para auditar el uso de contexto a través de la squad | GitHub (oficial) |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Anclar primitivas en documentación vigente de Microsoft y Azure, evitando snippets obsoletos | Microsoft (oficial) |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Correlacionar el comportamiento de las primitivas con la telemetría de Application Insights sobre corridas de agente | Microsoft (oficial) |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Leer work items de Azure Boards que informan los scope splits cuando el equipo usa Azure DevOps | Microsoft (oficial) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Publicar digests de primitivas a Teams e ingerir feedback desde Outlook | Microsoft (oficial) |
 
 ## Ejemplos reales
 
-### Example 1: prime context for a new feature
+### Ejemplo 1: preparar contexto para una nueva feature
 
-**Entrada**: A feature to add partner SSO to the portal, with approved requirements and an accepted contract.
+**Entrada**: Una feature para añadir SSO con partners al portal, con requisitos aprobados y un contrato aceptado.
 
 **Invocación**: `/prime-context`.
 
 **Salida esperada**:
 
-1. A `docs/primed-context/partner-sso.md` listing the six source files the Developer should read first, the two contracts the feature touches, the four requirement IDs, and the single ADR that constrains the choice of token broker.
-2. A primed-context link attached to the GitHub issue via the GitHub MCP so any engineer who picks up the task starts with the right files open in Visual Studio Code.
+1. Un `docs/primed-context/partner-sso.md` listando los seis archivos fuente que el Developer debería leer primero, los dos contratos que la feature toca, los cuatro IDs de requisito y el único ADR que restringe la elección del broker de tokens.
+2. Un enlace de contexto preparado adjunto al GitHub issue vía el MCP de GitHub para que cualquier ingeniero que tome la tarea arranque con los archivos correctos abiertos en Visual Studio Code.
 
-### Example 2: scope split on an oversized task
+### Ejemplo 2: scope split sobre una tarea demasiado grande
 
-**Entrada**: A ticket estimated at seven working days for a single engineer to introduce feature-flag rollout across four services.
+**Entrada**: Un ticket estimado en siete días de trabajo para un solo ingeniero, para introducir rollout con feature flags a través de cuatro servicios.
 
 **Invocación**: `/scope-split`.
 
 **Salida esperada**:
 
-1. A `docs/scope-splits/feature-flag-rollout.md` with five parallelizable units, their dependencies, and named engineer assignments.
-2. Five GitHub issues created via the GitHub MCP, each with a primed-context link and an acceptance criterion.
-3. A routing table update so each unit maps to the correct agent and prompt set.
+1. Un `docs/scope-splits/feature-flag-rollout.md` con cinco unidades paralelizables, sus dependencias y asignaciones a ingenieros nombrados.
+2. Cinco GitHub issues creados vía el MCP de GitHub, cada uno con un enlace de contexto preparado y un criterio de aceptación.
+3. Una actualización de la tabla de routing para que cada unidad mapee al agente y set de prompts correctos.
 
 ## Anti-patrones
 
-1. **Growing `AGENTS.md` by accretion**. Every squad adds a paragraph, nobody removes one. Mitigación: `pre-commit` hook enforces the root budget.
-2. **Copy-paste prompts across repos**. Drift guarantees inconsistent behavior. Mitigación: central prompt catalog with semantic versioning and `/team-primitives` curation.
-3. **Eagerly loading the whole `docs/`**. Token waste. Mitigación: instrucciones con alcance with `applyTo` and a primed-context pack per feature.
-4. **Splitting scope without dependencies**. Parallel units that silently collide produce rework. Mitigación: `/scope-split` emits an explicit dependency graph and enforces it in the routing table.
-5. **Primitives authored without review**. Unvetted prompts invite hallucination. Mitigación: every primitive lands via PR with Copilot Code Review and human approval.
+1. **Crecer `AGENTS.md` por acreción**. Cada squad agrega un párrafo, nadie quita uno. Mitigación: el hook `pre-commit` impone el presupuesto raíz.
+2. **Copy-paste de prompts entre repos**. La deriva garantiza comportamiento inconsistente. Mitigación: catálogo central de prompts con versionado semántico y curaduría con `/team-primitives`.
+3. **Cargar de forma ansiosa todo `docs/`**. Desperdicio de tokens. Mitigación: instrucciones con alcance con `applyTo` y un paquete de contexto preparado por feature.
+4. **Dividir alcance sin dependencias**. Las unidades paralelas que colisionan en silencio producen rework. Mitigación: `/scope-split` emite un grafo de dependencias explícito y lo impone en la tabla de routing.
+5. **Primitivas redactadas sin revisión**. Los prompts no validados invitan a la alucinación. Mitigación: cada primitiva aterriza vía PR con Copilot Code Review y aprobación humana.
 
 ## KPIs y métricas de impacto
 
 | KPI | Línea base | Meta | Medición |
-|-----|----------|--------|-------------|
-| Context budget compliance across squad | 50 percent | 100 percent | Audit-context dashboard |
-| Prompt duplication rate | 35 percent | < 5 percent | Prompt catalog diff |
-| Time to onboard a new engineer | 10 days | < 2 days | Ramp survey |
-| Scope-split coverage on oversized tasks | 20 percent | 100 percent | GitHub issue labels |
-| Primed-context adoption per feature | 30 percent | 100 percent | GitHub PR metadata audit |
-| Agent token cost per merged PR | 1.5M | < 1M | Copilot usage report |
+|-----|------------|------|----------|
+| Cumplimiento del presupuesto de contexto a través de la squad | 50 por ciento | 100 por ciento | Dashboard de audit-context |
+| Tasa de duplicación de prompts | 35 por ciento | < 5 por ciento | Diff del catálogo de prompts |
+| Tiempo para onboardear a un nuevo ingeniero | 10 días | < 2 días | Encuesta de ramp |
+| Cobertura de scope-split en tareas demasiado grandes | 20 por ciento | 100 por ciento | Etiquetas de GitHub issue |
+| Adopción de contexto preparado por feature | 30 por ciento | 100 por ciento | Auditoría de metadata de PR de GitHub |
+| Costo en tokens del agente por PR fusionado | 1.5M | < 1M | Reporte de uso de Copilot |
 
 ## Madurez en cuatro niveles
 
 | Nivel | Nombre | Marcadores |
-|-------|------|---------|
-| L1 | Manual | No `AGENTS.md`, prompts ad-hoc, context loaded eagerly |
-| L2 | Asistido | `AGENTS.md` exists but untested, no instrucciones con alcance, no audits |
-| L3 | Aumentado | Context Auditor agent, cuatro slash prompts, instrucciones con alcance, GitHub MCP, audit-context on PR |
-| L4 | Autónomo | Full primitives kit, hooks enforced, primed-context standard per feature, scope splits automatic, routing table live |
+|-------|--------|------------|
+| L1 | Manual | Sin `AGENTS.md`, prompts ad-hoc, contexto cargado de forma ansiosa |
+| L2 | Asistido | `AGENTS.md` existe pero no probado, sin instrucciones con alcance, sin auditorías |
+| L3 | Aumentado | Agente Context Auditor, cuatro slash prompts, instrucciones con alcance, MCP de GitHub, audit-context en PR |
+| L4 | Autónomo | Kit completo de primitivas, hooks forzados, contexto preparado estándar por feature, scope splits automáticos, tabla de routing en vivo |
 
 ## Integración con otras personas
 
-- **Del Enterprise Architect**: principles and gate expressions that constrain primitives design
-- **Del Software Architect**: `CODEMAP.md` and contracts that inform the routing table
-- **Para el Developer**: primed-context packs, scope splits, and curated prompts ready for use
-- **Para el QA Engineer**: testable scope units with explicit acceptance linking
-- **Para el DevOps Engineer**: hooks as the governance layer on every workflow
-- **Para el Engineering Manager**: audit data that grounds capacity and staffing decisions
-- **Para el Release Manager**: routing table as the canonical map from PRs to the primitives that produced them
+- **Desde Enterprise Architect**: principios y expresiones de compuerta que restringen el diseño de primitivas
+- **Desde Software Architect**: `CODEMAP.md` y contratos que informan la tabla de routing
+- **Hacia Developer**: paquetes de contexto preparado, scope splits y prompts curados listos para usar
+- **Hacia QA Engineer**: unidades de alcance testables con vinculación de aceptación explícita
+- **Hacia DevOps Engineer**: hooks como capa de gobierno en cada workflow
+- **Hacia Engineering Manager**: datos de auditoría que sustentan decisiones de capacidad y staffing
+- **Hacia Release Manager**: tabla de routing como mapa canónico de PRs a las primitivas que los produjeron
 
 ## Glosario
 
-- **AGENTS.md**: root prompt loaded by every agent on every session, bounded by a strict token budget.
-- **Primed context**: a curated pack of files, contracts, and requirement IDs that a new session should read first.
-- **Scope split**: structured decomposition of an oversized task into parallelizable units with explicit dependencies.
-- **Routing table**: the canonical map from repositories and directories to the agents, prompts, and instructions that govern them.
-- **Scoped instructions**: guidance applied by pattern match on file paths via `applyTo`, keeping token cost proportional to the diff.
-- **Context budget**: the per-session token ceiling enforced by hooks and measured by `/audit-context`.
+- **AGENTS.md**: prompt raíz cargado por cada agente en cada sesión, acotado por un presupuesto estricto de tokens.
+- **Contexto preparado**: un paquete curado de archivos, contratos e IDs de requisito que una nueva sesión debería leer primero.
+- **Scope split**: descomposición estructurada de una tarea demasiado grande en unidades paralelizables con dependencias explícitas.
+- **Tabla de routing**: el mapa canónico de repositorios y directorios a los agentes, prompts e instrucciones que los gobiernan.
+- **Instrucciones con alcance**: guía aplicada por coincidencia de patrones sobre rutas de archivo vía `applyTo`, manteniendo el costo en tokens proporcional al diff.
+- **Presupuesto de contexto**: el techo de tokens por sesión impuesto por hooks y medido por `/audit-context`.
 
 ## Referencias
 
-- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — agent mode, prompts, instructions, and context controls
-- [GitHub Actions documentation](https://docs.github.com/en/actions) — automatización para context audits and primitive governance
-- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — operational excellence pillar for sustainable team primitives
-- [Microsoft Learn, prompt engineering](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering) — guidance that informs prompt catalog quality
-- [Microsoft 365 Agents SDK overview](https://learn.microsoft.com/microsoft-365/agents-sdk/) — integrating Teams and Microsoft 365 surfaces into squad workflow
+- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — agent mode, prompts, instructions y controles de contexto
+- [GitHub Actions documentation](https://docs.github.com/en/actions) — automatización para auditorías de contexto y gobierno de primitivas
+- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — pilar de excelencia operativa para primitivas de equipo sostenibles
+- [Microsoft Learn, prompt engineering](https://learn.microsoft.com/azure/ai-services/openai/concepts/prompt-engineering) — guía que informa la calidad del catálogo de prompts
+- [Microsoft 365 Agents SDK overview](https://learn.microsoft.com/microsoft-365/agents-sdk/) — integración de Teams y superficies de Microsoft 365 al flujo de la squad

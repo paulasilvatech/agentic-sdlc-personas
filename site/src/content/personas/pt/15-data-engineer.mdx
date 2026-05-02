@@ -10,193 +10,193 @@ order: 15
 updated: "2026-04-24"
 ---
 
-> The Data Engineer é a persona que builds and operates the data pipelines the rest of the org depends on. Em um SDLC AI-native, o Data Engineer operates a Pipeline Keeper agent, quatro slash prompts, and a validated MCP catalog spanning Azure Data Factory, Synapse, Fabric, SQL Database, and Cosmos DB — not a forest of brittle notebooks.
+> O Engenheiro de Dados é a persona que constrói e opera os pipelines de dados dos quais o restante da organização depende. Em um SDLC AI-nativo, o Engenheiro de Dados opera um agente Pipeline Keeper, quatro slash prompts e um catálogo validado de MCPs abrangendo Azure Data Factory, Synapse, Fabric, SQL Database e Cosmos DB — não uma floresta de notebooks frágeis.
 
 ## Resumo executivo
 
-The Data Engineer owns the movement, transformation, and quality of data between systems. Em um SDLC AI-native, oir primary deliverables are idempotent pipelines, tested schema migrations, quality gates enforced in CI, and a lineage map that any stakeholder can read. The toolkit is fixed: the Pipeline Keeper agent, the `/etl-scaffold`, `/schema-diff`, `/quality-gate`, `/lineage-map` slash prompts, instruções escopadas for SQL and pipeline definitions, and validated MCPs reaching into Azure Data Factory, Azure Synapse, Microsoft Fabric, Azure SQL Database, and Azure Cosmos DB.
+O Engenheiro de Dados é dono da movimentação, transformação e qualidade dos dados entre sistemas. Em um SDLC AI-nativo, suas entregas primárias são pipelines idempotentes, migrações de schema testadas, gates de qualidade enforçados no CI e um mapa de linhagem que qualquer stakeholder consegue ler. O toolkit é fixo: o agente Pipeline Keeper, os slash prompts `/etl-scaffold`, `/schema-diff`, `/quality-gate`, `/lineage-map`, instruções com escopo para SQL e definições de pipeline, e MCPs validados alcançando Azure Data Factory, Azure Synapse, Microsoft Fabric, Azure SQL Database e Azure Cosmos DB.
 
-The Data Engineer protects the organization from the most common data failure modes: silent schema drift, missing nulls turning into poisoned joins, late-arriving data breaking downstream contracts, and pipelines that succeed while producing subtly wrong results. Every pipeline ships with tests, a lineage entry, and a data-quality gate.
+O Engenheiro de Dados protege a organização dos modos de falha de dados mais comuns: drift silencioso de schema, nulos faltantes transformando-se em joins envenenados, dados atrasados quebrando contratos downstream e pipelines que sucedem enquanto produzem resultados sutilmente errados. Todo pipeline é entregue com testes, uma entrada de linhagem e um gate de qualidade de dados.
 
-Data work is now inseparable from software work. Pipelines are code, reviewed in GitHub, tested in Actions, governed by Microsoft Purview, and observed through Azure Monitor.
+O trabalho de dados agora é inseparável do trabalho de software. Pipelines são código, revisados no GitHub, testados no Actions, governados pelo Microsoft Purview e observados através do Azure Monitor.
 
 ## Papel e responsabilidades
 
-Pense no Data Engineer like the bridge master of a municipal water system. Pipes move water from reservoirs to neighborhoods; meters, valves, and testing stations ensure quality; any leak or contamination must be detected and routed before the kitchen tap. Em um SDLC AI-native, o Data Engineer owns that plumbing for facts instead of liquid.
+Pense no Engenheiro de Dados como o mestre de pontes de um sistema municipal de água. Tubos movem água de reservatórios para bairros; medidores, válvulas e estações de teste garantem qualidade; qualquer vazamento ou contaminação deve ser detectado e encaminhado antes da torneira da cozinha. Em um SDLC AI-nativo, o Engenheiro de Dados é dono dessa tubulação para fatos em vez de líquido.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Design and operate ingestion pipelines in Azure Data Factory and Microsoft Fabric
-- Own transformations in Azure Synapse and curated layers in Fabric lakehouses
-- Model operational stores in Azure SQL Database and Azure Cosmos DB
-- Version every schema change with idempotent, reversible migrations
-- Enforce quality gates: schema validation, null rates, freshness, row-count deltas
-- Produce and maintain a lineage map for every dataset, queryable by downstream consumers
-- Operate the Pipeline Keeper agent and `/etl-scaffold`, `/schema-diff`, `/quality-gate`, `/lineage-map` prompts
-- Collaborate with the DBA on operational schemas and with the ML AI Engineer on feature stores
+- Projetar e operar pipelines de ingestão no Azure Data Factory e Microsoft Fabric
+- Ser dono das transformações no Azure Synapse e nas camadas curadas em lakehouses do Fabric
+- Modelar stores operacionais no Azure SQL Database e Azure Cosmos DB
+- Versionar cada mudança de schema com migrações idempotentes e reversíveis
+- Enforçar gates de qualidade: validação de schema, taxas de nulo, frescor, deltas de contagem de linhas
+- Produzir e manter um mapa de linhagem para cada dataset, consultável por consumidores downstream
+- Operar o agente Pipeline Keeper e os prompts `/etl-scaffold`, `/schema-diff`, `/quality-gate`, `/lineage-map`
+- Colaborar com o DBA em schemas operacionais e com o ML AI Engineer em feature stores
 
 ## Jobs to be done
 
-1. Como Data Engineer, eu quero scaffold a new ETL pipeline in minutes, para que onboarding a new source is not a week-long ticket.
-2. Como Data Engineer, eu quero every schema change reviewed with a diff and impact report, para que no silent breakage reaches production.
-3. Como Data Engineer, eu quero a quality gate on every dataset, para que downstream consumers can trust freshness and completeness.
-4. Como Data Engineer, eu quero a live lineage map, para que impact analysis for a schema change is a query, not a meeting.
-5. Como Data Engineer, eu quero pipeline failures to produce actionable alerts in Azure Monitor, para que on-call work is prioritized correctly.
-6. Como Data Engineer, eu quero cost anomalies in Synapse and Fabric detected automatically, para que runaway jobs do not blow the monthly budget.
-7. Como Data Engineer, eu quero sensitive-data classifications from Microsoft Purview propagated into pipeline tests, para que PII handling is proven, not assumed.
-8. Como Data Engineer, eu quero every transformation expressed in version-controlled code, para que no one-off SQL lives only in a notebook.
+1. Como Engenheiro de Dados, eu quero criar o scaffold de um novo pipeline ETL em minutos, para que a integração de uma nova fonte não seja um ticket de uma semana.
+2. Como Engenheiro de Dados, eu quero cada mudança de schema revisada com um diff e relatório de impacto, para que nenhuma quebra silenciosa chegue à produção.
+3. Como Engenheiro de Dados, eu quero um gate de qualidade em cada dataset, para que consumidores downstream possam confiar no frescor e completude.
+4. Como Engenheiro de Dados, eu quero um mapa de linhagem em tempo real, para que a análise de impacto de uma mudança de schema seja uma consulta, não uma reunião.
+5. Como Engenheiro de Dados, eu quero falhas de pipeline que produzam alertas acionáveis no Azure Monitor, para que o trabalho de plantão seja priorizado corretamente.
+6. Como Engenheiro de Dados, eu quero anomalias de custo no Synapse e Fabric detectadas automaticamente, para que jobs descontrolados não estourem o orçamento mensal.
+7. Como Engenheiro de Dados, eu quero classificações de dados sensíveis do Microsoft Purview propagadas nos testes de pipeline, para que o tratamento de PII seja provado, não assumido.
+8. Como Engenheiro de Dados, eu quero cada transformação expressa em código versionado, para que nenhum SQL avulso viva apenas em um notebook.
 
-## Dores antes da era AI-native
+## Dores antes do AI-nativo
 
-- **Notebook archaeology**. Critical logic lives in untested notebooks that reference columns by position.
-- **Silent schema drift**. A source adds a column; a join silently duplicates rows; a report is wrong for a week.
-- **Quality checks after the fact**. Data-quality rules run in a separate dashboard the team forgets to open.
-- **Lineage in heads**. Only the senior Data Engineer knows which table feeds which report.
-- **Cost surprises**. A misconfigured Synapse pool runs overnight; the finance team notices before engineering does.
-- **Pipeline as snowflake**. Each pipeline invented its own retry, logging, alerting conventions.
-- **No rollback**. Migrations ran forward-only; reverting a bad change required a restore.
+- **Arqueologia de notebooks**. Lógica crítica vive em notebooks não testados que referenciam colunas por posição.
+- **Drift silencioso de schema**. Uma fonte adiciona uma coluna; um join duplica linhas silenciosamente; um relatório fica errado por uma semana.
+- **Verificações de qualidade após o fato**. Regras de qualidade de dados rodam em um dashboard separado que o time esquece de abrir.
+- **Linhagem na cabeça**. Só o Engenheiro de Dados sênior sabe qual tabela alimenta qual relatório.
+- **Surpresas de custo**. Um pool do Synapse mal configurado roda durante a noite; o time financeiro percebe antes da engenharia.
+- **Pipeline como floco de neve**. Cada pipeline inventou suas próprias convenções de retry, logging e alertas.
+- **Sem rollback**. Migrações rodavam apenas para frente; reverter uma mudança ruim exigia uma restauração.
 
-## Fluxo diário AI-native
+## Fluxo diário AI-nativo
 
-The Data Engineer works from Visual Studio Code with GitHub Copilot and from the terminal with Claude Code, invoking the Pipeline Keeper agent throughout the day.
+O Engenheiro de Dados trabalha a partir do Visual Studio Code com GitHub Copilot e do terminal com Claude Code, invocando o agente Pipeline Keeper ao longo do dia.
 
 ### Setup da manhã
 
-1. Open Azure Monitor and Microsoft Fabric monitoring to review overnight pipeline runs.
-2. In VS Code, run `/quality-gate --since=yesterday` to surface any dataset that failed freshness or completeness checks.
-3. Review pending schema PRs; the Pipeline Keeper has pre-drafted `/schema-diff` reports.
-4. Confirm Microsoft Purview classification updates from the Governance team.
-5. Post the Daily Data Health digest to Microsoft Teams with links to any open incidents.
+1. Abra o Azure Monitor e o monitoramento do Microsoft Fabric para revisar as execuções de pipeline noturnas.
+2. No VS Code, rode `/quality-gate --since=yesterday` para identificar qualquer dataset que falhou em verificações de frescor ou completude.
+3. Revise PRs de schema pendentes; o Pipeline Keeper já pré-redigiu relatórios de `/schema-diff`.
+4. Confirme atualizações de classificação do Microsoft Purview vindas do time de Governança.
+5. Poste o resumo diário de Saúde de Dados no Microsoft Teams com links para quaisquer incidentes abertos.
 
 ### Execução no meio do dia
 
-1. For each new source, invoke `/etl-scaffold` with the source metadata; the Pipeline Keeper generates an Azure Data Factory pipeline definition, Fabric dataflow, or Synapse notebook with tests.
-2. For every schema PR, run `/schema-diff` to produce the impact report (downstream tables, reports, pipelines) and attach it to the PR.
-3. Implement transformations in SQL or PySpark with instruções escopadas enforcing style and safety.
-4. Wire `/quality-gate` into the CI workflow so merges block on broken freshness or nullability rules.
+1. Para cada nova fonte, invoque `/etl-scaffold` com os metadados da fonte; o Pipeline Keeper gera uma definição de pipeline do Azure Data Factory, dataflow do Fabric ou notebook do Synapse com testes.
+2. Para cada PR de schema, rode `/schema-diff` para produzir o relatório de impacto (tabelas, relatórios, pipelines downstream) e anexá-lo ao PR.
+3. Implemente transformações em SQL ou PySpark com instruções com escopo enforçando estilo e segurança.
+4. Conecte `/quality-gate` no workflow de CI para que merges sejam bloqueados em regras de frescor ou nulabilidade quebradas.
 
 ### Revisão no fim da tarde
 
-1. Run `/lineage-map` to refresh the lineage graph; export to Microsoft Fabric and push a Markdown snapshot to the repo.
-2. Triage any cost anomalies reported by Azure Monitor and open follow-up issues.
-3. Pair with the DBA on upcoming migrations for operational stores.
+1. Rode `/lineage-map` para atualizar o grafo de linhagem; exporte para o Microsoft Fabric e envie um snapshot em Markdown para o repositório.
+2. Triar quaisquer anomalias de custo reportadas pelo Azure Monitor e abrir issues de acompanhamento.
+3. Pareie com o DBA em migrações futuras para stores operacionais.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `pipeline-keeper` | `.github/agents/pipeline-keeper.agent.md` | Scaffolds pipelines, diffs schemas, enforces quality gates, refreshes lineage |
+|--------|---------|-----------|
+| `pipeline-keeper` | `.github/agents/pipeline-keeper.agent.md` | Cria scaffolds de pipelines, diffa schemas, enforça gates de qualidade, atualiza linhagem |
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/etl-scaffold` | `.github/prompts/etl-scaffold.prompt.md` | Generate an ingestion pipeline with tests, retries, quality gate |
-| `/schema-diff` | `.github/prompts/schema-diff.prompt.md` | Diff schema changes and report downstream impact |
-| `/quality-gate` | `.github/prompts/quality-gate.prompt.md` | Run data-quality checks in CI and block merge on failure |
-| `/lineage-map` | `.github/prompts/lineage-map.prompt.md` | Refresh the lineage graph and export to Fabric |
+|---------|---------|-----------|
+| `/etl-scaffold` | `.github/prompts/etl-scaffold.prompt.md` | Gerar um pipeline de ingestão com testes, retries, gate de qualidade |
+| `/schema-diff` | `.github/prompts/schema-diff.prompt.md` | Diffar mudanças de schema e reportar impacto downstream |
+| `/quality-gate` | `.github/prompts/quality-gate.prompt.md` | Rodar verificações de qualidade de dados no CI e bloquear merge em falha |
+| `/lineage-map` | `.github/prompts/lineage-map.prompt.md` | Atualizar o grafo de linhagem e exportar para o Fabric |
 
-### Instruções escopadas
+### Instruções com escopo
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `**/*.sql` | `.github/instructions/sql.instructions.md` | Idempotent migrations, reversible down steps, no destructive DDL outside review |
-| `pipelines/**/*.json` | `.github/instructions/adf.instructions.md` | Azure Data Factory pipeline conventions, retries, alerts |
-| `fabric/**/*.py` | `.github/instructions/fabric.instructions.md` | Microsoft Fabric notebook and dataflow standards |
-| `cosmos/**/*.ts` | `.github/instructions/cosmos.instructions.md` | Azure Cosmos DB partition key rules and SDK usage |
+|--------------------|---------|-----------|
+| `**/*.sql` | `.github/instructions/sql.instructions.md` | Migrações idempotentes, passos reversíveis de down, sem DDL destrutivo fora de revisão |
+| `pipelines/**/*.json` | `.github/instructions/adf.instructions.md` | Convenções de pipeline do Azure Data Factory, retries, alertas |
+| `fabric/**/*.py` | `.github/instructions/fabric.instructions.md` | Padrões de notebook e dataflow do Microsoft Fabric |
+| `cosmos/**/*.ts` | `.github/instructions/cosmos.instructions.md` | Regras de partition key e uso do SDK do Azure Cosmos DB |
 
 ### Hooks
 
-- `pre-commit`: SQL lint, Purview classification check, secret scan
-- `pre-push`: run unit tests on transformations and schema diff on changed DDL
-- `post-merge`: deploy pipeline definitions via GitHub Actions to Azure Data Factory
-- `nightly`: run full quality gate and refresh lineage
-- `on-cost-anomaly`: open an issue when Azure Monitor cost metrics exceed a threshold
+- `pre-commit`: lint de SQL, verificação de classificação Purview, scan de segredos
+- `pre-push`: rodar testes unitários em transformações e schema diff em DDL alterado
+- `post-merge`: deploy de definições de pipeline via GitHub Actions para o Azure Data Factory
+- `nightly`: rodar gate de qualidade completo e atualizar linhagem
+- `on-cost-anomaly`: abrir uma issue quando métricas de custo do Azure Monitor ultrapassam um limiar
 
 ## MCPs validados
 
 | MCP | Propósito | Dono |
-|-----|---------|-------|
-| GitHub MCP Server | PRs, Actions runs, schema-diff reports | GitHub |
-| Azure MCP Server | Drive Azure Data Factory, Synapse, Fabric, SQL, and Cosmos DB operations | Microsoft |
-| Microsoft Learn Docs MCP | Resolve current Azure data-service documentation during implementation | Microsoft |
-| Azure DevOps MCP Server | Pipeline runbooks and work-item tracking for data projects | Microsoft |
-| Playwright MCP | End-to-end validation of data surfaces exposed via web apps | Microsoft |
+|-----|-----------|------|
+| GitHub MCP Server | PRs, execuções do Actions, relatórios de schema-diff | GitHub |
+| Azure MCP Server | Operar Azure Data Factory, Synapse, Fabric, SQL e Cosmos DB | Microsoft |
+| Microsoft Learn Docs MCP | Resolver documentação atual de serviços de dados Azure durante a implementação | Microsoft |
+| Azure DevOps MCP Server | Runbooks de pipeline e rastreamento de work items para projetos de dados | Microsoft |
+| Playwright MCP | Validação ponta a ponta de superfícies de dados expostas via web apps | Microsoft |
 
 ## Exemplos reais
 
-### Example 1: onboarding a new SaaS source
+### Exemplo 1: integrando uma nova fonte SaaS
 
-A new CRM feed needs ingestion. The Data Engineer runs `/etl-scaffold --source=crm-api --target=fabric-lakehouse`. The Pipeline Keeper generates an Azure Data Factory pipeline with retries, checkpoint logic, and a `/quality-gate` rule for freshness and primary-key uniqueness. After review, a single PR merges 14 files; Actions deploys the pipeline to Azure Data Factory. The first run lands within the hour; the lineage graph updates overnight.
+Um novo feed de CRM precisa de ingestão. O Engenheiro de Dados roda `/etl-scaffold --source=crm-api --target=fabric-lakehouse`. O Pipeline Keeper gera um pipeline do Azure Data Factory com retries, lógica de checkpoint e uma regra `/quality-gate` para frescor e unicidade de chave primária. Após revisão, um único PR faz merge de 14 arquivos; Actions deploya o pipeline no Azure Data Factory. A primeira execução aterrissa dentro de uma hora; o grafo de linhagem atualiza durante a noite.
 
-### Example 2: catching schema drift before production
+### Exemplo 2: capturando drift de schema antes da produção
 
-A Synapse table gains a column. The PR triggers `/schema-diff`, which identifies three downstream Power BI reports and two Azure SQL Database consumers. The Pipeline Keeper flags one consumer that assumes fixed positional selects; the Data Engineer updates the SQL and requests a compatibility test. The merge proceeds without surprise to finance or analytics.
+Uma tabela do Synapse ganha uma coluna. O PR dispara `/schema-diff`, que identifica três relatórios do Power BI e dois consumidores do Azure SQL Database. O Pipeline Keeper sinaliza um consumidor que assume selects posicionais fixos; o Engenheiro de Dados atualiza o SQL e solicita um teste de compatibilidade. O merge prossegue sem surpresa para finanças ou analytics.
 
-### Example 3: killing a runaway Synapse query
+### Exemplo 3: matando uma query descontrolada do Synapse
 
-Overnight, Azure Monitor fires a cost anomaly. The `on-cost-anomaly` hook opens an issue assigned to the Pipeline Keeper owner. The next morning, the Data Engineer identifies a missing predicate; `/schema-diff` shows the affected query plan; a one-line fix merges and the cost returns to baseline.
+Durante a noite, o Azure Monitor dispara uma anomalia de custo. O hook `on-cost-anomaly` abre uma issue atribuída ao dono do Pipeline Keeper. Na manhã seguinte, o Engenheiro de Dados identifica um predicado faltante; `/schema-diff` mostra o plano de consulta afetado; uma correção de uma linha faz merge e o custo retorna à linha base.
 
 ## Anti-padrões
 
-- **Notebooks as production**. If a notebook produces a signal the business relies on, it belongs in a versioned pipeline with tests.
-- **Trust-me migrations**. Migrations without a rollback plan are not safe, regardless of team confidence.
-- **Quality checks in dashboards only**. Quality rules belong in CI and in runtime hooks, not on a monitor someone might look at.
-- **Lineage by memory**. Every dataset should have a generated lineage entry; the graph is the source of truth.
-- **Unclassified PII**. Treat every un-labeled column as sensitive until Purview says otherwise.
-- **Pipelines without alerts**. A failing pipeline that does not page anyone is a bug.
-- **Hand-rolled retries**. Use pipeline-native retry policies; bespoke retry logic is a future incident.
+- **Notebooks como produção**. Se um notebook produz um sinal do qual o negócio depende, ele pertence a um pipeline versionado com testes.
+- **Migrações confiança-cega**. Migrações sem um plano de rollback não são seguras, independentemente da confiança do time.
+- **Verificações de qualidade só em dashboards**. Regras de qualidade pertencem ao CI e a hooks de runtime, não a um monitor que alguém pode olhar.
+- **Linhagem de memória**. Cada dataset deve ter uma entrada de linhagem gerada; o grafo é a fonte da verdade.
+- **PII não classificado**. Trate cada coluna não rotulada como sensível até que o Purview diga o contrário.
+- **Pipelines sem alertas**. Um pipeline falhando que não aciona ninguém é um bug.
+- **Retries artesanais**. Use políticas de retry nativas do pipeline; lógica de retry customizada é um incidente futuro.
 
 ## KPIs e métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Source |
-|--------|-------------------|------------------|--------|
-| Pipeline onboarding time | 7 days | < 1 day | GitHub PR lead time |
-| Schema-drift incidents per quarter | 8 | 0 | `/schema-diff` reports |
-| Data-quality gate coverage | 40 percent | 100 percent | CI check |
-| Mean time to detect pipeline failure | 2 hours | < 5 minutes | Azure Monitor alerts |
-| Cost anomalies unresolved > 24h | 5 per quarter | 0 | Azure Monitor, cost hook |
-| Lineage map freshness | Weekly | Live on merge | Fabric lineage export |
-| PII classifications synced | Ad hoc | Daily | Microsoft Purview |
+| Métrica | Linha base (manual) | Meta (agêntico) | Fonte |
+|---------|---------------------|-----------------|-------|
+| Tempo de integração de pipeline | 7 dias | < 1 dia | Lead time de PR no GitHub |
+| Incidentes de drift de schema por trimestre | 8 | 0 | Relatórios de `/schema-diff` |
+| Cobertura do gate de qualidade de dados | 40 por cento | 100 por cento | Verificação no CI |
+| Tempo médio para detectar falha de pipeline | 2 horas | < 5 minutos | Alertas do Azure Monitor |
+| Anomalias de custo não resolvidas > 24h | 5 por trimestre | 0 | Azure Monitor, hook de custo |
+| Frescor do mapa de linhagem | Semanal | Em tempo real no merge | Exportação de linhagem do Fabric |
+| Classificações de PII sincronizadas | Ad hoc | Diariamente | Microsoft Purview |
 
 ## Maturidade em quatro níveis
 
-- **L1 Manual**: Notebooks in email, migrations in a shared drive, no tests, no lineage.
-- **L2 Assistido**: Copilot autocomplete in SQL, some pipelines in Azure Data Factory, but no schema diff and no quality gate.
-- **L3 Aumentado**: Pipeline Keeper agent, quatro slash prompts, instruções escopadas, quality gate in CI, lineage refreshed weekly.
-- **L4 Autônomo**: Quality gate blocking merges, cost anomalies opening issues within minutes, lineage refreshed on every merge, Purview classifications propagated into tests.
+- **L1 Manual**: Notebooks por email, migrações em um drive compartilhado, sem testes, sem linhagem.
+- **L2 Assistido**: Autocomplete do Copilot em SQL, alguns pipelines no Azure Data Factory, mas sem schema diff e sem gate de qualidade.
+- **L3 Aumentado**: Agente Pipeline Keeper, quatro slash prompts, instruções com escopo, gate de qualidade no CI, linhagem atualizada semanalmente.
+- **L4 Autônomo**: Gate de qualidade bloqueando merges, anomalias de custo abrindo issues em minutos, linhagem atualizada a cada merge, classificações do Purview propagadas nos testes.
 
 ## Integração com outras personas
 
-- **Do Business Analyst**: data requirements mapped to EARS, source-system contracts.
-- **Do Software Architect**: storage and throughput constraints, target platform selection.
-- **With DBA**: shared schema governance for operational stores; migration reviews.
-- **Para o ML AI Engineer**: curated feature datasets in Microsoft Fabric with a documented lineage.
-- **Para o BI Analyst**: certified datasets with freshness and completeness guarantees.
-- **Para o SRE**: Azure Monitor runbooks for pipeline failures.
-- **Para o Compliance Auditor**: Purview classifications, lineage map, and quality-gate history as audit evidence.
+- **Do Business Analyst**: requisitos de dados mapeados para EARS, contratos de sistema-fonte.
+- **Do Software Architect**: restrições de armazenamento e throughput, seleção de plataforma alvo.
+- **Com o DBA**: governança de schema compartilhada para stores operacionais; revisões de migração.
+- **Para o ML AI Engineer**: datasets de features curados no Microsoft Fabric com linhagem documentada.
+- **Para o BI Analyst**: datasets certificados com garantias de frescor e completude.
+- **Para o SRE**: runbooks do Azure Monitor para falhas de pipeline.
+- **Para o Compliance Auditor**: classificações do Purview, mapa de linhagem e histórico de gates de qualidade como evidência de auditoria.
 
 ## Glossário
 
-- **Pipeline**: a version-controlled, testable definition that moves or transforms data.
-- **Quality gate**: a set of automated checks (freshness, completeness, schema) gating a merge or release.
-- **Schema diff**: a structured comparison of schema versions with downstream impact analysis.
-- **Lineage**: the directed graph from source system to consumer dataset, with transformations between.
-- **Curated zone**: the layer of Microsoft Fabric or Synapse where data is trusted and reported on.
-- **Idempotent**: a pipeline that produces the same result whether run once or ten times on the same input.
-- **Rollback**: a reversible migration script that returns the schema to a previous state.
+- **Pipeline**: uma definição versionada e testável que move ou transforma dados.
+- **Gate de qualidade**: um conjunto de verificações automatizadas (frescor, completude, schema) bloqueando um merge ou release.
+- **Schema diff**: uma comparação estruturada de versões de schema com análise de impacto downstream.
+- **Linhagem**: o grafo direcionado do sistema-fonte ao dataset consumidor, com transformações entre eles.
+- **Zona curada**: a camada do Microsoft Fabric ou Synapse onde os dados são confiáveis e reportados.
+- **Idempotente**: um pipeline que produz o mesmo resultado seja executado uma ou dez vezes na mesma entrada.
+- **Rollback**: um script de migração reversível que retorna o schema a um estado anterior.
 
 ## Referências
 
-- [Azure Data Factory documentation](https://learn.microsoft.com/azure/data-factory/) — authoritative guidance on ingestion pipelines
-- [Azure Synapse Analytics](https://learn.microsoft.com/azure/synapse-analytics/) — transformation at scale
-- [Microsoft Fabric documentation](https://learn.microsoft.com/fabric/) — lakehouse, notebooks, pipelines, lineage
-- [Azure SQL Database](https://learn.microsoft.com/azure/azure-sql/) — operational relational store
-- [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/) — globally distributed document store
-- [Microsoft Purview](https://learn.microsoft.com/purview/) — data governance and classification
-- [Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/) — observability and cost anomaly detection
-- [GitHub Actions](https://docs.github.com/actions) — CI and deployment orchestration across the stack
-- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — first-party documentation retrieval at implementation time
+- [Documentação do Azure Data Factory](https://learn.microsoft.com/azure/data-factory/) — orientação autoritativa sobre pipelines de ingestão
+- [Azure Synapse Analytics](https://learn.microsoft.com/azure/synapse-analytics/) — transformação em escala
+- [Documentação do Microsoft Fabric](https://learn.microsoft.com/fabric/) — lakehouse, notebooks, pipelines, linhagem
+- [Azure SQL Database](https://learn.microsoft.com/azure/azure-sql/) — store relacional operacional
+- [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/) — store de documentos distribuído globalmente
+- [Microsoft Purview](https://learn.microsoft.com/purview/) — governança e classificação de dados
+- [Azure Monitor](https://learn.microsoft.com/azure/azure-monitor/) — observabilidade e detecção de anomalias de custo
+- [GitHub Actions](https://docs.github.com/actions) — orquestração de CI e deploy em todo o stack
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — recuperação de documentação first-party no momento da implementação
 - [GitHub Advanced Security](https://docs.github.com/code-security) — CodeQL, Dependabot, Secret Scanning, Push Protection

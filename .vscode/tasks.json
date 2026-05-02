@@ -1,0 +1,44 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install dependencies",
+      "type": "shell",
+      "command": "npm install",
+      "options": { "cwd": "${workspaceFolder}/site" },
+      "inAgents": true,
+      "runOptions": { "runOn": "worktreeCreated" },
+      "presentation": { "reveal": "silent", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Start Astro dev server",
+      "type": "shell",
+      "command": "npm run dev -- --host 0.0.0.0",
+      "options": { "cwd": "${workspaceFolder}/site" },
+      "isBackground": true,
+      "inAgents": true,
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build Astro site",
+      "type": "shell",
+      "command": "npm run build",
+      "options": { "cwd": "${workspaceFolder}/site" },
+      "inAgents": true,
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Preview production build",
+      "type": "shell",
+      "command": "npm run preview -- --host 0.0.0.0",
+      "options": { "cwd": "${workspaceFolder}/site" },
+      "isBackground": true,
+      "inAgents": true,
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
+    }
+  ]
+}

@@ -10,193 +10,193 @@ order: 21
 updated: "2026-04-24"
 ---
 
-> The DBA é a persona que keeps the operational data stores fast, safe, and honest under change. Em um SDLC AI-native, o DBA operates a Schema Guard agent, quatro slash prompts, and a validated MCP catalog across Azure SQL Database and Azure Cosmos DB — not a laptop full of SQL scripts.
+> O DBA é a persona que mantém os stores de dados operacionais rápidos, seguros e honestos sob mudança. Em um SDLC AI-nativo, o DBA opera um agente Schema Guard, quatro slash prompts e um catálogo validado de MCPs abrangendo Azure SQL Database e Azure Cosmos DB — não um laptop cheio de scripts SQL.
 
 ## Resumo executivo
 
-The DBA owns the health of operational databases — primarily Azure SQL Database and Azure Cosmos DB — across schema evolution, query performance, and reliability. Em um SDLC AI-native, oir workflow is operationalized through a Schema Guard agent with quatro slash prompts (`/migrate-plan`, `/index-review`, `/query-tune`, `/rollback-script`), instruções escopadas for SQL and migration files, and validated MCPs reaching into Azure Monitor, Application Insights, and GitHub.
+O DBA é dono da saúde dos bancos de dados operacionais — principalmente Azure SQL Database e Azure Cosmos DB — em evolução de schema, performance de queries e confiabilidade. Em um SDLC AI-nativo, o workflow é operacionalizado através de um agente Schema Guard com quatro slash prompts (`/migrate-plan`, `/index-review`, `/query-tune`, `/rollback-script`), instruções com escopo para SQL e arquivos de migração, e MCPs validados alcançando Azure Monitor, Application Insights e GitHub.
 
-Primary deliverables are reversible migration plans, indexed and tuned workloads, rollback scripts validated in non-prod, and a schema-change log that any engineer can read. The DBA closes the gap between application evolution and database reality: migrations ship behind feature flags, with proof they are reversible, and performance regressions are caught in CI, not production.
+As entregas primárias são planos de migração reversíveis, workloads indexados e tunados, scripts de rollback validados em não-produção e um log de mudanças de schema que qualquer engenheiro pode ler. O DBA fecha a lacuna entre a evolução da aplicação e a realidade do banco de dados: migrações são entregues atrás de feature flags, com prova de que são reversíveis, e regressões de performance são capturadas no CI, não em produção.
 
-The DBA is a collaborator with the Data Engineer and Developer, not a gatekeeper. Their power is multiplied by agents that make the boring parts automatic.
+O DBA é um colaborador com o Data Engineer e o Developer, não um gatekeeper. Seu poder é multiplicado por agentes que automatizam as partes chatas.
 
 ## Papel e responsabilidades
 
-Pense no DBA like the chief engineer of a ship. The captain sets course; the chief engineer ensures the engines never stall, the pumps keep running, and every fuel line is tested before the storm. Em um SDLC AI-native, o DBA keeps the data engines running under constant change.
+Pense no DBA como o engenheiro-chefe de um navio. O capitão define o curso; o engenheiro-chefe garante que os motores nunca parem, as bombas continuem funcionando e cada linha de combustível seja testada antes da tempestade. Em um SDLC AI-nativo, o DBA mantém os motores de dados funcionando sob mudança constante.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Review and merge every schema migration with a rollback plan
-- Maintain index strategy for Azure SQL Database and partition strategy for Azure Cosmos DB
-- Tune queries flagged by Application Insights and Azure SQL Query Store
-- Approve access changes through Microsoft Entra ID with least-privilege defaults
-- Ensure backups and restore drills run quarterly
-- Collaborate with the Data Engineer on shared schemas and with the Developer on ORM mappings
-- Operate the Schema Guard agent and `/migrate-plan`, `/index-review`, `/query-tune`, `/rollback-script` prompts
-- Maintain the schema-change log and the query-performance dashboard
+- Revisar e fazer merge de cada migração de schema com um plano de rollback
+- Manter a estratégia de índices para Azure SQL Database e a estratégia de partição para Azure Cosmos DB
+- Tunar queries sinalizadas pelo Application Insights e Azure SQL Query Store
+- Aprovar mudanças de acesso através do Microsoft Entra ID com padrões de mínimo privilégio
+- Garantir que backups e simulações de restauração rodem trimestralmente
+- Colaborar com o Data Engineer em schemas compartilhados e com o Developer em mapeamentos de ORM
+- Operar o agente Schema Guard e os prompts `/migrate-plan`, `/index-review`, `/query-tune`, `/rollback-script`
+- Manter o log de mudanças de schema e o dashboard de performance de queries
 
 ## Jobs to be done
 
-1. Como DBA, eu quero every migration reviewed with a generated rollback script, para que no forward step is irreversible.
-2. Como DBA, eu quero index suggestions surfaced from real workload telemetry, para que optimization work targets actual pain.
-3. Como DBA, eu quero long-running queries tuned with agent-assisted analysis, para que p99 latencies stay within SLA.
-4. Como DBA, eu quero Cosmos DB partition keys reviewed on data-model PRs, para que hot partitions do not appear at scale.
-5. Como DBA, eu quero schema changes deployed behind feature flags with safe backfill, para que no release is gated by a DDL operation.
-6. Como DBA, eu quero daily integrity checks and restore drills evidenced in Azure Monitor, para que resilience claims are verifiable.
-7. Como DBA, eu quero database access reviews run with Entra ID, para que least-privilege is the default state.
-8. Como DBA, eu quero a single schema-change log published to Microsoft Teams, para que product and engineering see what changed in shared data.
+1. Como DBA, eu quero cada migração revisada com um script de rollback gerado, para que nenhum passo adiante seja irreversível.
+2. Como DBA, eu quero sugestões de índices surfaceadas a partir de telemetria de workload real, para que o trabalho de otimização mire na dor real.
+3. Como DBA, eu quero queries de longa duração tunadas com análise assistida por agente, para que latências p99 fiquem dentro do SLA.
+4. Como DBA, eu quero partition keys do Cosmos DB revisadas em PRs de modelo de dados, para que hot partitions não apareçam em escala.
+5. Como DBA, eu quero mudanças de schema deployadas atrás de feature flags com backfill seguro, para que nenhum release seja bloqueado por uma operação DDL.
+6. Como DBA, eu quero verificações diárias de integridade e simulações de restauração evidenciadas no Azure Monitor, para que alegações de resiliência sejam verificáveis.
+7. Como DBA, eu quero revisões de acesso ao banco rodadas com Entra ID, para que mínimo privilégio seja o estado padrão.
+8. Como DBA, eu quero um log de mudanças de schema único publicado no Microsoft Teams, para que produto e engenharia vejam o que mudou em dados compartilhados.
 
-## Dores antes da era AI-native
+## Dores antes do AI-nativo
 
-- **Forward-only migrations**. A bad migration in production means restoring from backup, not reverting.
-- **Index guesswork**. Indexes added based on developer intuition, not Query Store evidence.
-- **ORMs owning schema**. Schemas inferred from code annotations, drifting from intended design.
-- **Cosmos hot partitions**. Partition keys chosen to minimize effort; production throttling is the first feedback.
-- **Ad-hoc access grants**. Permissions granted during incidents, never rescinded, becoming new normal.
-- **Restore drills skipped**. "We have backups" is believed until the day we need to use them.
-- **Schema change silence**. Engineering learns about the new column from production errors, not from PR reviews.
+- **Migrações somente para frente**. Uma migração ruim em produção significa restaurar de backup, não reverter.
+- **Índices por adivinhação**. Índices adicionados baseados em intuição do developer, não em evidência do Query Store.
+- **ORMs donos do schema**. Schemas inferidos de anotações de código, se afastando do design pretendido.
+- **Hot partitions do Cosmos**. Partition keys escolhidas para minimizar esforço; throttling de produção é o primeiro feedback.
+- **Concessões de acesso ad hoc**. Permissões concedidas durante incidentes, nunca revogadas, se tornando o novo normal.
+- **Simulações de restauração puladas**. "Temos backups" é acreditado até o dia em que precisamos usá-los.
+- **Silêncio de mudança de schema**. Engenharia fica sabendo da nova coluna por erros de produção, não por revisões de PR.
 
-## Fluxo diário AI-native
+## Fluxo diário AI-nativo
 
-The DBA works from Visual Studio Code with GitHub Copilot and from the terminal with Claude Code, operating the Schema Guard agent across the day.
+O DBA trabalha a partir do Visual Studio Code com GitHub Copilot e do terminal com Claude Code, operando o agente Schema Guard ao longo do dia.
 
 ### Setup da manhã
 
-1. Open Azure Monitor and Azure SQL Query Store; review overnight long-running queries and alerts.
-2. Run `/index-review --since=yesterday`; the Schema Guard surfaces index recommendations from real telemetry.
-3. Review pending migration PRs; confirm each has a `/rollback-script`.
-4. Check Cosmos DB metrics for hot partitions and throttling; triage.
-5. Sync with the Data Engineer on any cross-store dependencies in motion today.
+1. Abra o Azure Monitor e o Azure SQL Query Store; revise queries de longa duração e alertas noturnos.
+2. Rode `/index-review --since=yesterday`; o Schema Guard surfa recomendações de índice a partir de telemetria real.
+3. Revise PRs de migração pendentes; confirme que cada um tem um `/rollback-script`.
+4. Verifique métricas do Cosmos DB para hot partitions e throttling; triar.
+5. Sincronize com o Data Engineer sobre quaisquer dependências cross-store em movimento hoje.
 
 ### Execução no meio do dia
 
-1. For each migration PR, run `/migrate-plan`; the Schema Guard verifies reversibility and produces a step-by-step execution plan with feature-flag gating.
-2. Invoke `/query-tune` for top regressions identified by Application Insights.
-3. Validate rollback scripts in a staging database; attach the evidence to the PR.
-4. Pair with Developers on ORM-to-schema mismatches.
+1. Para cada PR de migração, rode `/migrate-plan`; o Schema Guard verifica a reversibilidade e produz um plano de execução passo a passo com gating por feature flag.
+2. Invoque `/query-tune` para as principais regressões identificadas pelo Application Insights.
+3. Valide scripts de rollback em um banco de staging; anexe a evidência ao PR.
+4. Pareie com Developers em desalinhamentos ORM-para-schema.
 
 ### Revisão no fim da tarde
 
-1. Publish the daily schema-change log to Microsoft Teams.
-2. Review Entra ID-mediated database access; close stale grants.
-3. Check restore-drill status; if not green this quarter, schedule and execute.
+1. Publique o log diário de mudanças de schema no Microsoft Teams.
+2. Revise acesso ao banco mediado pelo Entra ID; feche concessões obsoletas.
+3. Verifique o status de simulação de restauração; se não está verde neste trimestre, agende e execute.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `schema-guard` | `.github/agents/schema-guard.agent.md` | Reviews migrations, plans indexes, tunes queries, writes rollback scripts |
+|--------|---------|-----------|
+| `schema-guard` | `.github/agents/schema-guard.agent.md` | Revisa migrações, planeja índices, tuna queries, escreve scripts de rollback |
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/migrate-plan` | `.github/prompts/migrate-plan.prompt.md` | Generate a reversible migration plan with gating and backfill strategy |
-| `/index-review` | `.github/prompts/index-review.prompt.md` | Surface index recommendations from Azure SQL Query Store telemetry |
-| `/query-tune` | `.github/prompts/query-tune.prompt.md` | Tune a slow query with execution-plan analysis and rewrite suggestions |
-| `/rollback-script` | `.github/prompts/rollback-script.prompt.md` | Produce and validate a rollback script for a migration |
+|---------|---------|-----------|
+| `/migrate-plan` | `.github/prompts/migrate-plan.prompt.md` | Gerar um plano de migração reversível com gating e estratégia de backfill |
+| `/index-review` | `.github/prompts/index-review.prompt.md` | Surfar recomendações de índice a partir de telemetria do Azure SQL Query Store |
+| `/query-tune` | `.github/prompts/query-tune.prompt.md` | Tunar uma query lenta com análise de plano de execução e sugestões de reescrita |
+| `/rollback-script` | `.github/prompts/rollback-script.prompt.md` | Produzir e validar um script de rollback para uma migração |
 
-### Instruções escopadas
+### Instruções com escopo
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `migrations/**/*.sql` | `.github/instructions/migrations.instructions.md` | Up and down steps required, no destructive DDL without a gate |
-| `src/**/entities/**` | `.github/instructions/ormschema.instructions.md` | ORM-to-schema alignment rules for Azure SQL |
-| `cosmos/**/*.ts` | `.github/instructions/cosmos-dba.instructions.md` | Partition key and index policy reviews for Azure Cosmos DB |
-| `queries/**/*.sql` | `.github/instructions/queries.instructions.md` | SARGability, parameterization, query hints policy |
+|--------------------|---------|-----------|
+| `migrations/**/*.sql` | `.github/instructions/migrations.instructions.md` | Passos up e down obrigatórios, sem DDL destrutivo sem gate |
+| `src/**/entities/**` | `.github/instructions/ormschema.instructions.md` | Regras de alinhamento ORM-para-schema para Azure SQL |
+| `cosmos/**/*.ts` | `.github/instructions/cosmos-dba.instructions.md` | Revisões de partition key e política de índice para Azure Cosmos DB |
+| `queries/**/*.sql` | `.github/instructions/queries.instructions.md` | SARGabilidade, parametrização, política de query hints |
 
 ### Hooks
 
-- `pre-commit`: SQL lint, destructive-DDL detector
-- `pre-push`: migration dry-run against a shadow database
-- `post-merge`: schedule migration execution with feature-flag gating
-- `nightly`: run `/index-review` against Query Store and open issues
-- `on-deploy`: publish schema-change log to Microsoft Teams
+- `pre-commit`: lint de SQL, detector de DDL destrutivo
+- `pre-push`: dry-run de migração contra um shadow database
+- `post-merge`: agendar execução de migração com gating por feature flag
+- `nightly`: rodar `/index-review` contra o Query Store e abrir issues
+- `on-deploy`: publicar log de mudanças de schema no Microsoft Teams
 
 ## MCPs validados
 
 | MCP | Propósito | Dono |
-|-----|---------|-------|
-| GitHub MCP Server | PRs, Actions runs, schema-change logs | GitHub |
-| Azure MCP Server | Query Azure SQL, Cosmos DB, Azure Monitor, Application Insights, Entra ID | Microsoft |
-| Microsoft Learn Docs MCP | Reference current Azure SQL and Cosmos DB guidance | Microsoft |
-| Azure DevOps MCP Server | Track DBA work items when the team uses Azure DevOps | Microsoft |
-| Playwright MCP | Validate data-driven UX flows after migration | Microsoft |
+|-----|-----------|------|
+| GitHub MCP Server | PRs, execuções do Actions, logs de mudança de schema | GitHub |
+| Azure MCP Server | Consultar Azure SQL, Cosmos DB, Azure Monitor, Application Insights, Entra ID | Microsoft |
+| Microsoft Learn Docs MCP | Referenciar orientação atualizada de Azure SQL e Cosmos DB | Microsoft |
+| Azure DevOps MCP Server | Rastrear work items do DBA quando o time usa Azure DevOps | Microsoft |
+| Playwright MCP | Validar fluxos de UX data-driven após migração | Microsoft |
 
 ## Exemplos reais
 
-### Example 1: safe migration behind a feature flag
+### Exemplo 1: migração segura atrás de feature flag
 
-A PR adds a `preferred_currency` column to `accounts`. `/migrate-plan` generates a two-step plan: add nullable column, backfill in batches, then flip the feature flag. `/rollback-script` produces and validates the reverse. The migration runs in off-peak hours; application code reads the new field only when the flag is on.
+Um PR adiciona uma coluna `preferred_currency` a `accounts`. `/migrate-plan` gera um plano de dois passos: adicionar coluna nullable, backfill em lotes, depois flipar a feature flag. `/rollback-script` produz e valida o reverso. A migração roda em horário de baixa demanda; código da aplicação lê o novo campo somente quando a flag está ligada.
 
-### Example 2: index recommendation from telemetry
+### Exemplo 2: recomendação de índice a partir de telemetria
 
-Overnight, `/index-review` surfaces a missing non-clustered index on `orders(customer_id, created_at)` driving 62 percent of CPU on the analytics reporting workload. The DBA opens a PR; the migration is reversible; the index lands; the next morning, Query Store confirms p95 dropped from 3.4 s to 240 ms.
+Durante a noite, `/index-review` surfa um índice não-clustered ausente em `orders(customer_id, created_at)` que direciona 62 por cento de CPU no workload de relatórios analytics. O DBA abre um PR; a migração é reversível; o índice aterrissa; na manhã seguinte, o Query Store confirma que p95 caiu de 3,4 s para 240 ms.
 
-### Example 3: Cosmos DB hot-partition caught early
+### Exemplo 3: hot partition do Cosmos DB capturada cedo
 
-A new feature writes telemetry keyed by `country`. `/migrate-plan` flags the choice as likely to create hot partitions (US traffic dominates). The Schema Guard suggests a synthetic key combining `country` and a hash of `user_id`. The change lands before production rollout.
+Uma nova feature escreve telemetria com chave por `country`. `/migrate-plan` sinaliza a escolha como provável criadora de hot partitions (tráfego dos EUA domina). O Schema Guard sugere uma chave sintética combinando `country` e um hash de `user_id`. A mudança aterrissa antes do rollout para produção.
 
 ## Anti-padrões
 
-- **Forward-only migrations**. Never merge a migration without a validated rollback script.
-- **ORM as source of truth**. The database schema is the source of truth; ORMs reflect it.
-- **Index by feeling**. Use Query Store and Application Insights telemetry; not intuition.
-- **Ad-hoc permissions**. All database access via Entra ID groups with named owners.
-- **Skipped restore drills**. If you have not restored from backup this quarter, you do not have backups.
-- **Destructive DDL without gate**. `DROP COLUMN` in an unreviewed PR is an incident waiting to happen.
-- **Schema changes hidden in app PRs**. Migrations live in `migrations/*` and are reviewed with the schema owner.
+- **Migrações somente para frente**. Nunca faça merge de uma migração sem um script de rollback validado.
+- **ORM como fonte da verdade**. O schema do banco de dados é a fonte da verdade; ORMs o refletem.
+- **Índice por feeling**. Use telemetria do Query Store e Application Insights; não intuição.
+- **Permissões ad hoc**. Todo acesso ao banco via grupos do Entra ID com donos nomeados.
+- **Simulações de restauração puladas**. Se você não restaurou de backup neste trimestre, você não tem backups.
+- **DDL destrutivo sem gate**. `DROP COLUMN` em um PR sem revisão é um incidente esperando acontecer.
+- **Mudanças de schema escondidas em PRs de app**. Migrações vivem em `migrations/*` e são revisadas com o dono do schema.
 
 ## KPIs e métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Source |
-|--------|-------------------|------------------|--------|
-| Migrations with validated rollback | 30 percent | 100 percent | PR check |
-| Query p95 regression in prod | 10 per quarter | < 1 | Application Insights |
-| Hot partitions observed at scale | 3 per quarter | 0 | Cosmos DB metrics |
-| Restore drill completion | Annual | Quarterly | Azure Backup reports |
-| Stale database access identities | 20 | 0 | Entra ID access reviews |
-| Index recommendations acted on in 30 days | 20 percent | > 80 percent | `/index-review` history |
-| Schema-change log published | Ad hoc | Daily | Microsoft Teams |
+| Métrica | Linha base (manual) | Meta (agêntico) | Fonte |
+|---------|---------------------|-----------------|-------|
+| Migrações com rollback validado | 30 por cento | 100 por cento | Verificação no PR |
+| Regressão de query p95 em produção | 10 por trimestre | < 1 | Application Insights |
+| Hot partitions observadas em escala | 3 por trimestre | 0 | Métricas do Cosmos DB |
+| Conclusão de simulação de restauração | Anual | Trimestral | Relatórios do Azure Backup |
+| Identidades de acesso ao banco obsoletas | 20 | 0 | Revisões de acesso do Entra ID |
+| Recomendações de índice atendidas em 30 dias | 20 por cento | > 80 por cento | Histórico de `/index-review` |
+| Log de mudanças de schema publicado | Ad hoc | Diariamente | Microsoft Teams |
 
 ## Maturidade em quatro níveis
 
-- **L1 Manual**: SQL scripts by email, forward-only migrations, indexes by guess.
-- **L2 Assistido**: Copilot drafts SQL, migrations tracked in a tool, but rollback is still ad hoc.
-- **L3 Aumentado**: Schema Guard agent, quatro slash prompts, instruções escopadas, feature-flagged migrations.
-- **L4 Autônomo**: Nightly index review, auto-validated rollbacks, restore drills scheduled and evidenced, daily schema-change log.
+- **L1 Manual**: Scripts SQL por email, migrações somente para frente, índices por adivinhação.
+- **L2 Assistido**: Copilot redige SQL, migrações rastreadas em ferramenta, mas rollback ainda é ad hoc.
+- **L3 Aumentado**: Agente Schema Guard, quatro slash prompts, instruções com escopo, migrações com feature flag.
+- **L4 Autônomo**: Revisão noturna de índices, rollbacks auto-validados, simulações de restauração agendadas e evidenciadas, log diário de mudanças de schema.
 
 ## Integração com outras personas
 
-- **With Data Engineer**: shared schema governance for cross-store datasets; migration review.
-- **Do Developer**: entity and ORM changes coordinated through PRs.
-- **Do Software Architect**: storage technology choices and capacity models.
-- **With SRE**: runbooks for database incidents and restore procedures.
-- **With InfoSec Officer**: access reviews, audit logging, encryption key rotation.
-- **Para o Compliance Auditor**: evidence of change control, access reviews, backup posture.
-- **With Product Owner**: migration windows planned against release calendar.
+- **Com o Data Engineer**: governança de schema compartilhada para datasets cross-store; revisão de migração.
+- **Do Developer**: mudanças de entidade e ORM coordenadas através de PRs.
+- **Do Software Architect**: escolhas de tecnologia de armazenamento e modelos de capacidade.
+- **Com o SRE**: runbooks para incidentes de banco de dados e procedimentos de restauração.
+- **Com o InfoSec Officer**: revisões de acesso, logging de auditoria, rotação de chaves de encriptação.
+- **Para o Compliance Auditor**: evidência de controle de mudanças, revisões de acesso, postura de backup.
+- **Com o Product Owner**: janelas de migração planejadas contra o calendário de releases.
 
 ## Glossário
 
-- **Migration**: a version-controlled, reversible change to database schema or objects.
-- **Rollback script**: a validated script that returns the schema to a previous state.
-- **Query Store**: Azure SQL feature capturing query plans and runtime statistics.
-- **Partition key**: the Cosmos DB property that determines data distribution.
-- **SARGable**: a query predicate that can use an index efficiently.
-- **Backfill**: the process of populating a new or changed column for existing rows.
-- **Restore drill**: a rehearsal restoring from backup to validate recovery time objectives.
+- **Migração**: uma mudança versionada e reversível no schema ou objetos do banco de dados.
+- **Script de rollback**: um script validado que retorna o schema a um estado anterior.
+- **Query Store**: feature do Azure SQL que captura planos de consulta e estatísticas de runtime.
+- **Partition key**: a propriedade do Cosmos DB que determina a distribuição de dados.
+- **SARGable**: um predicado de query que pode usar um índice eficientemente.
+- **Backfill**: o processo de popular uma coluna nova ou alterada para linhas existentes.
+- **Simulação de restauração**: um ensaio restaurando de backup para validar objetivos de tempo de recuperação.
 
 ## Referências
 
-- [Azure SQL Database documentation](https://learn.microsoft.com/azure/azure-sql/) — operational relational store
-- [Azure Cosmos DB documentation](https://learn.microsoft.com/azure/cosmos-db/) — globally distributed NoSQL store
-- [Azure Monitor for databases](https://learn.microsoft.com/azure/azure-monitor/) — metrics, alerts, diagnostics
-- [Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — dependency telemetry for tuning
-- [Microsoft Entra ID authentication for Azure SQL](https://learn.microsoft.com/azure/azure-sql/database/authentication-aad-overview) — least-privilege access
-- [Azure Key Vault for database secrets](https://learn.microsoft.com/azure/key-vault/) — rotation and storage
-- [GitHub Actions for SQL deployments](https://docs.github.com/actions) — CI/CD for migrations
-- [GitHub Actions](https://docs.github.com/actions) — CI and deployment orchestration across the stack
-- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — first-party documentation retrieval at implementation time
+- [Documentação do Azure SQL Database](https://learn.microsoft.com/azure/azure-sql/) — store relacional operacional
+- [Documentação do Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/) — store NoSQL globalmente distribuído
+- [Azure Monitor para bancos de dados](https://learn.microsoft.com/azure/azure-monitor/) — métricas, alertas, diagnósticos
+- [Application Insights](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — telemetria de dependência para tuning
+- [Autenticação Microsoft Entra ID para Azure SQL](https://learn.microsoft.com/azure/azure-sql/database/authentication-aad-overview) — acesso com mínimo privilégio
+- [Azure Key Vault para segredos de banco de dados](https://learn.microsoft.com/azure/key-vault/) — rotação e armazenamento
+- [GitHub Actions para deploys de SQL](https://docs.github.com/actions) — CI/CD para migrações
+- [GitHub Actions](https://docs.github.com/actions) — orquestração de CI e deploy em todo o stack
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — recuperação de documentação first-party no momento da implementação
 - [GitHub Advanced Security](https://docs.github.com/code-security) — CodeQL, Dependabot, Secret Scanning, Push Protection

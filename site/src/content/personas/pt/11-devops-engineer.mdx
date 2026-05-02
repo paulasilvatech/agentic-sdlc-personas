@@ -10,216 +10,216 @@ order: 11
 updated: "2026-04-24"
 ---
 
-> The DevOps Engineer é a persona que turns application code into deployable, observable infrastructure. Em um SDLC AI-native, o DevOps Engineer opera uma stack de primitivas validadas, not a stack of shell scripts.
+> O DevOps Engineer é a persona que transforma código de aplicação em infraestrutura deployável e observável. Em um SDLC AI-native, o DevOps Engineer opera uma pilha de primitivas validadas, não uma pilha de shell scripts.
 
 ## Resumo executivo
 
-The DevOps Engineer owns the path from commit to production: continuous integration, continuous delivery, infrastructure as code, environment promotion, and release trains. Em um SDLC AI-native, o DevOps Engineer opera dentro da fase de Operation phase com um conjunto fixo de primitivas: um agente pipeline, quatro slash prompts, instruções escopadas, hooks validados por schema, and uma lista curada de MCPs validados. The primary outputs are GitHub Actions workflows, Bicep modules, Azure DevOps pipeline YAML, environment configurations, and release artifacts traceable back to the originating specification.
+O DevOps Engineer é dono do caminho do commit até a produção: continuous integration, continuous delivery, infraestrutura como código, promoção de ambiente e release trains. Em um SDLC AI-native, o DevOps Engineer opera dentro da fase de Operation com um conjunto fixo de primitivas: um agente de pipeline, quatro slash prompts, instruções escopadas, hooks validados por schema e uma lista curada de MCPs validados. As saídas primárias são workflows do GitHub Actions, módulos Bicep, YAML de pipeline do Azure DevOps, configurações de ambiente e artefatos de release rastreáveis de volta à especificação originária.
 
 ## Papel e responsabilidades
 
-Pense no DevOps Engineer like a track superintendent on a rail network. Trains (releases) must run on time, on the right track (environment), with the right cargo (artifact), and the switches (gates) must open only when the signals are green. The superintendent does not drive every train, but every train that moves safely does so because the track, signals, and switches were designed, tested, and maintained upstream. Em um SDLC AI-native, o superintendent is a human operating a fleet of automated switches built from Bicep, GitHub Actions, and Azure DevOps pipelines.
+Pense no DevOps Engineer como um superintendente de trilhos em uma rede ferroviária. Trens (releases) precisam rodar no horário, no trilho certo (ambiente), com a carga certa (artefato), e as chaves (gates) só podem abrir quando os sinais estão verdes. O superintendente não dirige cada trem, mas todo trem que se move com segurança faz isso porque trilho, sinais e chaves foram desenhados, testados e mantidos a montante. Em um SDLC AI-native, o superintendente é um humano operando uma frota de chaves automatizadas construídas com Bicep, GitHub Actions e pipelines do Azure DevOps.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Design and maintain GitHub Actions CI workflows and Azure DevOps release pipelines
-- Author Bicep modules for all Azure infrastructure, with parameter files per environment
-- Enforce environment promotion rules via GitHub Environments and Azure DevOps approval gates
-- Operate release trains on a predictable cadence, coordinated with Release Manager
-- Integrate Azure Policy and Azure Resource Manager deny assignments to prevent drift
-- Own the secrets lifecycle with Azure Key Vault and GitHub Actions OIDC federation
-- Operate the Pipeline Smith agent and the `/pipeline-scaffold`, `/iac-review`, `/env-promote`, `/release-train` prompts
+- Desenhar e manter workflows de CI do GitHub Actions e pipelines de release do Azure DevOps
+- Escrever módulos Bicep para toda infraestrutura Azure, com arquivos de parâmetro por ambiente
+- Aplicar regras de promoção de ambiente via GitHub Environments e approval gates do Azure DevOps
+- Operar release trains em cadência previsível, coordenados com o Release Manager
+- Integrar Azure Policy e deny assignments do Azure Resource Manager para prevenir drift
+- Ser dono do ciclo de vida de secrets com Azure Key Vault e federação OIDC do GitHub Actions
+- Operar o agente Pipeline Smith e os prompts `/pipeline-scaffold`, `/iac-review`, `/env-promote`, `/release-train`
 
 ## Jobs to be done
 
-1. Como DevOps Engineer, eu quero scaffold a new service pipeline in minutes, para que new repos inherit the golden path without copy-paste.
-2. Como DevOps Engineer, eu quero Bicep changes reviewed by an agent that understands the resource graph, para que drift is caught before merge.
-3. Como DevOps Engineer, eu quero environment promotion to be a one-click operation with a machine-readable checklist, para que promotions are reproducible.
-4. Como DevOps Engineer, eu quero release train composition to be generated from merged PRs, para que cut day is a signoff, not a scramble.
-5. Como DevOps Engineer, eu quero every pipeline to emit OpenTelemetry traces into Azure Monitor, para que failed builds are debugged with data, not intuition.
-6. Como DevOps Engineer, eu quero secrets rotated automatically with Azure Key Vault references, para que no long-lived credential lives in a runner.
+1. Como DevOps Engineer, eu quero fazer scaffold de um novo pipeline de serviço em minutos, para que novos repos herdem o golden path sem copy-paste.
+2. Como DevOps Engineer, eu quero mudanças Bicep revisadas por um agente que entende o grafo de recursos, para que drift seja pego antes do merge.
+3. Como DevOps Engineer, eu quero promoção de ambiente em uma operação de um clique com checklist legível por máquina, para que promoções sejam reproduzíveis.
+4. Como DevOps Engineer, eu quero composição de release train gerada a partir de PRs merged, para que o dia do corte seja uma assinatura, não uma correria.
+5. Como DevOps Engineer, eu quero que todo pipeline emita traces OpenTelemetry para o Azure Monitor, para que builds falhos sejam debugados com dados, não com intuição.
+6. Como DevOps Engineer, eu quero secrets rotacionados automaticamente com referências do Azure Key Vault, para que nenhuma credencial de longa duração viva em um runner.
 
 ## Dores antes da era AI-native
 
-1. **Copy-paste pipelines**. Each new service starts from the last service's YAML, diverging within weeks. Nobody owns the invariants.
-2. **Bicep review by memory**. Reviewers cannot hold the subscription graph in their head. Drift ships to production as a parameter typo.
-3. **Environment promotion as tribal knowledge**. The promotion checklist lives in a senior engineer's head; promotions stall when they are on leave.
-4. **Release trains assembled manually**. The release note is written by scraping Slack and commit messages the night before cut day.
-5. **Secrets in CI variables**. Long-lived secrets are copied into GitHub Actions variables and Azure DevOps variable groups. Rotation is annual, if ever.
+1. **Pipelines copy-paste**. Cada novo serviço começa a partir do YAML do último serviço, divergindo em semanas. Ninguém é dono das invariantes.
+2. **Review de Bicep por memória**. Revisores não conseguem manter o grafo de assinatura na cabeça. Drift chega em produção como um typo de parâmetro.
+3. **Promoção de ambiente como conhecimento tribal**. O checklist de promoção vive na cabeça de um engenheiro sênior; promoções travam quando ele está de férias.
+4. **Release trains montados manualmente**. A release note é escrita raspando Slack e mensagens de commit na noite anterior ao corte.
+5. **Secrets em variáveis de CI**. Secrets de longa duração são copiados para variáveis do GitHub Actions e variable groups do Azure DevOps. Rotação é anual, se é que acontece.
 
 ## Fluxo diário AI-native
 
-The DevOps Engineer operates a fixed loop each day. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code e Claude Code no terminal, além de um pequeno catálogo de MCPs validados para contexto externo.
+O DevOps Engineer opera um loop fixo todo dia. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code e Claude Code no terminal, além de um pequeno catálogo de MCPs validados para contexto externo.
 
 ### Setup da manhã
 
-1. Open the platform repo in Visual Studio Code. GitHub Copilot Chat carrega `AGENTS.md` and the scoped `.github/instructions/*.instructions.md` for Bicep, YAML, and PowerShell.
-2. In Claude Code, run the daily triage prompt to pull the overnight pipeline failures from GitHub Actions and Azure DevOps via the GitHub MCP and Azure DevOps MCP.
-3. Review Azure Monitor alerts for any failed deployments or drifted resources flagged by Azure Policy.
-4. Confirm the day's release train window in Azure Boards.
+1. Abra o repo da plataforma no Visual Studio Code. GitHub Copilot Chat carrega o `AGENTS.md` e os `.github/instructions/*.instructions.md` escopados para Bicep, YAML e PowerShell.
+2. No Claude Code, rode o prompt diário de triage para puxar as falhas de pipeline da madrugada do GitHub Actions e Azure DevOps via GitHub MCP e Azure DevOps MCP.
+3. Revise alertas do Azure Monitor para qualquer deployment falho ou recurso com drift sinalizado pelo Azure Policy.
+4. Confirme a janela de release train do dia no Azure Boards.
 
 ### Execução no meio do dia
 
-Each midday cycle is a single pipeline or IaC change, typically 1 to 3 hours of focused work.
+Cada ciclo de meio de dia é uma única mudança de pipeline ou IaC, tipicamente 1 a 3 horas de trabalho focado.
 
-1. **Scaffold or change**. Invoke `/pipeline-scaffold` to generate a new GitHub Actions workflow or Azure DevOps pipeline from the service template. The Pipeline Smith agent emits the YAML plus the Bicep module wiring.
-2. **IaC review**. Invoke `/iac-review` on the Bicep diff. The agent queries the Azure MCP to compute the effective resource graph and flags policy violations before merge.
-3. **Self-review**. Run `bicep build`, `bicep lint`, and the what-if deployment against the dev subscription. Hooks enforce these before commit.
-4. **Promote**. When the change is green in dev, invoke `/env-promote` to open the approval in GitHub Environments or Azure DevOps, with the machine-readable checklist attached.
-5. **Pull request**. The PR description is composed from the commit messages, the what-if diff, and the linked specification. GitHub Copilot Code Review scans the diff.
+1. **Scaffold ou mudança**. Invoque `/pipeline-scaffold` para gerar um novo workflow do GitHub Actions ou pipeline do Azure DevOps a partir do template de serviço. O agente Pipeline Smith emite o YAML mais a fiação do módulo Bicep.
+2. **Review de IaC**. Invoque `/iac-review` no diff Bicep. O agente consulta o Azure MCP para computar o grafo efetivo de recursos e sinaliza violações de policy antes do merge.
+3. **Auto-review**. Rode `bicep build`, `bicep lint` e o deployment what-if contra a assinatura de dev. Hooks aplicam isso antes do commit.
+4. **Promoção**. Quando a mudança estiver verde em dev, invoque `/env-promote` para abrir a aprovação em GitHub Environments ou Azure DevOps, com o checklist legível por máquina anexado.
+5. **Pull request**. A descrição do PR é composta a partir das mensagens de commit, do diff what-if e da especificação linkada. GitHub Copilot Code Review escaneia o diff.
 
-### Afternoon release train
+### Release train no fim da tarde
 
-1. Invoke `/release-train` to assemble the candidate release from merged PRs since the previous cut. The agent groups changes by service, computes risk tier, and drafts the release note.
-2. Hand off the draft to the Release Manager for signoff.
-3. Push the release tag. GitHub Actions and Azure DevOps pipelines deploy the artifact to staging, then to production with the canary pattern.
-4. Monitor Application Insights for the first 30 minutes after deploy. If the smoke tests fail, the `/rollback-plan` prompt from the Release Manager kit is invoked.
+1. Invoque `/release-train` para montar o release candidato a partir dos PRs merged desde o corte anterior. O agente agrupa mudanças por serviço, computa tier de risco e rascunha a release note.
+2. Entregue o rascunho ao Release Manager para assinatura.
+3. Faça push da tag de release. Pipelines do GitHub Actions e Azure DevOps deployam o artefato para staging, depois para produção com o padrão canary.
+4. Monitore o Application Insights pelos primeiros 30 minutos após o deploy. Se os smoke tests falharem, o prompt `/rollback-plan` do kit do Release Manager é invocado.
 
 ## Primitivas recomendadas
 
-### Agents
+### Agentes
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `pipeline-smith` | `.github/agents/pipeline-smith.agent.md` | Author and review pipelines, Bicep, and environment promotion artifacts |
+|--------|---------|-----------|
+| `pipeline-smith` | `.github/agents/pipeline-smith.agent.md` | Escrever e revisar pipelines, Bicep e artefatos de promoção de ambiente |
 
-The Pipeline Smith agent uses `claude-sonnet-4-6` by default. It holds tools `read`, `edit`, `search`, `grep`, `glob`, `bash`, and an MCP binding to Azure MCP Server for what-if deployments. Extended thinking is enabled for Bicep graph reasoning.
+O agente Pipeline Smith usa `claude-sonnet-4-6` por padrão. Ele carrega ferramentas `read`, `edit`, `search`, `grep`, `glob`, `bash` e uma ligação MCP ao Azure MCP Server para deployments what-if. Extended thinking fica habilitado para raciocínio de grafo Bicep.
 
 ### Prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/pipeline-scaffold` | `.github/prompts/pipeline-scaffold.prompt.md` | Generate a new GitHub Actions workflow or Azure DevOps pipeline from the service template |
-| `/iac-review` | `.github/prompts/iac-review.prompt.md` | Review a Bicep diff with effective resource graph and Azure Policy checks |
-| `/env-promote` | `.github/prompts/env-promote.prompt.md` | Open an environment promotion with the machine-readable checklist |
-| `/release-train` | `.github/prompts/release-train.prompt.md` | Assemble the release train from merged PRs and draft the release note |
+|---------|---------|-----------|
+| `/pipeline-scaffold` | `.github/prompts/pipeline-scaffold.prompt.md` | Gerar um novo workflow do GitHub Actions ou pipeline do Azure DevOps a partir do template de serviço |
+| `/iac-review` | `.github/prompts/iac-review.prompt.md` | Revisar um diff Bicep com grafo efetivo de recursos e checks de Azure Policy |
+| `/env-promote` | `.github/prompts/env-promote.prompt.md` | Abrir uma promoção de ambiente com o checklist legível por máquina |
+| `/release-train` | `.github/prompts/release-train.prompt.md` | Montar o release train a partir de PRs merged e rascunhar a release note |
 
-### Instructions
+### Instruções
 
-O escopo `applyTo` reduz o custo de tokens em aproximadamente 68 por cento comparado com instruções globais.
+Um `applyTo` escopado reduz o custo em tokens em aproximadamente 68 por cento em comparação com instruções globais.
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `infra/**/*.bicep` | `.github/instructions/bicep.instructions.md` | Module structure, parameter files, resource naming, tagging |
-| `.github/workflows/**/*.yml` | `.github/instructions/actions.instructions.md` | Reusable workflows, OIDC federation, no long-lived secrets |
-| `pipelines/**/*.yml` | `.github/instructions/azdo.instructions.md` | Azure DevOps stages, approval gates, variable groups bound to Key Vault |
+|--------------------|---------|-----------|
+| `infra/**/*.bicep` | `.github/instructions/bicep.instructions.md` | Estrutura de módulo, arquivos de parâmetro, nomenclatura de recursos, tagging |
+| `.github/workflows/**/*.yml` | `.github/instructions/actions.instructions.md` | Reusable workflows, federação OIDC, sem secrets de longa duração |
+| `pipelines/**/*.yml` | `.github/instructions/azdo.instructions.md` | Stages do Azure DevOps, approval gates, variable groups ligados a Key Vault |
 
 ### Skills
 
-Skills are lazy-loaded, so the DevOps Engineer can install many and pay tokens only for the ones that trigger.
+Skills são lazy-loaded, então o DevOps Engineer pode instalar muitos e pagar tokens só pelos que forem ativados.
 
-- `policy-diff`: calls the Azure MCP to compute Azure Policy compliance deltas on every Bicep change
-- `oidc-enforcer`: refuses workflows that reference long-lived `secrets.AZURE_CREDENTIALS` patterns
+- `policy-diff`: chama o Azure MCP para computar deltas de compliance do Azure Policy em cada mudança Bicep
+- `oidc-enforcer`: recusa workflows que referenciam padrões de `secrets.AZURE_CREDENTIALS` de longa duração
 
 ### Hooks
 
-Hooks custam zero tokens de LLM. Eles são a camada de governança mais forte.
+Hooks custam zero tokens de LLM. São a camada mais forte de governança.
 
 - `pre-commit`: `bicep lint`, `actionlint`, secret scan via GitHub Advanced Security
-- `pre-push`: `bicep build` and what-if against the dev subscription
-- `pre-merge`: require green Azure Policy compliance on the target environment
+- `pre-push`: `bicep build` e what-if contra a assinatura de dev
+- `pre-merge`: exigir compliance verde no Azure Policy no ambiente-alvo
 
 ## MCPs validados
 
-Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+Todos os MCPs abaixo estão registrados no catálogo de MCPs. Não referencie nenhum MCP que não esteja no catálogo.
 
-| MCP | Status | Use in this persona |
-|-----|--------|---------------------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | Read workflow runs, manage releases and environments, open PRs |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | What-if deployments, Azure Policy compliance, Azure Monitor queries |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | Read pipelines, manage release approvals, update Azure Boards work items |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Fetch Bicep and GitHub Actions reference docs during authoring |
-| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Official (Microsoft) | Drive post-deploy smoke tests against the canary environment |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Publish release notifications into Teams during the release train |
+| MCP | Status | Uso nesta persona |
+|-----|--------|-------------------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Ler runs de workflow, gerenciar releases e environments, abrir PRs |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Oficial (Microsoft) | Deployments what-if, compliance de Azure Policy, queries no Azure Monitor |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Oficial (Microsoft) | Ler pipelines, gerenciar aprovações de release, atualizar work items no Azure Boards |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Buscar docs de referência de Bicep e GitHub Actions durante a autoria |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Oficial (Microsoft) | Dirigir smoke tests pós-deploy contra o ambiente canary |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Oficial (Microsoft) | Publicar notificações de release no Teams durante o release train |
 
 ## Exemplos reais
 
-### Scenario A: scaffold a new service pipeline
+### Cenário A: fazer scaffold de um novo pipeline de serviço
 
-**Entrada**: A new microservice `claims-api` needs a CI/CD pipeline, Bicep module, and dev/staging/prod environments.
+**Entrada**: Um novo microsserviço `claims-api` precisa de um pipeline CI/CD, módulo Bicep e ambientes de dev/staging/prod.
 
-**Invocação**: `/pipeline-scaffold` with service name and tier.
+**Invocação**: `/pipeline-scaffold` com nome do serviço e tier.
 
 **Saída esperada**:
 
-1. A reusable GitHub Actions workflow `.github/workflows/claims-api.yml` that calls the org's shared build-test-deploy workflow with OIDC federation into Azure.
-2. A Bicep module `infra/claims-api/main.bicep` with parameter files for dev, staging, and prod.
-3. Three GitHub Environments configured with required reviewers and Key Vault-backed secrets.
-4. A PR titled `feat(claims-api): scaffold CI/CD and infra` linked to the service intake ticket.
+1. Um reusable workflow do GitHub Actions `.github/workflows/claims-api.yml` que chama o workflow compartilhado build-test-deploy da organização com federação OIDC para o Azure.
+2. Um módulo Bicep `infra/claims-api/main.bicep` com arquivos de parâmetro para dev, staging e prod.
+3. Três GitHub Environments configurados com reviewers obrigatórios e secrets com backing de Key Vault.
+4. Um PR intitulado `feat(claims-api): scaffold CI/CD and infra` linkado ao ticket de intake do serviço.
 
-### Scenario B: review a Bicep change before merge
+### Cenário B: revisar uma mudança Bicep antes do merge
 
-**Entrada**: A PR changes the App Service plan tier from P1v3 to P2v3 across three environments.
+**Entrada**: Um PR muda o tier do plano do App Service de P1v3 para P2v3 em três ambientes.
 
 **Invocação**: `/iac-review`.
 
 **Saída esperada**:
 
-1. A what-if diff fetched via the Azure MCP, summarized per environment.
-2. A cost delta estimate computed from the Azure Retail Pricing endpoint.
-3. An Azure Policy compliance report that confirms the new SKU is allowed by the `Allowed SKUs for App Service` policy.
-4. A review comment posted on the PR with the three artifacts above, plus an approval recommendation.
+1. Um diff what-if obtido via Azure MCP, resumido por ambiente.
+2. Uma estimativa de delta de custo computada a partir do endpoint Azure Retail Pricing.
+3. Um relatório de compliance do Azure Policy confirmando que o novo SKU é permitido pela policy `Allowed SKUs for App Service`.
+4. Um comentário de review postado no PR com os três artefatos acima, mais uma recomendação de aprovação.
 
 ## Anti-padrões
 
-1. **Inline YAML copy-paste**. Each service repo holding its own workflow diverges within a quarter. Mitigação: reusable workflows referenced by tag, owned by the platform team.
-2. **Secrets in variables**. Long-lived `AZURE_CREDENTIALS` in GitHub Actions or Azure DevOps variable groups. Mitigação: OIDC federation with Entra ID; Key Vault references for runtime secrets.
-3. **Bicep without parameter files**. Changing a parameter inline to deploy to another environment. Mitigação: um agente parameter file per environment, checked in, reviewed by the.
-4. **Manual release notes**. Scraping commits the night before cut day. Mitigação: `/release-train` composes from merged PRs with risk tiers.
-5. **Skipping what-if**. Deploying Bicep without a what-if preview. Mitigação: `pre-push` hook fails the push if what-if was not run.
+1. **Copy-paste de YAML inline**. Cada repo de serviço mantendo seu próprio workflow diverge em um trimestre. Mitigação: reusable workflows referenciados por tag, de propriedade do time de plataforma.
+2. **Secrets em variáveis**. `AZURE_CREDENTIALS` de longa duração em variáveis do GitHub Actions ou variable groups do Azure DevOps. Mitigação: federação OIDC com Entra ID; referências a Key Vault para secrets em runtime.
+3. **Bicep sem arquivos de parâmetro**. Mudar um parâmetro inline para deployar em outro ambiente. Mitigação: um arquivo de parâmetro por ambiente, commitado, revisado pelo agente.
+4. **Release notes manuais**. Raspar commits na noite anterior ao corte. Mitigação: `/release-train` compõe a partir de PRs merged com tiers de risco.
+5. **Pular o what-if**. Deployar Bicep sem preview what-if. Mitigação: hook `pre-push` falha o push se o what-if não foi rodado.
 
 ## KPIs e métricas de impacto
 
-The DevOps Engineer persona is evaluated with a mix of DORA, SPACE, and Agentic DevOps metrics.
+A persona DevOps Engineer é avaliada com uma mistura de métricas DORA, SPACE e Agentic DevOps.
 
-| Metric | Baseline (manual) | Target (agentic) | Medição |
-|--------|-------------------|------------------|-------------|
-| Pipeline scaffold time | 1 day | < 15 min | Time from intake ticket to green PR |
-| IaC review time | 2 days | < 2 hours | Time from PR open to first `/iac-review` comment |
-| Change failure rate | 18 percent | < 5 percent | Percent of deploys rolled back within 24 hours |
-| Deployment frequency | Weekly | Multiple per day | GitHub Deployments API |
-| Mean time to restore | 3 hours | < 30 min | Azure Monitor incident duration |
-| Policy drift incidents | 6 per quarter | 0 | Azure Policy non-compliant resources |
-| Secret age (max) | 365 days | < 30 days | Key Vault rotation audit |
-| Token efficiency | N/A | < 500k tokens per release train | Copilot usage report |
+| Métrica | Linha base (manual) | Meta (agentic) | Medição |
+|---------|---------------------|----------------|---------|
+| Tempo de scaffold de pipeline | 1 dia | < 15 min | Tempo do ticket de intake até PR verde |
+| Tempo de review de IaC | 2 dias | < 2 horas | Tempo da abertura do PR até o primeiro comentário de `/iac-review` |
+| Change failure rate | 18 por cento | < 5 por cento | Porcentagem de deploys com rollback em 24 horas |
+| Frequência de deployment | Semanal | Múltiplos por dia | GitHub Deployments API |
+| Mean time to restore | 3 horas | < 30 min | Duração de incidente do Azure Monitor |
+| Incidentes de drift de policy | 6 por trimestre | 0 | Recursos não-compliant do Azure Policy |
+| Idade máxima de secret | 365 dias | < 30 dias | Auditoria de rotação do Key Vault |
+| Eficiência de tokens | N/A | < 500k tokens por release train | Relatório de uso do Copilot |
 
 ## Maturidade em quatro níveis
 
 | Nível | Nome | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Hand-written YAML per repo, ARM templates, secrets in variables, no policy enforcement |
-| L2 | Assistido | GitHub Copilot autocomplete on YAML, Bicep adopted partially, OIDC for some environments |
-| L3 | Aumentado | One Pipeline Smith agent, quatro slash prompts, instruções escopadas, Azure MCP for what-if, reusable workflows |
-| L4 | Agentic | Full primitives kit, hooks enforced, validated MCPs only, release train auto-drafted, Azure Policy green by default |
+|-------|------|------------|
+| L1 | Manual | YAML escrito à mão por repo, templates ARM, secrets em variáveis, sem aplicação de policy |
+| L2 | Assistido | Autocomplete do GitHub Copilot em YAML, Bicep adotado parcialmente, OIDC para alguns ambientes |
+| L3 | Aumentado | Um agente Pipeline Smith, quatro slash prompts, instruções escopadas, Azure MCP para what-if, reusable workflows |
+| L4 | Autônomo | Kit completo de primitivas, hooks aplicados, só MCPs validados, release train auto-rascunhado, Azure Policy verde por padrão |
 
 ## Integração com outras personas
 
-Handoffs:
+Hand-offs:
 
-- **Do Software Architect**: target topology, non-functional requirements, `IMPLEMENTATION_PLAN.md`
-- **Do Developer**: merged PR with passing tests, deployment artifact
-- **Para o Release Manager**: release train draft, risk tiers, rollback plan
-- **Para o SRE**: deployed artifact, dashboards, SLO configuration
-- **Para o InfoSec Officer**: policy compliance report, secret rotation audit, OIDC federation map
+- **Do Software Architect**: topologia-alvo, requisitos não-funcionais, `IMPLEMENTATION_PLAN.md`
+- **Do Developer**: PR merged com testes passando, artefato de deployment
+- **Para Release Manager**: rascunho de release train, tiers de risco, plano de rollback
+- **Para SRE**: artefato deployado, dashboards, configuração de SLO
+- **Para InfoSec Officer**: relatório de compliance de policy, auditoria de rotação de secret, mapa de federação OIDC
 
 ## Glossário
 
-- **Agent**: a configured LLM role with tools, instructions, and a defined output shape. Lives in `.github/agents/<name>.agent.md`.
-- **Prompt**: a reusable slash command that invokes an agent with a specific task. Lives in `.github/prompts/<name>.prompt.md`.
-- **Instructions**: scoped guidance applied by pattern match on file paths via `applyTo`.
-- **Skill**: a lazy-loaded capability that activates on keyword match. Costs tokens only when triggered.
-- **Hook**: a zero-token rule enforced at a specific lifecycle event.
-- **MCP**: Model Context Protocol server that exposes external systems to the agent.
-- **Bicep**: the domain-specific language for Azure Resource Manager that compiles to ARM JSON.
-- **OIDC federation**: short-lived token exchange between GitHub Actions or Azure DevOps and Entra ID, replacing long-lived secrets.
-- **What-if**: an Azure Resource Manager preview that shows the effect of a deployment without applying it.
+- **Agente**: um papel de LLM configurado com ferramentas, instruções e uma forma de saída definida. Vive em `.github/agents/<nome>.agent.md`.
+- **Prompt**: um slash command reutilizável que invoca um agente com uma tarefa específica. Vive em `.github/prompts/<nome>.prompt.md`.
+- **Instruções**: guia escopado aplicado por pattern match em caminhos de arquivo via `applyTo`.
+- **Skill**: uma capacidade lazy-loaded que ativa em match de keyword. Custa tokens só quando acionada.
+- **Hook**: uma regra de custo zero em tokens aplicada em um evento específico do ciclo de vida.
+- **MCP**: Model Context Protocol server que expõe sistemas externos ao agente.
+- **Bicep**: a linguagem específica de domínio para Azure Resource Manager que compila para ARM JSON.
+- **Federação OIDC**: troca de token de curta duração entre GitHub Actions ou Azure DevOps e Entra ID, substituindo secrets de longa duração.
+- **What-if**: uma preview do Azure Resource Manager que mostra o efeito de um deployment sem aplicá-lo.
 
 ## Referências
 
-- [GitHub Actions documentation](https://docs.github.com/en/actions) — authoritative source for workflows, OIDC, and environments
-- [Azure DevOps Pipelines documentation](https://learn.microsoft.com/azure/devops/pipelines/) — stages, approvals, variable groups
-- [Bicep documentation](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) — modules, parameter files, what-if
-- [Azure Policy documentation](https://learn.microsoft.com/azure/governance/policy/) — compliance, remediation, initiative design
-- [Azure Key Vault documentation](https://learn.microsoft.com/azure/key-vault/) — secrets, keys, certificates, references
-- [Model Context Protocol specification](https://modelcontextprotocol.io/) — the protocol that binds agents to external systems
-- [DORA metrics research](https://dora.dev/research/) — the empirical foundation behind four key metrics for software delivery
+- [Documentação do GitHub Actions](https://docs.github.com/en/actions) — fonte autoritativa para workflows, OIDC e environments
+- [Documentação do Azure DevOps Pipelines](https://learn.microsoft.com/azure/devops/pipelines/) — stages, approvals, variable groups
+- [Documentação do Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) — módulos, arquivos de parâmetro, what-if
+- [Documentação do Azure Policy](https://learn.microsoft.com/azure/governance/policy/) — compliance, remediação, design de initiative
+- [Documentação do Azure Key Vault](https://learn.microsoft.com/azure/key-vault/) — secrets, chaves, certificados, referências
+- [Especificação do Model Context Protocol](https://modelcontextprotocol.io/) — o protocolo que liga agentes a sistemas externos
+- [Pesquisa de métricas DORA](https://dora.dev/research/) — a fundação empírica por trás das quatro métricas-chave para entrega de software

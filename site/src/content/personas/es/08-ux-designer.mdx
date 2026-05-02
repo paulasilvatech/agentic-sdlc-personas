@@ -4,200 +4,200 @@ number: 8
 cluster: "product"
 accent: "red"
 phase: "Design"
-title: "Diseñador UX"
-oneLiner: 'Design system y accesibilidad.'
+title: "UX Designer"
+oneLiner: "Design system y accesibilidad."
 order: 8
 updated: "2026-04-24"
 ---
 
-> The UX Designer es la persona que curates the design system and guards accessibility. En un SDLC AI-native, el UX Designer opera un stack de primitivas validadas that turn design decisions into machine-readable tokens and enforceable gates.
+> El UX Designer es la persona que cura el design system y resguarda la accesibilidad. En un SDLC AI-native, el UX Designer opera un stack de primitivas validadas que convierten decisiones de diseño en tokens legibles por máquina y compuertas aplicables.
 
 ## Resumen ejecutivo
 
-The UX Designer produces and governs the design system, the information architecture, and the accessibility guarantees for every user-facing surface. En un SDLC AI-native, el UX Designer opera dentro de la fase de Design phase con un conjunto fijo de primitivas: un agente design system curation, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema, and una lista curada de MCPs validados. Las salidas principales son the token map, the component pattern library, accessibility scan reports, and the information architecture that the Developer and QA Engineer implement against.
+El UX Designer produce y gobierna el design system, la arquitectura de información y las garantías de accesibilidad para cada superficie cara al usuario. En un SDLC AI-native, el UX Designer opera dentro de la fase de Design con un conjunto fijo de primitivas: un agente de curaduría del design system, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema y una lista curada de MCPs validados. Las salidas principales son el mapa de tokens, la librería de patrones de componentes, los reportes de escaneo de accesibilidad y la arquitectura de información contra la cual el Developer y el QA Engineer implementan.
 
 ## Rol y responsabilidades
 
-Piense en el UX Designer like the editor of a design language. They do not ship every screen, but every screen that ships has to match the typography, spacing, color, motion, and accessibility rules they authored. En un SDLC AI-native, el design language lives as machine-readable tokens, the pattern library is consumable by agents, and the UX Designer is accountable for the fact that the product looks and feels coherent from the first sketch to the rendered page.
+Piensa en el UX Designer como el editor de un lenguaje de diseño. No envían cada pantalla, pero cada pantalla que se envía tiene que coincidir con la tipografía, el espaciado, el color, el motion y las reglas de accesibilidad que escribieron. En un SDLC AI-native, el lenguaje de diseño vive como tokens legibles por máquina, la librería de patrones es consumible por agentes, y el UX Designer es responsable de que el producto se vea y se sienta coherente desde el primer sketch hasta la página renderizada.
 
 Responsabilidades principales:
 
-- Author and maintain the design token map under `docs/design-system/tokens/` for color, typography, spacing, radius, motion, and elevation
-- Govern the component pattern library under `docs/design-system/patterns/` with usage rules and accessibility notes
-- Run accessibility scans on every front-end PR via Playwright MCP and axe-core integrations
-- Maintain the information architecture under `docs/ia/` that binds user journeys to pages and components
-- Operate the Design System Curator agent and the `/token-map`, `/a11y-scan`, `/pattern-lib`, `/ia-review` prompts
-- Align design decisions with the Enterprise Architect's principles, the Product Owner's spec, and the Azure Static Web Apps deployment target
-- Publish the design review digest to the product Teams channel for stakeholder visibility
+- Redactar y mantener el mapa de design tokens bajo `docs/design-system/tokens/` para color, tipografía, espaciado, radius, motion y elevación
+- Gobernar la librería de patrones de componentes bajo `docs/design-system/patterns/` con reglas de uso y notas de accesibilidad
+- Correr escaneos de accesibilidad sobre cada PR de front-end vía Playwright MCP e integraciones con axe-core
+- Mantener la arquitectura de información bajo `docs/ia/` que amarra journeys de usuario a páginas y componentes
+- Operar el agente Design System Curator y los prompts `/token-map`, `/a11y-scan`, `/pattern-lib`, `/ia-review`
+- Alinear las decisiones de diseño con los principios del Enterprise Architect, el spec del Product Owner y el target de despliegue de Azure Static Web Apps
+- Publicar el digest de design review al canal de producto en Teams para visibilidad de stakeholders
 
 ## Jobs to be done
 
-1. Como UX Designer, quiero the token map to be the source of truth, para que every component and page reads from the same palette and scale.
-2. Como UX Designer, quiero accessibility to be gated on PR, para que WCAG violations never reach production.
-3. Como UX Designer, quiero the pattern library to be consumable by agents, para que Copilot proposes components from our system, not from the open web.
-4. Como UX Designer, quiero the information architecture to bind journeys to pages, para que every screen has a named context and purpose.
-5. Como UX Designer, quiero design tokens to regenerate the CSS and the Static Web App theme on merge, para que intent and output stay aligned.
-6. Como UX Designer, quiero the design review digest to surface violations and patterns weekly, para que debt is managed, not accumulated.
+1. Como UX Designer, quiero que el mapa de tokens sea la fuente de verdad, para que cada componente y página lea de la misma paleta y escala.
+2. Como UX Designer, quiero que la accesibilidad esté con compuerta en PR, para que las violaciones WCAG nunca lleguen a producción.
+3. Como UX Designer, quiero que la librería de patrones sea consumible por agentes, para que Copilot proponga componentes desde nuestro sistema, no desde la web abierta.
+4. Como UX Designer, quiero que la arquitectura de información amarre journeys a páginas, para que cada pantalla tenga un contexto y propósito nombrado.
+5. Como UX Designer, quiero que los design tokens regeneren el CSS y el theme de Static Web App al hacer merge, para que la intención y la salida permanezcan alineadas.
+6. Como UX Designer, quiero que el digest de design review afloran violaciones y patrones semanalmente, para que la deuda se gestione, no se acumule.
 
 ## Puntos de dolor antes de la era AI-native
 
-1. **Tokens trapped in a design tool**. Colors and spacing live in a design file and are copied by hand into CSS. Drift is guaranteed.
-2. **Accessibility checked at release**. WCAG violations land in production because scans run only in the staging environment.
-3. **Pattern library as PDF**. Developers and agents cannot consume static documents. They invent components off-system.
-4. **Information architecture as a wireframe**. Pages and journeys are drawn, not linked. Analytics tagging happens ad-hoc.
-5. **Design debt invisible**. Divergences from the system pile up without a scan to surface them.
+1. **Tokens atrapados en una herramienta de diseño**. Los colores y espaciados viven en un archivo de diseño y se copian a mano al CSS. La deriva está garantizada.
+2. **Accesibilidad chequeada en release**. Las violaciones WCAG aterrizan en producción porque los escaneos solo corren en el ambiente de staging.
+3. **Librería de patrones como PDF**. Los developers y agentes no pueden consumir documentos estáticos. Inventan componentes fuera del sistema.
+4. **Arquitectura de información como wireframe**. Las páginas y journeys se dibujan, no se enlazan. El tagging de analytics ocurre ad-hoc.
+5. **Deuda de diseño invisible**. Las divergencias del sistema se acumulan sin un escaneo que las afloran.
 
 ## Flujo diario AI-native
 
-The UX Designer operates a fixed loop each day. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
+El UX Designer opera un loop fijo cada día. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
 
 ### Setup de la mañana
 
-1. Open the design system repository in Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` and the scoped design system instructions.
-2. Hacer pull de la última `main` y revisar cambios nocturnos component PRs against the pattern library.
-3. Run `/a11y-scan` via Playwright MCP to produce the current accessibility report across the staged Azure Static Web App preview environments.
-4. Review the design system dashboard generated from GitHub MCP telemetry.
+1. Abrir el repositorio del design system en Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` y las instrucciones del design system con alcance.
+2. Hacer pull del último `main` y revisar PRs nocturnos de componentes contra la librería de patrones.
+3. Ejecutar `/a11y-scan` vía Playwright MCP para producir el reporte de accesibilidad actual a través de los ambientes de preview de Azure Static Web App.
+4. Revisar el dashboard del design system generado a partir de la telemetría del MCP de GitHub.
 
 ### Ejecución al mediodía
 
-1. **Token authoring**. Invoke `/token-map` on any new or revised token. The Design System Curator agent produces the token file, regenerates the CSS export, and updates the Azure Static Web Apps theme bundle.
-2. **Pattern authoring**. Invoke `/pattern-lib` on new components or revised usage rules. The agent produces a pattern document with props, accessibility notes, and a primed example.
-3. **Information architecture**. Invoke `/ia-review` when a new journey or page is proposed. The agent updates the IA map under `docs/ia/` and binds the page to named components from the pattern library.
-4. **Cross-persona consultation**. Raise design debates in the product Teams channel via the Microsoft 365 Agents SDK MCP, with pattern links as the canonical citation.
+1. **Autoría de tokens**. Invocar `/token-map` sobre cualquier token nuevo o revisado. El agente Design System Curator produce el archivo de token, regenera el export de CSS y actualiza el bundle de theme de Azure Static Web Apps.
+2. **Autoría de patrones**. Invocar `/pattern-lib` sobre nuevos componentes o reglas de uso revisadas. El agente produce un documento de patrón con props, notas de accesibilidad y un ejemplo preparado.
+3. **Arquitectura de información**. Invocar `/ia-review` cuando se proponga un nuevo journey o página. El agente actualiza el mapa de IA bajo `docs/ia/` y amarra la página a componentes nombrados de la librería de patrones.
+4. **Consulta entre personas**. Levantar debates de diseño en el canal de producto en Teams a través del MCP del Microsoft 365 Agents SDK, con enlaces a patrones como cita canónica.
 
 ### Revisión al final de la tarde
 
-1. Invoke `/a11y-scan` as the final sweep on all open front-end PRs. Block merge on any critical WCAG violation detected by Playwright MCP and axe-core.
-2. Abrir un pull request on token, pattern, or IA changes. GitHub Copilot Code Review comments on token consistency and accessibility annotations.
-3. Publish the daily design digest to the product Teams channel via the Microsoft 365 Agents SDK, summarizing new tokens, pattern revisions, and open violations.
-4. Update the design system changelog and regenerate the Azure Static Web App preview so stakeholders can click through the current state.
+1. Invocar `/a11y-scan` como barrida final sobre todos los PRs abiertos de front-end. Bloquear el merge en cualquier violación WCAG crítica detectada por Playwright MCP y axe-core.
+2. Abrir un pull request sobre cambios de tokens, patrones o IA. GitHub Copilot Code Review comenta sobre consistencia de tokens y anotaciones de accesibilidad.
+3. Publicar el digest diario de diseño al canal de producto en Teams a través del Microsoft 365 Agents SDK, resumiendo nuevos tokens, revisiones de patrones y violaciones abiertas.
+4. Actualizar el changelog del design system y regenerar el preview de Azure Static Web App para que los stakeholders puedan navegar el estado actual.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Archivo | Propósito |
-|-------|------|---------|
-| `design-system-curator` | `.github/agents/design-system-curator.agent.md` | Author tokens, curate the pattern library, run accessibility scans, and govern information architecture |
+|--------|---------|-----------|
+| `design-system-curator` | `.github/agents/design-system-curator.agent.md` | Redactar tokens, curar la librería de patrones, correr escaneos de accesibilidad y gobernar la arquitectura de información |
 
-The Design System Curator uses `claude-sonnet-4-6` by default. Tools: `read`, `edit`, `search`, `grep`, `glob`, `bash` scoped to token-build scripts. Extended thinking is disabled because iterative design tasks benefit from short, fast loops.
+El Design System Curator usa `claude-sonnet-4-6` por defecto. Herramientas: `read`, `edit`, `search`, `grep`, `glob`, `bash` con alcance a scripts de build de tokens. El extended thinking está deshabilitado porque las tareas iterativas de diseño se benefician de loops cortos y rápidos.
 
 ### Slash prompts
 
 | Comando | Archivo | Propósito |
-|---------|------|---------|
-| `/token-map` | `.github/prompts/token-map.prompt.md` | Author or revise tokens and regenerate the CSS and Static Web App theme |
-| `/a11y-scan` | `.github/prompts/a11y-scan.prompt.md` | Run accessibility checks via Playwright MCP and axe-core |
-| `/pattern-lib` | `.github/prompts/pattern-lib.prompt.md` | Author or revise a component pattern with props and accessibility notes |
-| `/ia-review` | `.github/prompts/ia-review.prompt.md` | Review and update the information architecture map for a journey |
+|---------|---------|-----------|
+| `/token-map` | `.github/prompts/token-map.prompt.md` | Redactar o revisar tokens y regenerar el CSS y el theme de Static Web App |
+| `/a11y-scan` | `.github/prompts/a11y-scan.prompt.md` | Correr chequeos de accesibilidad vía Playwright MCP y axe-core |
+| `/pattern-lib` | `.github/prompts/pattern-lib.prompt.md` | Redactar o revisar un patrón de componente con props y notas de accesibilidad |
+| `/ia-review` | `.github/prompts/ia-review.prompt.md` | Revisar y actualizar el mapa de arquitectura de información para un journey |
 
 ### Instrucciones con alcance
 
-El alcance `applyTo` reduce el costo de tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
+El `applyTo` con alcance reduce el costo en tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
 
 | Alcance (`applyTo`) | Archivo | Propósito |
-|-------------------|------|---------|
-| `docs/design-system/tokens/**/*.json` | `.github/instructions/tokens.instructions.md` | Token schema, naming rules, and regeneration contract |
-| `docs/design-system/patterns/**/*.md` | `.github/instructions/patterns.instructions.md` | Pattern document template, props, accessibility annotations |
-| `docs/ia/**/*.md` | `.github/instructions/ia.instructions.md` | Information architecture schema, journey-to-page binding, analytics tagging |
+|---------------------|---------|-----------|
+| `docs/design-system/tokens/**/*.json` | `.github/instructions/tokens.instructions.md` | Esquema de token, reglas de naming y contrato de regeneración |
+| `docs/design-system/patterns/**/*.md` | `.github/instructions/patterns.instructions.md` | Plantilla de documento de patrón, props, anotaciones de accesibilidad |
+| `docs/ia/**/*.md` | `.github/instructions/ia.instructions.md` | Esquema de arquitectura de información, vinculación journey-a-página, tagging de analytics |
 
 ### Hooks
 
-Los hooks cuestan cero tokens de LLM. Son la capa de gobernanza más fuerte for design.
+Los hooks cuestan cero tokens de LLM. Son la capa de gobierno más fuerte para diseño.
 
-- `pre-commit`: reject any token file that breaks the naming schema or any pattern without accessibility annotations
-- `post-commit`: regenerate the CSS export, Static Web App theme bundle, and pattern index
-- `pre-merge`: run `/a11y-scan` on the PR preview deployment and block merge on critical WCAG violations
+- `pre-commit`: rechazar cualquier archivo de token que rompa el esquema de naming o cualquier patrón sin anotaciones de accesibilidad
+- `post-commit`: regenerar el export de CSS, el bundle de theme de Static Web App y el índice de patrones
+- `pre-merge`: correr `/a11y-scan` sobre el preview deployment del PR y bloquear el merge en violaciones WCAG críticas
 
 ## MCPs validados
 
 | MCP | Propósito | Dueño |
-|-----|---------|-------|
-| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Drive accessibility scans and visual regressions against preview deployments | Microsoft (official) |
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Read front-end PRs, Actions runs, and preview deployment metadata | GitHub (official) |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Inspect Azure Static Web Apps preview environments and configuration | Microsoft (official) |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Ground design decisions in Microsoft Fluent and accessibility guidance | Microsoft (official) |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Publish design digests to Teams and ingest stakeholder feedback from Outlook | Microsoft (official) |
+|-----|-----------|-------|
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Manejar escaneos de accesibilidad y regresiones visuales contra preview deployments | Microsoft (oficial) |
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Leer PRs de front-end, corridas de Actions y metadata de preview deployment | GitHub (oficial) |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Inspeccionar ambientes de preview de Azure Static Web Apps y configuración | Microsoft (oficial) |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Anclar decisiones de diseño en la guía de Microsoft Fluent y de accesibilidad | Microsoft (oficial) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Publicar digests de diseño a Teams e ingerir feedback de stakeholders desde Outlook | Microsoft (oficial) |
 
 ## Ejemplos reales
 
-### Example 1: new primary color and accessible contrast
+### Ejemplo 1: nuevo color primario y contraste accesible
 
-**Entrada**: A brand refresh introduces a new primary color. The color must pass WCAG AA contrast against the existing neutral palette.
+**Entrada**: Un brand refresh introduce un nuevo color primario. El color debe pasar contraste WCAG AA contra la paleta neutra existente.
 
-**Invocación**: `/token-map` followed by `/a11y-scan`.
-
-**Salida esperada**:
-
-1. Updated `docs/design-system/tokens/color/primary.json` with the new value and contrast matrix annotations.
-2. Regenerated CSS variables in the Azure Static Web App theme bundle.
-3. An accessibility scan report confirming AA contrast across 14 interactive surfaces, with three flagged surfaces that need pattern revision.
-4. A pull request with Copilot Code Review comments on token naming and pattern impact.
-
-### Example 2: accessibility gate on a new checkout flow
-
-**Entrada**: A new checkout journey with five pages introduced under `src/checkout/`.
-
-**Invocación**: `/ia-review` followed by `/a11y-scan`.
+**Invocación**: `/token-map` seguido de `/a11y-scan`.
 
 **Salida esperada**:
 
-1. Updated `docs/ia/checkout.md` binding the five pages to named patterns and analytics events.
-2. A Playwright MCP accessibility run against the Static Web App preview with zero critical violations, two minor label issues, and three keyboard navigation warnings.
-3. Three issues filed via the GitHub MCP for the warnings, assigned to the Developer with pattern links as the remediation reference.
-4. A blocked merge until critical violations close, unblocked once warnings have an owner and a follow-up issue.
+1. Un `docs/design-system/tokens/color/primary.json` actualizado con el nuevo valor y anotaciones de matriz de contraste.
+2. Variables CSS regeneradas en el bundle de theme de Azure Static Web App.
+3. Un reporte de escaneo de accesibilidad confirmando contraste AA a través de 14 superficies interactivas, con tres superficies marcadas que necesitan revisión de patrón.
+4. Un pull request con comentarios de Copilot Code Review sobre el naming de tokens e impacto de patrón.
+
+### Ejemplo 2: compuerta de accesibilidad sobre un nuevo flujo de checkout
+
+**Entrada**: Un nuevo journey de checkout con cinco páginas introducido bajo `src/checkout/`.
+
+**Invocación**: `/ia-review` seguido de `/a11y-scan`.
+
+**Salida esperada**:
+
+1. Un `docs/ia/checkout.md` actualizado que amarra las cinco páginas a patrones nombrados y eventos de analytics.
+2. Una corrida de accesibilidad de Playwright MCP contra el preview de Static Web App con cero violaciones críticas, dos issues menores de label y tres warnings de navegación por teclado.
+3. Tres issues presentados vía el MCP de GitHub para los warnings, asignados al Developer con enlaces a patrones como referencia de remediación.
+4. Un merge bloqueado hasta que cierren las violaciones críticas, desbloqueado una vez que los warnings tengan dueño y un issue de seguimiento.
 
 ## Anti-patrones
 
-1. **Copy-paste design tokens**. Values diverge across repos and platforms. Mitigación: token files are the single source, regenerated by hook.
-2. **Accessibility as a release checklist**. Violations land in production before the checklist runs. Mitigación: `pre-merge` hook runs `/a11y-scan` on every PR preview.
-3. **Pattern library as PDF**. Developers invent components off-system. Mitigación: the pattern library is markdown and the primed-context pack links patterns by name.
-4. **Journeys drawn, not mapped**. Pages ship without named context, analytics, or accessibility annotations. Mitigación: `/ia-review` binds every page to pattern and analytics references.
-5. **Design debt tolerated**. Divergences accumulate without a scan. Mitigación: weekly design digest surfaces divergence counts with owners.
+1. **Copy-paste de design tokens**. Los valores divergen a través de repos y plataformas. Mitigación: los archivos de token son la fuente única, regenerados por hook.
+2. **Accesibilidad como checklist de release**. Las violaciones aterrizan en producción antes de que el checklist corra. Mitigación: el hook `pre-merge` corre `/a11y-scan` en cada preview de PR.
+3. **Librería de patrones como PDF**. Los developers inventan componentes fuera del sistema. Mitigación: la librería de patrones es markdown y el paquete de contexto preparado enlaza patrones por nombre.
+4. **Journeys dibujados, no mapeados**. Las páginas se envían sin contexto, analytics o anotaciones de accesibilidad nombrados. Mitigación: `/ia-review` amarra cada página a referencias de patrón y analytics.
+5. **Deuda de diseño tolerada**. Las divergencias se acumulan sin un escaneo. Mitigación: el digest semanal de diseño afloran conteos de divergencia con dueños.
 
 ## KPIs y métricas de impacto
 
 | KPI | Línea base | Meta | Medición |
-|-----|----------|--------|-------------|
-| Critical WCAG violations at release | 6 per release | 0 | Playwright MCP scan report |
-| Token adoption, components reading from the token map | 55 percent | 100 percent | CSS variable usage audit |
-| Pattern library adoption, components authored from patterns | 45 percent | > 90 percent | Pattern usage audit |
-| IA coverage, pages with journey and analytics binding | 30 percent | 100 percent | IA linter in GitHub Actions |
-| Design debt items closed per week | 3 | > 8 | Digest summary |
-| Preview-to-approval cycle time | 3 days | < 1 day | GitHub PR timestamps |
+|-----|------------|------|----------|
+| Violaciones WCAG críticas en release | 6 por release | 0 | Reporte de escaneo de Playwright MCP |
+| Adopción de tokens, componentes que leen del mapa de tokens | 55 por ciento | 100 por ciento | Auditoría de uso de variables CSS |
+| Adopción de librería de patrones, componentes redactados desde patrones | 45 por ciento | > 90 por ciento | Auditoría de uso de patrones |
+| Cobertura de IA, páginas con vinculación de journey y analytics | 30 por ciento | 100 por ciento | Linter de IA en GitHub Actions |
+| Ítems de deuda de diseño cerrados por semana | 3 | > 8 | Resumen del digest |
+| Tiempo de ciclo preview-a-aprobación | 3 días | < 1 día | Timestamps de PR de GitHub |
 
 ## Madurez en cuatro niveles
 
 | Nivel | Nombre | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Tokens in a design tool, patterns in PDF, accessibility at release |
-| L2 | Asistido | Copilot used to polish pattern prose, tokens copy-pasted to CSS |
-| L3 | Aumentado | Design System Curator agent, cuatro slash prompts, instrucciones con alcance, Playwright MCP, a11y scans on PR |
-| L4 | Autónomo | Full primitives kit, hooks enforced, token regeneration automated, IA bindings standard, weekly digest live |
+|-------|--------|------------|
+| L1 | Manual | Tokens en una herramienta de diseño, patrones en PDF, accesibilidad en release |
+| L2 | Asistido | Copilot usado para pulir prosa de patrón, tokens copiados-pegados al CSS |
+| L3 | Aumentado | Agente Design System Curator, cuatro slash prompts, instrucciones con alcance, Playwright MCP, escaneos de a11y en PR |
+| L4 | Autónomo | Kit completo de primitivas, hooks forzados, regeneración de tokens automatizada, vinculaciones de IA estándar, digest semanal en vivo |
 
 ## Integración con otras personas
 
-- **Del Product Owner**: approved `SPECIFICATION.md` with user-facing acceptance criteria that the IA must honor
-- **Del Enterprise Architect**: principles that constrain visual and accessibility policy
-- **Para el Developer**: tokens, patterns, and primed-context packs that make component work deterministic
-- **Para el QA Engineer**: accessibility scans as a first-class test suite alongside functional tests
-- **Para el DevOps Engineer**: Azure Static Web Apps preview environment requirements for accessibility scans
-- **Para el Tech Writer**: pattern library and token map as the canonical source for UI documentation
-- **Para el DevRel**: public-facing design system artifacts for developer audiences
+- **Desde Product Owner**: `SPECIFICATION.md` aprobado con criterios de aceptación cara al usuario que la IA debe honrar
+- **Desde Enterprise Architect**: principios que restringen la política visual y de accesibilidad
+- **Hacia Developer**: tokens, patrones y paquetes de contexto preparado que vuelven determinístico el trabajo de componentes
+- **Hacia QA Engineer**: escaneos de accesibilidad como suite de prueba de primera clase junto a las pruebas funcionales
+- **Hacia DevOps Engineer**: requisitos del ambiente de preview de Azure Static Web Apps para escaneos de accesibilidad
+- **Hacia Tech Writer**: librería de patrones y mapa de tokens como fuente canónica para la documentación de UI
+- **Hacia DevRel**: artefactos públicos del design system para audiencias de developers
 
 ## Glosario
 
-- **Design token**: a named, machine-readable value for color, typography, spacing, radius, motion, or elevation.
-- **Pattern**: a documented component with props, usage rules, and accessibility annotations.
-- **Information architecture**: the mapping from user journeys to pages and components, with analytics and accessibility bindings.
-- **Accessibility scan**: automated sweep via Playwright MCP and axe-core that checks pages against WCAG criteria.
-- **Design debt**: divergence between shipped surfaces and the design system, measured and managed weekly.
-- **Token map**: the generated, versioned export of all tokens consumed by CSS, components, and the Azure Static Web App theme bundle.
+- **Design token**: un valor nombrado y legible por máquina para color, tipografía, espaciado, radius, motion o elevación.
+- **Patrón**: un componente documentado con props, reglas de uso y anotaciones de accesibilidad.
+- **Arquitectura de información**: el mapeo de journeys de usuario a páginas y componentes, con vinculaciones de analytics y accesibilidad.
+- **Escaneo de accesibilidad**: barrida automatizada vía Playwright MCP y axe-core que chequea páginas contra criterios WCAG.
+- **Deuda de diseño**: divergencia entre superficies enviadas y el design system, medida y gestionada semanalmente.
+- **Mapa de tokens**: el export generado y versionado de todos los tokens consumidos por CSS, componentes y el bundle de theme de Azure Static Web App.
 
 ## Referencias
 
-- [Microsoft Fluent design system](https://learn.microsoft.com/fluent-ui/web-components/) — canonical Microsoft design patterns and tokens
-- [Azure Static Web Apps documentation](https://learn.microsoft.com/azure/static-web-apps/) — deployment platform for preview-environment accessibility scans
-- [Playwright documentation](https://playwright.dev/docs/accessibility-testing) — automated accessibility testing guidance
-- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — modo agente, prompts e instrucciones
-- [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/) — normative accessibility specification
+- [Microsoft Fluent design system](https://learn.microsoft.com/fluent-ui/web-components/) — patrones y tokens de diseño canónicos de Microsoft
+- [Azure Static Web Apps documentation](https://learn.microsoft.com/azure/static-web-apps/) — plataforma de despliegue para escaneos de accesibilidad en ambiente de preview
+- [Playwright documentation](https://playwright.dev/docs/accessibility-testing) — guía de testing automatizado de accesibilidad
+- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — agent mode, prompts e instructions
+- [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/standards-guidelines/wcag/) — especificación normativa de accesibilidad

@@ -4,199 +4,199 @@ number: 3
 cluster: "product"
 accent: "red"
 phase: "Discovery"
-title: "Ingeniero de Requisitos"
-oneLiner: 'Codifica requisitos en EARS.'
+title: "Requirements Engineer"
+oneLiner: "Codifica requisitos en EARS."
 order: 3
 updated: "2026-04-24"
 ---
 
-> The Requirements Engineer es la persona que encodes, decomposes, and traces requirements with discipline. En un SDLC AI-native, el Requirements Engineer opera un stack de primitivas validadas that convert draft intent into auditable EARS clauses.
+> El Requirements Engineer es la persona que codifica, descompone y traza requisitos con disciplina. En un SDLC AI-native, el Requirements Engineer opera un stack de primitivas validadas que convierten la intención en borrador en cláusulas EARS auditables.
 
 ## Resumen ejecutivo
 
-The Requirements Engineer decomposes approved specifications into atomic, testable EARS requirements and maintains the traceability matrix from requirement to test to deployed artifact. En un SDLC AI-native, el Requirements Engineer opera dentro de la fase de Discovery phase con un conjunto fijo de primitivas: un agente EARS encoding, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema, and una lista curada de MCPs validados. Las salidas principales son atomic requirement files, gap analyses, traceability reports, and requirement review records.
+El Requirements Engineer descompone las especificaciones aprobadas en requisitos EARS atómicos y testables, y mantiene la matriz de trazabilidad desde el requisito hasta la prueba y el artefacto desplegado. En un SDLC AI-native, el Requirements Engineer opera dentro de la fase de Discovery con un conjunto fijo de primitivas: un agente de codificación EARS, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema y una lista curada de MCPs validados. Las salidas principales son archivos atómicos de requisitos, análisis de brechas, reportes de trazabilidad y registros de revisión de requisitos.
 
 ## Rol y responsabilidades
 
-Piense en el Requirements Engineer like a legal codifier who turns a legislator's intent into numbered statutes that courts can apply without interpretation. The legislator proposes, the codifier transforms, and every future judgment cites a clause by number. En un SDLC AI-native, el Product Owner proposes in `SPECIFICATION.md`, the Requirements Engineer codifies in atomic EARS form, and every test, commit, and release note cites a requirement ID.
+Piensa en el Requirements Engineer como un codificador legal que convierte la intención de un legislador en estatutos numerados que los tribunales pueden aplicar sin interpretación. El legislador propone, el codificador transforma y cada juicio futuro cita una cláusula por número. En un SDLC AI-native, el Product Owner propone en `SPECIFICATION.md`, el Requirements Engineer codifica en forma EARS atómica, y cada prueba, commit y release note cita un ID de requisito.
 
 Responsabilidades principales:
 
-- Decompose every approved spec into atomic EARS requirements under `docs/requirements/`
-- Maintain the traceability matrix that links each requirement to its acceptance criteria, tests, pull requests, and deployed artifacts
-- Run gap scans to detect requirements without tests, tests without requirements, and deployments without either
-- Run requirement reviews with the Product Owner, Software Architect, and QA Engineer at defined gates
-- Operate the EARS Encoder agent and the `/ears`, `/traceability`, `/gap-scan`, `/requirement-review` prompts
-- Govern the requirement change log, ensuring every change references an approved spec diff
-- Publish the readiness report that releases depend on
+- Descomponer cada spec aprobado en requisitos EARS atómicos bajo `docs/requirements/`
+- Mantener la matriz de trazabilidad que enlaza cada requisito con sus criterios de aceptación, pruebas, pull requests y artefactos desplegados
+- Correr gap scans para detectar requisitos sin pruebas, pruebas sin requisitos y despliegues sin ninguno de los dos
+- Correr revisiones de requisitos con el Product Owner, el Software Architect y el QA Engineer en compuertas definidas
+- Operar el agente EARS Encoder y los prompts `/ears`, `/traceability`, `/gap-scan`, `/requirement-review`
+- Gobernar el log de cambios de requisitos, asegurando que cada cambio referencie un diff de spec aprobado
+- Publicar el reporte de readiness del que dependen los releases
 
 ## Jobs to be done
 
-1. Como Requirements Engineer, quiero decompose an approved spec into atomic requirements within hours, para que development is never blocked on clarification.
-2. Como Requirements Engineer, quiero every requirement in strict EARS form, para que agents and humans parse it identically.
-3. Como Requirements Engineer, quiero the traceability matrix to regenerate on every merge, para que audit answers are always current.
-4. Como Requirements Engineer, quiero gap scans to run on every pull request, para que tests and requirements never diverge silently.
-5. Como Requirements Engineer, quiero requirement reviews to be structured and recorded, para que decisions persist beyond the meeting.
-6. Como Requirements Engineer, quiero the readiness report to refuse release if any gap is unresolved, para que scope discipline is enforced at the gate.
+1. Como Requirements Engineer, quiero descomponer un spec aprobado en requisitos atómicos en horas, para que el desarrollo nunca se bloquee esperando aclaraciones.
+2. Como Requirements Engineer, quiero cada requisito en forma EARS estricta, para que agentes y humanos lo parseen de forma idéntica.
+3. Como Requirements Engineer, quiero que la matriz de trazabilidad se regenere en cada merge, para que las respuestas de auditoría siempre estén actualizadas.
+4. Como Requirements Engineer, quiero que los gap scans corran en cada pull request, para que pruebas y requisitos nunca diverjan en silencio.
+5. Como Requirements Engineer, quiero que las revisiones de requisitos sean estructuradas y registradas, para que las decisiones persistan más allá de la reunión.
+6. Como Requirements Engineer, quiero que el reporte de readiness rechace el release si alguna brecha está sin resolver, para que la disciplina de alcance se imponga en la compuerta.
 
 ## Puntos de dolor antes de la era AI-native
 
-1. **Specs too coarse to test**. High-level specs cannot be bound to test cases. Developers improvise decomposition inconsistently.
-2. **Traceability built once and abandoned**. Matrix spreadsheets go stale within a sprint. Audit preparation becomes a rebuild.
-3. **Gaps discovered at release**. Missing tests and orphan features surface at the release gate, forcing schedule slips.
-4. **Reviews without records**. Clarifications happen verbally. Next sprint, the same question is asked again.
-5. **Requirement churn untracked**. Changes are made in place without a diff history. Regressions in scope are invisible.
+1. **Specs demasiado gruesos para probar**. Los specs de alto nivel no se pueden amarrar a casos de prueba. Los developers improvisan la descomposición de forma inconsistente.
+2. **Trazabilidad construida una vez y abandonada**. Las hojas de cálculo de matriz quedan obsoletas dentro de un sprint. La preparación de auditoría se vuelve una reconstrucción.
+3. **Brechas descubiertas en el release**. Las pruebas faltantes y las features huérfanas afloran en la compuerta de release, forzando retrasos en el cronograma.
+4. **Revisiones sin registros**. Las aclaraciones ocurren verbalmente. El siguiente sprint, se pregunta lo mismo de nuevo.
+5. **Churn de requisitos no rastreado**. Los cambios se hacen en sitio sin un historial de diff. Las regresiones de alcance son invisibles.
 
 ## Flujo diario AI-native
 
-The Requirements Engineer operates a fixed loop each day. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
+El Requirements Engineer opera un loop fijo cada día. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
 
 ### Setup de la mañana
 
-1. Abrir el repositorio en Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` and the scoped requirement instructions.
-2. Hacer pull de la última `main` y revisar cambios nocturnos spec changes by the Product Owner.
-3. Run `/gap-scan` to produce the current gap report: requirements without tests, tests without requirements, deployments without either.
-4. Review the traceability dashboard generated from the Azure MCP Server and GitHub MCP telemetry.
+1. Abrir el repositorio en Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` y las instrucciones de requisitos con alcance.
+2. Hacer pull del último `main` y revisar los cambios nocturnos al spec por parte del Product Owner.
+3. Ejecutar `/gap-scan` para producir el reporte de brechas actual: requisitos sin pruebas, pruebas sin requisitos, despliegues sin ninguno.
+4. Revisar el dashboard de trazabilidad generado a partir de la telemetría del Azure MCP Server y el GitHub MCP.
 
 ### Ejecución al mediodía
 
-1. **Decomposition**. Invoke `/ears` on each new spec section. The EARS Encoder agent produces atomic requirements with unique IDs, each in strict `WHEN ... THE system SHALL ...` form.
-2. **Traceability**. Invoke `/traceability` to bind each new requirement to existing tests, pull requests, and deployment records. The agent updates the matrix and flags orphans.
-3. **Gap closure**. For each gap flagged in the morning scan, either author the missing requirement, raise a test task for QA Engineer, or file an ADR if architectural change is required.
-4. **Cross-persona sync**. Use the Microsoft 365 Agents SDK MCP to raise clarification requests in the Teams channel when spec intent is ambiguous.
+1. **Descomposición**. Invocar `/ears` sobre cada nueva sección del spec. El agente EARS Encoder produce requisitos atómicos con IDs únicos, cada uno en forma estricta `WHEN ... THE system SHALL ...`.
+2. **Trazabilidad**. Invocar `/traceability` para amarrar cada nuevo requisito con pruebas existentes, pull requests y registros de despliegue. El agente actualiza la matriz y marca los huérfanos.
+3. **Cierre de brechas**. Para cada brecha marcada en el escaneo de la mañana, ya sea redactar el requisito faltante, levantar una tarea de prueba para el QA Engineer o presentar un ADR si se requiere un cambio arquitectónico.
+4. **Sincronización entre personas**. Usar el MCP del Microsoft 365 Agents SDK para levantar solicitudes de aclaración en el canal de Teams cuando la intención del spec sea ambigua.
 
 ### Revisión al final de la tarde
 
-1. Invoke `/requirement-review` to run the structured review session with the Product Owner, Software Architect, and QA Engineer. The agent prepares the agenda from the day's diffs and records decisions against requirement IDs.
-2. Abrir un pull request on the requirement files. GitHub Copilot Code Review comments on EARS compliance; human reviewers approve content.
-3. Update the readiness report. A post-merge hook regenerates the report with gap counts and blocker lists.
-4. Publish the daily requirement digest to the product Teams channel via the Microsoft 365 Agents SDK.
+1. Invocar `/requirement-review` para correr la sesión de revisión estructurada con el Product Owner, el Software Architect y el QA Engineer. El agente prepara la agenda a partir de los diffs del día y registra decisiones contra los IDs de requisito.
+2. Abrir un pull request sobre los archivos de requisitos. GitHub Copilot Code Review comenta sobre el cumplimiento de EARS; los reviewers humanos aprueban el contenido.
+3. Actualizar el reporte de readiness. Un hook post-merge regenera el reporte con conteos de brechas y listas de bloqueadores.
+4. Publicar el digest diario de requisitos al canal de producto en Teams a través del Microsoft 365 Agents SDK.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Archivo | Propósito |
-|-------|------|---------|
-| `ears-encoder` | `.github/agents/ears-encoder.agent.md` | Decompose specs into atomic EARS requirements, maintain traceability, run gap scans |
+|--------|---------|-----------|
+| `ears-encoder` | `.github/agents/ears-encoder.agent.md` | Descomponer specs en requisitos EARS atómicos, mantener trazabilidad, correr gap scans |
 
-The EARS Encoder uses `claude-sonnet-4-6` by default. Tools: `read`, `edit`, `search`, `grep`, `glob`. No `bash` access. Extended thinking is enabled for `/gap-scan` only, where cross-document correlation benefits from deep reasoning.
+El EARS Encoder usa `claude-sonnet-4-6` por defecto. Herramientas: `read`, `edit`, `search`, `grep`, `glob`. Sin acceso a `bash`. El extended thinking se habilita solo para `/gap-scan`, donde la correlación entre documentos se beneficia de un razonamiento profundo.
 
 ### Slash prompts
 
 | Comando | Archivo | Propósito |
-|---------|------|---------|
-| `/ears` | `.github/prompts/ears.prompt.md` | Decompose a spec section into atomic EARS requirements |
-| `/traceability` | `.github/prompts/traceability.prompt.md` | Bind requirements to tests, PRs, and deployments, regenerate the matrix |
-| `/gap-scan` | `.github/prompts/gap-scan.prompt.md` | Detect requirements without tests, tests without requirements, orphan deployments |
-| `/requirement-review` | `.github/prompts/requirement-review.prompt.md` | Prepare and record the structured review session |
+|---------|---------|-----------|
+| `/ears` | `.github/prompts/ears.prompt.md` | Descomponer una sección del spec en requisitos EARS atómicos |
+| `/traceability` | `.github/prompts/traceability.prompt.md` | Amarrar requisitos a pruebas, PRs y despliegues, regenerar la matriz |
+| `/gap-scan` | `.github/prompts/gap-scan.prompt.md` | Detectar requisitos sin pruebas, pruebas sin requisitos, despliegues huérfanos |
+| `/requirement-review` | `.github/prompts/requirement-review.prompt.md` | Preparar y registrar la sesión de revisión estructurada |
 
 ### Instrucciones con alcance
 
-El alcance `applyTo` reduce el costo de tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
+El `applyTo` con alcance reduce el costo en tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
 
 | Alcance (`applyTo`) | Archivo | Propósito |
-|-------------------|------|---------|
-| `docs/requirements/**/*.md` | `.github/instructions/requirements.instructions.md` | Atomic EARS format, ID schema, cross-reference rules |
-| `docs/traceability/**/*.md` | `.github/instructions/traceability.instructions.md` | Matrix schema, regeneration rules, audit evidence format |
-| `docs/reviews/**/*.md` | `.github/instructions/reviews.instructions.md` | Review agenda template, decision record format |
+|---------------------|---------|-----------|
+| `docs/requirements/**/*.md` | `.github/instructions/requirements.instructions.md` | Formato EARS atómico, esquema de IDs, reglas de referencias cruzadas |
+| `docs/traceability/**/*.md` | `.github/instructions/traceability.instructions.md` | Esquema de matriz, reglas de regeneración, formato de evidencia para auditoría |
+| `docs/reviews/**/*.md` | `.github/instructions/reviews.instructions.md` | Plantilla de agenda de revisión, formato de registro de decisión |
 
 ### Hooks
 
-Los hooks cuestan cero tokens de LLM. Son la capa de gobernanza más fuerte for requirements.
+Los hooks cuestan cero tokens de LLM. Son la capa de gobierno más fuerte para los requisitos.
 
-- `pre-commit`: reject any requirement file with non-atomic or non-EARS clauses, or with duplicate IDs
-- `post-commit`: regenerate the traceability matrix and the readiness report
-- `pre-merge`: block merge of any requirement change that introduces a new gap without a linked follow-up issue
+- `pre-commit`: rechazar cualquier archivo de requisito con cláusulas no atómicas o no EARS, o con IDs duplicados
+- `post-commit`: regenerar la matriz de trazabilidad y el reporte de readiness
+- `pre-merge`: bloquear el merge de cualquier cambio de requisitos que introduzca una nueva brecha sin un issue de seguimiento enlazado
 
 ## MCPs validados
 
 | MCP | Propósito | Dueño |
-|-----|---------|-------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Leer pull requests, tests, and Actions runs to populate the traceability matrix | GitHub (official) |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Leer work items de Azure Boards and test plans when the team uses Azure DevOps | Microsoft (official) |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Consultar Application Insights to confirm deployed artifacts match requirement IDs | Microsoft (official) |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Basar en la documentación actual de productos Microsoft | Microsoft (official) |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Levantar hilos de clarificación en Teams and registrar decisiones de Outlook | Microsoft (official) |
+|-----|-----------|-------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Leer pull requests, pruebas y corridas de Actions para poblar la matriz de trazabilidad | GitHub (oficial) |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Leer work items y planes de prueba en Azure Boards cuando el equipo usa Azure DevOps | Microsoft (oficial) |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Consultar Application Insights para confirmar que los artefactos desplegados coincidan con los IDs de requisito | Microsoft (oficial) |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Anclar requisitos sobre superficies de productos Microsoft en documentación vigente | Microsoft (oficial) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Levantar hilos de aclaración en Teams y registrar decisiones desde Outlook | Microsoft (oficial) |
 
 ## Ejemplos reales
 
-### Example 1: decompose an approved spec section
+### Ejemplo 1: descomponer una sección de spec aprobada
 
-**Entrada**: A spec section on contract renewal covering initiation, eligibility, and notification, approved by the Product Owner.
+**Entrada**: Una sección de spec sobre renovación de contrato que cubre iniciación, elegibilidad y notificación, aprobada por el Product Owner.
 
-**Invocación**: `/ears` followed by `/traceability`.
-
-**Salida esperada**:
-
-1. A `docs/requirements/contract-renewal/` directory with twelve atomic requirement files, each with a unique ID and strict EARS clause.
-2. A regenerated traceability matrix that binds three pre-existing tests to two of the new requirements and flags the remaining ten as gaps.
-3. A pull request with Copilot Code Review comments on clause shape and ID consistency.
-
-### Example 2: gap closure before release
-
-**Entrada**: A release candidate with 146 merged requirements. The morning `/gap-scan` report flags six requirements without passing tests and two tests without requirements.
-
-**Invocación**: `/gap-scan` followed by `/requirement-review`.
+**Invocación**: `/ears` seguido de `/traceability`.
 
 **Salida esperada**:
 
-1. Six tasks in GitHub Projects created via the GitHub MCP, each linked to the requirement anchor and assigned to QA Engineer.
-2. Two requirement files authored to bind the orphan tests to requirement IDs.
-3. A recorded review session in `docs/reviews/2026-q3-release-readiness.md` with decisions tagged by requirement ID.
-4. A readiness report update that reopens the release gate until all eight items close.
+1. Un directorio `docs/requirements/contract-renewal/` con doce archivos de requisitos atómicos, cada uno con un ID único y una cláusula EARS estricta.
+2. Una matriz de trazabilidad regenerada que amarra tres pruebas preexistentes a dos de los nuevos requisitos y marca los diez restantes como brechas.
+3. Un pull request con comentarios de Copilot Code Review sobre la forma de las cláusulas y la consistencia de los IDs.
+
+### Ejemplo 2: cierre de brechas antes del release
+
+**Entrada**: Un release candidate con 146 requisitos fusionados. El reporte matutino de `/gap-scan` marca seis requisitos sin pruebas pasando y dos pruebas sin requisitos.
+
+**Invocación**: `/gap-scan` seguido de `/requirement-review`.
+
+**Salida esperada**:
+
+1. Seis tareas en GitHub Projects creadas vía el MCP de GitHub, cada una enlazada al ancla del requisito y asignadas al QA Engineer.
+2. Dos archivos de requisitos redactados para amarrar las pruebas huérfanas a IDs de requisito.
+3. Una sesión de revisión registrada en `docs/reviews/2026-q3-release-readiness.md` con decisiones etiquetadas por ID de requisito.
+4. Una actualización del reporte de readiness que reabre la compuerta de release hasta que cierren los ocho ítems.
 
 ## Anti-patrones
 
-1. **Compound requirements**. Clauses that bundle two or more conditions cannot be tested atomically. Mitigación: the `/ears` agent and the `pre-commit` hook reject non-atomic clauses.
-2. **Manual traceability**. Spreadsheets cannot be trusted on a sprint boundary. Mitigación: the matrix regenerates on `post-commit`.
-3. **Silent ID collisions**. Reused IDs break audit trails. Mitigación: the `pre-commit` hook rejects duplicates across the `docs/requirements/` tree.
-4. **Reviews without records**. Verbal clarifications evaporate. Mitigación: `/requirement-review` enforces a recorded decision for every agenda item.
-5. **Gaps waived verbally**. A waived gap without an ADR or follow-up issue re-emerges at release. Mitigación: `pre-merge` blocks the waiver path.
+1. **Requisitos compuestos**. Las cláusulas que agrupan dos o más condiciones no se pueden probar atómicamente. Mitigación: el agente `/ears` y el hook `pre-commit` rechazan cláusulas no atómicas.
+2. **Trazabilidad manual**. Las hojas de cálculo no son confiables al cierre del sprint. Mitigación: la matriz se regenera en `post-commit`.
+3. **Colisiones silenciosas de IDs**. Los IDs reutilizados rompen los rastros de auditoría. Mitigación: el hook `pre-commit` rechaza duplicados a través del árbol `docs/requirements/`.
+4. **Revisiones sin registros**. Las aclaraciones verbales se evaporan. Mitigación: `/requirement-review` exige una decisión registrada para cada ítem de la agenda.
+5. **Brechas dispensadas verbalmente**. Una brecha dispensada sin un ADR o issue de seguimiento reaparece en el release. Mitigación: `pre-merge` bloquea la ruta de dispensa.
 
 ## KPIs y métricas de impacto
 
 | KPI | Línea base | Meta | Medición |
-|-----|----------|--------|-------------|
-| Requirements in atomic EARS | 30 percent | 100 percent | Requirements linter in GitHub Actions |
-| Traceability freshness, last regeneration | 7 days | < 1 hour | Post-commit hook timestamp |
-| Gap count at release gate | 14 | 0 | Readiness report |
-| Requirement review cycle time | 2 weeks | < 1 week | PR timestamps |
-| Orphan test rate | 12 percent | < 2 percent | Gap scan output |
-| Audit query response time | 1 day | < 1 hour | Traceability matrix query log |
+|-----|------------|------|----------|
+| Requisitos en EARS atómico | 30 por ciento | 100 por ciento | Linter de requisitos en GitHub Actions |
+| Frescura de la trazabilidad, última regeneración | 7 días | < 1 hora | Timestamp del hook post-commit |
+| Conteo de brechas en la compuerta de release | 14 | 0 | Reporte de readiness |
+| Tiempo de ciclo de revisión de requisitos | 2 semanas | < 1 semana | Timestamps de PR |
+| Tasa de pruebas huérfanas | 12 por ciento | < 2 por ciento | Salida del gap scan |
+| Tiempo de respuesta a consulta de auditoría | 1 día | < 1 hora | Log de consultas a la matriz de trazabilidad |
 
 ## Madurez en cuatro niveles
 
 | Nivel | Nombre | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Prose specs, ad-hoc decomposition, traceability built by hand |
-| L2 | Asistido | Copilot used to polish requirement phrasing, no atomic discipline |
-| L3 | Aumentado | EARS Encoder agent, cuatro slash prompts, instrucciones con alcance, matrix auto-generated, gap scans on PR |
-| L4 | Autónomo | Full primitives kit, hooks enforced, readiness report live, reviews recorded automatically, audit response within the hour |
+|-------|--------|------------|
+| L1 | Manual | Specs en prosa, descomposición ad-hoc, trazabilidad construida a mano |
+| L2 | Asistido | Copilot usado para pulir el fraseo de requisitos, sin disciplina atómica |
+| L3 | Aumentado | Agente EARS Encoder, cuatro slash prompts, instrucciones con alcance, matriz auto-generada, gap scans en PR |
+| L4 | Autónomo | Kit completo de primitivas, hooks forzados, reporte de readiness en vivo, revisiones registradas automáticamente, respuesta de auditoría dentro de la hora |
 
 ## Integración con otras personas
 
-- **Del Product Owner**: approved `SPECIFICATION.md` with numbered EARS requirements as the canonical input
-- **Del Business Manager**: KPI-bound outcomes that inform gap prioritization
-- **Para el Software Architect**: stable requirement IDs that anchor `CODEMAP.md` and API contracts
-- **Para el QA Engineer**: atomic requirements that drive test case generation and coverage reports
-- **Para el Developer**: requirement anchor on every PR enabling implementation traceability
-- **Para el Compliance Auditor**: regenerated matrix as audit evidence on demand
-- **Para el Release Manager**: readiness report gating the release cut
+- **Desde Product Owner**: `SPECIFICATION.md` aprobado con requisitos EARS numerados como entrada canónica
+- **Desde Business Manager**: resultados ligados a KPI que informan la priorización de brechas
+- **Hacia Software Architect**: IDs de requisito estables que anclan `CODEMAP.md` y los contratos de API
+- **Hacia QA Engineer**: requisitos atómicos que dirigen la generación de casos de prueba y reportes de cobertura
+- **Hacia Developer**: ancla del requisito en cada PR habilitando la trazabilidad de implementación
+- **Hacia Compliance Auditor**: matriz regenerada como evidencia de auditoría a demanda
+- **Hacia Release Manager**: reporte de readiness que controla el corte de release
 
 ## Glosario
 
-- **EARS**: Easy Approach to Requirements Syntax. The canonical `WHEN ... THE system SHALL ...` form.
-- **Atomic requirement**: a single testable clause with a unique ID, no conjunctions that introduce independent conditions.
-- **Traceability matrix**: generated table binding each requirement to acceptance criteria, tests, pull requests, and deployments.
-- **Gap scan**: automated sweep that detects requirements without tests, tests without requirements, and deployments without either.
-- **Readiness report**: generated document summarizing release gate status against open requirement gaps.
-- **Requirement review**: structured, recorded session that approves or defers requirement changes with named participants.
+- **EARS**: Easy Approach to Requirements Syntax. La forma canónica `WHEN ... THE system SHALL ...`.
+- **Requisito atómico**: una cláusula testable única con un ID único, sin conjunciones que introduzcan condiciones independientes.
+- **Matriz de trazabilidad**: tabla generada que amarra cada requisito a criterios de aceptación, pruebas, pull requests y despliegues.
+- **Gap scan**: barrida automatizada que detecta requisitos sin pruebas, pruebas sin requisitos y despliegues sin ninguno.
+- **Reporte de readiness**: documento generado que resume el estado de la compuerta de release contra brechas de requisitos abiertas.
+- **Revisión de requisitos**: sesión estructurada y registrada que aprueba o difiere cambios de requisitos con participantes nombrados.
 
 ## Referencias
 
-- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — modo agente, prompts e instrucciones
-- [Azure Boards documentation](https://learn.microsoft.com/azure/devops/boards/) — rastreo de work items for requirement-linked tasks
-- [GitHub Actions documentation](https://docs.github.com/en/actions) — automatización para traceability regeneration and gap scans
-- [Application Insights documentation](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — deployed artifact telemetry for requirement verification
-- [Microsoft Learn, Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — operational excellence and audit evidence guidance
+- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — agent mode, prompts e instructions
+- [Azure Boards documentation](https://learn.microsoft.com/azure/devops/boards/) — seguimiento de work items para tareas enlazadas a requisitos
+- [GitHub Actions documentation](https://docs.github.com/en/actions) — automatización para regeneración de trazabilidad y gap scans
+- [Application Insights documentation](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — telemetría de artefactos desplegados para verificación de requisitos
+- [Microsoft Learn, Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — guía de excelencia operativa y evidencia de auditoría

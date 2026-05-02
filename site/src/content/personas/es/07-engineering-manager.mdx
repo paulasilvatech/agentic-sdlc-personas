@@ -4,197 +4,197 @@ number: 7
 cluster: "enablement"
 accent: "ink"
 phase: "Governance"
-title: "Gerente de Ingeniería"
-oneLiner: 'Salud de personas y entrega.'
+title: "Engineering Manager"
+oneLiner: "Salud del equipo y de la entrega."
 order: 7
 updated: "2026-04-24"
 ---
 
-> The Engineering Manager is the persona accountable for the health of the people and the health of the delivery flow. En un SDLC AI-native, el Engineering Manager operates a governance loop over DORA signals, 1:1 agendas, and team-level retrospectives, not a spreadsheet of tickets.
+> El Engineering Manager es la persona responsable de la salud de las personas y de la salud del flujo de entrega. En un SDLC AI-native, el Engineering Manager opera un loop de gobierno sobre señales DORA, agendas de 1:1 y retrospectivas a nivel de equipo, no una hoja de cálculo de tickets.
 
 ## Resumen ejecutivo
 
-The Engineering Manager ensures that engineers grow, that delivery flow is predictable, and that organizational risk is surfaced before it becomes incident. En un SDLC AI-native, el Engineering Manager works inside the Governance phase con un conjunto fijo de primitivas: un agente delivery-health, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema, and una lista curada de MCPs validados. The primary outputs are DORA scorecards, 1:1 agendas, retrospective briefs, and staffing recommendations tied to measured flow.
+El Engineering Manager asegura que los ingenieros crezcan, que el flujo de entrega sea predecible y que el riesgo organizacional aflore antes de convertirse en incidente. En un SDLC AI-native, el Engineering Manager trabaja dentro de la fase de Governance con un conjunto fijo de primitivas: un agente de delivery health, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema y una lista curada de MCPs validados. Las salidas principales son scorecards DORA, agendas de 1:1, briefs de retrospectiva y recomendaciones de staffing amarradas al flujo medido.
 
 ## Rol y responsabilidades
 
-Piense en el Engineering Manager like the conductor of an orchestra during rehearsal season. The conductor does not play an instrument on stage, but the orchestra falls apart without their sense of tempo, dynamics, and rehearsal discipline. En un SDLC AI-native, el code and the architecture are owned by other personas. The Engineering Manager is accountable for tempo: the cadence at which the team learns, ships, and recovers.
+Piensa en el Engineering Manager como el director de una orquesta durante la temporada de ensayos. El director no toca un instrumento en el escenario, pero la orquesta se desbarata sin su sentido del tempo, dinámica y disciplina de ensayo. En un SDLC AI-native, el código y la arquitectura los manejan otras personas. El Engineering Manager es responsable del tempo: la cadencia con la que el equipo aprende, entrega y se recupera.
 
 Responsabilidades principales:
 
-- Track DORA metrics (lead time, deployment frequency, change failure rate, mean time to restore) via GitHub Actions and Azure Monitor workbooks
-- Run weekly 1:1s with engineers using a rolling agenda surfaced by the M365 Agents SDK on Microsoft Teams
-- Facilitate sprint retrospectives with data pulled from Azure Boards and GitHub Projects
-- Own the delivery-health dashboard in Azure Workbooks and keep it linked from the repository `README.md`
-- Detect burnout, conflict, and attrition risk using weekly SPACE signals
-- Partner with the Technical Lead on staffing, career ladders, and skill gaps
-- Operate the Delivery Pulse agent and the `/pulse`, `/one-on-one`, `/retro`, `/staff-ops` prompts
+- Trackear las métricas DORA (lead time, deployment frequency, change failure rate, mean time to restore) vía GitHub Actions y workbooks de Azure Monitor
+- Correr 1:1s semanales con ingenieros usando una agenda rodante surfaceada por el M365 Agents SDK en Microsoft Teams
+- Facilitar retrospectivas de sprint con datos extraídos de Azure Boards y GitHub Projects
+- Ser dueño del dashboard de delivery health en Azure Workbooks y mantenerlo enlazado desde el `README.md` del repositorio
+- Detectar burnout, conflicto y riesgo de attrition usando señales SPACE semanales
+- Asociarse con el Technical Lead en staffing, escaleras de carrera y brechas de habilidades
+- Operar el agente Delivery Pulse y los prompts `/pulse`, `/one-on-one`, `/retro`, `/staff-ops`
 
 ## Jobs to be done
 
-1. As an Engineering Manager, I want a weekly DORA scorecard auto-generated from GitHub Actions and Azure Monitor, para que I discuss facts with my skip-level instead of anecdotes.
-2. As an Engineering Manager, I want each 1:1 agenda prefilled with the engineer's recent PRs, incidents, and learning goals, para que thirty minutes feel coached, not improvised.
-3. As an Engineering Manager, I want retro inputs aggregated from Azure Boards, GitHub Projects, and incident logs, para que the team debates patterns instead of re-listing events.
-4. As an Engineering Manager, I want attrition and burnout signals surfaced on a weekly cadence, para que I intervene before a resignation, not after.
-5. As an Engineering Manager, I want a staffing model that maps roadmap cost to current capacity, para que delivery commitments are honest.
-6. As an Engineering Manager, I want an audit trail of every people-facing AI suggestion, para que the team trusts the loop.
+1. Como Engineering Manager, quiero un scorecard DORA semanal auto-generado a partir de GitHub Actions y Azure Monitor, para que discuta hechos con mi skip-level en lugar de anécdotas.
+2. Como Engineering Manager, quiero que cada agenda de 1:1 venga prellenada con los PRs recientes del ingeniero, los incidentes y las metas de aprendizaje, para que treinta minutos se sientan coachados, no improvisados.
+3. Como Engineering Manager, quiero las entradas de retro agregadas desde Azure Boards, GitHub Projects y logs de incidentes, para que el equipo debata patrones en lugar de re-listar eventos.
+4. Como Engineering Manager, quiero que las señales de attrition y burnout afloran con cadencia semanal, para que intervenga antes de una renuncia, no después.
+5. Como Engineering Manager, quiero un modelo de staffing que mapee el costo del roadmap a la capacidad actual, para que los compromisos de entrega sean honestos.
+6. Como Engineering Manager, quiero un rastro de auditoría de cada sugerencia de IA cara a las personas, para que el equipo confíe en el loop.
 
 ## Puntos de dolor antes de la era AI-native
 
-1. **Metrics theatre**. Leadership asks for DORA, the team pastes screenshots from three different tools, and nobody trusts the number. Without a signed aggregation pipeline, each report is a new negotiation.
-2. **1:1s that drift into status**. Without a prefilled agenda tied to real artifacts, the half-hour becomes a micro-standup and the growth conversation is postponed forever.
-3. **Retros that blame individuals**. Without data, the loudest voice wins the narrative. Systemic causes are invisible.
-4. **Invisible burnout**. On-call rotations, late PR reviews, and growing rework rates are three different dashboards. The manager only connects them after someone resigns.
-5. **Staffing by intuition**. Roadmap commitments are made on gut feel for team velocity, then re-negotiated every quarter in a budget meeting.
+1. **Teatro de métricas**. El liderazgo pide DORA, el equipo pega capturas de pantalla de tres herramientas distintas, y nadie confía en el número. Sin un pipeline de agregación firmado, cada reporte es una nueva negociación.
+2. **1:1s que derivan a status**. Sin una agenda prellenada amarrada a artefactos reales, la media hora se vuelve un micro-standup y la conversación de crecimiento se pospone para siempre.
+3. **Retros que culpan a individuos**. Sin datos, la voz más fuerte gana la narrativa. Las causas sistémicas son invisibles.
+4. **Burnout invisible**. Las rotaciones de on-call, los reviews de PR tardíos y las tasas de rework crecientes son tres dashboards distintos. El manager solo los conecta después de que alguien renuncia.
+5. **Staffing por intuición**. Los compromisos de roadmap se hacen sobre el feeling de la velocidad del equipo, luego se renegocian cada trimestre en una reunión de presupuesto.
 
 ## Flujo diario AI-native
 
-The Engineering Manager operates a weekly and daily loop. El loop usa primitivas de GitHub Copilot inside Visual Studio Code, Claude Code at the terminal for report generation, and the M365 Agents SDK on Microsoft Teams for 1:1 surfacing.
+El Engineering Manager opera un loop semanal y diario. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code, Claude Code en la terminal para generación de reportes, y el M365 Agents SDK en Microsoft Teams para surface de 1:1.
 
 ### Setup de la mañana
 
-1. Open Visual Studio Code on the `eng-ops` repository. GitHub Copilot Chat carga the scoped `.github/instructions/management.instructions.md`.
-2. Invoke `/pulse` to refresh the DORA and SPACE dashboards. The Delivery Pulse agent calls the GitHub MCP for Actions runs and the Azure MCP for Application Insights and Azure Monitor queries.
-3. Read the Teams channel where the M365 Agents SDK posts the overnight anomalies (flaky test spikes, change failure rate regressions, stalled PRs).
+1. Abrir Visual Studio Code en el repositorio `eng-ops`. GitHub Copilot Chat carga las instrucciones con alcance `.github/instructions/management.instructions.md`.
+2. Invocar `/pulse` para refrescar los dashboards DORA y SPACE. El agente Delivery Pulse llama al MCP de GitHub para corridas de Actions y al MCP de Azure para consultas de Application Insights y Azure Monitor.
+3. Leer el canal de Teams donde el M365 Agents SDK publica las anomalías nocturnas (picos de pruebas flaky, regresiones de change failure rate, PRs estancados).
 
 ### Ejecución al mediodía
 
-1. Run two or three 1:1s. Each 1:1 opens with an agenda prefilled by `/one-on-one <engineer>`, which pulls the engineer's merged PRs, incident involvement, and ticket participation from the GitHub MCP and Azure DevOps MCP.
-2. Review the Azure Boards risk register with the Project Manager. Any item tagged `delivery-risk` gets a linked workbook view from Azure Monitor.
-3. Run `/staff-ops` to evaluate capacity versus the next two sprints of committed work. The agent returns a gap analysis with named risks, never promises.
+1. Correr dos o tres 1:1s. Cada 1:1 abre con una agenda prellenada por `/one-on-one <engineer>`, que extrae los PRs fusionados del ingeniero, su involucramiento en incidentes y participación en tickets desde el MCP de GitHub y el MCP de Azure DevOps.
+2. Revisar el registro de riesgos de Azure Boards con el Project Manager. Cualquier ítem etiquetado `delivery-risk` recibe una vista enlazada de workbook desde Azure Monitor.
+3. Correr `/staff-ops` para evaluar capacidad versus los próximos dos sprints de trabajo comprometido. El agente devuelve un análisis de brechas con riesgos nombrados, nunca promesas.
 
 ### Revisión al final de la tarde
 
-1. Lead a retro for un agente of the teams using `/retro`. The ingests sprint data from Azure Boards and GitHub Projects and produces a structured brief: what worked, what stalled, systemic causes, proposed experiments.
-2. Update the delivery-health dashboard in Azure Workbooks. Commit the query changes. GitHub Actions publishes the updated workbook.
-3. Close the day by posting the daily pulse summary to the leadership Teams channel via the M365 Agents SDK.
+1. Liderar una retro para uno de los equipos usando `/retro`. El agente ingiere datos de sprint desde Azure Boards y GitHub Projects y produce un brief estructurado: qué funcionó, qué se atascó, causas sistémicas, experimentos propuestos.
+2. Actualizar el dashboard de delivery health en Azure Workbooks. Hacer commit de los cambios de queries. GitHub Actions publica el workbook actualizado.
+3. Cerrar el día publicando el resumen diario de pulse al canal de liderazgo en Teams a través del M365 Agents SDK.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Archivo | Propósito |
-|-------|------|---------|
-| `delivery-pulse` | `.github/agents/delivery-pulse.agent.md` | Aggregate DORA and SPACE signals, draft 1:1 agendas, facilitate retros, produce staffing recommendations |
+|--------|---------|-----------|
+| `delivery-pulse` | `.github/agents/delivery-pulse.agent.md` | Agregar señales DORA y SPACE, redactar agendas de 1:1, facilitar retros, producir recomendaciones de staffing |
 
-The Delivery Pulse agent uses `claude-sonnet-4-6` by default, with tools `read`, `search`, `grep`, `bash`, and access to GitHub, Azure, Azure DevOps, and Microsoft 365 Agents SDK MCPs. Extended thinking is enabled for staffing analyses where multi-hop reasoning over capacity and skill data is required.
+El agente Delivery Pulse usa `claude-sonnet-4-6` por defecto, con herramientas `read`, `search`, `grep`, `bash`, y acceso a los MCPs de GitHub, Azure, Azure DevOps y Microsoft 365 Agents SDK. El extended thinking se habilita para análisis de staffing donde se requiere razonamiento multi-salto sobre datos de capacidad y habilidades.
 
 ### Slash prompts
 
 | Comando | Archivo | Propósito |
-|---------|------|---------|
-| `/pulse` | `.github/prompts/pulse.prompt.md` | Refresh DORA and SPACE dashboards, flag anomalies |
-| `/one-on-one` | `.github/prompts/one-on-one.prompt.md` | Generate a 1:1 agenda from recent artifacts and rolling goals |
-| `/retro` | `.github/prompts/retro.prompt.md` | Produce a retrospective brief with systemic-cause hypotheses |
-| `/staff-ops` | `.github/prompts/staff-ops.prompt.md` | Capacity and skill-gap analysis for upcoming sprints |
+|---------|---------|-----------|
+| `/pulse` | `.github/prompts/pulse.prompt.md` | Refrescar dashboards DORA y SPACE, marcar anomalías |
+| `/one-on-one` | `.github/prompts/one-on-one.prompt.md` | Generar una agenda de 1:1 a partir de artefactos recientes y metas rodantes |
+| `/retro` | `.github/prompts/retro.prompt.md` | Producir un brief de retrospectiva con hipótesis de causa sistémica |
+| `/staff-ops` | `.github/prompts/staff-ops.prompt.md` | Análisis de capacidad y brecha de habilidades para los próximos sprints |
 
 ### Instrucciones con alcance
 
-El alcance `applyTo` reduce el costo de tokens and keeps people-facing content distinct from code review guidance.
+El `applyTo` con alcance reduce el costo en tokens y mantiene el contenido cara a las personas distinto de la guía de code review.
 
 | Alcance (`applyTo`) | Archivo | Propósito |
-|-------------------|------|---------|
-| `eng-ops/dora/**` | `.github/instructions/dora.instructions.md` | DORA aggregation rules, anomaly thresholds |
-| `eng-ops/one-on-ones/**` | `.github/instructions/one-on-ones.instructions.md` | 1:1 tone, confidentiality boundaries, never suggest performance verdicts |
-| `eng-ops/retros/**` | `.github/instructions/retros.instructions.md` | Retro structure, systemic-cause over individual blame |
+|---------------------|---------|-----------|
+| `eng-ops/dora/**` | `.github/instructions/dora.instructions.md` | Reglas de agregación DORA, umbrales de anomalía |
+| `eng-ops/one-on-ones/**` | `.github/instructions/one-on-ones.instructions.md` | Tono de 1:1, fronteras de confidencialidad, nunca sugerir veredictos de desempeño |
+| `eng-ops/retros/**` | `.github/instructions/retros.instructions.md` | Estructura de retro, causa sistémica sobre culpa individual |
 
 ### Hooks
 
-Hooks are zero-token governance for management artifacts.
+Los hooks son gobierno de cero tokens para artefactos de management.
 
-- `pre-commit`: redact engineer names from retro drafts before they are committed to a shared branch
-- `post-commit`: regenerate the delivery-health dashboard JSON when DORA queries change
-- `pre-push`: validate that every staffing recommendation cites a capacity query, never a hunch
+- `pre-commit`: redactar nombres de ingenieros de los borradores de retro antes de que se hagan commit a una rama compartida
+- `post-commit`: regenerar el JSON del dashboard de delivery health cuando cambian las queries DORA
+- `pre-push`: validar que cada recomendación de staffing cite una query de capacidad, nunca una corazonada
 
 ## MCPs validados
 
-Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+Cada MCP a continuación está registrado en el catálogo de MCP. No referenciar ningún MCP que no esté en el catálogo.
 
-| MCP | Status | Use in this persona |
+| MCP | Estado | Uso en esta persona |
 |-----|--------|---------------------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | Read PRs, Actions runs, Projects boards; draft 1:1 agendas from recent contributions |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | Query Azure Monitor and Application Insights for deployment and incident metrics |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | Leer work items de Azure Boards, iterations, and risk register entries |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Ground management guidance in current Microsoft Learn and GitHub Docs |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Post pulse summaries and 1:1 agendas into Microsoft Teams channels |
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Leer PRs, corridas de Actions, tableros de Projects; redactar agendas de 1:1 a partir de contribuciones recientes |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Oficial (Microsoft) | Consultar Azure Monitor y Application Insights por métricas de despliegue e incidentes |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Oficial (Microsoft) | Leer work items, iteraciones y entradas de registro de riesgos en Azure Boards |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Anclar la guía de management en Microsoft Learn y GitHub Docs vigentes |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Oficial (Microsoft) | Publicar resúmenes de pulse y agendas de 1:1 en canales de Microsoft Teams |
 
 ## Ejemplos reales
 
-### Example 1: weekly DORA pulse
+### Ejemplo 1: pulse semanal de DORA
 
-**Entrada**: The Monday pulse is due at 09:00. The team merged 42 PRs last week, with two rollbacks.
+**Entrada**: El pulse del lunes vence a las 09:00. El equipo fusionó 42 PRs la semana pasada, con dos rollbacks.
 
 **Invocación**: `/pulse`.
 
 **Salida esperada**:
 
-1. A generated `eng-ops/dora/2026-W17.md` with the four DORA metrics, trend arrows, and a link to each underlying query in Azure Monitor.
-2. A Teams post via the Microsoft 365 Agents SDK summarizing the scorecard and flagging the change failure rate regression.
-3. An Azure Boards work item opened automatically for the regression, assigned to the on-call Technical Lead for investigation.
+1. Un `eng-ops/dora/2026-W17.md` generado con las cuatro métricas DORA, flechas de tendencia y un enlace a cada query subyacente en Azure Monitor.
+2. Una publicación en Teams vía el Microsoft 365 Agents SDK que resume el scorecard y marca la regresión de change failure rate.
+3. Un work item de Azure Boards abierto automáticamente para la regresión, asignado al Technical Lead de on-call para investigación.
 
-### Example 2: 1:1 agenda for a senior engineer
+### Ejemplo 2: agenda de 1:1 para una ingeniera senior
 
-**Entrada**: A 1:1 with a senior engineer is scheduled for 14:00. The engineer shipped three PRs last week and was paged twice on-call.
+**Entrada**: Un 1:1 con una ingeniera senior está agendado para las 14:00. La ingeniera envió tres PRs la semana pasada y fue paginada dos veces en on-call.
 
 **Invocación**: `/one-on-one priya.nair`.
 
 **Salida esperada**:
 
-1. A rolling agenda in `eng-ops/one-on-ones/priya.nair/2026-04-24.md` with three sections: career goals, recent work highlights (linked PRs and incidents), blockers.
-2. A private draft surfaced only to the Engineering Manager in Teams, never auto-shared.
-3. A follow-up todo list that carries forward any unresolved item from the previous 1:1.
+1. Una agenda rodante en `eng-ops/one-on-ones/priya.nair/2026-04-24.md` con tres secciones: metas de carrera, highlights de trabajo reciente (PRs e incidentes enlazados), bloqueadores.
+2. Un borrador privado surfaceado solo al Engineering Manager en Teams, nunca auto-compartido.
+3. Una lista de todos de seguimiento que arrastra cualquier ítem sin resolver del 1:1 anterior.
 
 ## Anti-patrones
 
-1. **Turning 1:1 data into performance evidence**. The 1:1 agenda is a conversation scaffold, not an audit trail. Mitigación: the `one-on-ones.instructions.md` forbids verdict phrasing and requires opt-in sharing.
-2. **Running DORA without the engineers seeing it first**. Metrics weaponized in leadership decks before the team sees them kill trust. Mitigación: the pulse posts to the team channel before the leadership channel.
-3. **Retros that name individuals**. Blaming people is a management failure. Mitigación: the Delivery Pulse agent rewrites any individual-blame phrasing into systemic-cause phrasing.
-4. **Staffing models that hide assumptions**. Capacity divided by story points is a lie. Mitigación: `/staff-ops` returns explicit assumptions and flags each one.
-5. **Dashboards that never drive action**. A workbook nobody reads is noise. Mitigación: every anomaly on the pulse opens an Azure Boards work item with an owner.
+1. **Convertir los datos del 1:1 en evidencia de desempeño**. La agenda del 1:1 es un andamio de conversación, no un rastro de auditoría. Mitigación: el `one-on-ones.instructions.md` prohíbe el fraseo de veredicto y requiere compartir con opt-in.
+2. **Correr DORA sin que los ingenieros lo vean primero**. Las métricas convertidas en arma en mazos de liderazgo antes de que el equipo las vea matan la confianza. Mitigación: el pulse publica al canal del equipo antes que al canal de liderazgo.
+3. **Retros que nombran individuos**. Culpar a personas es una falla de management. Mitigación: el agente Delivery Pulse reescribe cualquier fraseo de culpa individual a fraseo de causa sistémica.
+4. **Modelos de staffing que esconden supuestos**. Capacidad dividida por story points es una mentira. Mitigación: `/staff-ops` devuelve supuestos explícitos y marca cada uno.
+5. **Dashboards que nunca llevan a acción**. Un workbook que nadie lee es ruido. Mitigación: cada anomalía del pulse abre un work item de Azure Boards con un dueño.
 
 ## KPIs y métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Medición |
-|--------|-------------------|------------------|-------------|
-| Weekly DORA scorecard delivery | Ad hoc | Every Monday 09:00 | GitHub Actions schedule |
-| 1:1 prep time per engineer | 20 minutes | Under 5 minutes | Time-to-agenda log |
-| Retro systemic-cause rate | Under 30 percent | Over 70 percent | Retro label audit |
-| Attrition early warning lead time | 0 days | Over 30 days | Pulse anomaly history |
-| Staffing commitment accuracy | Plus or minus 40 percent | Plus or minus 10 percent | Roadmap versus actual delivery |
-| Manager token efficiency | N/A | Under 200k tokens per week | Copilot usage report |
+| Métrica | Línea base (manual) | Meta (agéntica) | Medición |
+|---------|---------------------|-----------------|----------|
+| Entrega del scorecard DORA semanal | Ad hoc | Cada lunes 09:00 | Programación de GitHub Actions |
+| Tiempo de prep de 1:1 por ingeniero | 20 minutos | Bajo 5 minutos | Log de tiempo a agenda |
+| Tasa de causa sistémica en retro | Bajo 30 por ciento | Sobre 70 por ciento | Auditoría de etiquetas de retro |
+| Lead time de alerta temprana de attrition | 0 días | Sobre 30 días | Historial de anomalías de pulse |
+| Precisión de compromiso de staffing | Más o menos 40 por ciento | Más o menos 10 por ciento | Roadmap versus entrega real |
+| Eficiencia en tokens del manager | N/A | Bajo 200k tokens por semana | Reporte de uso de Copilot |
 
 ## Madurez en cuatro niveles
 
 | Nivel | Nombre | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Spreadsheet DORA, improvised 1:1s, retros run from memory |
-| L2 | Asistido | GitHub Copilot Chat for drafting, no agent, dashboards in one tool only |
-| L3 | Aumentado | Delivery Pulse agent, cuatro slash prompts, instrucciones con alcance, DORA dashboard in Azure Workbooks |
-| L4 | Agentic | Full primitives kit, hooks enforced, M365 Agents SDK surfacing in Teams, attrition and burnout anomaly detection on a weekly cadence, maturity scorecard above 80 percent |
+|-------|--------|------------|
+| L1 | Manual | DORA en hoja de cálculo, 1:1s improvisados, retros corridas de memoria |
+| L2 | Asistido | GitHub Copilot Chat para redactar, sin agente, dashboards en una sola herramienta |
+| L3 | Aumentado | Agente Delivery Pulse, cuatro slash prompts, instrucciones con alcance, dashboard DORA en Azure Workbooks |
+| L4 | Agéntico | Kit completo de primitivas, hooks forzados, surface del M365 Agents SDK en Teams, detección de anomalías de attrition y burnout con cadencia semanal, scorecard de madurez sobre 80 por ciento |
 
 ## Integración con otras personas
 
-- **With Technical Lead**: shared staffing model, paired review of architecture-health indicators
-- **With Scrum Master**: retro facilitation, sprint flow diagnostics from Azure Boards
-- **With Project Manager**: risk register reconciliation, stakeholder reporting cadence
-- **With SRE**: on-call load and incident toil feed into burnout signals
-- **With Product Owner**: roadmap feasibility review against capacity
-- **With InfoSec Officer**: people-risk signals (access review, separation-of-duties) surfaced in the pulse
-- **With DevRel**: external contribution trends influence hiring signals
+- **Con Technical Lead**: modelo de staffing compartido, revisión emparejada de indicadores de salud arquitectónica
+- **Con Scrum Master**: facilitación de retro, diagnósticos de flujo de sprint desde Azure Boards
+- **Con Project Manager**: reconciliación del registro de riesgos, cadencia de reporte a stakeholders
+- **Con SRE**: carga de on-call y toil de incidentes alimentan señales de burnout
+- **Con Product Owner**: revisión de factibilidad del roadmap contra capacidad
+- **Con InfoSec Officer**: señales de people-risk (review de accesos, separación de funciones) afloran en el pulse
+- **Con DevRel**: tendencias de contribución externa influyen en señales de hiring
 
 ## Glosario
 
-- **DORA metrics**: the four key delivery metrics defined by the DORA research program: lead time, deployment frequency, change failure rate, mean time to restore.
-- **SPACE framework**: a productivity model covering Satisfaction, Performance, Activity, Communication, Efficiency.
-- **Pulse**: the weekly rollup artifact that combines DORA, SPACE, and anomaly signals.
-- **Delivery health dashboard**: the Azure Workbooks view linked from the repo `README.md` that makes the team's flow public.
-- **Attrition early warning**: a composite signal derived from on-call load, rework rate, and PR latency that indicates elevated resignation risk.
-- **Staffing model**: a capacity-versus-commitment projection that makes assumptions explicit.
+- **Métricas DORA**: las cuatro métricas clave de entrega definidas por el programa de investigación DORA: lead time, deployment frequency, change failure rate, mean time to restore.
+- **Marco SPACE**: un modelo de productividad que cubre Satisfaction, Performance, Activity, Communication, Efficiency.
+- **Pulse**: el artefacto rollup semanal que combina DORA, SPACE y señales de anomalía.
+- **Dashboard de delivery health**: la vista de Azure Workbooks enlazada desde el `README.md` del repo que hace público el flujo del equipo.
+- **Alerta temprana de attrition**: una señal compuesta derivada de carga de on-call, tasa de rework y latencia de PR que indica riesgo elevado de renuncia.
+- **Modelo de staffing**: una proyección de capacidad versus compromiso que hace explícitos los supuestos.
 
 ## Referencias
 
-- [DORA metrics research](https://dora.dev/research/) — the empirical foundation behind four key metrics for software delivery
-- [SPACE framework, Microsoft Research](https://dl.acm.org/doi/10.1145/3454122.3464933) — developer productivity dimensions beyond velocity
-- [Azure Monitor workbooks documentation](https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview) — build delivery-health dashboards on Azure telemetry
-- [GitHub Actions metrics and insights](https://docs.github.com/actions) — authoritative source for deployment and workflow telemetry
-- [Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — the SDK for building agents that post into Teams and other M365 surfaces
+- [DORA metrics research](https://dora.dev/research/) — la fundación empírica detrás de las cuatro métricas clave para entrega de software
+- [SPACE framework, Microsoft Research](https://dl.acm.org/doi/10.1145/3454122.3464933) — dimensiones de productividad de developer más allá de la velocity
+- [Azure Monitor workbooks documentation](https://learn.microsoft.com/azure/azure-monitor/visualize/workbooks-overview) — construir dashboards de delivery health sobre telemetría de Azure
+- [GitHub Actions metrics and insights](https://docs.github.com/actions) — fuente autoritativa para telemetría de despliegue y workflow
+- [Microsoft 365 Agents SDK](https://learn.microsoft.com/microsoft-365/agents-sdk/) — el SDK para construir agentes que publican en Teams y otras superficies de M365
