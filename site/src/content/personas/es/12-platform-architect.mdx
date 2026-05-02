@@ -10,215 +10,215 @@ order: 12
 updated: "2026-04-24"
 ---
 
-> The Platform Architect es la persona que designs the paved roads every team walks on. En un SDLC AI-native, el Platform Architect opera un stack de primitivas validadas, not a wiki full of aspirational diagrams.
+> El Platform Architect es la persona que diseña los caminos pavimentados por los que cada equipo camina. En un SDLC AI-native, el Platform Architect opera un stack de primitivas validadas, no una wiki llena de diagramas aspiracionales.
 
 ## Resumen ejecutivo
 
-The Platform Architect owns the Internal Developer Platform: the golden path templates, the capability matrix, and the architectural decision records that shape how every team builds. En un SDLC AI-native, el Platform Architect opera dentro de la fase de Platform phase con un conjunto fijo de primitivas: un agente platform, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema, and una lista curada de MCPs validados. The platform is delivered as a Backstage-style catalog backed by Azure DevOps and GitHub Enterprise, with Bicep-based service templates, GitHub reusable workflows, and Azure Policy initiatives. The primary outputs are template repositories, capability matrices, ADRs, and a measurable developer experience.
+El Platform Architect es dueño de la Internal Developer Platform: las plantillas del golden path, la matriz de capacidades y los registros de decisiones arquitectónicas que dan forma a cómo construye cada equipo. En un SDLC AI-native, el Platform Architect opera dentro de la fase de Platform con un conjunto fijo de primitivas: un agente de plataforma, cuatro slash prompts, instrucciones con alcance, hooks validados por esquema y una lista curada de MCPs validados. La plataforma se entrega como un catálogo estilo Backstage respaldado por Azure DevOps y GitHub Enterprise, con plantillas de servicio basadas en Bicep, workflows reutilizables de GitHub y iniciativas de Azure Policy. Las salidas principales son repositorios de plantillas, matrices de capacidades, ADRs y una experiencia de developer medible.
 
 ## Rol y responsabilidades
 
-Piense en el Platform Architect like a city planner. The planner does not build the buildings; the planner defines the streets, utilities, zoning, and building codes that allow thousands of builders to work in parallel without the city collapsing. The planner's success is measured not by the number of buildings they designed, but by the time it takes a new builder to break ground with confidence. En un SDLC AI-native, el city is the Internal Developer Platform, the streets are GitHub Actions reusable workflows, the utilities are Azure shared services, and the zoning is Azure Policy.
+Piense en el Platform Architect como un urbanista. El urbanista no construye los edificios; el urbanista define las calles, los servicios públicos, la zonificación y los códigos de construcción que permiten a miles de constructores trabajar en paralelo sin que la ciudad colapse. El éxito del urbanista no se mide por el número de edificios que diseñó, sino por el tiempo que toma a un nuevo constructor empezar a construir con confianza. En un SDLC AI-native, la ciudad es la Internal Developer Platform, las calles son workflows reutilizables de GitHub Actions, los servicios públicos son servicios compartidos de Azure y la zonificación es Azure Policy.
 
 Responsabilidades principales:
 
-- Define and maintain the golden path templates for every service archetype (API, worker, front-end, data pipeline)
-- Operate the Backstage-style catalog backed by Azure DevOps and GitHub Enterprise
-- Author and govern architectural decision records in a central ADR repo
-- Maintain the capability matrix that maps business domains to platform primitives
-- Set the policy initiative in Azure Policy that applies to every subscription in scope
-- Sponsor the validated MCP catalog and the agent governance model
-- Operate the Path Keeper agent and the `/golden-path`, `/template-new`, `/adr-platform`, `/capability-matrix` prompts
+- Definir y mantener las plantillas de golden path para cada arquetipo de servicio (API, worker, front-end, pipeline de datos)
+- Operar el catálogo estilo Backstage respaldado por Azure DevOps y GitHub Enterprise
+- Autorar y gobernar registros de decisiones arquitectónicas en un repo central de ADRs
+- Mantener la matriz de capacidades que mapea dominios de negocio a primitivas de plataforma
+- Establecer la iniciativa de policy en Azure Policy que aplica a cada suscripción dentro del alcance
+- Patrocinar el catálogo de MCPs validados y el modelo de gobernanza de agentes
+- Operar el agente Path Keeper y los prompts `/golden-path`, `/template-new`, `/adr-platform`, `/capability-matrix`
 
 ## Jobs to be done
 
-1. Como Platform Architect, quiero a new service repo created from a golden path template in minutes, para que teams start on the paved road.
-2. Como Platform Architect, quiero every service to declare its capabilities in a machine-readable matrix, para que platform evolution is data-driven.
-3. Como Platform Architect, quiero ADRs to be drafted from design conversations, para que the decision record is never skipped.
-4. Como Platform Architect, quiero templates versioned and rolled forward via automated PRs, para que the paved road stays paved.
-5. Como Platform Architect, quiero platform usage telemetry to flow into Application Insights, para que unused capabilities are retired, not accumulated.
-6. Como Platform Architect, quiero the MCP catalog to be enforced at commit time, para que teams cannot install rogue MCPs.
+1. Como Platform Architect, quiero que un nuevo repo de servicio se cree desde una plantilla golden path en minutos, para que los equipos arranquen en el camino pavimentado.
+2. Como Platform Architect, quiero que cada servicio declare sus capacidades en una matriz legible por máquina, para que la evolución de la plataforma sea data-driven.
+3. Como Platform Architect, quiero que los ADRs se redacten desde conversaciones de diseño, para que el registro de decisión nunca se omita.
+4. Como Platform Architect, quiero plantillas versionadas y propagadas vía PRs automatizados, para que el camino pavimentado se mantenga pavimentado.
+5. Como Platform Architect, quiero que la telemetría de uso de la plataforma fluya hacia Application Insights, para que las capacidades no usadas se retiren, no se acumulen.
+6. Como Platform Architect, quiero que el catálogo de MCPs se aplique en commit time, para que los equipos no puedan instalar MCPs no autorizados.
 
 ## Puntos de dolor antes de la era AI-native
 
-1. **Templates rot**. The scaffolding repo has not been updated in 14 months. New services start on the old road.
-2. **ADRs are optional**. Decisions are made in calls, documented later, or not at all. Context evaporates in six months.
-3. **Capability matrix is a spreadsheet**. Nobody updates it; nobody trusts it.
-4. **Policy sprawl**. Each subscription grows its own Azure Policy definitions. Compliance reports are contradictory.
-5. **MCP free-for-all**. Every team installs the MCP of the week. Supply-chain surface area explodes.
+1. **Las plantillas se pudren**. El repo de scaffolding no se ha actualizado en 14 meses. Los nuevos servicios arrancan en el camino viejo.
+2. **Los ADRs son opcionales**. Las decisiones se toman en llamadas, se documentan después o nunca. El contexto se evapora en seis meses.
+3. **La matriz de capacidades es una hoja de cálculo**. Nadie la actualiza; nadie confía en ella.
+4. **Sprawl de policy**. Cada suscripción crece sus propias definiciones de Azure Policy. Los reportes de cumplimiento son contradictorios.
+5. **MCP a libre demanda**. Cada equipo instala el MCP de la semana. La superficie de ataque de cadena de suministro explota.
 
 ## Flujo diario AI-native
 
-The Platform Architect operates a fixed loop each day. El loop usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, además de un pequeño catálogo de MCPs validados para contexto externo.
+El Platform Architect opera un ciclo fijo cada día. El ciclo usa primitivas de GitHub Copilot dentro de Visual Studio Code y Claude Code en la terminal, más un pequeño catálogo de MCPs validados para contexto externo.
 
 ### Setup de la mañana
 
-1. Open the platform monorepo in Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` and the scoped `.github/instructions/*.instructions.md` for templates and ADRs.
-2. In Claude Code, run a daily report that queries the GitHub MCP for template usage, template drift PRs, and ADR review queue.
-3. Review the capability matrix for any service that fell out of compliance overnight (driven by Azure Policy and GitHub Advanced Security).
-4. Triage the inbound template requests in Azure Boards.
+1. Abrir el monorepo de plataforma en Visual Studio Code. GitHub Copilot Chat carga `AGENTS.md` y los `.github/instructions/*.instructions.md` con alcance para plantillas y ADRs.
+2. En Claude Code, ejecutar un reporte diario que consulta el GitHub MCP por uso de plantillas, PRs de drift de plantilla y la cola de revisión de ADRs.
+3. Revisar la matriz de capacidades por cualquier servicio que cayó fuera de cumplimiento durante la noche (impulsado por Azure Policy y GitHub Advanced Security).
+4. Hacer triage de los pedidos entrantes de plantilla en Azure Boards.
 
 ### Ejecución al mediodía
 
-Each midday cycle is a single platform change, typically 2 to 4 hours of focused work.
+Cada ciclo de mediodía es un único cambio de plataforma, típicamente 2 a 4 horas de trabajo enfocado.
 
-1. **Golden path**. Invoke `/golden-path` with an archetype (API, worker, front-end, data). The Path Keeper agent composes the template from Bicep modules, GitHub reusable workflows, and the validated MCP catalog.
-2. **Template change**. Invoke `/template-new` to version the template, open a rollout PR fleet across consuming repos, and attach a migration guide.
-3. **ADR**. Invoke `/adr-platform` to draft an ADR from the design meeting transcript. The agent fills the EARS constraints, the options considered, and the decision rationale.
-4. **Capability matrix**. Invoke `/capability-matrix` to refresh the domain-to-primitive map from the service catalog index.
-5. **Pull request**. The PR description is composed from the ADR and the template diff. GitHub Copilot Code Review scans for policy drift.
+1. **Golden path**. Invocar `/golden-path` con un arquetipo (API, worker, front-end, datos). El agente Path Keeper compone la plantilla desde módulos Bicep, workflows reutilizables de GitHub y el catálogo de MCPs validados.
+2. **Cambio de plantilla**. Invocar `/template-new` para versionar la plantilla, abrir una flota de PRs de rollout entre repos consumidores y adjuntar una guía de migración.
+3. **ADR**. Invocar `/adr-platform` para redactar un ADR desde la transcripción de la reunión de diseño. El agente llena las restricciones EARS, las opciones consideradas y la justificación de la decisión.
+4. **Matriz de capacidades**. Invocar `/capability-matrix` para refrescar el mapa dominio-a-primitiva desde el índice del catálogo de servicios.
+5. **Pull request**. La descripción del PR se compone desde el ADR y el diff de la plantilla. GitHub Copilot Code Review escanea por drift de policy.
 
-### Afternoon governance
+### Gobernanza en la tarde
 
-1. Run a weekly template drift report in Azure Monitor. Services more than two minor versions behind are flagged.
-2. Publish the capability matrix snapshot to the Microsoft 365 SharePoint site for the platform review meeting.
-3. Hand off infrastructure changes to the DevOps Engineer; hand off security posture changes to the InfoSec Officer.
+1. Ejecutar un reporte semanal de drift de plantillas en Azure Monitor. Servicios con más de dos versiones menores de retraso se marcan.
+2. Publicar el snapshot de la matriz de capacidades en el sitio de Microsoft 365 SharePoint para la reunión de revisión de plataforma.
+3. Hacer hand-off de cambios de infraestructura al DevOps Engineer; hand-off de cambios de postura de seguridad al InfoSec Officer.
 
 ## Primitivas recomendadas
 
-### Agents
+### Agentes
 
 | Agente | Archivo | Propósito |
-|-------|------|---------|
-| `path-keeper` | `.github/agents/path-keeper.agent.md` | Author golden paths, govern templates, draft ADRs, maintain the capability matrix |
+|--------|---------|-----------|
+| `path-keeper` | `.github/agents/path-keeper.agent.md` | Autorar golden paths, gobernar plantillas, redactar ADRs, mantener la matriz de capacidades |
 
-The Path Keeper agent uses `claude-sonnet-4-6` by default. It holds tools `read`, `edit`, `search`, `grep`, `glob`, `bash`, and MCP bindings to GitHub MCP Server and Azure DevOps MCP Server for catalog traversal.
+El agente Path Keeper usa `claude-sonnet-4-6` por defecto. Tiene herramientas `read`, `edit`, `search`, `grep`, `glob`, `bash` y bindings MCP a GitHub MCP Server y Azure DevOps MCP Server para recorrer el catálogo.
 
 ### Prompts
 
 | Comando | Archivo | Propósito |
-|---------|------|---------|
-| `/golden-path` | `.github/prompts/golden-path.prompt.md` | Compose a new golden path template for a service archetype |
-| `/template-new` | `.github/prompts/template-new.prompt.md` | Version a template and open the rollout PR fleet |
-| `/adr-platform` | `.github/prompts/adr-platform.prompt.md` | Draft an ADR from a design meeting transcript or specification |
-| `/capability-matrix` | `.github/prompts/capability-matrix.prompt.md` | Refresh the domain-to-primitive capability matrix |
+|---------|---------|-----------|
+| `/golden-path` | `.github/prompts/golden-path.prompt.md` | Componer una nueva plantilla golden path para un arquetipo de servicio |
+| `/template-new` | `.github/prompts/template-new.prompt.md` | Versionar una plantilla y abrir la flota de PRs de rollout |
+| `/adr-platform` | `.github/prompts/adr-platform.prompt.md` | Redactar un ADR desde una transcripción de reunión de diseño o especificación |
+| `/capability-matrix` | `.github/prompts/capability-matrix.prompt.md` | Refrescar la matriz de capacidades dominio-a-primitiva |
 
 ### Instructions
 
-El alcance `applyTo` reduce el costo de tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
+El `applyTo` con alcance reduce el costo de tokens en aproximadamente 68 por ciento comparado con instrucciones globales.
 
 | Alcance (`applyTo`) | Archivo | Propósito |
-|-------------------|------|---------|
-| `templates/**/*` | `.github/instructions/templates.instructions.md` | Template parameter schema, README structure, upgrade path |
-| `adr/**/*.md` | `.github/instructions/adr.instructions.md` | ADR format: context, options, decision, consequences |
-| `catalog/**/*.yaml` | `.github/instructions/catalog.instructions.md` | Catalog schema, ownership, lifecycle |
+|---------------------|---------|-----------|
+| `templates/**/*` | `.github/instructions/templates.instructions.md` | Esquema de parámetros de plantilla, estructura del README, ruta de upgrade |
+| `adr/**/*.md` | `.github/instructions/adr.instructions.md` | Formato ADR: contexto, opciones, decisión, consecuencias |
+| `catalog/**/*.yaml` | `.github/instructions/catalog.instructions.md` | Esquema del catálogo, ownership, ciclo de vida |
 
 ### Skills
 
-Skills are lazy-loaded, so the Platform Architect can install many and pay tokens only for the ones that trigger.
+Los skills se cargan de forma perezosa, así que el Platform Architect puede instalar muchos y pagar tokens solo por los que se disparan.
 
-- `template-drift-scan`: calls GitHub MCP to list consuming repos still on old template versions
-- `mcp-catalog-enforcer`: refuses PRs that add MCPs not present in the validated catalog
+- `template-drift-scan`: llama al GitHub MCP para listar repos consumidores que aún están en versiones viejas de plantilla
+- `mcp-catalog-enforcer`: rechaza PRs que añaden MCPs no presentes en el catálogo validado
 
 ### Hooks
 
 Los hooks cuestan cero tokens de LLM. Son la capa de gobernanza más fuerte.
 
-- `pre-commit`: validate template parameter schema and ADR front matter
-- `pre-merge`: verify template version bump and migration guide on any template change
-- `post-merge`: open rollout PRs across consuming repos via the GitHub MCP
+- `pre-commit`: validar el esquema de parámetros de plantilla y el front matter del ADR
+- `pre-merge`: verificar el bump de versión de plantilla y la guía de migración en cualquier cambio de plantilla
+- `post-merge`: abrir PRs de rollout en repos consumidores vía el GitHub MCP
 
 ## MCPs validados
 
-Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+Cada MCP a continuación está registrado en el catálogo de MCPs. No referencie ningún MCP que no esté en el catálogo.
 
-| MCP | Status | Use in this persona |
+| MCP | Estado | Uso en esta persona |
 |-----|--------|---------------------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | Catalog traversal, template rollout PRs, usage telemetry |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | Read intake tickets, update Azure Boards, manage pipeline templates |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | Query Azure Policy initiatives and resource group inventories |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Fetch Azure Well-Architected Framework and Azure reference guidance during ADR drafting |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Publish capability matrix snapshots and ADR notifications into Teams and SharePoint |
-| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Official (Microsoft) | Validate that golden path templates bootstrap working end-to-end smoke tests |
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Recorrido del catálogo, PRs de rollout de plantilla, telemetría de uso |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Oficial (Microsoft) | Leer tickets de intake, actualizar Azure Boards, gestionar plantillas de pipeline |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Oficial (Microsoft) | Consultar iniciativas de Azure Policy e inventarios de resource group |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Consultar el Azure Well-Architected Framework y guía de referencia de Azure durante la redacción de ADRs |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Oficial (Microsoft) | Publicar snapshots de matriz de capacidades y notificaciones de ADR en Teams y SharePoint |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Oficial (Microsoft) | Validar que las plantillas golden path arrancan smoke tests end-to-end funcionales |
 
 ## Ejemplos reales
 
-### Scenario A: launch a new API golden path
+### Escenario A: lanzar un nuevo golden path de API
 
-**Entrada**: The org decides that every new internal API must use Azure API Management, Entra ID auth, and a Bicep-deployed App Service. No other archetype is allowed for internal APIs.
+**Entrada**: La organización decide que cada nueva API interna debe usar Azure API Management, autenticación con Entra ID y un App Service desplegado por Bicep. Ningún otro arquetipo está permitido para APIs internas.
 
-**Invocación**: `/golden-path` with archetype `internal-api`.
-
-**Salida esperada**:
-
-1. A template repo `template-internal-api` with Bicep module, GitHub Actions reusable workflow, Entra ID app registration skeleton, and OpenAPI scaffold.
-2. An Azure Policy initiative that denies any App Service created outside this template.
-3. An ADR `adr/0042-internal-api-golden-path.md` recording the decision, options considered, and consequences.
-4. A capability matrix update linking the `internal-api` archetype to the shared APIM instance.
-
-### Scenario B: roll forward a breaking template change
-
-**Entrada**: The org upgrades the standard .NET runtime from 8 to 9. Every service using the API golden path must upgrade.
-
-**Invocación**: `/template-new` with the template version bump.
+**Invocación**: `/golden-path` con arquetipo `internal-api`.
 
 **Salida esperada**:
 
-1. A new template version `template-internal-api@2.0.0` with the runtime bumped and a migration guide.
-2. A fleet of PRs opened by the Path Keeper agent across every consuming repo, each with the migration diff and a link to the ADR.
-3. A drift dashboard in Application Insights that shows adoption over time, published to the platform review meeting.
+1. Un repo de plantilla `template-internal-api` con módulo Bicep, workflow reutilizable de GitHub Actions, esqueleto de registro de app de Entra ID y scaffold de OpenAPI.
+2. Una iniciativa de Azure Policy que niega cualquier App Service creado fuera de esta plantilla.
+3. Un ADR `adr/0042-internal-api-golden-path.md` registrando la decisión, opciones consideradas y consecuencias.
+4. Una actualización de la matriz de capacidades enlazando el arquetipo `internal-api` con la instancia compartida de APIM.
+
+### Escenario B: propagar un cambio de plantilla con ruptura
+
+**Entrada**: La organización actualiza el runtime estándar de .NET de 8 a 9. Cada servicio que use el golden path de API debe actualizarse.
+
+**Invocación**: `/template-new` con el bump de versión de plantilla.
+
+**Salida esperada**:
+
+1. Una nueva versión de plantilla `template-internal-api@2.0.0` con el runtime actualizado y una guía de migración.
+2. Una flota de PRs abiertos por el agente Path Keeper en cada repo consumidor, cada uno con el diff de migración y un enlace al ADR.
+3. Un dashboard de drift en Application Insights que muestra adopción a lo largo del tiempo, publicado en la reunión de revisión de plataforma.
 
 ## Anti-patrones
 
-1. **Template as wiki page**. A markdown page that describes the golden path without a scaffolding engine. Mitigación: every golden path is a real template repo with parameters and tests.
-2. **ADRs written after the fact**. Decisions are documented months later, if at all. Mitigación: `/adr-platform` drafts from the design meeting transcript during the meeting.
-3. **Manual capability matrix**. A spreadsheet that nobody updates. Mitigación: `/capability-matrix` regenerates from the catalog YAML.
-4. **MCP free-for-all**. Teams install any MCP they find. Mitigación: `mcp-catalog-enforcer` skill refuses PRs that reference uncatalogued MCPs.
-5. **Policy per subscription**. Each subscription grows its own Azure Policy tree. Mitigación: a single initiative owned by the Platform Architect, assigned at the management group.
+1. **Plantilla como página de wiki**. Una página markdown que describe el golden path sin un motor de scaffolding. Mitigación: cada golden path es un repo de plantilla real con parámetros y tests.
+2. **ADRs escritos a posteriori**. Las decisiones se documentan meses después, si acaso. Mitigación: `/adr-platform` redacta desde la transcripción de la reunión de diseño durante la reunión.
+3. **Matriz de capacidades manual**. Una hoja de cálculo que nadie actualiza. Mitigación: `/capability-matrix` regenera desde el YAML del catálogo.
+4. **MCP a libre demanda**. Los equipos instalan cualquier MCP que encuentren. Mitigación: el skill `mcp-catalog-enforcer` rechaza PRs que referencian MCPs no catalogados.
+5. **Policy por suscripción**. Cada suscripción crece su propio árbol de Azure Policy. Mitigación: una sola iniciativa propiedad del Platform Architect, asignada en el management group.
 
 ## KPIs y métricas de impacto
 
-The Platform Architect persona is evaluated with a mix of platform engineering and developer experience metrics.
+La persona Platform Architect se evalúa con una mezcla de métricas de platform engineering y experiencia de developer.
 
-| Metric | Baseline (manual) | Target (agentic) | Medición |
-|--------|-------------------|------------------|-------------|
-| Time to first commit for a new service | 2 weeks | < 1 day | Time from intake to first merged PR |
-| Template adoption rate | 40 percent | > 90 percent | Percent of services on the latest golden path |
-| ADR coverage | 20 percent | > 95 percent | Percent of architecture decisions with a linked ADR |
-| Capability matrix freshness | Quarterly | Weekly | Days since last refresh |
-| Platform NPS from developers | Unknown | > 40 | Quarterly survey |
-| Policy compliance | 70 percent | > 98 percent | Azure Policy compliance score |
-| MCP catalog drift | Unmeasured | 0 uncatalogued MCPs | Repo scan |
-| Token efficiency | N/A | < 300k tokens per template version | Copilot usage report |
+| Métrica | Línea base (manual) | Meta (agéntico) | Medición |
+|---------|---------------------|-----------------|----------|
+| Tiempo al primer commit en un nuevo servicio | 2 semanas | < 1 día | Tiempo desde intake al primer PR mergeado |
+| Tasa de adopción de plantilla | 40 por ciento | > 90 por ciento | Porcentaje de servicios en el último golden path |
+| Cobertura de ADR | 20 por ciento | > 95 por ciento | Porcentaje de decisiones arquitectónicas con un ADR vinculado |
+| Frescura de la matriz de capacidades | Trimestral | Semanal | Días desde el último refresh |
+| NPS de plataforma de los developers | Desconocido | > 40 | Encuesta trimestral |
+| Cumplimiento de policy | 70 por ciento | > 98 por ciento | Score de cumplimiento de Azure Policy |
+| Drift del catálogo de MCPs | Sin medir | 0 MCPs no catalogados | Scan del repo |
+| Eficiencia de tokens | N/A | < 300k tokens por versión de plantilla | Reporte de uso de Copilot |
 
 ## Madurez en cuatro niveles
 
 | Nivel | Nombre | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Scaffolding is a wiki page, ADRs optional, policies per subscription |
-| L2 | Asistido | Template repo exists but drifts, GitHub Copilot helps draft ADRs occasionally |
-| L3 | Aumentado | One Path Keeper agent, cuatro slash prompts, instrucciones con alcance, two MCPs, template rollout automated |
-| L4 | Agentic | Full primitives kit, hooks enforced, MCP catalog enforced, capability matrix refreshed weekly, ADR coverage > 95 percent |
+|-------|--------|------------|
+| L1 | Manual | El scaffolding es una página de wiki, ADRs opcionales, policies por suscripción |
+| L2 | Asistido | Existe el repo de plantilla pero hace drift, GitHub Copilot ayuda a redactar ADRs ocasionalmente |
+| L3 | Aumentado | Un agente Path Keeper, cuatro slash prompts, instrucciones con alcance, dos MCPs, rollout de plantilla automatizado |
+| L4 | Autónomo | Kit completo de primitivas, hooks aplicados, catálogo de MCPs aplicado, matriz de capacidades refrescada semanalmente, cobertura de ADR > 95 por ciento |
 
 ## Integración con otras personas
 
-Handoffs:
+Hand-offs:
 
-- **Del Enterprise Architect**: target architecture, reference patterns, investment themes
-- **Del Software Architect**: service-level ADRs that bubble up to platform decisions
-- **Para el DevOps Engineer**: reusable workflows, Bicep modules, policy initiatives
-- **Para el Developer**: scaffolded repo, instrucciones con alcance, validated MCP catalog
-- **Para el InfoSec Officer**: policy initiative, MCP catalog, Entra ID app registration skeleton
+- **Desde el Enterprise Architect**: arquitectura objetivo, patrones de referencia, temas de inversión
+- **Desde el Software Architect**: ADRs a nivel de servicio que escalan a decisiones de plataforma
+- **Hacia el DevOps Engineer**: workflows reutilizables, módulos Bicep, iniciativas de policy
+- **Hacia el Developer**: repo scaffolded, instrucciones con alcance, catálogo de MCPs validados
+- **Hacia el InfoSec Officer**: iniciativa de policy, catálogo de MCPs, esqueleto de registro de app de Entra ID
 
 ## Glosario
 
-- **Agent**: a configured LLM role with tools, instructions, and a defined output shape.
-- **Prompt**: a reusable slash command that invokes an agent with a specific task.
-- **Instructions**: scoped guidance applied by pattern match on file paths via `applyTo`.
-- **Skill**: a lazy-loaded capability that activates on keyword match.
-- **Hook**: a zero-token rule enforced at a specific lifecycle event.
-- **MCP**: Model Context Protocol server that exposes external systems to the agent.
-- **Golden path**: the paved road every team is expected to use; deviation requires an ADR.
-- **IDP**: Internal Developer Platform; the system that makes the golden path easy to follow.
-- **ADR**: Architectural Decision Record; a dated markdown file that captures context, options, decision, consequences.
-- **Capability matrix**: a machine-readable map from business domain to platform primitive.
+- **Agente**: un rol LLM configurado con herramientas, instrucciones y una forma de salida definida.
+- **Prompt**: un slash command reutilizable que invoca a un agente con una tarea específica.
+- **Instructions**: guía con alcance aplicada por coincidencia de patrón en rutas de archivos vía `applyTo`.
+- **Skill**: una capacidad cargada de forma perezosa que se activa por coincidencia de palabra clave.
+- **Hook**: una regla de cero tokens aplicada en un evento específico del ciclo de vida.
+- **MCP**: servidor Model Context Protocol que expone sistemas externos al agente.
+- **Golden path**: el camino pavimentado que cada equipo se espera use; cualquier desviación requiere un ADR.
+- **IDP**: Internal Developer Platform; el sistema que hace fácil seguir el golden path.
+- **ADR**: Architectural Decision Record; un archivo markdown fechado que captura contexto, opciones, decisión, consecuencias.
+- **Matriz de capacidades**: un mapa legible por máquina desde dominio de negocio a primitiva de plataforma.
 
 ## Referencias
 
-- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — the reference for platform design decisions
-- [GitHub Enterprise documentation](https://docs.github.com/en/enterprise-cloud@latest) — the platform on which the IDP is built
-- [Azure DevOps documentation](https://learn.microsoft.com/azure/devops/) — templates, pipelines, boards
-- [Azure Policy documentation](https://learn.microsoft.com/azure/governance/policy/) — initiatives, assignments, remediation
-- [Backstage documentation](https://backstage.io/docs/) — the catalog pattern the IDP follows
-- [Model Context Protocol specification](https://modelcontextprotocol.io/) — the protocol that binds agents to external systems
-- [Team Topologies](https://teamtopologies.com/) — the organizational model behind platform teams
+- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — la referencia para decisiones de diseño de plataforma
+- [Documentación de GitHub Enterprise](https://docs.github.com/en/enterprise-cloud@latest) — la plataforma sobre la que se construye el IDP
+- [Documentación de Azure DevOps](https://learn.microsoft.com/azure/devops/) — plantillas, pipelines, boards
+- [Documentación de Azure Policy](https://learn.microsoft.com/azure/governance/policy/) — iniciativas, asignaciones, remediación
+- [Documentación de Backstage](https://backstage.io/docs/) — el patrón de catálogo que sigue el IDP
+- [Especificación de Model Context Protocol](https://modelcontextprotocol.io/) — el protocolo que vincula agentes a sistemas externos
+- [Team Topologies](https://teamtopologies.com/) — el modelo organizacional detrás de los equipos de plataforma

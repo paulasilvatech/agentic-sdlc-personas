@@ -10,193 +10,193 @@ order: 5
 updated: "2026-04-24"
 ---
 
-> The Software Architect é a persona que designs the program skeleton and the API contract. Em um SDLC AI-native, o Software Architect opera uma stack de primitivas validadas that produce machine-readable artifacts for humans and agents.
+> O Software Architect é a persona que desenha o esqueleto do programa e o contrato de API. Em um SDLC AI-native, o Software Architect opera uma pilha de primitivas validadas que produz artefatos legíveis por máquina para humanos e agentes.
 
 ## Resumo executivo
 
-The Software Architect translates approved requirements into a coherent program skeleton, module boundaries, and API contracts that the Developer and QA Engineer can execute without ambiguity. Em um SDLC AI-native, o Software Architect opera dentro da fase de Design phase com um conjunto fixo de primitivas: um agente API contract design, quatro slash prompts, instruções escopadas, hooks validados por schema, and uma lista curada de MCPs validados. Saídas principais são `CODEMAP.md`, API contract files, design review records, and domain-driven design scans.
+O Software Architect traduz requisitos aprovados em um esqueleto coerente de programa, fronteiras de módulo e contratos de API que o Developer e o QA Engineer podem executar sem ambiguidade. Em um SDLC AI-native, o Software Architect opera dentro da fase de Design com um conjunto fixo de primitivas: um agente de design de contrato de API, quatro slash prompts, instruções escopadas, hooks validados por schema e uma lista curada de MCPs validados. As saídas primárias são `CODEMAP.md`, arquivos de contrato de API, registros de design review e scans de domain-driven design.
 
 ## Papel e responsabilidades
 
-Pense no Software Architect like an architect designing a factory floor. They do not operate the machines, but they decide where the machines stand, how material flows between them, and what interface each machine exposes to its neighbor. Em um SDLC AI-native `CODEMAP.md` is the floor plan, API contracts are the interfaces between machines, and the Software Architect is accountable for the fact that today's flow still works next quarter.
+Pense no Software Architect como um arquiteto desenhando o chão de fábrica. Eles não operam as máquinas, mas decidem onde as máquinas ficam, como o material flui entre elas e qual interface cada máquina expõe à sua vizinha. Em um SDLC AI-native, o `CODEMAP.md` é a planta baixa, os contratos de API são as interfaces entre máquinas, e o Software Architect é responsável pelo fato de que o fluxo de hoje continua funcionando no próximo trimestre.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Author and maintain `CODEMAP.md` as the canonical program skeleton for humans and agents
-- Design and govern API contracts under `docs/contracts/` in OpenAPI, AsyncAPI, or GraphQL SDL form
-- Run design reviews with the Enterprise Architect, Technical Lead, and Developer at defined gates
-- Run domain-driven design scans to detect leaky boundaries and aggregate violations
-- Operate the API Contract Designer agent and the `/codemap`, `/contract`, `/design-review`, `/ddd-scan` prompts
-- Maintain backward compatibility discipline and version contracts explicitly
-- Align designs with the `CONSTITUTION.md` principles and ADRs from the Enterprise Architect
+- Escrever e manter o `CODEMAP.md` como o esqueleto canônico do programa para humanos e agentes
+- Desenhar e governar contratos de API sob `docs/contracts/` em formato OpenAPI, AsyncAPI ou GraphQL SDL
+- Rodar design reviews com o Enterprise Architect, Technical Lead e Developer em gates definidos
+- Rodar scans de domain-driven design para detectar fronteiras vazadas e violações de agregado
+- Operar o agente API Contract Designer e os prompts `/codemap`, `/contract`, `/design-review`, `/ddd-scan`
+- Manter disciplina de compatibilidade retroativa e versionar contratos explicitamente
+- Alinhar designs com os princípios do `CONSTITUTION.md` e ADRs do Enterprise Architect
 
 ## Jobs to be done
 
-1. Como Software Architect, eu quero `CODEMAP.md` to regenerate on every public API change, para que the skeleton is never stale.
-2. Como Software Architect, eu quero API contracts to be the source of truth, para que implementation and tests derive from a single document.
-3. Como Software Architect, eu quero design reviews to be structured and recorded, para que consequences outlive the meeting.
-4. Como Software Architect, eu quero DDD scans to detect leaky boundaries, para que aggregate violations are caught in design, not production.
-5. Como Software Architect, eu quero contract changes to block merge on a breaking-change violation, para que consumers are protected by the gate.
-6. Como Software Architect, eu quero every contract to link to the requirement IDs it satisfies, para que traceability is intact.
+1. Como Software Architect, eu quero que o `CODEMAP.md` se regenere a cada mudança de API pública, para que o esqueleto nunca fique defasado.
+2. Como Software Architect, eu quero que contratos de API sejam a fonte da verdade, para que implementação e testes derivem de um único documento.
+3. Como Software Architect, eu quero que design reviews sejam estruturadas e registradas, para que consequências sobrevivam à reunião.
+4. Como Software Architect, eu quero que DDD scans detectem fronteiras vazadas, para que violações de agregado sejam pegas no design, não em produção.
+5. Como Software Architect, eu quero que mudanças de contrato bloqueiem o merge em uma violação de breaking change, para que consumidores sejam protegidos pelo gate.
+6. Como Software Architect, eu quero que todo contrato aponte para os IDs de requisito que satisfaz, para que a rastreabilidade esteja intacta.
 
 ## Dores antes da era AI-native
 
-1. **Diagrams over artifacts**. Boxes and arrows in a slide deck cannot be consumed by an agent or a test generator. Implementation drifts from the picture.
-2. **Contracts authored after the fact**. Implementations ship first, contracts are reverse-engineered, and consumers are surprised.
-3. **CODEMAP as a README that no um agente updates**. Once stale,s hallucinate module structure and humans stop reading.
-4. **DDD discipline by heart only**. Aggregate boundaries are remembered, not enforced. Leaks appear under load.
-5. **Breaking changes discovered by consumers**. Without a gate, a minor PR breaks partners in production.
+1. **Diagramas no lugar de artefatos**. Caixas e setas em um deck de slides não podem ser consumidas por um agente ou gerador de testes. A implementação deriva do desenho.
+2. **Contratos escritos após o fato**. Implementações embarcam primeiro, contratos são reversamente engenheirados, e consumidores são surpreendidos.
+3. **CODEMAP como um README que ninguém atualiza**. Uma vez defasado, agentes alucinam estrutura de módulo e humanos param de ler.
+4. **Disciplina de DDD apenas de cabeça**. Fronteiras de agregado são lembradas, não enforçadas. Vazamentos aparecem sob carga.
+5. **Breaking changes descobertas por consumidores**. Sem um gate, um PR menor quebra parceiros em produção.
 
 ## Fluxo diário AI-native
 
-The Software Architect operates a fixed loop each day. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code e Claude Code no terminal, além de um pequeno catálogo de MCPs validados para contexto externo.
+O Software Architect opera um loop fixo todo dia. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code e Claude Code no terminal, além de um pequeno catálogo de MCPs validados para contexto externo.
 
 ### Setup da manhã
 
-1. Abrir o repositório no Visual Studio Code. GitHub Copilot Chat carrega `AGENTS.md` and the scoped architecture instructions.
-2. Fazer pull da última `main` e revisar mudanças noturnas design proposals and contract PRs.
-3. Run `/codemap` to confirm the skeleton is in sync with the current source tree.
-4. Review the DDD scan dashboard generated by the `/ddd-scan` scheduled GitHub Actions workflow.
+1. Abra o repositório no Visual Studio Code. GitHub Copilot Chat carrega o `AGENTS.md` e as instruções escopadas de arquitetura.
+2. Puxe o último `main` e revise propostas noturnas de design e PRs de contrato.
+3. Rode `/codemap` para confirmar que o esqueleto está em sincronia com a árvore atual do código fonte.
+4. Revise o dashboard de DDD scan gerado pelo workflow agendado do GitHub Actions do `/ddd-scan`.
 
 ### Execução no meio do dia
 
-1. **Contract authoring**. Invoke `/contract` on each new or changed API surface. The API Contract Designer agent produces an OpenAPI, AsyncAPI, or GraphQL SDL file and links it to the requirement IDs.
-2. **CODEMAP maintenance**. Invoke `/codemap` after any structural change. The agent rewrites the module map, public surface list, and data-flow annotations.
-3. **Design review**. Invoke `/design-review` on proposals tagged for architectural impact. The agent prepares the agenda from the diff and records decisions against the ADR catalog.
-4. **DDD scan**. Invoke `/ddd-scan` on modules that changed boundaries in the last week. The agent uses `grep` and `glob` to detect cross-aggregate calls and leaked value objects.
+1. **Escrita de contrato**. Invoque `/contract` em cada nova ou alterada superfície de API. O agente API Contract Designer produz um arquivo OpenAPI, AsyncAPI ou GraphQL SDL e o vincula aos IDs de requisito.
+2. **Manutenção do CODEMAP**. Invoque `/codemap` após qualquer mudança estrutural. O agente reescreve o mapa de módulos, a lista de superfície pública e as anotações de fluxo de dados.
+3. **Design review**. Invoque `/design-review` em propostas taggeadas com impacto arquitetural. O agente prepara a pauta a partir do diff e registra decisões contra o catálogo de ADR.
+4. **DDD scan**. Invoque `/ddd-scan` em módulos que tiveram fronteiras alteradas na última semana. O agente usa `grep` e `glob` para detectar chamadas entre agregados e value objects vazados.
 
 ### Revisão no fim da tarde
 
-1. Run contract compatibility checks in GitHub Actions. Block merge on any breaking change without a linked major-version ADR and a migration note.
-2. Abrir um pull request on the contract and `CODEMAP.md` changes. GitHub Copilot Code Review comments on consistency and breaking-change risk.
-3. Publish the daily design digest to the engineering Teams channel via the Microsoft 365 Agents SDK, summarizing new contracts, superseded contracts, and open design debates.
-4. Update the traceability links from contracts to requirement IDs and deployed artifacts via the Azure MCP Server telemetry.
+1. Rode as verificações de compatibilidade de contrato no GitHub Actions. Bloqueie o merge em qualquer breaking change sem um ADR de major-version vinculado e uma nota de migração.
+2. Abra um pull request com as mudanças em contratos e `CODEMAP.md`. GitHub Copilot Code Review comenta sobre consistência e risco de breaking change.
+3. Publique o digest diário de design no canal do Teams da engenharia via Microsoft 365 Agents SDK, resumindo novos contratos, contratos superados e debates de design abertos.
+4. Atualize os links de rastreabilidade de contratos para IDs de requisito e artefatos implantados via a telemetria do Azure MCP Server.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `api-contract-designer` | `.github/agents/api-contract-designer.agent.md` | Author `CODEMAP.md`, API contracts, run design reviews and DDD scans |
+|--------|---------|-----------|
+| `api-contract-designer` | `.github/agents/api-contract-designer.agent.md` | Escrever `CODEMAP.md`, contratos de API, rodar design reviews e DDD scans |
 
-The API Contract Designer uses `claude-sonnet-4-6` by default. Tools: `read`, `edit`, `search`, `grep`, `glob`. No `bash` access in the default mode. Extended thinking is enabled for `/ddd-scan` only, where cross-module correlation benefits from deeper reasoning.
+O API Contract Designer usa `claude-sonnet-4-6` por padrão. Ferramentas: `read`, `edit`, `search`, `grep`, `glob`. Sem acesso a `bash` no modo default. Extended thinking é habilitado apenas para `/ddd-scan`, onde a correlação entre módulos se beneficia de raciocínio mais profundo.
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/codemap` | `.github/prompts/codemap.prompt.md` | Regenerate `CODEMAP.md` with module map, public surface, and data flow |
-| `/contract` | `.github/prompts/contract.prompt.md` | Author or revise an API contract linked to requirement IDs |
-| `/design-review` | `.github/prompts/design-review.prompt.md` | Prepare and record a structured design review |
-| `/ddd-scan` | `.github/prompts/ddd-scan.prompt.md` | Detect leaky boundaries and aggregate violations |
+|---------|---------|-----------|
+| `/codemap` | `.github/prompts/codemap.prompt.md` | Regenerar o `CODEMAP.md` com mapa de módulos, superfície pública e fluxo de dados |
+| `/contract` | `.github/prompts/contract.prompt.md` | Escrever ou revisar um contrato de API vinculado a IDs de requisito |
+| `/design-review` | `.github/prompts/design-review.prompt.md` | Preparar e registrar um design review estruturado |
+| `/ddd-scan` | `.github/prompts/ddd-scan.prompt.md` | Detectar fronteiras vazadas e violações de agregado |
 
 ### Instruções escopadas
 
-O escopo `applyTo` reduz o custo de tokens em aproximadamente 68 por cento comparado com instruções globais.
+`applyTo` com escopo reduz o custo em tokens em aproximadamente 68 por cento comparado a instruções globais.
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `CODEMAP.md` | `.github/instructions/codemap.instructions.md` | Module map schema, public surface annotation, data-flow syntax |
-| `docs/contracts/**/*.yaml,docs/contracts/**/*.graphql` | `.github/instructions/contracts.instructions.md` | OpenAPI, AsyncAPI, GraphQL SDL conventions and compatibility rules |
-| `docs/design/**/*.md` | `.github/instructions/design.instructions.md` | Design proposal template, review agenda, decision record |
+|--------------------|---------|-----------|
+| `CODEMAP.md` | `.github/instructions/codemap.instructions.md` | Schema do mapa de módulos, anotação de superfície pública, sintaxe de fluxo de dados |
+| `docs/contracts/**/*.yaml,docs/contracts/**/*.graphql` | `.github/instructions/contracts.instructions.md` | Convenções OpenAPI, AsyncAPI, GraphQL SDL e regras de compatibilidade |
+| `docs/design/**/*.md` | `.github/instructions/design.instructions.md` | Template de proposta de design, pauta de review, registro de decisão |
 
 ### Hooks
 
-Hooks custam zero tokens de LLM. Eles são a camada de governança mais forte for architecture.
+Hooks custam zero tokens de LLM. São a camada de governança mais forte para arquitetura.
 
-- `pre-commit`: reject any contract change without a linked requirement ID and a compatibility classification (`safe`, `additive`, `breaking`)
-- `post-commit`: regenerate `CODEMAP.md` on any public surface change
-- `pre-merge`: run the DDD scan and the contract compatibility check; block merge on unresolved findings
+- `pre-commit`: rejeitar qualquer mudança de contrato sem um ID de requisito vinculado e uma classificação de compatibilidade (`safe`, `additive`, `breaking`)
+- `post-commit`: regenerar o `CODEMAP.md` em qualquer mudança de superfície pública
+- `pre-merge`: rodar o DDD scan e a verificação de compatibilidade de contrato; bloquear o merge em achados não resolvidos
 
 ## MCPs validados
 
 | MCP | Propósito | Dono |
-|-----|---------|-------|
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Read PRs, CodeQL results, and Actions runs relevant to contract changes | GitHub (official) |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Consultar Application Insights to bind contracts to observed production traffic shapes | Microsoft (official) |
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Ground contract designs on Azure and Microsoft 365 API reference documentation | Microsoft (official) |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Read architecture work items in Azure Boards when the team uses Azure DevOps | Microsoft (official) |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Publish design digests and ingest design-review decisions from Teams | Microsoft (official) |
+|-----|-----------|------|
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Ler PRs, resultados do CodeQL e runs do Actions relevantes a mudanças de contrato | GitHub (oficial) |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Consultar Application Insights para vincular contratos a formas de tráfego observadas em produção | Microsoft (oficial) |
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Ancorar designs de contrato na documentação de referência de API do Azure e Microsoft 365 | Microsoft (oficial) |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Ler work items de arquitetura no Azure Boards quando o time usa Azure DevOps | Microsoft (oficial) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Publicar digests de design e ingerir decisões de design review do Teams | Microsoft (oficial) |
 
 ## Exemplos reais
 
-### Example 1: new contract for a partner integration
+### Exemplo 1: novo contrato para uma integração com parceiro
 
-**Entrada**: A requirement cluster for a new partner webhook integration, approved by the Requirements Engineer.
+**Entrada**: Um cluster de requisitos para uma nova integração de webhook com parceiro, aprovado pelo Requirements Engineer.
 
-**Invocação**: `/contract` followed by `/design-review`.
-
-**Saída esperada**:
-
-1. A `docs/contracts/partner-webhook/openapi.yaml` with endpoints, schemas, and links to requirement IDs.
-2. A `docs/contracts/partner-webhook/asyncapi.yaml` if the contract includes event shapes.
-3. A design review record in `docs/design/reviews/2026-q3-partner-webhook.md` with decisions and a superseded-by link if the new contract replaces an older one.
-4. A pull request with contract compatibility classification `additive` and Copilot Code Review comments on schema hygiene.
-
-### Example 2: DDD scan after a module refactor
-
-**Entrada**: A developer refactored the `orders` module into three submodules.
-
-**Invocação**: `/ddd-scan` scoped to `src/orders/**`.
+**Invocação**: `/contract` seguido de `/design-review`.
 
 **Saída esperada**:
 
-1. A scan report in `docs/design/scans/2026-06-orders-ddd.md` identifying four cross-aggregate calls and two leaked value objects.
-2. Four GitHub issues filed via the GitHub MCP with a remediation plan and an owning engineer.
-3. A `CODEMAP.md` update that annotates the new submodules and flags the remaining leaks.
+1. Um `docs/contracts/partner-webhook/openapi.yaml` com endpoints, schemas e links para IDs de requisito.
+2. Um `docs/contracts/partner-webhook/asyncapi.yaml` se o contrato incluir formas de evento.
+3. Um registro de design review em `docs/design/reviews/2026-q3-partner-webhook.md` com decisões e um link de superado-por se o novo contrato substituir um mais antigo.
+4. Um pull request com classificação de compatibilidade de contrato `additive` e comentários do Copilot Code Review sobre higiene de schema.
+
+### Exemplo 2: DDD scan após uma refatoração de módulo
+
+**Entrada**: Um developer refatorou o módulo `orders` em três submódulos.
+
+**Invocação**: `/ddd-scan` com escopo em `src/orders/**`.
+
+**Saída esperada**:
+
+1. Um relatório de scan em `docs/design/scans/2026-06-orders-ddd.md` identificando quatro chamadas entre agregados e dois value objects vazados.
+2. Quatro issues do GitHub registradas via o GitHub MCP com plano de remediação e um engenheiro dono.
+3. Uma atualização do `CODEMAP.md` que anota os novos submódulos e sinaliza os vazamentos remanescentes.
 
 ## Anti-padrões
 
-1. **Contract authored as an afterthought**. If implementation lands first, contracts are reverse-engineered. Mitigação: the `pre-commit` hook blocks implementation PRs whose public surface is not covered in `docs/contracts/`.
-2. **CODEMAP drifts**. A stale map breaks agent reasoning. Mitigação: `post-commit` hook regenerates it on any public surface change.
-3. **Silent breaking changes**. A field rename shipped as `safe` breaks consumers. Mitigação: contract linter enforces compatibility classification and diff shape.
-4. **DDD by memory**. Aggregate boundaries forgotten under deadline pressure leak into persistence. Mitigação: scheduled `/ddd-scan` runs and the `pre-merge` hook.
-5. **Design reviews without records**. Decisions evaporate, relitigated next quarter. Mitigação: `/design-review` binds every decision to an ADR entry.
+1. **Contrato escrito como apêndice**. Se a implementação aterrissa primeiro, contratos são reversamente engenheirados. Mitigação: o hook de `pre-commit` bloqueia PRs de implementação cuja superfície pública não esteja coberta em `docs/contracts/`.
+2. **CODEMAP deriva**. Um mapa defasado quebra o raciocínio do agente. Mitigação: o hook de `post-commit` o regenera em qualquer mudança de superfície pública.
+3. **Breaking changes silenciosas**. Um rename de campo enviado como `safe` quebra consumidores. Mitigação: o linter de contrato enforça a classificação de compatibilidade e a forma do diff.
+4. **DDD de memória**. Fronteiras de agregado esquecidas sob pressão de deadline vazam para persistência. Mitigação: execuções agendadas do `/ddd-scan` e o hook de `pre-merge`.
+5. **Design reviews sem registros**. Decisões evaporam, relitigadas no próximo trimestre. Mitigação: `/design-review` vincula toda decisão a uma entrada de ADR.
 
 ## KPIs e métricas de impacto
 
 | KPI | Linha base | Meta | Medição |
-|-----|----------|--------|-------------|
-| CODEMAP freshness, drift detection | 4 weeks | < 24 hours | Post-commit hook output |
-| Contracts with linked requirement IDs | 35 percent | 100 percent | Contract linter in GitHub Actions |
-| Breaking changes flagged before merge | 55 percent | 100 percent | Pre-merge hook output |
-| DDD scan findings remediated within SLA | 40 percent | > 90 percent | Issue closure audit |
-| Design review cycle time | 2 weeks | < 5 days | GitHub PR timestamps |
-| Contract versioning discipline | 50 percent | 100 percent | Versioned file rename audit |
+|-----|------------|------|---------|
+| Frescor do CODEMAP, detecção de drift | 4 semanas | < 24 horas | Saída do hook de post-commit |
+| Contratos com IDs de requisito vinculados | 35 por cento | 100 por cento | Linter de contrato no GitHub Actions |
+| Breaking changes sinalizadas antes do merge | 55 por cento | 100 por cento | Saída do hook de pre-merge |
+| Achados de DDD scan remediados no SLA | 40 por cento | > 90 por cento | Auditoria de fechamento de issue |
+| Tempo de ciclo de design review | 2 semanas | < 5 dias | Timestamps de PR no GitHub |
+| Disciplina de versionamento de contrato | 50 por cento | 100 por cento | Auditoria de rename de arquivo versionado |
 
 ## Maturidade em quatro níveis
 
 | Nível | Nome | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Diagrams in slides, contracts in wikis, CODEMAP absent |
-| L2 | Assistido | Copilot used to polish diagrams and prose, contracts reverse-engineered |
-| L3 | Aumentado | API Contract Designer agent, quatro slash prompts, instruções escopadas, GitHub and Azure MCPs, CODEMAP auto-regenerated |
-| L4 | Autônomo | Full primitives kit, hooks enforced, DDD scans scheduled, design digests automated, compatibility gates across all contracts |
+|-------|------|-----------|
+| L1 | Manual | Diagramas em slides, contratos em wikis, CODEMAP ausente |
+| L2 | Assistido | Copilot usado para polir diagramas e prosa, contratos reversamente engenheirados |
+| L3 | Aumentado | Agente API Contract Designer, quatro slash prompts, instruções escopadas, GitHub e Azure MCPs, CODEMAP auto-regenerado |
+| L4 | Autônomo | Kit completo de primitivas, hooks enforçados, DDD scans agendados, digests de design automatizados, gates de compatibilidade em todos os contratos |
 
 ## Integração com outras personas
 
-- **Do Enterprise Architect**: `CONSTITUTION.md` principles and ADRs that constrain contract design
-- **Do Requirements Engineer**: atomic requirement IDs that anchor contract clauses
-- **Para o Technical Lead**: `CODEMAP.md` and contracts as the baseline for team primitives and instruções escopadas
-- **Para o Developer**: API contracts as the source for `IMPLEMENTATION_PLAN.md` and the tests derived from them
-- **Para o QA Engineer**: contracts as direct source for contract tests and schema fuzzing
-- **Para o Platform Architect**: contract surface that platform services must support
-- **Para o Tech Writer**: contracts as the source for developer documentation and changelog entries
+- **Do Enterprise Architect**: princípios do `CONSTITUTION.md` e ADRs que restringem o design de contrato
+- **Do Requirements Engineer**: IDs de requisito atômicos que ancoram cláusulas de contrato
+- **Para o Technical Lead**: `CODEMAP.md` e contratos como linha base para primitivas de time e instruções escopadas
+- **Para o Developer**: contratos de API como fonte para o `IMPLEMENTATION_PLAN.md` e os testes derivados deles
+- **Para o QA Engineer**: contratos como fonte direta para contract tests e fuzzing de schema
+- **Para o Platform Architect**: superfície de contrato que serviços de plataforma devem suportar
+- **Para o Tech Writer**: contratos como fonte para documentação de desenvolvedor e entradas de changelog
 
 ## Glossário
 
-- **CODEMAP**: generated document that describes the program skeleton for humans and agents, kept current by hooks.
-- **API contract**: machine-readable description of an interface in OpenAPI, AsyncAPI, or GraphQL SDL form.
-- **Compatibility classification**: label applied to every contract change as `safe`, `additive`, or `breaking`.
-- **Design review**: structured, recorded session that approves or defers design proposals with named participants.
-- **DDD scan**: automated sweep that detects cross-aggregate calls and leaked value objects.
-- **Aggregate**: a cluster of domain objects with a single root and transactional boundary, per domain-driven design.
+- **CODEMAP**: documento gerado que descreve o esqueleto do programa para humanos e agentes, mantido atualizado por hooks.
+- **Contrato de API**: descrição legível por máquina de uma interface em forma OpenAPI, AsyncAPI ou GraphQL SDL.
+- **Classificação de compatibilidade**: rótulo aplicado a toda mudança de contrato como `safe`, `additive` ou `breaking`.
+- **Design review**: sessão estruturada e registrada que aprova ou adia propostas de design com participantes nomeados.
+- **DDD scan**: varredura automatizada que detecta chamadas entre agregados e value objects vazados.
+- **Agregado**: um cluster de objetos de domínio com uma única raiz e fronteira transacional, conforme domain-driven design.
 
 ## Referências
 
-- [GitHub Copilot documentation](https://docs.github.com/en/copilot) — modo agente, prompts e instruções
-- [Azure API Design guidance](https://learn.microsoft.com/azure/architecture/best-practices/api-design) — canonical Microsoft guidance on API contract quality
-- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — reliability and operational excellence pillars for architectural alignment
-- [CodeQL documentation](https://codeql.github.com/docs/) — static analysis that underpins breaking-change detection
-- [GitHub Actions documentation](https://docs.github.com/en/actions) — automação para contract and DDD scans on every PR
+- [Documentação do GitHub Copilot](https://docs.github.com/en/copilot) — modo agent, prompts e instruções
+- [Orientação de Azure API Design](https://learn.microsoft.com/azure/architecture/best-practices/api-design) — guia canônico da Microsoft sobre qualidade de contrato de API
+- [Azure Well-Architected Framework](https://learn.microsoft.com/azure/well-architected/) — pilares de confiabilidade e excelência operacional para alinhamento arquitetural
+- [Documentação do CodeQL](https://codeql.github.com/docs/) — análise estática que sustenta a detecção de breaking change
+- [Documentação do GitHub Actions](https://docs.github.com/en/actions) — automação para scans de contrato e DDD em todo PR

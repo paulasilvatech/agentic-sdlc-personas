@@ -10,193 +10,193 @@ order: 19
 updated: "2026-04-24"
 ---
 
-> The Compliance Auditor é a persona que converts regulation into enforceable controls and verifiable evidence. Em um SDLC AI-native, o Compliance Auditor operates an Evidence Curator agent, quatro slash prompts, and a validated MCP catalog spanning GitHub, Microsoft Purview, and Azure Policy — not a library of static attestation PDFs.
+> O Compliance Auditor é a persona que converte regulação em controles enforçáveis e evidência verificável. Em um SDLC AI-nativo, o Compliance Auditor opera um agente Evidence Curator, quatro slash prompts e um catálogo validado de MCPs abrangendo GitHub, Microsoft Purview e Azure Policy — não uma biblioteca de PDFs de atestação estáticos.
 
 ## Resumo executivo
 
-The Compliance Auditor owns SOX, ISO 27001, SOC 2, and sector-specific obligations for delivery. Em um SDLC AI-native, o role is operationalized through a single Evidence Curator agent with quatro slash prompts (`/control-check`, `/audit-pack`, `/policy-diff`, `/attestation-draft`), instruções escopadas for policy and control files, and validated MCPs reaching into GitHub, Microsoft Purview, Azure Policy, and Microsoft Sentinel.
+O Compliance Auditor é dono das obrigações de SOX, ISO 27001, SOC 2 e regulações setoriais para a entrega. Em um SDLC AI-nativo, o papel é operacionalizado através de um único agente Evidence Curator com quatro slash prompts (`/control-check`, `/audit-pack`, `/policy-diff`, `/attestation-draft`), instruções com escopo para arquivos de política e controle, e MCPs validados alcançando GitHub, Microsoft Purview, Azure Policy e Microsoft Sentinel.
 
-Primary deliverables are continuously checked controls, auditor-ready evidence packs, living policy diffs, and attestation drafts assembled from real pipeline artifacts. The Compliance Auditor replaces the "audit sprint" with a daily, boring, evidence-producing rhythm.
+As entregas primárias são controles verificados continuamente, pacotes de evidência prontos para auditoria, diffs de política vivos e rascunhos de atestação montados a partir de artefatos reais do pipeline. O Compliance Auditor substitui a "sprint de auditoria" por um ritmo diário, chato e produtor de evidências.
 
-Compliance in an AI-native SDLC is a byproduct of good pipelines, not a separate project. The Compliance Auditor designs the byproduct.
+Compliance em um SDLC AI-nativo é um subproduto de bons pipelines, não um projeto separado. O Compliance Auditor projeta o subproduto.
 
 ## Papel e responsabilidades
 
-Pense no Compliance Auditor like a building inspector who signs off construction stage by stage instead of just at the end. They read the blueprints, verify every pour, every wire, every fixture — and when the final walkthrough happens, there are no surprises. Em um SDLC AI-native, o Compliance Auditor inspects the pipeline at every stage by inspecting its artifacts.
+Pense no Compliance Auditor como um inspetor de obra que assina estágio a estágio em vez de apenas no final. Ele lê as plantas, verifica cada concretagem, cada fiação, cada acabamento — e quando a vistoria final acontece, não há surpresas. Em um SDLC AI-nativo, o Compliance Auditor inspeciona o pipeline em cada estágio inspecionando seus artefatos.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Maintain the control catalog mapping frameworks (SOX, ISO 27001, SOC 2) to pipeline artifacts
-- Run continuous control checks via GitHub Actions, Azure Policy, and Microsoft Purview
-- Assemble auditor-ready evidence packs on demand from real artifacts
-- Track policy changes with diffs approved by named owners
-- Draft attestations and representations from evidence, never from memory
-- Operate the Evidence Curator agent and `/control-check`, `/audit-pack`, `/policy-diff`, `/attestation-draft` prompts
-- Coordinate with InfoSec Officer on shared controls and with Legal on regulatory interpretation
-- Review access reviews in Microsoft Entra ID quarterly and on role-change events
+- Manter o catálogo de controles mapeando frameworks (SOX, ISO 27001, SOC 2) a artefatos do pipeline
+- Rodar verificações contínuas de controle via GitHub Actions, Azure Policy e Microsoft Purview
+- Montar pacotes de evidência prontos para auditoria sob demanda a partir de artefatos reais
+- Rastrear mudanças de política com diffs aprovados por donos nomeados
+- Redigir atestações e representações a partir de evidências, nunca de memória
+- Operar o agente Evidence Curator e os prompts `/control-check`, `/audit-pack`, `/policy-diff`, `/attestation-draft`
+- Coordenar com o InfoSec Officer em controles compartilhados e com o Jurídico em interpretação regulatória
+- Revisar revisões de acesso no Microsoft Entra ID trimestralmente e em eventos de mudança de papel
 
 ## Jobs to be done
 
-1. Como Compliance Auditor, eu quero every control mapped to a live check, para que "compliant" is a continuous state, not a moment.
-2. Como Compliance Auditor, eu quero evidence packs assembled in minutes, para que external auditors receive what they need same-day.
-3. Como Compliance Auditor, eu quero policy changes reviewed as PRs, para que the trail of who-approved-what is verifiable.
-4. Como Compliance Auditor, eu quero attestations drafted from actual pipeline evidence, para que signatures reflect reality.
-5. Como Compliance Auditor, eu quero exceptions time-boxed and tracked, para que no exception becomes permanent by neglect.
-6. Como Compliance Auditor, eu quero Microsoft Purview sensitivity labels enforced in code repos, para que data handling obligations are propagated.
-7. Como Compliance Auditor, eu quero Entra ID access reviews scheduled automatically, para que least-privilege reviews never lapse.
-8. Como Compliance Auditor, eu quero a single posture dashboard published to Microsoft Teams, para que leadership has a current view without asking.
+1. Como Compliance Auditor, eu quero cada controle mapeado a uma verificação em tempo real, para que "em conformidade" seja um estado contínuo, não um momento.
+2. Como Compliance Auditor, eu quero pacotes de evidência montados em minutos, para que auditores externos recebam o que precisam no mesmo dia.
+3. Como Compliance Auditor, eu quero mudanças de política revisadas como PRs, para que a trilha de quem-aprovou-o-quê seja verificável.
+4. Como Compliance Auditor, eu quero atestações redigidas a partir de evidências reais do pipeline, para que assinaturas reflitam a realidade.
+5. Como Compliance Auditor, eu quero exceções com prazo e rastreadas, para que nenhuma exceção se torne permanente por negligência.
+6. Como Compliance Auditor, eu quero rótulos de sensibilidade do Microsoft Purview enforçados em repositórios de código, para que obrigações de tratamento de dados sejam propagadas.
+7. Como Compliance Auditor, eu quero revisões de acesso do Entra ID agendadas automaticamente, para que revisões de mínimo privilégio nunca expirem.
+8. Como Compliance Auditor, eu quero um dashboard de postura único publicado no Microsoft Teams, para que a liderança tenha uma visão atual sem perguntar.
 
-## Dores antes da era AI-native
+## Dores antes do AI-nativo
 
-- **Audit sprint**. Quarter ends with a month of panic assembling artifacts, then calm until the next quarter.
-- **Screenshot evidence**. Audit packs contain screenshots that cannot be verified after the fact.
-- **Shadow policies**. Teams maintain private guidelines that diverge from the published policy.
-- **Exceptions without expiry**. Temporary exceptions from three years ago still active today.
-- **Disconnected controls**. Controls described in text, not wired to any system that enforces them.
-- **Access review theatre**. Quarterly access reviews approved in bulk without inspection.
-- **Framework drift**. Overlapping SOX, ISO, and SOC controls tracked separately; work duplicated, gaps created.
+- **Sprint de auditoria**. O trimestre termina com um mês de pânico montando artefatos, depois calmaria até o próximo trimestre.
+- **Evidência em screenshots**. Pacotes de auditoria contêm screenshots que não podem ser verificados depois do fato.
+- **Políticas sombra**. Times mantêm diretrizes privadas que divergem da política publicada.
+- **Exceções sem expiração**. Exceções temporárias de três anos atrás ainda ativas hoje.
+- **Controles desconectados**. Controles descritos em texto, não conectados a nenhum sistema que os enforça.
+- **Teatro de revisão de acesso**. Revisões trimestrais de acesso aprovadas em massa sem inspeção.
+- **Drift de framework**. Controles sobrepostos de SOX, ISO e SOC rastreados separadamente; trabalho duplicado, lacunas criadas.
 
-## Fluxo diário AI-native
+## Fluxo diário AI-nativo
 
-The Compliance Auditor works from Visual Studio Code with GitHub Copilot and from Microsoft 365 (Teams, Loop, Purview) — invoking the Evidence Curator agent throughout the day.
+O Compliance Auditor trabalha a partir do Visual Studio Code com GitHub Copilot e do Microsoft 365 (Teams, Loop, Purview) — invocando o agente Evidence Curator ao longo do dia.
 
 ### Setup da manhã
 
-1. Open the compliance dashboard in Microsoft Loop; review overnight control-check failures.
-2. Run `/control-check --since=yesterday` to surface drift across the control catalog.
-3. Review Entra ID access review alerts and pending approvals.
-4. Check Microsoft Purview for new sensitivity-label rollouts or classification changes.
-5. Post the compliance standup to Microsoft Teams with open exceptions and expiring items.
+1. Abra o dashboard de compliance no Microsoft Loop; revise falhas de verificação de controle noturnas.
+2. Rode `/control-check --since=yesterday` para identificar drift no catálogo de controles.
+3. Revise alertas de revisão de acesso do Entra ID e aprovações pendentes.
+4. Verifique o Microsoft Purview para novas implantações de rótulos de sensibilidade ou mudanças de classificação.
+5. Poste o standup de compliance no Microsoft Teams com exceções abertas e itens expirando.
 
 ### Execução no meio do dia
 
-1. For each policy PR, run `/policy-diff` to generate the reviewable diff and impact report; route to named owners for approval.
-2. For any auditor request, invoke `/audit-pack` with the scope; the Evidence Curator assembles artifacts from GitHub, Azure Policy, Defender for Cloud, Sentinel, and Purview.
-3. Draft attestations via `/attestation-draft`; the Evidence Curator fills in evidence URLs and flags unsupported statements.
-4. Triage failing control checks with the InfoSec Officer when they are shared controls.
+1. Para cada PR de política, rode `/policy-diff` para gerar o diff revisável e relatório de impacto; encaminhe a donos nomeados para aprovação.
+2. Para qualquer solicitação de auditor, invoque `/audit-pack` com o escopo; o Evidence Curator monta artefatos do GitHub, Azure Policy, Defender for Cloud, Sentinel e Purview.
+3. Redija atestações via `/attestation-draft`; o Evidence Curator preenche URLs de evidência e sinaliza declarações sem suporte.
+4. Triar verificações de controle falhando com o InfoSec Officer quando forem controles compartilhados.
 
 ### Revisão no fim da tarde
 
-1. Walk through expiring exceptions; extend, replace with a fix, or close.
-2. Update the control catalog with any new mapping from recent architecture changes.
-3. Publish the daily posture score to Microsoft Loop and pin any red items.
+1. Percorra exceções expirando; estenda, substitua com uma correção ou feche.
+2. Atualize o catálogo de controles com qualquer novo mapeamento de mudanças recentes de arquitetura.
+3. Publique o score de postura diário no Microsoft Loop e fixe quaisquer itens vermelhos.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `evidence-curator` | `.github/agents/evidence-curator.agent.md` | Runs control checks, assembles audit packs, diffs policies, drafts attestations |
+|--------|---------|-----------|
+| `evidence-curator` | `.github/agents/evidence-curator.agent.md` | Roda verificações de controle, monta pacotes de auditoria, diffa políticas, redige atestações |
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/control-check` | `.github/prompts/control-check.prompt.md` | Run the continuous control suite and report drift |
-| `/audit-pack` | `.github/prompts/audit-pack.prompt.md` | Assemble an auditor-ready evidence pack for a scope |
-| `/policy-diff` | `.github/prompts/policy-diff.prompt.md` | Generate diff and impact report for a policy change |
-| `/attestation-draft` | `.github/prompts/attestation-draft.prompt.md` | Draft an attestation or representation from real evidence |
+|---------|---------|-----------|
+| `/control-check` | `.github/prompts/control-check.prompt.md` | Rodar a suíte contínua de controles e reportar drift |
+| `/audit-pack` | `.github/prompts/audit-pack.prompt.md` | Montar um pacote de evidência pronto para auditoria para um escopo |
+| `/policy-diff` | `.github/prompts/policy-diff.prompt.md` | Gerar diff e relatório de impacto para uma mudança de política |
+| `/attestation-draft` | `.github/prompts/attestation-draft.prompt.md` | Redigir uma atestação ou representação a partir de evidências reais |
 
-### Instruções escopadas
+### Instruções com escopo
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `docs/policies/**/*.md` | `.github/instructions/policy.instructions.md` | Policy document structure, owner, review cadence |
-| `controls/**/*.yaml` | `.github/instructions/controls.instructions.md` | Control catalog format mapping frameworks to artifacts |
-| `attestations/**/*.md` | `.github/instructions/attestation.instructions.md` | Attestation required sections and evidence linking |
-| `infra/**/*.bicep` | `.github/instructions/azpolicy.instructions.md` | Azure Policy patterns and tag requirements |
+|--------------------|---------|-----------|
+| `docs/policies/**/*.md` | `.github/instructions/policy.instructions.md` | Estrutura de documento de política, dono, cadência de revisão |
+| `controls/**/*.yaml` | `.github/instructions/controls.instructions.md` | Formato do catálogo de controles mapeando frameworks a artefatos |
+| `attestations/**/*.md` | `.github/instructions/attestation.instructions.md` | Seções obrigatórias de atestação e linkagem de evidência |
+| `infra/**/*.bicep` | `.github/instructions/azpolicy.instructions.md` | Padrões de Azure Policy e requisitos de tags |
 
 ### Hooks
 
-- `pre-commit`: policy file metadata check (owner, review date)
-- `pre-push`: control-check fast subset
-- `post-merge`: run the full control suite and refresh the posture score
-- `nightly`: scan for expiring exceptions and open reminders
-- `on-access-review`: generate Entra ID access review reports for named owners
+- `pre-commit`: verificação de metadados de arquivo de política (dono, data de revisão)
+- `pre-push`: subconjunto rápido de control-check
+- `post-merge`: rodar a suíte completa de controles e atualizar o score de postura
+- `nightly`: escanear exceções expirando e abrir lembretes
+- `on-access-review`: gerar relatórios de revisão de acesso do Entra ID para donos nomeados
 
 ## MCPs validados
 
 | MCP | Propósito | Dono |
-|-----|---------|-------|
-| GitHub MCP Server | Read PRs, policies, control files, manage issues | GitHub |
-| Azure MCP Server | Query Azure Policy, Defender for Cloud, Sentinel, Entra ID | Microsoft |
-| Microsoft Learn Docs MCP | Reference current framework guidance (SOX, ISO, SOC 2) | Microsoft |
-| Azure DevOps MCP Server | Track remediation work items when the team uses Azure DevOps | Microsoft |
-| Playwright MCP | Capture evidence flows for user-facing controls | Microsoft |
+|-----|-----------|------|
+| GitHub MCP Server | Ler PRs, políticas, arquivos de controle, gerenciar issues | GitHub |
+| Azure MCP Server | Consultar Azure Policy, Defender for Cloud, Sentinel, Entra ID | Microsoft |
+| Microsoft Learn Docs MCP | Referenciar orientação atualizada de frameworks (SOX, ISO, SOC 2) | Microsoft |
+| Azure DevOps MCP Server | Rastrear work items de remediação quando o time usa Azure DevOps | Microsoft |
+| Playwright MCP | Capturar fluxos de evidência para controles voltados ao usuário | Microsoft |
 
 ## Exemplos reais
 
-### Example 1: SOC 2 audit in one afternoon
+### Exemplo 1: auditoria SOC 2 em uma tarde
 
-An auditor requests evidence for CC6.1 (logical access) for Q2. The Compliance Auditor runs `/audit-pack --control=cc6.1 --period=Q2`. The Evidence Curator pulls Entra ID access reviews, Azure Policy assignments, and GitHub branch protections, bundling them with traceable URLs. The pack is delivered within three hours.
+Um auditor solicita evidência para CC6.1 (acesso lógico) do Q2. O Compliance Auditor roda `/audit-pack --control=cc6.1 --period=Q2`. O Evidence Curator puxa revisões de acesso do Entra ID, atribuições do Azure Policy e proteções de branch do GitHub, empacotando-os com URLs rastreáveis. O pacote é entregue em três horas.
 
-### Example 2: a policy change reviewed in public
+### Exemplo 2: uma mudança de política revisada em público
 
-The Legal team proposes a new data-retention clause. The change opens as a PR. `/policy-diff` highlights affected services and Purview labels. Named owners approve; the merge triggers updated Azure Policy definitions and Purview label rules. A single workflow lands legal, engineering, and enforcement changes.
+O time Jurídico propõe uma nova cláusula de retenção de dados. A mudança abre como um PR. `/policy-diff` destaca serviços e rótulos do Purview afetados. Donos nomeados aprovam; o merge dispara definições atualizadas de Azure Policy e regras de rótulo do Purview. Um único workflow aterrissa mudanças jurídicas, de engenharia e de enforcement.
 
-### Example 3: closing a three-year-old exception
+### Exemplo 3: fechando uma exceção de três anos
 
-Overnight the exception-expiry scan identifies an approval from 2022 still in effect on an Azure subscription. `/control-check` confirms the underlying risk is now mitigated by a new control. The Evidence Curator opens a PR removing the exception; approvals flow through the standard review; the exception disappears.
+Durante a noite, o scan de expiração de exceções identifica uma aprovação de 2022 ainda em vigor em uma assinatura Azure. `/control-check` confirma que o risco subjacente agora é mitigado por um novo controle. O Evidence Curator abre um PR removendo a exceção; aprovações fluem pela revisão padrão; a exceção desaparece.
 
 ## Anti-padrões
 
-- **Evidence screenshots**. Screenshots age poorly and cannot be verified; link to immutable sources instead.
-- **One-framework thinking**. Maintain a unified control catalog; map each control to every applicable framework.
-- **Silent exceptions**. Every exception has an owner, expiry, and compensating control recorded.
-- **Copy-paste attestations**. Draft from evidence; never recycle last year's wording.
-- **Policy in SharePoint only**. Policies live in the repo, under review, with named owners.
-- **Access reviews by bulk approval**. Require reviewers to open each assignment; the agent flags stale approvals.
-- **Controls that cannot fail**. A control that always passes is not a control; design for actionable failure modes.
+- **Evidência em screenshots**. Screenshots envelhecem mal e não podem ser verificados; linke a fontes imutáveis.
+- **Pensamento de framework único**. Mantenha um catálogo de controles unificado; mapeie cada controle a cada framework aplicável.
+- **Exceções silenciosas**. Toda exceção tem um dono, expiração e controle compensatório registrados.
+- **Atestações por copy-paste**. Redija a partir de evidências; nunca recicle o texto do ano passado.
+- **Política só no SharePoint**. Políticas vivem no repositório, sob revisão, com donos nomeados.
+- **Revisões de acesso por aprovação em massa**. Exija que revisores abram cada atribuição; o agente sinaliza aprovações obsoletas.
+- **Controles que não podem falhar**. Um controle que sempre passa não é um controle; projete para modos de falha acionáveis.
 
 ## KPIs e métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Source |
-|--------|-------------------|------------------|--------|
-| Control-check coverage | 50 percent | 100 percent | Control catalog |
-| Audit pack assembly time | 2 weeks | < 1 day | `/audit-pack` history |
-| Policy changes with diff + owner sign-off | 60 percent | 100 percent | GitHub PR reviews |
-| Expired exceptions active | 15 | 0 | Exception registry |
-| Access review completion on time | 70 percent | 100 percent | Entra ID |
-| Attestation rework after submission | 25 percent | < 5 percent | Audit correspondence |
-| Posture score freshness | Weekly | Daily | Loop dashboard |
+| Métrica | Linha base (manual) | Meta (agêntico) | Fonte |
+|---------|---------------------|-----------------|-------|
+| Cobertura de control-check | 50 por cento | 100 por cento | Catálogo de controles |
+| Tempo de montagem de pacote de auditoria | 2 semanas | < 1 dia | Histórico de `/audit-pack` |
+| Mudanças de política com diff + sign-off de dono | 60 por cento | 100 por cento | Revisões de PR no GitHub |
+| Exceções expiradas ativas | 15 | 0 | Registro de exceções |
+| Conclusão de revisão de acesso em dia | 70 por cento | 100 por cento | Entra ID |
+| Retrabalho de atestação após submissão | 25 por cento | < 5 por cento | Correspondência de auditoria |
+| Frescor do score de postura | Semanal | Diário | Dashboard do Loop |
 
 ## Maturidade em quatro níveis
 
-- **L1 Manual**: Policies as PDFs, controls as spreadsheets, audits as sprints.
-- **L2 Assistido**: Some controls wired to Defender for Cloud, but evidence still assembled manually at quarter end.
-- **L3 Aumentado**: Evidence Curator agent, quatro slash prompts, instruções escopadas, audit packs in hours.
-- **L4 Autônomo**: Continuous control checks, daily posture score, expiring exceptions auto-closed, attestations drafted from evidence.
+- **L1 Manual**: Políticas como PDFs, controles como planilhas, auditorias como sprints.
+- **L2 Assistido**: Alguns controles conectados ao Defender for Cloud, mas evidência ainda montada manualmente no fim do trimestre.
+- **L3 Aumentado**: Agente Evidence Curator, quatro slash prompts, instruções com escopo, pacotes de auditoria em horas.
+- **L4 Autônomo**: Verificações contínuas de controle, score de postura diário, exceções expirando fechadas automaticamente, atestações redigidas a partir de evidências.
 
 ## Integração com outras personas
 
-- **With InfoSec Officer**: shared controls, joint SBOM and threat-model evidence.
-- **Do Software Architect**: architecture ADRs mapped to controls in the catalog.
-- **Do Developer**: PR metadata feeding change-management evidence.
-- **Do Data Engineer**: Microsoft Purview classifications driving data-handling evidence.
-- **Do SRE**: incident timelines and runbooks as operational-resilience evidence.
-- **With Legal**: regulatory interpretation and policy text changes.
-- **Para o Product Owner**: compliance status on features ahead of release.
+- **Com o InfoSec Officer**: controles compartilhados, evidência conjunta de SBOM e modelo de ameaça.
+- **Do Software Architect**: ADRs de arquitetura mapeados a controles no catálogo.
+- **Do Developer**: metadados de PR alimentando evidência de gerenciamento de mudanças.
+- **Do Data Engineer**: classificações do Microsoft Purview direcionando evidência de tratamento de dados.
+- **Do SRE**: timelines de incidente e runbooks como evidência de resiliência operacional.
+- **Com o Jurídico**: interpretação regulatória e mudanças de texto de política.
+- **Para o Product Owner**: status de compliance em features antes do release.
 
 ## Glossário
 
-- **Control**: a verifiable rule mapping regulation intent to system configuration or process.
-- **Evidence pack**: a bundle of artifacts assembled to prove a control was operating in a period.
-- **Attestation**: a signed representation, typically by an officer, that specific controls are in place.
-- **Exception**: a time-boxed, owner-approved deviation from a control or policy.
-- **Posture score**: a rolling numeric summary of control health across frameworks.
-- **Framework**: a regulatory or industry standard such as SOX, ISO 27001, SOC 2.
-- **Access review**: a periodic check that each identity's permissions remain justified.
+- **Controle**: uma regra verificável mapeando intenção regulatória a configuração de sistema ou processo.
+- **Pacote de evidência**: um pacote de artefatos montado para provar que um controle estava operando em um período.
+- **Atestação**: uma representação assinada, tipicamente por um oficial, de que controles específicos estão em vigor.
+- **Exceção**: um desvio aprovado, com prazo e dono, de um controle ou política.
+- **Score de postura**: um resumo numérico contínuo da saúde dos controles entre frameworks.
+- **Framework**: um padrão regulatório ou da indústria como SOX, ISO 27001, SOC 2.
+- **Revisão de acesso**: uma verificação periódica de que as permissões de cada identidade permanecem justificadas.
 
 ## Referências
 
-- [Microsoft Purview documentation](https://learn.microsoft.com/purview/) — sensitivity and compliance management
-- [Azure Policy documentation](https://learn.microsoft.com/azure/governance/policy/) — policy as code
-- [Microsoft Defender for Cloud regulatory compliance](https://learn.microsoft.com/azure/defender-for-cloud/regulatory-compliance-dashboard) — framework mapping
-- [Microsoft Entra ID access reviews](https://learn.microsoft.com/entra/id-governance/access-reviews-overview) — periodic access certification
-- [GitHub audit log and API](https://docs.github.com/enterprise-cloud@latest/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise) — change-management evidence
-- [Microsoft Sentinel](https://learn.microsoft.com/azure/sentinel/) — incident evidence and timelines
-- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — current framework guidance retrieval
-- [GitHub Actions](https://docs.github.com/actions) — CI and deployment orchestration across the stack
-- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — first-party documentation retrieval at implementation time
+- [Documentação do Microsoft Purview](https://learn.microsoft.com/purview/) — gerenciamento de sensibilidade e compliance
+- [Documentação do Azure Policy](https://learn.microsoft.com/azure/governance/policy/) — política como código
+- [Compliance regulatório do Microsoft Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/regulatory-compliance-dashboard) — mapeamento de frameworks
+- [Revisões de acesso do Microsoft Entra ID](https://learn.microsoft.com/entra/id-governance/access-reviews-overview) — certificação periódica de acesso
+- [Log de auditoria e API do GitHub](https://docs.github.com/enterprise-cloud@latest/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise) — evidência de gerenciamento de mudanças
+- [Microsoft Sentinel](https://learn.microsoft.com/azure/sentinel/) — evidência de incidentes e timelines
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — recuperação de orientação atualizada de frameworks
+- [GitHub Actions](https://docs.github.com/actions) — orquestração de CI e deploy em todo o stack
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — recuperação de documentação first-party no momento da implementação
 - [GitHub Advanced Security](https://docs.github.com/code-security) — CodeQL, Dependabot, Secret Scanning, Push Protection

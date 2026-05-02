@@ -10,193 +10,193 @@ order: 16
 updated: "2026-04-24"
 ---
 
-> The ML AI Engineer é a persona que brings models and LLM-powered features from prototype to production. Em um SDLC AI-native, o ML AI Engineer operates an Eval Runner agent, quatro slash prompts, and a validated MCP catalog centered on Azure AI Foundry, Azure OpenAI, and Azure Machine Learning — not a pile of ad-hoc notebooks.
+> O ML AI Engineer é a persona que leva modelos e features alimentadas por LLM do protótipo à produção. Em um SDLC AI-nativo, o ML AI Engineer opera um agente Eval Runner, quatro slash prompts e um catálogo validado de MCPs centrado em Azure AI Foundry, Azure OpenAI e Azure Machine Learning — não uma pilha de notebooks ad-hoc.
 
 ## Resumo executivo
 
-The ML AI Engineer is responsible for the reliability of AI behavior: model quality, prompt stability, routing decisions, and deployment topology. Em um SDLC AI-native, o role is operationalized through a single Eval Runner agent, quatro slash prompts, instruções escopadas, and validated MCPs reaching into Azure AI Foundry, Azure OpenAI, Azure Machine Learning, and Microsoft Learn Docs MCP.
+O ML AI Engineer é responsável pela confiabilidade do comportamento de IA: qualidade do modelo, estabilidade de prompts, decisões de roteamento e topologia de deploy. Em um SDLC AI-nativo, o papel é operacionalizado através de um único agente Eval Runner, quatro slash prompts, instruções com escopo e MCPs validados alcançando Azure AI Foundry, Azure OpenAI, Azure Machine Learning e Microsoft Learn Docs MCP.
 
-Primary deliverables are versioned evaluation suites, model-routing configurations with traceable decisions, prompt regression dashboards, and Foundry deployment artifacts with rollback plans. The ML AI Engineer closes the loop from model change to production telemetry: no model ships without an eval baseline, and no regression survives overnight.
+As entregas primárias são suítes de avaliação versionadas, configurações de roteamento de modelo com decisões rastreáveis, dashboards de regressão de prompts e artefatos de deploy do Foundry com planos de rollback. O ML AI Engineer fecha o loop da mudança de modelo à telemetria de produção: nenhum modelo é entregue sem um baseline de avaliação, e nenhuma regressão sobrevive à noite.
 
-AI behavior is software behavior. Evals are tests, prompts are code, routing is configuration, and deployments are PRs. The ML AI Engineer makes the AI layer obey the same governance as every other system in production.
+Comportamento de IA é comportamento de software. Evals são testes, prompts são código, roteamento é configuração e deploys são PRs. O ML AI Engineer faz a camada de IA obedecer a mesma governança que todos os outros sistemas em produção.
 
 ## Papel e responsabilidades
 
-Pense no ML AI Engineer like a pharmaceutical process engineer. The chemist invents the compound; the process engineer ensures every batch meets the monograph, with tests at each stage. Em um SDLC AI-native, o ML AI Engineer turns exploratory model work into repeatable, auditable production behavior.
+Pense no ML AI Engineer como um engenheiro de processos farmacêuticos. O químico inventa o composto; o engenheiro de processos garante que cada lote atende à monografia, com testes em cada etapa. Em um SDLC AI-nativo, o ML AI Engineer transforma trabalho exploratório de modelos em comportamento de produção repetível e auditável.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Maintain the evaluation suite: datasets, metrics, regressions per feature
-- Operate model routing (which model, which version, which tenant) in Azure AI Foundry
-- Track prompt changes with regression tests and diff reports
-- Deploy models and agents to Azure AI Foundry with rollback-ready artifacts
-- Train and fine-tune models in Azure Machine Learning with versioned experiments
-- Integrate safety systems (content filters, Purview sensitivity) into the model pipeline
-- Operate the Eval Runner agent and `/eval-suite`, `/model-route`, `/prompt-regression`, `/foundry-deploy` prompts
-- Collaborate with the Data Engineer on feature datasets and with the InfoSec Officer on threat models for AI
+- Manter a suíte de avaliação: datasets, métricas, regressões por feature
+- Operar o roteamento de modelos (qual modelo, qual versão, qual tenant) no Azure AI Foundry
+- Rastrear mudanças de prompt com testes de regressão e relatórios de diff
+- Deployar modelos e agentes no Azure AI Foundry com artefatos prontos para rollback
+- Treinar e fazer fine-tune de modelos no Azure Machine Learning com experimentos versionados
+- Integrar sistemas de segurança (filtros de conteúdo, sensibilidade do Purview) no pipeline de modelos
+- Operar o agente Eval Runner e os prompts `/eval-suite`, `/model-route`, `/prompt-regression`, `/foundry-deploy`
+- Colaborar com o Data Engineer em datasets de features e com o InfoSec Officer em modelos de ameaça para IA
 
 ## Jobs to be done
 
-1. As an ML AI Engineer, I want every prompt change gated by a regression test, para que quality does not silently degrade.
-2. As an ML AI Engineer, I want eval suites versioned with the model, para que I can reproduce any past baseline on demand.
-3. As an ML AI Engineer, I want safe production deploys via Azure AI Foundry with one-click rollback, para que incidents do not leave users stranded.
-4. As an ML AI Engineer, I want model routing to be code, not tribal knowledge, para que every routing decision is reviewable.
-5. As an ML AI Engineer, I want safety filters integrated and tested, para que content-safety violations are caught in CI.
-6. As an ML AI Engineer, I want training experiments logged in Azure Machine Learning, para que reproducibility is automatic.
-7. As an ML AI Engineer, I want Application Insights signals from deployed models to feed the next eval, para que the loop closes itself.
-8. As an ML AI Engineer, I want cost and latency budgets enforced per model and per tenant, para que runaway inference is impossible.
+1. Como ML AI Engineer, eu quero cada mudança de prompt bloqueada por um teste de regressão, para que a qualidade não degrade silenciosamente.
+2. Como ML AI Engineer, eu quero suítes de avaliação versionadas com o modelo, para que eu consiga reproduzir qualquer baseline passado sob demanda.
+3. Como ML AI Engineer, eu quero deploys seguros em produção via Azure AI Foundry com rollback em um clique, para que incidentes não deixem usuários abandonados.
+4. Como ML AI Engineer, eu quero que o roteamento de modelos seja código, não conhecimento tribal, para que cada decisão de roteamento seja revisável.
+5. Como ML AI Engineer, eu quero filtros de segurança integrados e testados, para que violações de segurança de conteúdo sejam capturadas no CI.
+6. Como ML AI Engineer, eu quero experimentos de treino logados no Azure Machine Learning, para que a reprodutibilidade seja automática.
+7. Como ML AI Engineer, eu quero sinais do Application Insights de modelos deployados alimentando a próxima avaliação, para que o loop se feche sozinho.
+8. Como ML AI Engineer, eu quero orçamentos de custo e latência enforçados por modelo e por tenant, para que inferência descontrolada seja impossível.
 
-## Dores antes da era AI-native
+## Dores antes do AI-nativo
 
-- **Eval-free prompt changes**. Prompts changed in a hurry regress quality; no one notices until a user complains.
-- **Model roulette**. Which model served a given request? No one can tell; support cases take hours to reproduce.
-- **Deploy and pray**. Models deployed by hand to Azure AI Foundry or OpenAI endpoints without a rollback plan.
-- **Cost explosions**. A badly designed chain calls GPT-class models a hundred times per request; the bill arrives at month end.
-- **Safety as afterthought**. Content filters and PII redaction added only after an incident.
-- **Training lineage lost**. The best model's training artifacts exist only on a laptop.
-- **Prompt-in-code**. Prompts embedded in application code instead of version-controlled files with reviews.
+- **Mudanças de prompt sem avaliação**. Prompts alterados às pressas regridem qualidade; ninguém percebe até um usuário reclamar.
+- **Roleta de modelos**. Qual modelo serviu um dado request? Ninguém consegue dizer; casos de suporte levam horas para reproduzir.
+- **Deploy e reze**. Modelos deployados manualmente no Azure AI Foundry ou endpoints do OpenAI sem plano de rollback.
+- **Explosões de custo**. Uma chain mal projetada chama modelos de classe GPT cem vezes por request; a conta chega no final do mês.
+- **Segurança como última hora**. Filtros de conteúdo e redação de PII adicionados apenas após um incidente.
+- **Linhagem de treino perdida**. Os artefatos de treino do melhor modelo existem apenas em um laptop.
+- **Prompt no código**. Prompts embutidos no código da aplicação em vez de arquivos versionados com revisão.
 
-## Fluxo diário AI-native
+## Fluxo diário AI-nativo
 
-The ML AI Engineer works from Visual Studio Code with GitHub Copilot and from the terminal with Claude Code, driving the Eval Runner across the day.
+O ML AI Engineer trabalha a partir do Visual Studio Code com GitHub Copilot e do terminal com Claude Code, conduzindo o Eval Runner ao longo do dia.
 
 ### Setup da manhã
 
-1. Open Azure AI Foundry and Application Insights dashboards; review overnight inference metrics and safety-filter events.
-2. In VS Code, run `/eval-suite --since=yesterday` to see any eval regressions on merged prompts or models.
-3. Triage PRs that change prompts or routing; the Eval Runner has pre-posted `/prompt-regression` diffs.
-4. Confirm Azure Machine Learning experiment queue from the training track.
-5. Sync with the Data Engineer on new or changed feature datasets feeding training.
+1. Abra os dashboards do Azure AI Foundry e Application Insights; revise métricas de inferência noturnas e eventos de filtro de segurança.
+2. No VS Code, rode `/eval-suite --since=yesterday` para ver quaisquer regressões de avaliação em prompts ou modelos merged.
+3. Triar PRs que mudam prompts ou roteamento; o Eval Runner já postou diffs de `/prompt-regression`.
+4. Confirme a fila de experimentos do Azure Machine Learning do track de treino.
+5. Sincronize com o Data Engineer sobre datasets de features novos ou alterados alimentando o treino.
 
 ### Execução no meio do dia
 
-1. For each feature change, run `/eval-suite` against the proposed model or prompt; fail the PR if the score drops below threshold.
-2. For routing changes, invoke `/model-route` to generate or update the routing configuration with decision rationale.
-3. Implement training runs through `/foundry-deploy --stage=experiment`; results are logged in Azure Machine Learning.
-4. Keep prompts in `prompts/*.prompt.md` with instruções escopadas; no prompts inline in application code.
+1. Para cada mudança de feature, rode `/eval-suite` contra o modelo ou prompt proposto; falhe o PR se o score cair abaixo do limiar.
+2. Para mudanças de roteamento, invoque `/model-route` para gerar ou atualizar a configuração de roteamento com justificativa de decisão.
+3. Implemente execuções de treino através de `/foundry-deploy --stage=experiment`; resultados são logados no Azure Machine Learning.
+4. Mantenha prompts em `prompts/*.prompt.md` com instruções com escopo; nenhum prompt inline no código da aplicação.
 
 ### Revisão no fim da tarde
 
-1. Deploy approved models via `/foundry-deploy --stage=prod`. Azure AI Foundry receives a versioned deployment with rollback metadata.
-2. Watch the next hour of Application Insights telemetry for anomalies; roll back automatically if guardrails trip.
-3. Review cost telemetry per tenant; open issues for outliers.
+1. Deploye modelos aprovados via `/foundry-deploy --stage=prod`. O Azure AI Foundry recebe um deploy versionado com metadados de rollback.
+2. Monitore a próxima hora de telemetria do Application Insights para anomalias; faça rollback automaticamente se os guardrails dispararem.
+3. Revise telemetria de custo por tenant; abra issues para outliers.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `eval-runner` | `.github/agents/eval-runner.agent.md` | Runs eval suites, prompt regressions, routing updates, Foundry deploys |
+|--------|---------|-----------|
+| `eval-runner` | `.github/agents/eval-runner.agent.md` | Roda suítes de avaliação, regressões de prompt, atualizações de roteamento, deploys no Foundry |
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/eval-suite` | `.github/prompts/eval-suite.prompt.md` | Run the evaluation suite and publish scored reports |
-| `/model-route` | `.github/prompts/model-route.prompt.md` | Update and validate the model-routing configuration |
-| `/prompt-regression` | `.github/prompts/prompt-regression.prompt.md` | Run regression tests against changed prompts |
-| `/foundry-deploy` | `.github/prompts/foundry-deploy.prompt.md` | Stage or promote a model or agent in Azure AI Foundry with rollback metadata |
+|---------|---------|-----------|
+| `/eval-suite` | `.github/prompts/eval-suite.prompt.md` | Rodar a suíte de avaliação e publicar relatórios com scores |
+| `/model-route` | `.github/prompts/model-route.prompt.md` | Atualizar e validar a configuração de roteamento de modelos |
+| `/prompt-regression` | `.github/prompts/prompt-regression.prompt.md` | Rodar testes de regressão contra prompts alterados |
+| `/foundry-deploy` | `.github/prompts/foundry-deploy.prompt.md` | Promover ou fazer stage de um modelo ou agente no Azure AI Foundry com metadados de rollback |
 
-### Instruções escopadas
+### Instruções com escopo
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `prompts/**/*.prompt.md` | `.github/instructions/prompts.instructions.md` | Prompt structure, version header, safety block, eval reference |
-| `evals/**/*.yaml` | `.github/instructions/evals.instructions.md` | Eval dataset structure, metric definitions, thresholds |
-| `foundry/**/*.bicep` | `.github/instructions/foundry.instructions.md` | Azure AI Foundry deployment templates, identity, rollback |
-| `aml/**/*.py` | `.github/instructions/aml.instructions.md` | Azure Machine Learning experiment scaffolding |
+|--------------------|---------|-----------|
+| `prompts/**/*.prompt.md` | `.github/instructions/prompts.instructions.md` | Estrutura de prompt, cabeçalho de versão, bloco de segurança, referência de avaliação |
+| `evals/**/*.yaml` | `.github/instructions/evals.instructions.md` | Estrutura de dataset de avaliação, definições de métricas, limiares |
+| `foundry/**/*.bicep` | `.github/instructions/foundry.instructions.md` | Templates de deploy do Azure AI Foundry, identidade, rollback |
+| `aml/**/*.py` | `.github/instructions/aml.instructions.md` | Scaffolding de experimentos do Azure Machine Learning |
 
 ### Hooks
 
-- `pre-commit`: lint prompts, check required metadata headers, redact secrets
-- `pre-push`: run eval subset on changed prompts and models
-- `post-merge`: run full eval suite and publish the dashboard
-- `pre-deploy`: enforce rollback metadata and Foundry policy gates
-- `post-deploy`: watch Application Insights for 60 minutes; auto-rollback on anomaly
+- `pre-commit`: lint de prompts, verificação de cabeçalhos de metadados obrigatórios, redação de segredos
+- `pre-push`: rodar subconjunto de avaliação em prompts e modelos alterados
+- `post-merge`: rodar suíte de avaliação completa e publicar o dashboard
+- `pre-deploy`: enforçar metadados de rollback e gates de política do Foundry
+- `post-deploy`: monitorar Application Insights por 60 minutos; rollback automático em anomalia
 
 ## MCPs validados
 
 | MCP | Propósito | Dono |
-|-----|---------|-------|
-| GitHub MCP Server | PRs, Actions runs, eval report comments | GitHub |
-| Azure MCP Server | Operate Azure AI Foundry, Azure OpenAI, Azure Machine Learning, Application Insights | Microsoft |
-| Microsoft Learn Docs MCP | Look up current guidance on Foundry, OpenAI, and AML patterns | Microsoft |
-| Azure DevOps MCP Server | Track ML experiments as work items when the team uses Azure DevOps | Microsoft |
-| Playwright MCP | End-to-end evaluation of AI features embedded in web UIs | Microsoft |
+|-----|-----------|------|
+| GitHub MCP Server | PRs, execuções do Actions, comentários de relatório de avaliação | GitHub |
+| Azure MCP Server | Operar Azure AI Foundry, Azure OpenAI, Azure Machine Learning, Application Insights | Microsoft |
+| Microsoft Learn Docs MCP | Consultar orientação atualizada sobre padrões de Foundry, OpenAI e AML | Microsoft |
+| Azure DevOps MCP Server | Rastrear experimentos de ML como work items quando o time usa Azure DevOps | Microsoft |
+| Playwright MCP | Avaliação ponta a ponta de features de IA embutidas em UIs web | Microsoft |
 
 ## Exemplos reais
 
-### Example 1: gating a prompt change
+### Exemplo 1: bloqueando uma mudança de prompt
 
-A Product Owner requests a friendlier tone in a support assistant. A PR edits `prompts/support-assistant.prompt.md`. The pre-push hook runs `/prompt-regression`; the Eval Runner scores the change against the versioned eval suite. Two helpfulness metrics rise, but a groundedness metric drops below threshold. The PR is blocked; the ML AI Engineer adds a constraint to the prompt; the next run passes and the PR merges.
+Um Product Owner solicita um tom mais amigável em um assistente de suporte. Um PR edita `prompts/support-assistant.prompt.md`. O hook pre-push roda `/prompt-regression`; o Eval Runner pontua a mudança contra a suíte de avaliação versionada. Duas métricas de utilidade sobem, mas uma métrica de fundamentação cai abaixo do limiar. O PR é bloqueado; o ML AI Engineer adiciona uma restrição ao prompt; a próxima execução passa e o PR faz merge.
 
-### Example 2: safe model upgrade
+### Exemplo 2: upgrade seguro de modelo
 
-A new version of GPT-class model becomes available in Azure OpenAI. The ML AI Engineer opens a PR modifying the routing config via `/model-route`. `/eval-suite` runs against a held-out dataset; cost and latency budgets are respected; safety-filter activations stay inside tolerance. `/foundry-deploy --stage=prod` deploys; post-deploy monitoring for 60 minutes confirms no regression. The old version stays hot for 24 hours for rollback.
+Uma nova versão de modelo de classe GPT fica disponível no Azure OpenAI. O ML AI Engineer abre um PR modificando a configuração de roteamento via `/model-route`. `/eval-suite` roda contra um dataset retido; orçamentos de custo e latência são respeitados; ativações de filtro de segurança ficam dentro da tolerância. `/foundry-deploy --stage=prod` deploya; monitoramento pós-deploy por 60 minutos confirma que não há regressão. A versão antiga permanece quente por 24 horas para rollback.
 
-### Example 3: closing the telemetry loop
+### Exemplo 3: fechando o loop de telemetria
 
-Application Insights shows a spike in hallucinated entity mentions for a specific tenant. The ML AI Engineer invokes `/eval-suite --from=prod-telemetry --tenant=acme`; the Eval Runner builds a new eval slice from recent cases, runs it against two candidate prompts, and recommends the winner. A PR lands the change with the new eval slice added to the regression suite permanently.
+Application Insights mostra um pico em menções de entidades alucinadas para um tenant específico. O ML AI Engineer invoca `/eval-suite --from=prod-telemetry --tenant=acme`; o Eval Runner constrói uma nova fatia de avaliação a partir de casos recentes, roda contra dois prompts candidatos e recomenda o vencedor. Um PR aterrissa a mudança com a nova fatia de avaliação adicionada à suíte de regressão permanentemente.
 
 ## Anti-padrões
 
-- **Prompts in application code**. Inline prompts cannot be reviewed as changes; keep them in `prompts/*`.
-- **Evals optional**. Every production-facing prompt or model has at least one eval dataset with thresholds.
-- **Hand-built routing**. Routing as a series of if-statements in code is unreviewable; keep it in a declarative config.
-- **Deploys without rollback**. Every Foundry deployment ships with metadata enabling one-click rollback.
-- **Training on a laptop**. Use Azure Machine Learning; experiments must be reproducible from the job definition.
-- **Safety filters bolted on**. Content safety is part of the pipeline from the start, not an incident response.
-- **Evals that never change**. Eval datasets rot; add real production cases regularly via telemetry loops.
+- **Prompts no código da aplicação**. Prompts inline não podem ser revisados como mudanças; mantenha-os em `prompts/*`.
+- **Evals opcionais**. Todo prompt ou modelo voltado para produção tem pelo menos um dataset de avaliação com limiares.
+- **Roteamento artesanal**. Roteamento como uma série de if-statements no código é irrevisável; mantenha-o em uma configuração declarativa.
+- **Deploys sem rollback**. Todo deploy no Foundry é entregue com metadados habilitando rollback em um clique.
+- **Treino em laptop**. Use Azure Machine Learning; experimentos devem ser reproduzíveis a partir da definição do job.
+- **Filtros de segurança adicionados depois**. Segurança de conteúdo faz parte do pipeline desde o início, não é uma resposta a incidentes.
+- **Evals que nunca mudam**. Datasets de avaliação envelhecem; adicione casos reais de produção regularmente via loops de telemetria.
 
 ## KPIs e métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Source |
-|--------|-------------------|------------------|--------|
-| Prompt regressions shipped to prod | 4 per quarter | 0 | Eval Runner history |
-| Eval coverage on production prompts | 30 percent | 100 percent | Repo scan |
-| Time from model release to evaluated prod deploy | 2 weeks | < 2 days | GitHub + Azure AI Foundry |
-| Safety-filter violations per 1M requests | Unmeasured | < 10 | Application Insights |
-| Cost per 1K requests (p50) | Drift | Within 10 percent of budget | Azure cost data |
-| Rollback time after deploy anomaly | Hours | < 5 minutes | Azure AI Foundry |
-| Experiments reproducible from Git | 40 percent | 100 percent | Azure Machine Learning jobs |
+| Métrica | Linha base (manual) | Meta (agêntico) | Fonte |
+|---------|---------------------|-----------------|-------|
+| Regressões de prompt entregues em produção | 4 por trimestre | 0 | Histórico do Eval Runner |
+| Cobertura de avaliação em prompts de produção | 30 por cento | 100 por cento | Scan do repo |
+| Tempo do release de modelo ao deploy avaliado em produção | 2 semanas | < 2 dias | GitHub + Azure AI Foundry |
+| Violações de filtro de segurança por 1M de requests | Não medido | < 10 | Application Insights |
+| Custo por 1K requests (p50) | Deriva | Dentro de 10 por cento do orçamento | Dados de custo Azure |
+| Tempo de rollback após anomalia de deploy | Horas | < 5 minutos | Azure AI Foundry |
+| Experimentos reproduzíveis a partir do Git | 40 por cento | 100 por cento | Jobs do Azure Machine Learning |
 
 ## Maturidade em quatro níveis
 
-- **L1 Manual**: Prompts in code, evals in notebooks, deploys by console clicks, no routing config.
-- **L2 Assistido**: Copilot drafts prompts and training code, evals in a notebook, single-model setup.
-- **L3 Aumentado**: Eval Runner agent, quatro slash prompts, instruções escopadas, Foundry deploys from GitHub Actions.
-- **L4 Autônomo**: Prompt and routing changes gated by evals, telemetry feeding the next eval automatically, rollback on anomaly within five minutes.
+- **L1 Manual**: Prompts no código, evals em notebooks, deploys por cliques no console, sem configuração de roteamento.
+- **L2 Assistido**: Copilot redige prompts e código de treino, evals em notebook, setup de modelo único.
+- **L3 Aumentado**: Agente Eval Runner, quatro slash prompts, instruções com escopo, deploys no Foundry a partir do GitHub Actions.
+- **L4 Autônomo**: Mudanças de prompt e roteamento bloqueadas por evals, telemetria alimentando a próxima avaliação automaticamente, rollback em anomalia dentro de cinco minutos.
 
 ## Integração com outras personas
 
-- **Do Data Engineer**: curated feature datasets in Microsoft Fabric with documented lineage.
-- **Do Software Architect**: AI topology decisions (which tier calls which model) and latency budgets.
-- **Para o Developer**: prompt files and routing config consumed from the repo; no inline prompts.
-- **With InfoSec Officer**: AI threat model, content-safety configuration, PII redaction policies.
-- **With SRE**: production monitoring, rollback automation, cost telemetry.
-- **Para o Product Owner**: eval dashboards and regression reports during release review.
-- **With Compliance Auditor**: model cards, training provenance, safety filter evidence.
+- **Do Data Engineer**: datasets de features curados no Microsoft Fabric com linhagem documentada.
+- **Do Software Architect**: decisões de topologia de IA (qual tier chama qual modelo) e orçamentos de latência.
+- **Para o Developer**: arquivos de prompt e configuração de roteamento consumidos do repositório; sem prompts inline.
+- **Com o InfoSec Officer**: modelo de ameaça de IA, configuração de segurança de conteúdo, políticas de redação de PII.
+- **Com o SRE**: monitoramento de produção, automação de rollback, telemetria de custo.
+- **Para o Product Owner**: dashboards de avaliação e relatórios de regressão durante a revisão de release.
+- **Com o Compliance Auditor**: model cards, proveniência de treino, evidência de filtros de segurança.
 
 ## Glossário
 
-- **Eval suite**: a versioned set of datasets, metrics, and thresholds used to score a model or prompt.
-- **Prompt regression**: a comparison of eval scores before and after a prompt change.
-- **Routing**: the declarative mapping from request context to model, version, and parameters.
-- **Foundry deployment**: a versioned release of a model or agent in Azure AI Foundry with rollback metadata.
-- **Groundedness**: a metric describing how faithfully a model's answer reflects its retrieved context.
-- **Safety filter**: an Azure content-safety component that blocks or flags disallowed outputs.
-- **Telemetry loop**: the process of turning production signals into new eval cases.
+- **Suíte de avaliação**: um conjunto versionado de datasets, métricas e limiares usado para pontuar um modelo ou prompt.
+- **Regressão de prompt**: uma comparação de scores de avaliação antes e depois de uma mudança de prompt.
+- **Roteamento**: o mapeamento declarativo de contexto de request para modelo, versão e parâmetros.
+- **Deploy no Foundry**: um release versionado de um modelo ou agente no Azure AI Foundry com metadados de rollback.
+- **Fundamentação**: uma métrica que descreve quão fielmente a resposta de um modelo reflete seu contexto recuperado.
+- **Filtro de segurança**: um componente de segurança de conteúdo do Azure que bloqueia ou sinaliza saídas não permitidas.
+- **Loop de telemetria**: o processo de transformar sinais de produção em novos casos de avaliação.
 
 ## Referências
 
-- [Azure AI Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/) — agents, models, evaluations
-- [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/) — OpenAI models via Azure
-- [Azure Machine Learning](https://learn.microsoft.com/azure/machine-learning/) — training and experiment tracking
-- [Azure AI Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) — safety filtering
-- [Application Insights for LLM apps](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — production telemetry
-- [GitHub Copilot and agents](https://docs.github.com/copilot) — developer workflow integration
-- [Microsoft Purview for AI data governance](https://learn.microsoft.com/purview/) — sensitivity classification of training data
-- [GitHub Actions](https://docs.github.com/actions) — CI and deployment orchestration across the stack
-- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — first-party documentation retrieval at implementation time
+- [Documentação do Azure AI Foundry](https://learn.microsoft.com/azure/ai-foundry/) — agentes, modelos, avaliações
+- [Azure OpenAI Service](https://learn.microsoft.com/azure/ai-services/openai/) — modelos OpenAI via Azure
+- [Azure Machine Learning](https://learn.microsoft.com/azure/machine-learning/) — treino e rastreamento de experimentos
+- [Azure AI Content Safety](https://learn.microsoft.com/azure/ai-services/content-safety/) — filtragem de segurança
+- [Application Insights para apps de LLM](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — telemetria de produção
+- [GitHub Copilot e agentes](https://docs.github.com/copilot) — integração no workflow do desenvolvedor
+- [Microsoft Purview para governança de dados de IA](https://learn.microsoft.com/purview/) — classificação de sensibilidade de dados de treino
+- [GitHub Actions](https://docs.github.com/actions) — orquestração de CI e deploy em todo o stack
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — recuperação de documentação first-party no momento da implementação
 - [GitHub Advanced Security](https://docs.github.com/code-security) — CodeQL, Dependabot, Secret Scanning, Push Protection

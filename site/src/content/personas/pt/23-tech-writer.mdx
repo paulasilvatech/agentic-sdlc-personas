@@ -10,193 +10,193 @@ order: 23
 updated: "2026-04-24"
 ---
 
-> The Tech Writer is the persona accountable for documentation that stays current, navigable, and trustworthy. Em um SDLC AI-native, o Tech Writer operates a docs-as-code pipeline, not a knowledge-base portal.
+> O Tech Writer é a persona responsável pela documentação que se mantém atualizada, navegável e confiável. Em um SDLC AI-nativo, o Tech Writer opera um pipeline de docs-as-code, não um portal de base de conhecimento.
 
 ## Resumo executivo
 
-The Tech Writer makes the system legible to humans and to AI agents. Em um SDLC AI-native, o Tech Writer works inside the Delivery phase com um conjunto fixo de primitivas: um agente docs-curator, quatro slash prompts, instruções escopadas, hooks validados por schema, and uma lista curada de MCPs validados. The primary outputs are MDX and Markdown content in the repository, generated API references, release notes, and a curated table of contents that ships as a static site on Azure Static Web Apps.
+O Tech Writer torna o sistema legível para humanos e para agentes de IA. Em um SDLC AI-nativo, o Tech Writer trabalha dentro da fase de Entrega com um conjunto fixo de primitivas: um agente Docs Curator, quatro slash prompts, instruções com escopo, hooks validados por schema e uma lista curada de MCPs validados. As saídas primárias são conteúdo MDX e Markdown no repositório, referências de API geradas, release notes e um sumário curado que é publicado como um site estático no Azure Static Web Apps.
 
 ## Papel e responsabilidades
 
-Pense no Tech Writer like the map-maker in a growing city. Streets and buildings appear every week; without the map-maker, newcomers are lost and longtimers forget which street is which. Em um SDLC AI-native, o code and architecture change daily; without the Tech Writer, the map is two quarters stale and the AI agents hallucinate landmarks that no longer exist.
+Pense no Tech Writer como o cartógrafo de uma cidade em crescimento. Ruas e edifícios aparecem toda semana; sem o cartógrafo, recém-chegados ficam perdidos e veteranos esquecem qual rua é qual. Em um SDLC AI-nativo, o código e a arquitetura mudam diariamente; sem o Tech Writer, o mapa está dois trimestres defasado e os agentes de IA alucinam pontos de referência que não existem mais.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Convert approved specifications into user-facing documentation in MDX or Markdown, committed alongside the code
-- Maintain the table of contents, navigation, and search index of the docs site hosted on Azure Static Web Apps
-- Generate and review release notes for every production deployment
-- Enforce the docs style guide with automated checks in GitHub Actions
-- Partner with developers to keep the `CODEMAP.md` and the generated API reference in sync
-- Curate content for humans and for AI agents: structured headings, explicit cross-links, predictable metadata
-- Operate the Docs Curator agent and the `/spec-to-docs`, `/style-check`, `/toc-refresh`, `/release-note` prompts
+- Converter especificações aprovadas em documentação voltada ao usuário em MDX ou Markdown, commitada junto com o código
+- Manter o sumário, a navegação e o índice de busca do site de docs hospedado no Azure Static Web Apps
+- Gerar e revisar release notes para cada deploy em produção
+- Enforçar o guia de estilo de docs com verificações automatizadas no GitHub Actions
+- Parceria com developers para manter o `CODEMAP.md` e a referência de API gerada em sincronia
+- Curar conteúdo para humanos e para agentes de IA: headings estruturados, cross-links explícitos, metadados previsíveis
+- Operar o agente Docs Curator e os prompts `/spec-to-docs`, `/style-check`, `/toc-refresh`, `/release-note`
 
 ## Jobs to be done
 
-1. Como Tech Writer, eu quero an approved specification converted into a draft doc page in minutes, para que I ship docs with features, not after them.
-2. Como Tech Writer, eu quero the style guide enforced automatically in CI, para que I coach instead of police.
-3. Como Tech Writer, eu quero the table of contents refreshed whenever a new page lands, para que navigation stays coherent as the site grows.
-4. Como Tech Writer, eu quero release notes drafted from merged PRs and linked issues, para que every release has a human-readable summary.
-5. Como Tech Writer, eu quero detect stale docs automatically when the underlying code changes, para que deprecated guidance disappears before users stumble into it.
-6. Como Tech Writer, eu quero AI agents to read the docs correctly, para que in-product assistants give users accurate answers.
+1. Como Tech Writer, eu quero uma especificação aprovada convertida em uma página de doc rascunho em minutos, para que eu entregue docs junto com features, não depois delas.
+2. Como Tech Writer, eu quero o guia de estilo enforçado automaticamente no CI, para que eu mentore em vez de policiar.
+3. Como Tech Writer, eu quero o sumário atualizado sempre que uma nova página aterrissar, para que a navegação continue coerente à medida que o site cresce.
+4. Como Tech Writer, eu quero release notes redigidas a partir de PRs merged e issues linkadas, para que cada release tenha um resumo legível por humanos.
+5. Como Tech Writer, eu quero detectar docs obsoletos automaticamente quando o código subjacente muda, para que orientação deprecada desapareça antes que usuários tropecem nela.
+6. Como Tech Writer, eu quero que agentes de IA leiam os docs corretamente, para que assistentes dentro do produto deem aos usuários respostas precisas.
 
-## Dores antes da era AI-native
+## Dores antes do AI-nativo
 
-1. **Docs land weeks after features**. The feature ships, the blog post goes out, and the reference docs appear a month later with outdated screenshots.
-2. **Style drift**. Every writer has a slightly different voice; the final site reads like a committee.
-3. **Broken links are caught by users**. Nobody audits navigation; the table of contents references pages that moved or were deleted.
-4. **Release notes copy-pasted from commit messages**. Users read internal jargon; the note tells them nothing actionable.
-5. **Docs invisible to search and AI**. Without structured metadata, neither the search engine nor the in-product assistant can find the right page.
+1. **Docs aterrissam semanas após features**. A feature é entregue, o blog post sai, e os docs de referência aparecem um mês depois com screenshots desatualizados.
+2. **Drift de estilo**. Cada redator tem uma voz ligeiramente diferente; o site final lê como um comitê.
+3. **Links quebrados são descobertos por usuários**. Ninguém audita a navegação; o sumário referencia páginas que foram movidas ou deletadas.
+4. **Release notes copiadas de mensagens de commit**. Usuários leem jargão interno; a note não diz nada acionável.
+5. **Docs invisíveis para busca e IA**. Sem metadados estruturados, nem o motor de busca nem o assistente dentro do produto conseguem encontrar a página certa.
 
-## Fluxo diário AI-native
+## Fluxo diário AI-nativo
 
-The Tech Writer operates a daily loop. O loop usa primitivas do GitHub Copilot inside Visual Studio Code, Claude Code at the terminal for long-form drafting, and the Microsoft Learn Docs MCP for grounded references on Microsoft and Azure stacks.
+O Tech Writer opera um loop diário. O loop usa primitivas do GitHub Copilot dentro do Visual Studio Code, Claude Code no terminal para redação de longa duração e o Microsoft Learn Docs MCP para referências fundamentadas em stacks Microsoft e Azure.
 
 ### Setup da manhã
 
-1. Open Visual Studio Code on the `docs` repository. GitHub Copilot Chat carrega the scoped `.github/instructions/docs.instructions.md`.
-2. Invoke `/toc-refresh`. The Docs Curator agent reviews the navigation tree, flags pages added without ToC entries, and proposes reorganizations where sections have grown past the readability threshold.
-3. Read the overnight digest from GitHub Actions: which PRs touched public API surfaces, which release tags were cut, which style checks failed.
+1. Abra o Visual Studio Code no repositório `docs`. GitHub Copilot Chat carrega as instruções com escopo `.github/instructions/docs.instructions.md`.
+2. Invoque `/toc-refresh`. O agente Docs Curator revisa a árvore de navegação, sinaliza páginas adicionadas sem entradas no sumário e propõe reorganizações onde seções cresceram além do limiar de legibilidade.
+3. Leia o resumo noturno do GitHub Actions: quais PRs tocaram superfícies de API pública, quais tags de release foram cortadas, quais verificações de estilo falharam.
 
 ### Execução no meio do dia
 
-1. Take a specification from the `specs/` folder. Invoke `/spec-to-docs`. The agent produces a draft MDX page with headings, examples, and cross-links to related content. The Tech Writer edits the draft for voice and accuracy.
-2. Run `/style-check` on changed pages. The agent flags tone drift, passive voice overuse, and terms outside the glossary. The Tech Writer accepts or rejects each suggestion.
-3. Pair with a developer on an ambiguous topic. Use Claude Code at the terminal to drive through the code and summarize behavior, grounded by the Microsoft Learn Docs MCP where the topic touches Azure or Microsoft 365.
+1. Pegue uma especificação da pasta `specs/`. Invoque `/spec-to-docs`. O agente produz uma página MDX rascunho com headings, exemplos e cross-links para conteúdo relacionado. O Tech Writer edita o rascunho para voz e precisão.
+2. Rode `/style-check` nas páginas alteradas. O agente sinaliza drift de tom, uso excessivo de voz passiva e termos fora do glossário. O Tech Writer aceita ou rejeita cada sugestão.
+3. Pareie com um developer em um tópico ambíguo. Use Claude Code no terminal para navegar pelo código e resumir comportamento, fundamentado pelo Microsoft Learn Docs MCP quando o tópico toca Azure ou Microsoft 365.
 
 ### Revisão no fim da tarde
 
-1. Run `/release-note` for the upcoming release. The agent ingests merged PRs, linked issues, and incident resolutions, and drafts a human-readable note with sections: new features, fixes, deprecations, breaking changes.
-2. Review PRs that touched `docs/` in the main product repo. Ensure every new public surface has a doc page or a link to one.
-3. Close the day by pushing changes. GitHub Actions runs the build, the style check, and the link checker; Azure Static Web Apps publishes the updated site.
+1. Rode `/release-note` para o release futuro. O agente ingere PRs merged, issues linkadas e resoluções de incidentes, e redige uma note legível por humanos com seções: novas features, correções, deprecações, breaking changes.
+2. Revise PRs que tocaram `docs/` no repo principal do produto. Garanta que toda nova superfície pública tem uma página de doc ou um link para uma.
+3. Feche o dia dando push nas mudanças. GitHub Actions roda o build, a verificação de estilo e o link checker; Azure Static Web Apps publica o site atualizado.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `docs-curator` | `.github/agents/docs-curator.agent.md` | Draft docs from specs, enforce style, refresh the ToC, produce release notes |
+|--------|---------|-----------|
+| `docs-curator` | `.github/agents/docs-curator.agent.md` | Redigir docs a partir de specs, enforçar estilo, atualizar o sumário, produzir release notes |
 
-The Docs Curator agent uses `claude-sonnet-4-6` by default, with tools `read`, `edit`, `search`, `grep`, `glob`, `bash`. It pulls context from GitHub and Microsoft Learn Docs MCPs. Extended thinking is enabled for long-form style and structure work.
+O agente Docs Curator usa `claude-sonnet-4-6` por padrão, com ferramentas `read`, `edit`, `search`, `grep`, `glob`, `bash`. Puxa contexto dos MCPs GitHub e Microsoft Learn Docs. Extended thinking é habilitado para trabalho de estilo e estrutura de longa duração.
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/spec-to-docs` | `.github/prompts/spec-to-docs.prompt.md` | Convert an approved spec into a draft MDX page |
-| `/style-check` | `.github/prompts/style-check.prompt.md` | Run the style guide against a changed page |
-| `/toc-refresh` | `.github/prompts/toc-refresh.prompt.md` | Review and reorganize the table of contents |
-| `/release-note` | `.github/prompts/release-note.prompt.md` | Draft a release note from merged PRs and linked issues |
+|---------|---------|-----------|
+| `/spec-to-docs` | `.github/prompts/spec-to-docs.prompt.md` | Converter uma spec aprovada em uma página MDX rascunho |
+| `/style-check` | `.github/prompts/style-check.prompt.md` | Rodar o guia de estilo contra uma página alterada |
+| `/toc-refresh` | `.github/prompts/toc-refresh.prompt.md` | Revisar e reorganizar o sumário |
+| `/release-note` | `.github/prompts/release-note.prompt.md` | Redigir uma release note a partir de PRs merged e issues linkadas |
 
-### Instruções escopadas
+### Instruções com escopo
 
-Scoped `applyTo` keeps docs guidance distinct from code guidance.
+`applyTo` com escopo mantém a orientação de docs distinta da orientação de código.
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `docs/**/*.mdx` | `.github/instructions/docs.instructions.md` | Voice, tone, heading discipline, frontmatter schema |
-| `docs/release-notes/**` | `.github/instructions/release-notes.instructions.md` | Release-note structure, user-centric phrasing |
-| `docs/reference/**` | `.github/instructions/reference.instructions.md` | API reference conventions, parameter tables, example discipline |
+|--------------------|---------|-----------|
+| `docs/**/*.mdx` | `.github/instructions/docs.instructions.md` | Voz, tom, disciplina de headings, schema de frontmatter |
+| `docs/release-notes/**` | `.github/instructions/release-notes.instructions.md` | Estrutura de release note, fraseologia centrada no usuário |
+| `docs/reference/**` | `.github/instructions/reference.instructions.md` | Convenções de referência de API, tabelas de parâmetros, disciplina de exemplos |
 
 ### Hooks
 
-Hooks are zero-token governance for docs artifacts.
+Hooks são governança de zero tokens para artefatos de docs.
 
-- `pre-commit`: reject a page without frontmatter (title, id, updated, summary)
-- `post-commit`: regenerate the ToC JSON when a new page lands
-- `pre-push`: run the link checker against changed pages; fail on broken internal links
+- `pre-commit`: rejeitar uma página sem frontmatter (title, id, updated, summary)
+- `post-commit`: regenerar o JSON do sumário quando uma nova página aterrissa
+- `pre-push`: rodar o link checker contra páginas alteradas; falhar em links internos quebrados
 
 ## MCPs validados
 
-Every MCP below is registered in the MCP catalog. Do not reference any MCP that is not in the catalog.
+Todo MCP abaixo está registrado no catálogo de MCPs. Não referencie nenhum MCP que não esteja no catálogo.
 
-| MCP | Status | Use in this persona |
-|-----|--------|---------------------|
-| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Official | Ground docs on Microsoft 365, Azure, and GitHub topics in current Microsoft Learn content |
-| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Official | Read merged PRs, linked issues, and release tags for release-note drafting |
-| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Official (Microsoft) | Inspect Azure Static Web Apps deployment status and Application Insights for docs-site errors |
-| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Official (Microsoft) | Read work items that drive release notes when the team uses Azure Boards |
-| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Official (Microsoft) | Drive end-to-end checks on the docs site after deployment (navigation, search, dark mode) |
-| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Official (Microsoft) | Announce docs updates and release notes into Microsoft Teams channels |
+| MCP | Status | Uso nesta persona |
+|-----|--------|-------------------|
+| [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) | Oficial | Fundamentar docs sobre Microsoft 365, Azure e GitHub em conteúdo atual do Microsoft Learn |
+| [GitHub MCP Server](https://github.com/github/github-mcp-server) | Oficial | Ler PRs merged, issues linkadas e tags de release para redação de release notes |
+| [Azure MCP Server](https://github.com/Azure/azure-mcp) | Oficial (Microsoft) | Inspecionar status de deploy do Azure Static Web Apps e Application Insights para erros do site de docs |
+| [Azure DevOps MCP Server](https://github.com/microsoft/azure-devops-mcp) | Oficial (Microsoft) | Ler work items que direcionam release notes quando o time usa Azure Boards |
+| [Playwright MCP](https://github.com/microsoft/playwright-mcp) | Oficial (Microsoft) | Conduzir verificações ponta a ponta no site de docs após deploy (navegação, busca, dark mode) |
+| [Microsoft 365 Agents SDK MCP](https://learn.microsoft.com/microsoft-365/agents-sdk/) | Oficial (Microsoft) | Anunciar atualizações de docs e release notes em canais do Microsoft Teams |
 
 ## Exemplos reais
 
-### Example 1: spec to docs for a new endpoint
+### Exemplo 1: da spec para docs para um novo endpoint
 
-**Entrada**: An approved specification `specs/claims-status.md` describes a new endpoint for retrieving claim status.
+**Entrada**: Uma especificação aprovada `specs/claims-status.md` descreve um novo endpoint para recuperar status de sinistro.
 
 **Invocação**: `/spec-to-docs specs/claims-status.md`.
 
 **Saída esperada**:
 
-1. A draft page `docs/reference/claims/status.mdx` with frontmatter, a short overview, the request and response schemas, three examples (happy path, not found, forbidden), and cross-links to the authentication page.
-2. A ToC entry proposed in the pre-commit diff; the hook would reject the commit otherwise.
-3. A PR titled `docs(claims): add claim status endpoint reference` that links back to the spec and the implementation PR.
+1. Uma página rascunho `docs/reference/claims/status.mdx` com frontmatter, um overview curto, schemas de request e response, três exemplos (caminho feliz, não encontrado, proibido) e cross-links para a página de autenticação.
+2. Uma entrada de sumário proposta no diff do pre-commit; o hook rejeitaria o commit de outra forma.
+3. Um PR intitulado `docs(claims): add claim status endpoint reference` que linka de volta à spec e ao PR de implementação.
 
-### Example 2: release note for version 2.14.0
+### Exemplo 2: release note para a versão 2.14.0
 
-**Entrada**: Version 2.14.0 merges 23 PRs and closes 11 issues across three product areas.
+**Entrada**: A versão 2.14.0 faz merge de 23 PRs e fecha 11 issues em três áreas de produto.
 
 **Invocação**: `/release-note v2.14.0`.
 
 **Saída esperada**:
 
-1. A draft `docs/release-notes/2.14.0.mdx` with four sections: new features (user-centric phrasing), fixes, deprecations, breaking changes.
-2. Each claim cites a merged PR and a linked issue; internal jargon is rewritten into user vocabulary.
-3. A Teams post via the M365 Agents SDK to the release channel inviting reviewers.
-4. Azure Static Web Apps publishes the note to the preview environment; Playwright MCP runs a navigation smoke test before promotion.
+1. Um rascunho `docs/release-notes/2.14.0.mdx` com quatro seções: novas features (fraseologia centrada no usuário), correções, deprecações, breaking changes.
+2. Cada item cita um PR merged e uma issue linkada; jargão interno é reescrito em vocabulário de usuário do produto.
+3. Um post no Teams via o M365 Agents SDK para o canal de release convidando revisores.
+4. Azure Static Web Apps publica a note no ambiente de preview; Playwright MCP roda um smoke test de navegação antes da promoção.
 
 ## Anti-padrões
 
-1. **Copy-paste release notes from commits**. Commit messages are for engineers; release notes are for users. Mitigação: `release-notes.instructions.md` requires user-centric phrasing and rewrites jargon.
-2. **Docs that live outside the repository**. A knowledge-base portal detached from code drifts instantly. Mitigação: every page lives in `docs/` and ships via GitHub Actions to Azure Static Web Apps.
-3. **Screenshots that age silently**. Image-based UI docs rot fastest. Mitigação: Playwright MCP regenerates critical screenshots on every docs build.
-4. **ToC by hand**. A hand-maintained navigation tree goes stale within a sprint. Mitigação: `/toc-refresh` and the post-commit hook keep the JSON generated.
-5. **Style policing in PR reviews**. Manual policing frustrates both sides. Mitigação: `/style-check` runs in CI and comments inline.
+1. **Release notes copiadas de commits**. Mensagens de commit são para engenheiros; release notes são para usuários. Mitigação: `release-notes.instructions.md` exige fraseologia centrada no usuário e reescreve jargão.
+2. **Docs que vivem fora do repositório**. Um portal de base de conhecimento desacoplado do código se defasa instantaneamente. Mitigação: cada página vive em `docs/` e é entregue via GitHub Actions para Azure Static Web Apps.
+3. **Screenshots que envelhecem silenciosamente**. Docs baseados em imagens de UI apodrecem mais rápido. Mitigação: Playwright MCP regenera screenshots críticos a cada build de docs.
+4. **Sumário manual**. Uma árvore de navegação mantida à mão fica defasada em uma sprint. Mitigação: `/toc-refresh` e o hook post-commit mantêm o JSON gerado.
+5. **Policiamento de estilo em revisões de PR**. Policiamento manual frustra ambos os lados. Mitigação: `/style-check` roda no CI e comenta inline.
 
 ## KPIs e métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Medição |
-|--------|-------------------|------------------|-------------|
-| Time from feature merge to docs merge | 14 days | Under 24 hours | Docs-merge lag dashboard |
-| Broken link count in production | Over 40 | Zero | Link checker in GitHub Actions |
-| Style check pass rate on first commit | 55 percent | Over 90 percent | CI history |
-| Release-note preparation time | 6 hours | Under 45 minutes | Time-to-publish log |
-| Docs-site error rate (404 on internal nav) | Over 2 percent | Under 0.2 percent | Application Insights |
-| Token efficiency | N/A | Under 150k tokens per week | Copilot usage report |
+| Métrica | Linha base (manual) | Meta (agêntico) | Medição |
+|---------|---------------------|-----------------|---------|
+| Tempo do merge de feature ao merge de docs | 14 dias | Menos de 24 horas | Dashboard de defasagem de merge de docs |
+| Contagem de links quebrados em produção | Mais de 40 | Zero | Link checker no GitHub Actions |
+| Taxa de aprovação de style check no primeiro commit | 55 por cento | Mais de 90 por cento | Histórico de CI |
+| Tempo de preparação de release notes | 6 horas | Menos de 45 minutos | Log de tempo-para-publicação |
+| Taxa de erro do site de docs (404 em nav interna) | Mais de 2 por cento | Menos de 0,2 por cento | Application Insights |
+| Eficiência de tokens | N/A | Menos de 150k tokens por semana | Relatório de uso do Copilot |
 
 ## Maturidade em quatro níveis
 
 | Nível | Nome | Marcadores |
-|-------|------|---------|
-| L1 | Manual | Docs in a separate portal, no style guide, release notes copy-pasted |
-| L2 | Assistido | GitHub Copilot Chat for drafting, docs in repo, ad hoc CI checks |
-| L3 | Aumentado | Docs Curator agent, quatro slash prompts, instruções escopadas, style and link checks in GitHub Actions, site on Azure Static Web Apps |
-| L4 | Agentic | Full primitives kit, hooks enforced, Playwright MCP smoke tests on every deploy, Microsoft Learn Docs MCP grounding on Azure topics, maturity scorecard above 80 percent |
+|-------|------|-----------|
+| L1 | Manual | Docs em um portal separado, sem guia de estilo, release notes copiadas |
+| L2 | Assistido | GitHub Copilot Chat para redação, docs no repo, verificações de CI ad hoc |
+| L3 | Aumentado | Agente Docs Curator, quatro slash prompts, instruções com escopo, verificações de estilo e links no GitHub Actions, site no Azure Static Web Apps |
+| L4 | Agêntico | Kit completo de primitivas, hooks enforçados, smoke tests do Playwright MCP a cada deploy, fundamentação do Microsoft Learn Docs MCP em tópicos Azure, scorecard de maturidade acima de 80 por cento |
 
 ## Integração com outras personas
 
-- **With Requirements Engineer**: specifications feed `/spec-to-docs`
-- **With Developer**: public API changes trigger docs updates
-- **With Release Manager**: release tags drive release-note generation
-- **With DevRel**: tutorials and demos cross-link to the reference docs
-- **With UX Designer**: screenshots and flow diagrams coordinated
-- **With InfoSec Officer**: security advisories published with the same pipeline
-- **With Product Owner**: user-centric phrasing reviewed before release
+- **Com o Requirements Engineer**: especificações alimentam `/spec-to-docs`
+- **Com o Developer**: mudanças de API pública disparam atualizações de docs
+- **Com o Release Manager**: tags de release direcionam geração de release notes
+- **Com o DevRel**: tutoriais e demos fazem cross-link para os docs de referência
+- **Com o UX Designer**: screenshots e diagramas de fluxo coordenados
+- **Com o InfoSec Officer**: advisories de segurança publicados com o mesmo pipeline
+- **Com o Product Owner**: fraseologia centrada no usuário revisada antes do release
 
 ## Glossário
 
-- **Docs as code**: the practice of treating documentation sources as code, stored in the repository, reviewed in PRs, built by CI.
-- **Frontmatter**: the YAML block at the top of an MDX or Markdown file that carries metadata used by the site generator and by AI agents.
-- **ToC (table of contents)**: the generated navigation tree that orders pages for readers and for search.
-- **Release note**: a user-facing summary of what changed in a release, written in product-user vocabulary.
-- **Style check**: an automated linter that enforces the docs style guide.
-- **Link checker**: an automated job that verifies every internal and external link resolves.
+- **Docs as code**: a prática de tratar fontes de documentação como código, armazenadas no repositório, revisadas em PRs, construídas pelo CI.
+- **Frontmatter**: o bloco YAML no topo de um arquivo MDX ou Markdown que carrega metadados usados pelo gerador de site e por agentes de IA.
+- **Sumário (ToC)**: a árvore de navegação gerada que ordena páginas para leitores e para busca.
+- **Release note**: um resumo voltado ao usuário do que mudou em um release, escrito em vocabulário de produto-usuário.
+- **Style check**: um linter automatizado que enforça o guia de estilo de docs.
+- **Link checker**: um job automatizado que verifica se cada link interno e externo resolve.
 
 ## Referências
 
-- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — the MCP that grounds responses in current Microsoft Learn content
-- [Azure Static Web Apps documentation](https://learn.microsoft.com/azure/static-web-apps/) — the host for the docs site, integrated with GitHub Actions
-- [GitHub Actions documentation](https://docs.github.com/actions) — authoritative source for CI, style checks, and link checking
-- [Microsoft Writing Style Guide](https://learn.microsoft.com/style-guide/welcome/) — tone and clarity guidance for technical writing
-- [GitHub Docs documentation](https://docs.github.com/) — reference for repository-driven publishing workflows
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — o MCP que fundamenta respostas em conteúdo atual do Microsoft Learn
+- [Documentação do Azure Static Web Apps](https://learn.microsoft.com/azure/static-web-apps/) — o host para o site de docs, integrado com GitHub Actions
+- [Documentação do GitHub Actions](https://docs.github.com/actions) — fonte autoritativa para CI, verificações de estilo e link checking
+- [Guia de Estilo de Escrita da Microsoft](https://learn.microsoft.com/style-guide/welcome/) — orientação de tom e clareza para redação técnica
+- [Documentação do GitHub Docs](https://docs.github.com/) — referência para workflows de publicação baseados em repositório

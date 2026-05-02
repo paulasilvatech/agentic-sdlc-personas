@@ -10,191 +10,191 @@ order: 14
 updated: "2026-04-24"
 ---
 
-> The UAT Analyst é a persona que represents the business inside the Verification phase. Em um SDLC AI-native, o UAT Analyst operates an Acceptance Scribe agent that converts business intent into executable acceptance evidence — not a static sign-off form.
+> O Analista de UAT é a persona que representa o negócio dentro da fase de Verificação. Em um SDLC AI-nativo, o Analista de UAT opera um agente Acceptance Scribe que converte a intenção de negócio em evidências de aceitação executáveis — não um formulário estático de sign-off.
 
 ## Resumo executivo
 
-The UAT Analyst closes the loop between the Business Analyst's requirements and the end user's reality. Where the QA Engineer proves the system is built right, the UAT Analyst proves it is the right system. Em um SDLC AI-native, that proof is assembled with a single Acceptance Scribe agent, quatro slash prompts, instruções escopadas, and a validated MCP catalog that reaches into Azure DevOps Test Plans, GitHub, and Playwright for recorded walkthroughs.
+O Analista de UAT fecha o loop entre os requisitos do Business Analyst e a realidade do usuário final. Enquanto o Engenheiro de QA prova que o sistema foi construído corretamente, o Analista de UAT prova que é o sistema correto. Em um SDLC AI-nativo, essa prova é montada com um único agente Acceptance Scribe, quatro slash prompts, instruções com escopo e um catálogo validado de MCPs que alcança Azure DevOps Test Plans, GitHub e Playwright para walkthroughs gravados.
 
-The primary outputs are business-language acceptance scenarios, a formal UAT plan with participants and schedule, sign-off records backed by evidence, and a traceability map linking every business requirement to a reviewed demonstration. The UAT Analyst guards against the oldest failure mode in software: delivering what was asked for on paper and not what the business needs in practice.
+As saídas primárias são cenários de aceitação em linguagem de negócio, um plano formal de UAT com participantes e cronograma, registros de sign-off respaldados por evidências e um mapa de rastreabilidade linkando cada requisito de negócio a uma demonstração revisada. O Analista de UAT protege contra o modo de falha mais antigo do software: entregar o que foi pedido no papel e não o que o negócio precisa na prática.
 
-The UAT Analyst is also the translator between domain experts and engineering. They run the last rehearsal before production and the first rehearsal after, confirming that production behavior matches what was signed off.
+O Analista de UAT também é o tradutor entre especialistas de domínio e engenharia. Ele conduz o último ensaio antes da produção e o primeiro ensaio depois, confirmando que o comportamento em produção corresponde ao que foi assinado.
 
 ## Papel e responsabilidades
 
-Pense no UAT Analyst like a theatre dramaturg running final dress rehearsal. The director, writer, and actors all have their own view; the dramaturg ensures the audience will understand what is happening and that the piece honors the source material. Em um SDLC AI-native, o UAT Analyst is the persona accountable for the audience perspective on every feature before it goes live.
+Pense no Analista de UAT como um dramaturgista de teatro conduzindo o ensaio geral final. O diretor, o roteirista e os atores têm cada um sua visão; o dramaturgista garante que a plateia vai entender o que está acontecendo e que a peça honra o material original. Em um SDLC AI-nativo, o Analista de UAT é a persona responsável pela perspectiva da audiência em cada feature antes de ir ao ar.
 
-Responsabilidades principais:
+Responsabilidades primárias:
 
-- Convert each business requirement into Given-When-Then acceptance scenarios in business language
-- Coordinate UAT sessions with real domain experts, not proxies
-- Record every acceptance walkthrough with the Playwright MCP for evidence
-- Capture sign-offs with digital signatures stored in the repository and referenced from Azure DevOps Test Plans
-- Maintain the business-traceability matrix: requirement → scenario → evidence → sign-off
-- Operate the Acceptance Scribe agent and `/acceptance-scenarios`, `/uat-plan`, `/sign-off`, `/business-trace` prompts
-- Flag any production behavior that diverges from the signed scenario within 24 hours of release
-- Curate the glossary of business terms so engineering and the business share a single vocabulary
+- Converter cada requisito de negócio em cenários de aceitação Given-When-Then em linguagem de negócio
+- Coordenar sessões de UAT com especialistas de domínio reais, não proxies
+- Gravar cada walkthrough de aceitação com o Playwright MCP para evidência
+- Capturar sign-offs com assinaturas digitais armazenadas no repositório e referenciadas no Azure DevOps Test Plans
+- Manter a matriz de rastreabilidade de negócio: requisito → cenário → evidência → sign-off
+- Operar o agente Acceptance Scribe e os prompts `/acceptance-scenarios`, `/uat-plan`, `/sign-off`, `/business-trace`
+- Sinalizar qualquer comportamento de produção que diverge do cenário assinado em até 24 horas após o release
+- Curar o glossário de termos de negócio para que engenharia e negócio compartilhem um vocabulário único
 
 ## Jobs to be done
 
-1. Como UAT Analyst, eu quero every business requirement to have at least one executable acceptance scenario, para que sign-off is backed by evidence, not opinion.
-2. Como UAT Analyst, eu quero UAT sessions scheduled automatically from the release plan, para que no feature ships without a dated rehearsal.
-3. Como UAT Analyst, eu quero recorded walkthroughs attached to each sign-off, para que audits and future regressions have an artifact to replay.
-4. Como UAT Analyst, eu quero divergences between signed scenarios and production behavior detected within one day, para que trust with the business is preserved.
-5. Como UAT Analyst, eu quero a single, queryable business-traceability matrix, para que leadership can answer "is requirement X verified in production?" in seconds.
-6. Como UAT Analyst, eu quero every scenario written in the business's own words, para que domain experts can approve without translation.
-7. Como UAT Analyst, eu quero sign-offs time-stamped and signed, para que governance and compliance audits are satisfied without manual packaging.
-8. Como UAT Analyst, eu quero the UAT plan distributed in Microsoft Teams and Loop, para que stakeholders see dates, owners, and outcomes in one place.
+1. Como Analista de UAT, eu quero que cada requisito de negócio tenha pelo menos um cenário de aceitação executável, para que o sign-off seja respaldado por evidência, não opinião.
+2. Como Analista de UAT, eu quero sessões de UAT agendadas automaticamente a partir do plano de release, para que nenhuma feature seja entregue sem um ensaio datado.
+3. Como Analista de UAT, eu quero walkthroughs gravados anexados a cada sign-off, para que auditorias e regressões futuras tenham um artefato para reproduzir.
+4. Como Analista de UAT, eu quero divergências entre cenários assinados e comportamento de produção detectadas em um dia, para que a confiança com o negócio seja preservada.
+5. Como Analista de UAT, eu quero uma matriz de rastreabilidade de negócio única e consultável, para que a liderança consiga responder "o requisito X está verificado em produção?" em segundos.
+6. Como Analista de UAT, eu quero cada cenário escrito nas próprias palavras do negócio, para que especialistas de domínio possam aprovar sem tradução.
+7. Como Analista de UAT, eu quero sign-offs com timestamp e assinatura, para que auditorias de governança e compliance sejam satisfeitas sem empacotamento manual.
+8. Como Analista de UAT, eu quero o plano de UAT distribuído no Microsoft Teams e Loop, para que stakeholders vejam datas, donos e resultados em um só lugar.
 
-## Dores antes da era AI-native
+## Dores antes do AI-nativo
 
-- **Requirements translate badly**. Business people speak process language, engineers write code; acceptance scenarios in the middle get watered down.
-- **Sign-offs without evidence**. A checkbox in a form proves nothing when the incident happens.
-- **UAT as afterthought**. UAT gets the last two days before release; problems found there either ship or slip the release.
-- **Scenario rot**. Scenarios written for version 1 are still the only scenarios for version 4.
-- **No production feedback loop**. The signed scenario is never re-verified in production, so drift goes unnoticed.
-- **Manual scheduling**. UAT sessions are coordinated by email with five-way schedule collisions.
-- **Disconnected tools**. Sign-offs in email, scenarios in a doc, evidence on a shared drive; nothing is traceable.
+- **Requisitos se traduzem mal**. Pessoas de negócio falam linguagem de processo, engenheiros escrevem código; cenários de aceitação no meio ficam diluídos.
+- **Sign-offs sem evidência**. Uma checkbox em um formulário não prova nada quando o incidente acontece.
+- **UAT como última hora**. UAT recebe os dois últimos dias antes do release; problemas encontrados ali ou são entregues ou atrasam o release.
+- **Deterioração de cenários**. Cenários escritos para a versão 1 continuam sendo os únicos cenários na versão 4.
+- **Sem loop de feedback de produção**. O cenário assinado nunca é reverificado em produção, então a deriva passa despercebida.
+- **Agendamento manual**. Sessões de UAT são coordenadas por email com cinco colisões de agenda.
+- **Ferramentas desconectadas**. Sign-offs em email, cenários em um doc, evidência em um drive compartilhado; nada é rastreável.
 
-## Fluxo diário AI-native
+## Fluxo diário AI-nativo
 
-The UAT Analyst works primarily in Microsoft 365 (Teams, Loop) and Visual Studio Code with GitHub Copilot, invoking the Acceptance Scribe agent to draft and maintain scenarios.
+O Analista de UAT trabalha principalmente no Microsoft 365 (Teams, Loop) e no Visual Studio Code com GitHub Copilot, invocando o agente Acceptance Scribe para redigir e manter cenários.
 
 ### Setup da manhã
 
-1. Open the Release Candidate channel in Microsoft Teams; check which features are in the UAT queue.
-2. In VS Code, run `/uat-plan --release=next` to regenerate the plan with session times, participants, and required evidence slots.
-3. Review overnight drift alerts from Azure Application Insights against previously signed scenarios.
-4. Pull the latest `SPECIFICATION.md` and confirm new or changed requirements have draft scenarios ready for review.
-5. Sync with the Business Analyst to confirm domain vocabulary added to the glossary.
+1. Abra o canal de Release Candidate no Microsoft Teams; verifique quais features estão na fila de UAT.
+2. No VS Code, rode `/uat-plan --release=next` para regenerar o plano com horários de sessão, participantes e slots de evidência necessários.
+3. Revise alertas noturnos de drift do Azure Application Insights contra cenários previamente assinados.
+4. Puxe o último `SPECIFICATION.md` e confirme que requisitos novos ou alterados têm cenários rascunhados prontos para revisão.
+5. Sincronize com o Business Analyst para confirmar vocabulário de domínio adicionado ao glossário.
 
 ### Execução no meio do dia
 
-1. Facilitate UAT sessions with domain experts. Use Playwright MCP to record every walkthrough.
-2. For each scenario executed, run `/sign-off` to capture the result, evidence link, and signer identity; the prompt writes a signed record into the repository.
-3. For new requirements, invoke `/acceptance-scenarios` to draft Given-When-Then blocks in business language, then review with the domain expert before freezing.
-4. Open a PR that adds or updates the scenario files; reviewers include the Business Analyst and the Product Owner.
+1. Facilite sessões de UAT com especialistas de domínio. Use o Playwright MCP para gravar cada walkthrough.
+2. Para cada cenário executado, rode `/sign-off` para capturar o resultado, o link de evidência e a identidade do assinante; o prompt grava um registro assinado no repositório.
+3. Para novos requisitos, invoque `/acceptance-scenarios` para redigir blocos Given-When-Then em linguagem de negócio, depois revise com o especialista de domínio antes de congelar.
+4. Abra um PR que adiciona ou atualiza os arquivos de cenário; revisores incluem o Business Analyst e o Product Owner.
 
 ### Revisão no fim da tarde
 
-1. Run `/business-trace` to regenerate the traceability matrix and publish it to Loop for stakeholders.
-2. Check the divergence report: any production telemetry that contradicts a signed scenario becomes an incident ticket in GitHub Projects.
-3. Post a daily digest in Microsoft Teams with sign-off counts, open scenarios, and next-day schedule.
+1. Rode `/business-trace` para regenerar a matriz de rastreabilidade e publicá-la no Loop para stakeholders.
+2. Verifique o relatório de divergência: qualquer telemetria de produção que contradiz um cenário assinado se torna um ticket de incidente no GitHub Projects.
+3. Poste um resumo diário no Microsoft Teams com contagens de sign-off, cenários abertos e cronograma do dia seguinte.
 
 ## Primitivas recomendadas
 
 ### Agente
 
 | Agente | Arquivo | Propósito |
-|-------|------|---------|
-| `acceptance-scribe` | `.github/agents/acceptance-scribe.agent.md` | Drafts acceptance scenarios, maintains the UAT plan, records sign-offs, and refreshes the business-traceability matrix |
+|--------|---------|-----------|
+| `acceptance-scribe` | `.github/agents/acceptance-scribe.agent.md` | Redige cenários de aceitação, mantém o plano de UAT, registra sign-offs e atualiza a matriz de rastreabilidade de negócio |
 
 ### Slash prompts
 
 | Comando | Arquivo | Propósito |
-|---------|------|---------|
-| `/acceptance-scenarios` | `.github/prompts/acceptance-scenarios.prompt.md` | Convert a business requirement into Given-When-Then scenarios in business language |
-| `/uat-plan` | `.github/prompts/uat-plan.prompt.md` | Generate the UAT schedule, participants, evidence slots for a release |
-| `/sign-off` | `.github/prompts/sign-off.prompt.md` | Capture a signed, evidence-backed acceptance of a scenario |
-| `/business-trace` | `.github/prompts/business-trace.prompt.md` | Refresh the business-traceability matrix and export to Azure DevOps Test Plans |
+|---------|---------|-----------|
+| `/acceptance-scenarios` | `.github/prompts/acceptance-scenarios.prompt.md` | Converter um requisito de negócio em cenários Given-When-Then em linguagem de negócio |
+| `/uat-plan` | `.github/prompts/uat-plan.prompt.md` | Gerar o cronograma de UAT, participantes, slots de evidência para um release |
+| `/sign-off` | `.github/prompts/sign-off.prompt.md` | Capturar uma aceitação assinada e respaldada por evidência de um cenário |
+| `/business-trace` | `.github/prompts/business-trace.prompt.md` | Atualizar a matriz de rastreabilidade de negócio e exportar para o Azure DevOps Test Plans |
 
-### Instruções escopadas
+### Instruções com escopo
 
 | Escopo (`applyTo`) | Arquivo | Propósito |
-|-------------------|------|---------|
-| `docs/scenarios/**/*.feature` | `.github/instructions/scenarios.instructions.md` | Business-language rules, no technical jargon, one requirement per scenario |
-| `docs/uat/**/*.md` | `.github/instructions/uat-plan.instructions.md` | UAT plan format with participants, dates, evidence links |
-| `docs/signoff/**/*.md` | `.github/instructions/signoff.instructions.md` | Sign-off format with signer, timestamp, evidence URL |
+|--------------------|---------|-----------|
+| `docs/scenarios/**/*.feature` | `.github/instructions/scenarios.instructions.md` | Regras de linguagem de negócio, sem jargão técnico, um requisito por cenário |
+| `docs/uat/**/*.md` | `.github/instructions/uat-plan.instructions.md` | Formato do plano de UAT com participantes, datas, links de evidência |
+| `docs/signoff/**/*.md` | `.github/instructions/signoff.instructions.md` | Formato de sign-off com assinante, timestamp, URL de evidência |
 
 ### Hooks
 
-- `pre-release`: block release if any in-scope requirement lacks a signed scenario
-- `post-merge`: rebuild the business-traceability matrix and push to Azure DevOps Test Plans
-- `nightly`: compare production telemetry against signed scenarios and emit divergence issues
-- `pre-uat-session`: generate the participant email, Teams invite, and evidence checklist
-- `post-uat-session`: archive the Playwright MCP recording to Azure Blob Storage and link it from the sign-off
+- `pre-release`: bloquear release se qualquer requisito no escopo não tiver um cenário assinado
+- `post-merge`: reconstruir a matriz de rastreabilidade de negócio e enviá-la ao Azure DevOps Test Plans
+- `nightly`: comparar telemetria de produção contra cenários assinados e emitir issues de divergência
+- `pre-uat-session`: gerar o email de participantes, convite do Teams e checklist de evidência
+- `post-uat-session`: arquivar a gravação do Playwright MCP no Azure Blob Storage e linká-la do sign-off
 
 ## MCPs validados
 
 | MCP | Propósito | Dono |
-|-----|---------|-------|
-| GitHub MCP Server | Manage PRs that add scenarios and sign-offs, open divergence issues | GitHub |
-| Azure DevOps MCP Server | Sync UAT plan and sign-offs into Azure DevOps Test Plans | Microsoft |
-| Playwright MCP | Record every UAT walkthrough for evidence | Microsoft |
-| Azure MCP Server | Pull Application Insights telemetry for production-drift detection | Microsoft |
-| Microsoft Learn Docs MCP | Resolve Microsoft 365 and Azure feature semantics referenced in scenarios | Microsoft |
+|-----|-----------|------|
+| GitHub MCP Server | Gerenciar PRs que adicionam cenários e sign-offs, abrir issues de divergência | GitHub |
+| Azure DevOps MCP Server | Sincronizar plano e sign-offs de UAT no Azure DevOps Test Plans | Microsoft |
+| Playwright MCP | Gravar cada walkthrough de UAT como evidência | Microsoft |
+| Azure MCP Server | Puxar telemetria do Application Insights para detecção de drift em produção | Microsoft |
+| Microsoft Learn Docs MCP | Resolver semântica de features do Microsoft 365 e Azure referenciadas em cenários | Microsoft |
 
 ## Exemplos reais
 
-### Example 1: a new claim-approval flow
+### Exemplo 1: um novo fluxo de aprovação de sinistro
 
-The Business Analyst publishes `REQ-CLM-210`: "Approvers must receive a Teams notification within 30 seconds of a claim entering review." The UAT Analyst invokes `/acceptance-scenarios` to draft three Given-When-Then scenarios (happy path, delayed path, user unavailable path). A session is held with two domain experts; the Acceptance Scribe records walkthroughs via Playwright MCP. `/sign-off` captures the signatures. The business-traceability matrix flips `REQ-CLM-210` from `draft` to `accepted-prod`.
+O Business Analyst publica `REQ-CLM-210`: "Aprovadores devem receber uma notificação do Teams dentro de 30 segundos após um sinistro entrar em revisão." O Analista de UAT invoca `/acceptance-scenarios` para redigir três cenários Given-When-Then (caminho feliz, caminho com atraso, usuário indisponível). Uma sessão é realizada com dois especialistas de domínio; o Acceptance Scribe grava walkthroughs via Playwright MCP. `/sign-off` captura as assinaturas. A matriz de rastreabilidade de negócio altera `REQ-CLM-210` de `draft` para `accepted-prod`.
 
-### Example 2: divergence caught in production
+### Exemplo 2: divergência detectada em produção
 
-Application Insights telemetry shows that notifications take 70 seconds on 2 percent of claims on a Saturday. The nightly divergence hook compares against signed `REQ-CLM-210` and opens a GitHub issue within minutes. The UAT Analyst coordinates with the SRE; the root cause is Azure Service Bus throttling. After the fix, a shortened `/sign-off` re-verifies the scenario, and the matrix returns to `accepted-prod`.
+Telemetria do Application Insights mostra que notificações levam 70 segundos em 2 por cento dos sinistros em um sábado. O hook de divergência noturno compara contra o `REQ-CLM-210` assinado e abre uma issue no GitHub em minutos. O Analista de UAT coordena com o SRE; a causa-raiz é throttling do Azure Service Bus. Após a correção, um `/sign-off` abreviado reverifica o cenário, e a matriz retorna a `accepted-prod`.
 
-### Example 3: retiring a scenario
+### Exemplo 3: aposentando um cenário
 
-A regulator deprecates a KYC step; the Business Analyst marks `REQ-KYC-018` as retired. The UAT Analyst invokes `/business-trace` to cross off the scenario, archives the last sign-off with reason `retired`, and publishes the change log in Microsoft Loop. Engineering removes the code path with confidence because the traceability matrix shows no remaining downstream scenario.
+Um regulador deprecia uma etapa de KYC; o Business Analyst marca `REQ-KYC-018` como aposentado. O Analista de UAT invoca `/business-trace` para riscar o cenário, arquiva o último sign-off com razão `retired` e publica o log de mudanças no Microsoft Loop. A engenharia remove o caminho de código com confiança porque a matriz de rastreabilidade mostra que nenhum cenário downstream permanece.
 
 ## Anti-padrões
 
-- **Checkbox sign-off**. A signature without linked evidence is no better than no sign-off. Always attach the Playwright recording and a scenario ID.
-- **Engineering writes scenarios**. When engineers author business scenarios, they encode assumptions from the code; have domain experts review or reject every scenario.
-- **UAT batched at the end**. UAT per-feature beats UAT per-release; delaying collapses the feedback window.
-- **Scenario bloat**. Scenarios that test ten things at once cannot be signed cleanly. One scenario, one outcome.
-- **Unowned glossary**. A domain glossary without a named owner rots; the UAT Analyst is the owner.
-- **Stale sign-offs**. A sign-off from six releases ago proves nothing about today's code; refresh at major version changes.
-- **Hidden scenarios**. Scenarios in a private drive or email thread cannot be audited; everything lives in the repo.
+- **Sign-off por checkbox**. Uma assinatura sem evidência linkada não é melhor do que nenhum sign-off. Sempre anexe a gravação do Playwright e um ID de cenário.
+- **Engenharia escreve cenários**. Quando engenheiros escrevem cenários de negócio, eles codificam suposições do código; faça especialistas de domínio revisarem ou rejeitarem cada cenário.
+- **UAT em lote no final**. UAT por feature é melhor que UAT por release; atrasar colapsa a janela de feedback.
+- **Inchaço de cenários**. Cenários que testam dez coisas ao mesmo tempo não podem ser assinados com clareza. Um cenário, um resultado.
+- **Glossário sem dono**. Um glossário de domínio sem um dono nomeado apodrece; o Analista de UAT é o dono.
+- **Sign-offs obsoletos**. Um sign-off de seis releases atrás não prova nada sobre o código de hoje; atualize em mudanças de versão major.
+- **Cenários escondidos**. Cenários em um drive privado ou thread de email não podem ser auditados; tudo vive no repositório.
 
 ## KPIs e métricas de impacto
 
-| Metric | Baseline (manual) | Target (agentic) | Source |
-|--------|-------------------|------------------|--------|
-| Requirements with signed scenario | 70 percent | 100 percent | Business-traceability matrix |
-| Sign-off cycle time | 4 days | < 1 day | GitHub PR timestamps |
-| Production-to-scenario divergences unresolved > 24h | 10 | 0 | Divergence hook |
-| UAT sessions recorded | 40 percent | 100 percent | Playwright MCP archive |
-| Business vocabulary drift incidents | 6 per quarter | 0 | Glossary diff |
-| Participant no-show rate | 25 percent | < 5 percent | Teams invites |
-| Sign-off audit readiness | Days | Minutes | Azure DevOps Test Plans export |
+| Métrica | Linha base (manual) | Meta (agêntico) | Fonte |
+|---------|---------------------|-----------------|-------|
+| Requisitos com cenário assinado | 70 por cento | 100 por cento | Matriz de rastreabilidade de negócio |
+| Tempo de ciclo de sign-off | 4 dias | < 1 dia | Timestamps de PR no GitHub |
+| Divergências produção-cenário não resolvidas > 24h | 10 | 0 | Hook de divergência |
+| Sessões de UAT gravadas | 40 por cento | 100 por cento | Arquivo do Playwright MCP |
+| Incidentes de drift de vocabulário de negócio | 6 por trimestre | 0 | Diff do glossário |
+| Taxa de no-show de participantes | 25 por cento | < 5 por cento | Convites do Teams |
+| Prontidão para auditoria do sign-off | Dias | Minutos | Exportação do Azure DevOps Test Plans |
 
 ## Maturidade em quatro níveis
 
-- **L1 Manual**: Scenarios in a shared doc, sign-offs by email, no recordings, no traceability matrix.
-- **L2 Assistido**: Copilot drafts scenarios but humans manually copy them into a wiki; sign-offs are screenshots.
-- **L3 Aumentado**: Acceptance Scribe agent, quatro slash prompts, instruções escopadas, Playwright MCP recordings linked from sign-offs.
-- **L4 Autônomo**: Nightly divergence detection, automated scheduling in Microsoft Teams, business-traceability matrix published daily to Loop, pre-release hook blocks unacceptable requirements automatically.
+- **L1 Manual**: Cenários em um doc compartilhado, sign-offs por email, sem gravações, sem matriz de rastreabilidade.
+- **L2 Assistido**: Copilot redige cenários mas humanos copiam manualmente para uma wiki; sign-offs são screenshots.
+- **L3 Aumentado**: Agente Acceptance Scribe, quatro slash prompts, instruções com escopo, gravações do Playwright MCP linkadas dos sign-offs.
+- **L4 Autônomo**: Detecção de divergência noturna, agendamento automatizado no Microsoft Teams, matriz de rastreabilidade de negócio publicada diariamente no Loop, hook pre-release bloqueia requisitos não aceitos automaticamente.
 
 ## Integração com outras personas
 
-- **Do Business Analyst**: approved requirements with EARS statements and domain glossary updates.
-- **Do Product Owner**: prioritized release plan indicating which requirements need UAT in this cycle.
-- **Para o Developer**: divergence issues with linked signed scenarios and Application Insights telemetry.
-- **With QA Engineer**: shared Playwright fixtures; acceptance scenarios feed regression suite candidates.
-- **Para o Compliance Auditor**: the business-traceability matrix and signed artifacts as audit evidence.
-- **Para o Release Manager**: pre-release hook blocks on missing sign-offs.
-- **With Tech Writer**: glossary synchronization so user docs and scenarios share the same vocabulary.
+- **Do Business Analyst**: requisitos aprovados com declarações EARS e atualizações do glossário de domínio.
+- **Do Product Owner**: plano de release priorizado indicando quais requisitos precisam de UAT neste ciclo.
+- **Para o Developer**: issues de divergência com cenários assinados linkados e telemetria do Application Insights.
+- **Com o QA Engineer**: fixtures Playwright compartilhados; cenários de aceitação alimentam candidatos a suíte de regressão.
+- **Para o Compliance Auditor**: a matriz de rastreabilidade de negócio e artefatos assinados como evidência de auditoria.
+- **Para o Release Manager**: hook pre-release bloqueia em sign-offs ausentes.
+- **Com o Tech Writer**: sincronização de glossário para que docs de usuário e cenários compartilhem o mesmo vocabulário.
 
 ## Glossário
 
-- **Acceptance scenario**: a Given-When-Then block written in business language, owned by a domain expert.
-- **Sign-off**: a signed, time-stamped, evidence-linked acceptance of a scenario.
-- **Business-traceability matrix**: the live mapping from requirement to scenario to evidence to signer.
-- **Divergence**: production behavior that contradicts a signed scenario, detected by telemetry comparison.
-- **Domain glossary**: the canonical list of business terms shared between engineering and the business.
-- **Evidence**: a recorded walkthrough, typically produced via Playwright MCP, referenced from the sign-off.
-- **Rehearsal**: the final walkthrough before release, run in a staging environment with the full participant roster.
+- **Cenário de aceitação**: um bloco Given-When-Then escrito em linguagem de negócio, de propriedade de um especialista de domínio.
+- **Sign-off**: uma aceitação assinada, com timestamp e evidência linkada, de um cenário.
+- **Matriz de rastreabilidade de negócio**: o mapeamento vivo de requisito a cenário a evidência a assinante.
+- **Divergência**: comportamento de produção que contradiz um cenário assinado, detectado por comparação de telemetria.
+- **Glossário de domínio**: a lista canônica de termos de negócio compartilhada entre engenharia e negócio.
+- **Evidência**: um walkthrough gravado, tipicamente produzido via Playwright MCP, referenciado do sign-off.
+- **Ensaio**: o walkthrough final antes do release, executado em um ambiente de staging com o roster completo de participantes.
 
 ## Referências
 
-- [Azure DevOps Test Plans](https://learn.microsoft.com/azure/devops/test/) — official destination for UAT evidence and plans
-- [Microsoft Teams and Loop for collaboration](https://learn.microsoft.com/microsoftteams/) — stakeholder communication channels
-- [Playwright MCP](https://github.com/microsoft/playwright-mcp) — recording and driving acceptance walkthroughs
-- [GitHub Projects](https://docs.github.com/issues/planning-and-tracking-with-projects) — divergence ticket tracking
-- [Application Insights for live monitoring](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — production divergence signal
-- [Microsoft Purview information protection](https://learn.microsoft.com/purview/) — audit readiness for sign-off evidence
-- [GitHub Actions](https://docs.github.com/actions) — CI and deployment orchestration across the stack
-- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — first-party documentation retrieval at implementation time
+- [Azure DevOps Test Plans](https://learn.microsoft.com/azure/devops/test/) — destino oficial para evidências e planos de UAT
+- [Microsoft Teams e Loop para colaboração](https://learn.microsoft.com/microsoftteams/) — canais de comunicação com stakeholders
+- [Playwright MCP](https://github.com/microsoft/playwright-mcp) — gravação e condução de walkthroughs de aceitação
+- [GitHub Projects](https://docs.github.com/issues/planning-and-tracking-with-projects) — rastreamento de tickets de divergência
+- [Application Insights para monitoramento em produção](https://learn.microsoft.com/azure/azure-monitor/app/app-insights-overview) — sinal de divergência em produção
+- [Microsoft Purview para proteção de informação](https://learn.microsoft.com/purview/) — prontidão para auditoria de evidências de sign-off
+- [GitHub Actions](https://docs.github.com/actions) — orquestração de CI e deploy em todo o stack
+- [Microsoft Learn Docs MCP](https://github.com/microsoftdocs/mcp) — recuperação de documentação first-party no momento da implementação
 - [GitHub Advanced Security](https://docs.github.com/code-security) — CodeQL, Dependabot, Secret Scanning, Push Protection
