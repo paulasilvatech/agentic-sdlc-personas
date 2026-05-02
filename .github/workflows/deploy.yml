@@ -32,6 +32,44 @@ jobs:
         with:
           node-version: 20
 
+      - name: Build per-persona ZIPs
+        working-directory: ${{ github.workspace }}
+        run: |
+          set -euo pipefail
+          OUT="site/public/downloads"
+          mkdir -p "$OUT"
+          shopt -s nullglob
+          for kit in persona-kits/*/; do
+            name=$(basename "$kit")
+            # only consider kit dirs that match NN-slug pattern
+            case "$name" in
+              [0-9][0-9]-*) ;;
+              *) continue ;;
+            esac
+            stage=$(mktemp -d)
+            target="$stage/$name"
+            mkdir -p "$target"
+            # copy kit contents
+            cp -R "$kit". "$target/"
+            # bundle docs and personas content per locale
+            for loc in en pt es; do
+              if [ -f "docs/$loc/personas/$name.md" ]; then
+                mkdir -p "$target/docs/$loc"
+                cp "docs/$loc/personas/$name.md" "$target/docs/$loc/$name.md"
+              fi
+              if [ -f "site/src/content/personas/$loc/$name.mdx" ]; then
+                mkdir -p "$target/content/$loc"
+                cp "site/src/content/personas/$loc/$name.mdx" "$target/content/$loc/$name.mdx"
+              fi
+            done
+            # include LICENSE and root README for context
+            [ -f LICENSE ] && cp LICENSE "$target/LICENSE"
+            [ -f README.md ] && cp README.md "$target/REPO-README.md"
+            (cd "$stage" && zip -qr "$GITHUB_WORKSPACE/$OUT/$name.zip" "$name")
+            rm -rf "$stage"
+          done
+          ls -la "$OUT"
+
       - name: Install dependencies
         run: npm install
 

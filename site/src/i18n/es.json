@@ -57,7 +57,8 @@
     "sections": "secciones",
     "updated": "Actualizado",
     "viewKit": "Ver kit",
-    "readDoc": "Leer documento completo"
+    "readDoc": "Leer documento completo",
+    "downloadKit": "Descargar .zip"
   },
   "footer": {
     "madeBy": "Escrito por Paula Silva, AI-Native Software Engineer.",
